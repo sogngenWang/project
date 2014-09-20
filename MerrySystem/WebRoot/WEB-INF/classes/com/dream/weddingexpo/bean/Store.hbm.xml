@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.dream.weddingexpo.bean.Store" table="store"
+		schema="MerrySystem">
+		<id name="storeId" type="java.lang.String">
+			<column name="storeId" length="20" />
+		</id>
+		<property name="storeName" type="java.lang.String">
+			<column name="storeName" length="30" />
+		</property>
+		<property name="storeAddress" type="java.lang.String">
+			<column name="storeAddress" length="200" />
+		</property>
+		<property name="storePosition" type="java.lang.String">
+			<column name="storePosition" length="200" />
+		</property>
+	</class>
+</hibernate-mapping>

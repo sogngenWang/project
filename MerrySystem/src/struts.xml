@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<constant name="struts.i18n.encoding" value="utf8" />
+
+	<constant name="struts.devMode" value="true" />
+	
+	<package name="mainpackage" extends="struts-default" namespace="/">
+	
+		<action name="mainAction" class="messageAction" method="firstPage">
+			<result name="success">main.jsp</result> 
+		</action>
+		<action name="listMessageAction" class="messageAction" method="listMessage" >
+			<result name="success">listMessages.jsp</result> 
+		</action>
+		<action name="listMessageNoContentAction" class="messageAction" method="listMessageNoContent" >
+			<result name="success">listMessages.jsp</result> 
+		</action>
+		
+		<action name="listKindsAction" class="kindsAction" method="listKinds" >  
+			<result name="success">listStores.jsp</result>
+		</action>
+		<action name="detailMessageAction" class="messageAction" method="detailMessage" >  
+			<result name="success">detailMessage.jsp</result>
+		</action>
+		<!-- 
+		<action name="listKindsAction" class="kindsAction" method="listKinds">
+			<result name="success">listStores.jsp</result>
+		</action>
+		 -->
+		 
+		<action name="listStoreByKindsStoreAction" class="kindsAction" method="listStoreByKindsStore" />
+		
+		<action name="addMessageAction" class="messageAction" method="addMessage" >
+			<result name="success">addMessage.jsp</result>
+		</action>
+		
+		
+	</package>
+</struts>    
