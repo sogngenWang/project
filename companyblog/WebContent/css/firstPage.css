@@ -1,0 +1,64 @@
+
+.userImg{
+	width: 60px; 
+	height: 60px;
+}
+
+#announceMsgAreaTitle {
+	margin: 0 0 15px auto;
+}
+
+#announceMsgTextArea {
+	color: #999;
+	margin: 0 0 15px auto;
+}
+
+#submitAnn {
+	float: right;
+	margin: 0 0 15px 30px;
+}
+
+.divNbspRight {
+	float: right;
+	margin: 0 0 0 30px;
+}
+
+.message{
+
+}
+
+.createTime {
+	float: right;
+}
+.toggleRelyMessage {
+	height:20px;
+	margin:25px 0 0 0;
+
+}
+
+.toggleRelyMessageContent{
+	display: none;
+}
+.relyMessageDiv {
+	margin: 0 0 0 10px;
+}
+.relyTimeDiv{
+	float:right;
+	display: block;
+
+}
+.relyContentDiv {
+	text-indent:2em;
+	clear:both; 
+	float:none;
+}
+.relyMessageInput{
+	display: none;
+}
+.relyMessageLink{
+	clear:both; 
+	float:right;
+}
+.relyMessageSubmit{
+	float:right;
+}

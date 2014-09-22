@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="companyAnnouncement" class="com.dreamheaven.companyannounce.domain.CompanyAnnouncement" />
+	<bean id="atPK" class="com.dreamheaven.at.domain.AtPK" />
+	<bean id="at" class="com.dreamheaven.at.domain.At" >
+		<property name="atPK" ref="atPK"/>
+	</bean>
+	<bean id="companyInfo" class="com.dreamheaven.companyinfo.domain.CompanyInfo" />
+	<bean id="message" class="com.dreamheaven.message.domain.Message" />
+	<bean id="relyMessagePK" class="com.dreamheaven.relymessage.domain.RelyMessagePK" />
+	<bean id="relyMessage" class="com.dreamheaven.relymessage.domain.RelyMessage" >
+		<property name="relyMessagePK" ref="relyMessagePK"/>
+	</bean>
+	<bean id="user" class="com.dreamheaven.user.domain.User" />
+	<bean id="userInfo" class="com.dreamheaven.userinfo.domain.UserInfo" />
+	<bean id="userInterestPK" class="com.dreamheaven.userinterest.domain.UserInterestPK" />
+	<bean id="userInterest" class="com.dreamheaven.userinterest.domain.UserInterest" >
+		<property name="userInterestPK" ref="userInterestPK"/>
+	</bean>
+	
+		
+	<bean id="atDao" class="com.dreamheaven.at.dao.impl.AtDaoImpl"/>
+	<bean id="companyInfoDao" class="com.dreamheaven.companyinfo.dao.impl.CompanyInfoDaoImpl" />
+	<bean id="messageDao" class="com.dreamheaven.message.dao.impl.MessageDaoImpl"/>
+	<bean id="relyMessageDao" class="com.dreamheaven.relymessage.dao.impl.RelyMessageDaoImpl"/>
+	<bean id="userDao" class="com.dreamheaven.user.dao.impl.UserDaoImpl" />
+	<bean id="userInfoDao" class="com.dreamheaven.userinfo.dao.impl.UserInfoDaoImpl"/>
+	<bean id="userInterestDao" class="com.dreamheaven.userinterest.dao.impl.UserInterestDaoImpl"/>
+	<bean id="companyAnnouncementDao" class="com.dreamheaven.companyannounce.dao.impl.CompanyAnnouncementDaoImpl"/>
+	
+	<bean id="companyAnnouncementService" class="com.dreamheaven.companyannounce.service.impl.CompanyAnnouncementServiceImpl" >
+		<property name="companyAnnouncementDao" ref="companyAnnouncementDao"/>
+	</bean>
+	<bean id="atService" class="com.dreamheaven.at.service.impl.AtServiceImpl" >
+		<property name="atDao" ref="atDao"/>
+	</bean>
+	<bean id="companyInfoService" class="com.dreamheaven.companyinfo.service.impl.CompanyInfoServiceImpl" >
+		<property name="companyInfoDao" ref="companyInfoDao"/>
+	</bean>
+	<bean id="messageService" class="com.dreamheaven.message.service.impl.MessageServiceImpl">
+		<property name="messageDao" ref="messageDao"/>
+	</bean>
+	<bean id="relyMessageService" class="com.dreamheaven.relymessage.service.impl.RelyMessageServiceImpl">
+		<property name="relyMessageDao" ref="relyMessageDao"/>
+	</bean>
+	<bean id="userService" class="com.dreamheaven.user.service.impl.UserServiceImpl" >
+		<property name="userDao" ref="userDao"/>
+	</bean>
+	<bean id="userInfoService" class="com.dreamheaven.userinfo.service.impl.UserInfoServiceImpl">
+		<property name="userInfoDao" ref="userInfoDao"/>
+	</bean>
+	<bean id="userInterestService" class="com.dreamheaven.userinterest.service.impl.UserInterestServiceImpl">
+		<property name="userInterestDao" ref="userInterestDao"/>
+	</bean>
+	
+	<bean id="atAction" class="com.dreamheaven.at.action.AtAction" >
+		<property name="atService" ref="atService"/>
+		<property name="userInfoService" ref="userInfoService"/>
+		<property name="messageService" ref="messageService"/>
+		<property name="relyMessageService" ref="relyMessageService"/>
+		<property name="at" ref="at"/>
+	</bean>
+	<bean id="commonAction" class="com.dreamheaven.common.action.CommonAction">
+		<property name="userInfoService" ref="userInfoService"/>
+		<property name="messageService" ref="messageService"/>
+		<property name="relyMessageService" ref="relyMessageService"/>
+		<property name="userInterestService" ref="userInterestService"/>
+		<property name="companyInfoService" ref="companyInfoService"/>
+		<property name="companyAnnouncementService" ref="companyAnnouncementService"/>
+		<property name="user" ref="user"/>
+		<property name="companyInfo" ref="companyInfo"/>
+		<property name="companyAnnouncement" ref="companyAnnouncement"/>
+	</bean>
+	<bean id="companyAnnouncementAction" class="com.dreamheaven.companyannounce.action.CompanyAnnouncementAction" >
+		<property name="companyAnnouncementService" ref="companyAnnouncementService"/>
+		<property name="companyAnnouncement" ref="companyAnnouncement"/>
+		<property name="userInfoService" ref="userInfoService"/>
+		
+	</bean>
+	<bean id="companyInfoAction" class="com.dreamheaven.companyinfo.action.CompanyInfoAction" >
+		<property name="companyInfoService" ref="companyInfoService"/>
+		<property name="companyInfo" ref="companyInfo"/>
+		<property name="userService" ref="userService"/>
+		<property name="user" ref="user"/>
+	</bean>
+	<bean id="messageAction" class="com.dreamheaven.message.action.MessageAction" >
+		<property name="messageService" ref="messageService"/>
+		<property name="atService" ref="atService"/>
+		<property name="relyMessageService" ref="relyMessageService"/>
+		<property name="user" ref="user"/>
+		
+	</bean>
+	<bean id="relyMessageAction" class="com.dreamheaven.relymessage.action.RelyMessageAction" >
+		<property name="relyMessageService" ref="relyMessageService"/>
+		<property name="userInfoService" ref="userInfoService"/>
+		<property name="messageService" ref="messageService"/>
+		<property name="atService" ref="atService"/>
+		<property name="message" ref="message"/>
+		<property name="relyMessage" ref="relyMessage"/>
+	</bean>
+	<bean id="userAction" class="com.dreamheaven.user.action.UserAction" >
+		<property name="userService" ref="userService"/>
+		<property name="userInfoService" ref="userInfoService" />
+		<property name="companyInfoService" ref="companyInfoService"/>
+		<property name="user" ref="user"/>
+	</bean>
+	<bean id="userInfoAction" class="com.dreamheaven.userinfo.action.UserInfoAction" >
+		<property name="userInterestService" ref="userInterestService"/>
+		<property name="userInfoService" ref="userInfoService"/>
+		<property name="userService" ref="userService"/>
+		<property name="companyInfoService" ref="companyInfoService"/>
+		<property name="user" ref="user"/>
+		<property name="userInfo" ref="userInfo"/>
+	</bean>
+	<bean id="userInterestAction" class="com.dreamheaven.userinterest.action.UserInterestAction" >
+		<property name="userInterestService" ref="userInterestService"/>
+	</bean>
+	
+	<bean id="commonUtils" class="com.dreamheaven.common.utils.CommonUtils">
+		<property name="userInfoService" ref="userInfoService"/>
+	</bean>
+
+</beans>

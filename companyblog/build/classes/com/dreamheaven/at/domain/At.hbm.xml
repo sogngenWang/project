@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.dreamheaven.at.domain.At" table="T_AT" schema="bmp">
+ 		<composite-id name="atPK" class="com.dreamheaven.at.domain.AtPK">
+            <key-property name="mid" column="nmid" type="java.lang.String"/>
+            <key-property name="atUid" column="natUid" type="java.lang.String"/>
+            <key-property name="atType" column="natType" type="java.lang.String"/>
+            <key-property name="seqNum" column="nseqNum" type="java.lang.String"/>
+        </composite-id>
+    </class>
+</hibernate-mapping>

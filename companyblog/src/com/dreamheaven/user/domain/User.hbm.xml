@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.dreamheaven.user.domain.User" table="T_user" schema="bmp">
+        <id name="uid" type="java.lang.String">
+            <column name="NUID" length="20" />
+            <generator class="native" />
+        </id>
+        <property name="userName" type="java.lang.String">
+            <column name="SUSERNAME" length="20" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="SPASSWORD" length="20" />
+        </property>
+        <property name="userType" type="java.lang.String">
+            <column name="SUSERTYPE" length="1" />
+        </property>
+        <property name="active" type="java.lang.String">
+            <column name="SACTIVE" length="1" />
+        </property>
+    </class>
+</hibernate-mapping>

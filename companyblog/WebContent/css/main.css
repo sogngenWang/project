@@ -1,0 +1,186 @@
+@charset "utf-8";
+/* CSS Document */
+
+* {
+	font-size:15px;
+	color:#fff;
+}
+
+#contain {
+	width:1200px;
+	text-align:center;
+	margin-left: auto;
+	margin-right: auto;
+	
+}
+#headPage {
+	width:1120px;
+	height:200px;
+	margin:5px auto 20px;
+	background-image: url("./img/greenBackGround.gif");
+}
+
+#indexUl {
+	width:300px;
+	margin:0 0 0 0;
+	list-style:none;
+	position:absolute;
+	z-index:1;
+	left:200px;
+	top:50px;
+}
+#indexUl li {
+	display:block;
+	margin:0 10px 0 0;
+	float:left;
+}
+#indexUl a:visited, #indexUl a:link {
+	color:#03F;
+}
+#indexUl a:hover {
+	color:#F00;
+}
+#indexUl a {
+	text-decoration:none;
+}
+
+#bannerLeft {
+	width:1px;
+	height:20px;
+}
+
+#bannerRight {
+	width:1px;
+	height:20px;
+}
+#banner {
+	margin:0;
+	width:1120px;
+	height:200px;
+	overflow:hidden;
+}
+#bannerDate {
+	width:200px;
+	position:absolute;
+	top:180px;
+	left:1000px;
+}
+#dottedLine {
+	width:1400;
+	margin:10px auto;
+	border-bottom-style:dotted;
+	border-bottom-width:6px;
+	border-bottom-color:#CCC;
+}
+#bodyPage {
+	width:1120px;
+	height:800px;
+	margin:20px auto 20px;
+	padding:0;
+}
+#leftSideBar {
+	text-align:left;
+	visibility:visible;
+	margin:0;
+	padding:10px 10px;
+	width:210px;
+	height:780px;
+	float:left;
+	background-repeat:no-repeat;
+}
+#rightSideBar {
+	visibility:visible;
+	margin:0;
+	padding:10px 10px;
+	width:210px;
+	height:780px;
+	float:right;
+}
+
+#sideBar a{
+	text-decoration:none;
+}
+#sideBar a:link,#sideBar a:visited{
+	color:#FC9;
+}
+#sideBar a:hover{
+	color:#FFF;
+}
+#sideBar a:active{
+	color:#FF0;
+}
+#bodyContent {
+	margin:0;
+	width:660px;
+	height:800px;
+	border-width:10;
+	float:left;
+	right:100px;
+}
+#centerFrame {
+	margin:0;
+	width:660px;
+	height:800px;
+}
+#foot {
+	width:1120px;
+	height:100px;
+	margin:20px auto;
+}
+#mentionOfMeToggle {
+	display: none;
+	padding: 12px 0px 0px 25px;
+}
+
+#commentToggle {
+	display: none;
+	padding: 12px 0px 0px 25px;
+}
+
+#welcome {
+	right: 20px;
+	padding: 12px 20px auto auto;
+}
+.divBlock {
+
+}
+
+.divBlockChange {
+	
+}
+
+#attentionCount {
+	display: inline;
+}
+#fansCount {
+	display: inline;
+}
+#weiblogCount {
+	display: inline;
+}
+.listen {
+	display: inline;
+	float:left;
+}
+
+#mentionOfMeArrow{
+	width: 10px; 
+	height: 10px;
+}
+#commentArrow {
+	width: 10px; 
+	height: 10px;
+}
+.userImg{
+	width: 60px; 
+	height: 60px;
+}
+#imgDiv{
+	position:absolute;
+	float:left;
+	top:0px;
+	z-index: -1;
+}
+
+
+

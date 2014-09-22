@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.dreamheaven.userinterest.domain.UserInterest" table="T_user_interest" schema="bmp">
+ 		<composite-id name="userInterestPK" class="com.dreamheaven.userinterest.domain.UserInterestPK">
+            <key-property name="uid" column="nuid" type="java.lang.String"/>
+            <key-property name="listenedId" column="nlistenedId" type="java.lang.String"/>
+        </composite-id>
+    </class>
+</hibernate-mapping>

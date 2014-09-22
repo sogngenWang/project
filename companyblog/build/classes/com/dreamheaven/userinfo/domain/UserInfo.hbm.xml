@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.dreamheaven.userinfo.domain.UserInfo" table="T_user_info" schema="bmp">
+        <id name="uid" type="java.lang.String">
+            <column name="NUID" length="20" />
+        </id>
+        <property name="nickName" type="java.lang.String">
+            <column name="snickName" length="20" />
+        </property>
+        <property name="age" type="java.lang.String">
+            <column name="nage" length="20" />
+        </property>
+        <property name="sex" type="java.lang.String">
+            <column name="nsex" length="20" />
+        </property>
+        <property name="birthday" type="java.lang.String">
+            <column name="sbirthday" length="20" />
+        </property>
+        <property name="hoby" type="java.lang.String">
+            <column name="shoby" length="20" />
+        </property>
+         <property name="companyId" type="java.lang.String">
+            <column name="ncompanyId" length="20" />
+        </property>
+         <property name="headImgPath" type="java.lang.String">
+            <column name="sheadImgPath" length="20" />
+        </property>
+    </class>
+</hibernate-mapping>

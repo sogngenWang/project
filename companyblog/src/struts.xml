@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<constant name="struts.i18n.encoding" value="utf8" />
+	
+	<constant name="struts.devMode" value="true" />
+	
+	<package name="mainpackage" extends="struts-default" namespace="/">
+	
+		<action name="forward" class="commonAction" method="forward">
+			<result name="personalLogin">/com/dreamheaven/login/personalLogin.jsp</result>
+			<result name="companyLogin">/com/dreamheaven/login/companyLogin.jsp</result>
+			<result name="managerLogin">/com/dreamheaven/login/managerLogin.jsp</result>	
+		</action>
+		
+		<action name="login" class="userAction" method="execute"> 
+			<result name="login" type="redirectAction">main</result>
+			<result name="company" type="redirectAction">companyMain</result>
+			<result name="manager" type="redirectAction">managerMain</result>
+			<result name="failed">/com/dreamheaven/login/personalLogin.jsp</result>
+			<result name="companyFailed">/com/dreamheaven/login/companyLogin.jsp</result>
+			<result name="managerFailed">/com/dreamheaven/login/managerLogin.jsp</result>
+		</action>
+		
+		<action name="logout" class="userAction" method="logout"> 
+			<result name="success">/index.jsp</result>
+		</action>
+		
+		<action name="personalRegister" class="userAction" method="prepareToRegister"> 
+			<result name="success">/com/dreamheaven/register/registerPersonal.jsp</result>
+		</action>
+		
+		<action name="toSearchUser" class="userInfoAction" method="beforeToSearchUser">
+			<result name="success">/com/dreamheaven/search/searchUser.jsp</result>
+		</action>
+		
+		<action name="searchUser" class="userInfoAction" method="searchUserOfTheSameCompany">
+		</action>
+		
+		<action name="main" class="commonAction" method="execute">
+			<result name="success">/com/dreamheaven/main/main.jsp</result>
+		</action>
+		
+		<action name="userInfoAndWeibo" class="userInfoAction" method="userInfoAndWeibo">
+			<result name="success">/com/dreamheaven/personalInfo/personalInfoAndWeibo.jsp</result>
+		</action>
+		
+		<action name="detailUserInfoByUid" class="userInfoAction" method="detailUserInfoByUid">
+			<result name="success">/com/dreamheaven/personalInfo/detailPersonalInfo.jsp</result>
+		</action>
+		
+		<action name="detailUserInfoByImgId" class="userInfoAction" method="detailUserInfoByImgId">
+			<result name="success">/com/dreamheaven/personalInfo/detailPersonalInfo.jsp</result>
+		</action>
+		<action name="detailUserInfoByAHref" class="userInfoAction" method="detailUserInfoByAHref">
+			<result name="success">/com/dreamheaven/personalInfo/detailPersonalInfo.jsp</result>
+		</action>
+		<action name="detailMyInfo" class="userInfoAction" method="detailMyInfo">
+			<result name="success">/com/dreamheaven/personalInfo/modifyPersonalInfo.jsp</result>
+		</action>
+		<action name="queryAtMeMessage" class="atAction" method="queryAtMeMessage">
+			<result name="success">/com/dreamheaven/atme/atMeMessage.jsp</result>
+		</action>
+		
+		<action name="queryAtMeRelyMessage" class="atAction" method="queryAtMeRelyMessage">
+			<result name="success">/com/dreamheaven/atme/atMeRelyMessage.jsp</result>
+		</action>
+		
+		<action name="recieveComment" class="relyMessageAction" method="recieveComment">
+			<result name="success">/com/dreamheaven/comment/comment.jsp</result>
+		</action>
+		
+		<action name="sentComment" class="relyMessageAction" method="sentComment">
+			<result name="success">/com/dreamheaven/comment/comment.jsp</result>
+		</action>
+		<action name="deleteMessage" class="messageAction" method="deleteMessage">
+		</action>
+		
+		<action name="queryRelyMessage" class="relyMessageAction" method="queryRelyMessage">
+		</action>
+		
+		<action name="queryFans" class="userInfoAction" method="queryFansInfo">
+			<result name="success">/com/dreamheaven/fans/fans.jsp</result>
+		</action>
+		
+		<action name="createRelyMessage" class="relyMessageAction" method="createRelyMessage">
+			<result name="success" type="redirectAction">queryAnnouncement.action</result>
+		</action>
+		
+		<action name="queryAttention" class="userInfoAction" method="queryAttentionInfo">
+			<result name="success">/com/dreamheaven/attention/attention.jsp</result>
+		</action>
+		
+		<action name="countMessage" class="messageAction" method="countMessage">
+		</action>
+		
+		<action name="countFans" class="userInterestAction" method="countFans">
+		</action>
+		
+		<action name="countAttention" class="userInterestAction" method="countAttention">
+		</action>
+		
+		<action name="queryMessageAndRely" class="messageAction" method="queryMessageAndRely">
+			<result name="success" >com/dreamheaven/firstPage/firstPage.jsp</result>
+		</action>	
+		
+		<action name="addListenUser" class="userInterestAction" method="addListenUser">
+			<result name="success" type="redirectAction">main</result>
+		</action>	
+		<action name="companyMain" class="commonAction" method="companyMain">
+			<result name="success">/com/dreamheaven/main/companyMain.jsp</result>
+		</action>
+		<action name="managerMain" class="commonAction" method="managerMain">
+			<result name="success">/com/dreamheaven/main/managerMain.jsp</result>
+		</action>
+		<action name="queryAnnouncement" class="companyAnnouncementAction" method="queryAnnouncement">
+			<result name="success">/com/dreamheaven/firstPage/companyFirstPage.jsp</result>
+		</action>
+		<action name="queryAllUser" class="userInfoAction" method="queryAllSameCompanyUser">
+			<result name="success">/com/dreamheaven/sameCompany/displayUser.jsp</result>
+		</action>
+		<action name="queryNeedActiveUser" class="userInfoAction" method="queryAllSameCompanyNeedActiveUser">
+			<result name="success">/com/dreamheaven/sameCompany/displayUser.jsp</result>
+		</action>	
+		<action name="createAnn" class="companyAnnouncementAction" method="createAnn">
+			<result name="success">/com/dreamheaven/sameCompany/createAnn.jsp</result>
+		</action>
+		<action name="activeUser" class="userAction" method="activeAnEmployee">
+		</action>
+		<action name="logOffUser" class="userAction" method="forbidAnEmployee">
+		</action>	
+		<action name="deleteUser" class="userAction" method="deleteAnEmployee">
+		</action>
+		<action name="activeCompany" class="userAction" method="activeCompany">
+		</action>
+		<action name="logOffCompany" class="userAction" method="logOffCompany">
+		</action>
+		<action name="modifyCompanyMaxUsers" class="companyInfoAction" method="modifyCompanyMaxUsers">
+			<result name="success">/com/dreamheaven/company/modifyCompanyMaxUsers.jsp</result>
+		</action>
+		<action name="allCompany" class="companyInfoAction" method="getAllCompanyInfo">
+			<result name="success">/com/dreamheaven/company/displayCompany.jsp</result>
+		</action>
+		<action name="needActiveCompany" class="companyInfoAction" method="getNeedActiveCompany">
+			<result name="success">/com/dreamheaven/company/displayCompany.jsp</result>
+		</action>
+		<action name="toModifyCompanyMaxUsers" class="companyInfoAction" method="toModifyCompanyMaxUsers">
+			<result name="success">/com/dreamheaven/company/modifyCompanyMaxUsers.jsp</result>
+		</action>
+		
+		<action name="addCompany" class="companyInfoAction" method="addCompany">
+			<result name="success">/com/dreamheaven/login/companyLogin.jsp</result>
+		</action>
+		
+		<action name="createMessage" class="messageAction" method="createMessage">
+			<result name="success" type="redirectAction">createMessageReturn.action</result>
+		</action>
+		<action name="createMessageReturn" class="commonAction" method="execute">
+			<result name="success">/com/dreamheaven/firstPage/firstPage.jsp</result>
+		</action>
+	</package>
+
+	
+	<package name="firstPagePackage" extends="struts-default" namespace="/com/dreamheaven/firstPage">
+		<action name="createMessage" class="messageAction" method="createMessage">
+			<result name="success" type="redirectAction">main.action</result>
+		</action>
+		
+		<action name="createRelyMessage" class="relyMessageAction" method="createRelyMessage">
+			<result name="success" type="redirectAction">main.action</result>
+		</action>
+		
+		<action name="main" class="commonAction" method="execute">
+			<result name="success">/com/dreamheaven/firstPage/firstPage.jsp</result>
+		</action>
+	</package>
+		
+	<package name="fansPackage" extends="struts-default" namespace="/com/dreamheaven/fans">
+		<action name="deleteListenUser" class="userInterestAction" method="deleteListenUser">
+			<result name="success" type="redirectAction">queryFans.action</result>
+		</action>
+		<action name="addListenUser" class="userInterestAction" method="addListenUser">
+			<result name="success" type="redirectAction">queryFans.action</result>
+		</action>
+		<action name="queryFans" class="userInfoAction" method="queryFansInfo">
+			<result name="success">/com/dreamheaven/fans/fans.jsp</result>
+		</action>
+	</package>
+	
+	
+	<package name="attentionPackage" extends="struts-default" namespace="/com/dreamheaven/attention">
+		<action name="deleteListenUser" class="userInterestAction" method="deleteListenUser">
+			<result name="success" type="redirectAction">queryAttention.action</result>
+		</action>
+		<action name="addListenUser" class="userInterestAction" method="addListenUser">
+			<result name="success" type="redirectAction">queryAttention.action</result>
+		</action>
+		<action name="queryAttention" class="userInfoAction" method="queryAttentionInfo">
+			<result name="success">/com/dreamheaven/attention/attention.jsp</result>
+		</action>
+	</package>
+	
+	<package name="registerPackage" extends="struts-default" namespace="/com/dreamheaven/register">
+		<action name="addPersonalUser" class="userInfoAction" method="addPersonalUser">
+			<result name="success" >/com/dreamheaven/login/personalLogin.jsp</result>
+		</action>
+	</package>
+	
+</struts>    

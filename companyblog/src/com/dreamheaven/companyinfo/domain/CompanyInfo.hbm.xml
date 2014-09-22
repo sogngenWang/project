@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.dreamheaven.companyinfo.domain.CompanyInfo" table="T_company_info" schema="bmp">
+        <id name="companyId" type="java.lang.String">
+            <column name="ncompanyId" length="20" />
+            <generator class="native" />
+        </id>
+        <property name="uid" type="java.lang.String">
+            <column name="nuid" length="20" />
+        </property>
+        <property name="companyName" type="java.lang.String">
+            <column name="scompanyName" length="50" />
+        </property>
+        <property name="maxUsers" type="java.lang.String">
+            <column name="nmaxUsers" length="50" />
+        </property>
+        <property name="companyDescribe" type="java.lang.String">
+            <column name="scompanyDescribe" length="50" />
+        </property>
+        <property name="companyAddress" type="java.lang.String">
+            <column name="scompanyAddress" length="50" />
+        </property>
+        <property name="companyContact" type="java.lang.String">
+            <column name="scompanyContact" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>

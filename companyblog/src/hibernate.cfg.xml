@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+		<property name="dialect">org.hibernate.dialect.Oracle9Dialect</property>
+		<property name="connection.url">jdbc:oracle:thin:@127.0.0.1:1521:train</property>
+		<property name="connection.username">bmp</property>
+		<property name="connection.password">bmp</property>
+		<property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+		<property name="format_sql">true</property>
+		<property name="show_sql">true</property>
+		<property name="hbm2ddl.auto">update</property>
+
+		<mapping resource="com/dreamheaven/user/domain/User.hbm.xml" />
+		<mapping resource="com/dreamheaven/userinfo/domain/UserInfo.hbm.xml" />
+		<mapping resource="com/dreamheaven/message/domain/Message.hbm.xml" />
+		<mapping resource="com/dreamheaven/userinterest/domain/UserInterest.hbm.xml" />
+		<mapping resource="com/dreamheaven/relymessage/domain/RelyMessage.hbm.xml" />
+		<mapping resource="com/dreamheaven/companyinfo/domain/CompanyInfo.hbm.xml" />
+		<mapping resource="com/dreamheaven/at/domain/At.hbm.xml" />
+		<mapping resource="com/dreamheaven/companyannounce/domain/CompanyAnnouncement.hbm.xml" />
+	</session-factory>
+
+</hibernate-configuration>
