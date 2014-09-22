@@ -4,7 +4,8 @@
         <wb-resource deploy-path="/" source-path="/"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resource"/>
         <property name="context-root" value="/Photography"/>
         <property name="java-output-path" value="/Photography/WEB-INF/classes"/>
     </wb-module>
