@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.dreamheaven.domain.Order" table="orderTest"
+		schema="dinnerdb">
+		<id name="orderId" column="norderid" type="java.lang.String">
+			<generator class="native" />
+		</id>
+		<property name="orderState" type="java.lang.String">
+			<column name="sorderstate" />
+		</property>
+		<property name="orderCash" type="java.lang.String">
+			<column name="sordercash" />
+		</property>
+		<property name="orderTime" type="java.lang.String">
+			<column name="sordertime" />
+		</property>
+		<property name="orderDetail" type="java.lang.String">
+			<column name="sorderdetail" />
+		</property>
+	</class>
+</hibernate-mapping>

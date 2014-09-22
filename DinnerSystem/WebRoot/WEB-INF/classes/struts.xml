@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<constant name="struts.i18n.encoding" value="utf8" />
+
+	<constant name="struts.devMode" value="true" />
+
+	<package name="mainpackage" extends="struts-default" namespace="/">
+
+		<action name="login" class="userAction" method="login">
+			<result name="success">/com/dreamheaven/manu/manu.jsp</result>
+			<result name="failed">/com/dreamheaven/login/login.jsp</result>
+		</action>
+
+		<action name="logout" class="userAction" method="logout">
+			<result name="success">/com/dreamheaven/login/login.jsp</result>
+		</action>
+		<action name="queryTodayOrder" class="orderAction" method="queryTodayAllOrder">
+			<result name="success">/com/dreamheaven/order/queryOrder.jsp</result>
+		</action>
+		<action name="queryOrderByDate" class="orderAction" method="queryOrderByDate">
+			<result name="success">/com/dreamheaven/order/queryOrder.jsp</result>
+		</action>
+		<action name="toOrderDinner" class="manuAction" method="queryManu">
+			<result name="success">/com/dreamheaven/order/orderDinner.jsp</result>
+		</action>
+		<action name="sureOrder" class="dishAction" method="orderDinner">
+			<result name="success">/com/dreamheaven/order/orderPrint.jsp</result>
+		</action>
+		<action name="printOrder" class="orderAction" method="printOrder">
+			<result name="success" type="redirectAction">toOrderDinner</result>
+		</action>
+	</package>
+</struts>    
