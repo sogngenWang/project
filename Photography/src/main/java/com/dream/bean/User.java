@@ -1,7 +1,9 @@
 package com.dream.bean;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
+@Scope("prototype")
 @Repository(value = "user")
 public class User {
 

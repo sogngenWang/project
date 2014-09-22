@@ -6,13 +6,13 @@ import com.dream.bean.Area;
 
 public interface AreaService {
 
-	Area detailArea(Area are);
+	Area detailArea(Area area);
 
-	List<Area> listArea(Area are);
+	List<Area> listArea(Area area);
 
-	Area updateArea(Area are);
+	Area updateArea(Area area);
 
-	void addArea(Area are);
+	void addArea(Area area);
 
-	void deleteArea(Area are);
+	void deleteArea(Area area);
 }

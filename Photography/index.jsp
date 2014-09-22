@@ -8,7 +8,7 @@
 </head>
 <body>
  <%
-     request.getRequestDispatcher("/src/main/login.jsp").forward(request,response);
+     request.getRequestDispatcher("/src/main/webapp/login.jsp").forward(request,response);
  %>
 </body>
 </html>
