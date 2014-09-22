@@ -1,5 +1,8 @@
 package com.dream.bean;
 
+import org.springframework.stereotype.Repository;
+
+@Repository(value = "store")
 public class Store {
 	private String storeId;
 
@@ -8,6 +11,16 @@ public class Store {
 	private String storeDetail;
 
 	private String areaId;
+
+	private String storePic;
+
+	public String getStorePic() {
+		return storePic;
+	}
+
+	public void setStorePic(String storePic) {
+		this.storePic = storePic;
+	}
 
 	public String getStoreId() {
 		return storeId;

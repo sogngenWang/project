@@ -1,9 +1,12 @@
 package com.dream.bean;
 
+import org.springframework.stereotype.Repository;
+
+@Repository(value = "area")
 public class Area {
-	
+
 	private String areaId;
-	
+
 	private String areaName;
 
 	public String getAreaId() {
@@ -21,5 +24,5 @@ public class Area {
 	public void setAreaName(String areaName) {
 		this.areaName = areaName;
 	}
-	
+
 }
