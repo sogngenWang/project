@@ -4,7 +4,7 @@
 
 <hibernate-mapping>
 	<class name="com.dream.weddingexpo.bean.User" table="user"
-		schema="MerrySystem">
+		schema="merrysystem">
 		<id name="userId" type="java.lang.String">
 			<column name="userId" length="20" />
 		</id>

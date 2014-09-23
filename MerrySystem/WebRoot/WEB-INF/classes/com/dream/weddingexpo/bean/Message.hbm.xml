@@ -4,7 +4,7 @@
 
 <hibernate-mapping>
 	<class name="com.dream.weddingexpo.bean.Message" table="message"
-		schema="MerrySystem">
+		schema="merrysystem">
 		<id name="messageId" type="java.lang.String">
 			<column name="messageId" length="20" />
 			<generator class="native" />

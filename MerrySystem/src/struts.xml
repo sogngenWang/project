@@ -4,7 +4,7 @@
 
 	<constant name="struts.i18n.encoding" value="utf8" />
 
-	<constant name="struts.devMode" value="true" />
+	<!-- <constant name="struts.devMode" value="true" />-->
 	
 	<package name="mainpackage" extends="struts-default" namespace="/">
 	
@@ -24,18 +24,12 @@
 		<action name="detailMessageAction" class="messageAction" method="detailMessage" >  
 			<result name="success">detailMessage.jsp</result>
 		</action>
-		<!-- 
-		<action name="listKindsAction" class="kindsAction" method="listKinds">
-			<result name="success">listStores.jsp</result>
-		</action>
-		 -->
 		 
 		<action name="listStoreByKindsStoreAction" class="kindsAction" method="listStoreByKindsStore" />
 		
 		<action name="addMessageAction" class="messageAction" method="addMessage" >
 			<result name="success">addMessage.jsp</result>
 		</action>
-		
 		
 	</package>
 </struts>    

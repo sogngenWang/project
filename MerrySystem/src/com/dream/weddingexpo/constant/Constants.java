@@ -38,7 +38,7 @@ public interface Constants {
 	/**
 	 * 新闻流文件存放路径
 	 */
-	String IMG_PATH_PRE = "D://tmp//";
+	String IMG_PATH_PRE = "//opt//data//";
 	
 	/**
 	 * 关于展会所使用的messageId
