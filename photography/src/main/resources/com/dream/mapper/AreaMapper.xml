@@ -92,7 +92,7 @@
 		<where>
 			<choose>
 				<when test="areaid != null and areaid != '' ">
-					userid = #{areaid, jdbcType=INTEGER}
+					areaid = #{areaid, jdbcType=INTEGER}
 				</when>
 				<when test="areaname != null and areaname != ''">
 					AND areaname = #{areaname, jdbcType=VARCHAR}
@@ -108,7 +108,7 @@
 		<where>
 			<choose>
 				<when test="areaid != null and areaid != '' ">
-					userid = #{areaid, jdbcType=INTEGER}
+					areaid = #{areaid, jdbcType=INTEGER}
 				</when>
 				<when test="areaname != null and areaname != ''">
 					AND areaname = #{areaname, jdbcType=VARCHAR}

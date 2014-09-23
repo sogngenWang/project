@@ -20,7 +20,7 @@ public class UserController {
 	@Resource(name = "userService")
 	private UserService userService;
 	
-	@RequestMapping(value = "/detailUser", method = RequestMethod.GET)
+	@RequestMapping(value = "/detailUser")
 	@ResponseBody
 	public JsonClazz detailUser(User user) throws Exception {
 		jsonClazz.getData().clear();
@@ -30,7 +30,7 @@ public class UserController {
 		return jsonClazz;
 	}
 	
-	@RequestMapping(value = "/listUser", method = RequestMethod.GET)
+	@RequestMapping(value = "/listUser")
 	@ResponseBody
 	public JsonClazz listUser(User user)throws Exception{
 		jsonClazz.getData().clear();
@@ -40,7 +40,7 @@ public class UserController {
 		return jsonClazz;
 	}
 	
-	@RequestMapping(value = "/updateUser", method = RequestMethod.GET)
+	@RequestMapping(value = "/updateUser")
 	@ResponseBody
 	public JsonClazz updateUser(User user)throws Exception{
 		jsonClazz.getData().clear();
@@ -50,7 +50,7 @@ public class UserController {
 		return jsonClazz;
 	}
 
-	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
+	@RequestMapping(value = "/addUser")
 	@ResponseBody
 	public JsonClazz addUser(User user)throws Exception{
 		jsonClazz.getData().clear();
@@ -61,7 +61,7 @@ public class UserController {
 	}
 
 	
-	@RequestMapping(value = "/detailUser", method = RequestMethod.GET)
+	@RequestMapping(value = "/deleteUser")
 	@ResponseBody
 	public JsonClazz deleteUser(User user)throws Exception{
 		jsonClazz.getData().clear();

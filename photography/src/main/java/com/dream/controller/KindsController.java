@@ -19,7 +19,7 @@ public class KindsController {
 	@Resource(name = "kindsService")
 	private KindsService kindsService;
 	
-	@RequestMapping(value = "/detailKinds", method = RequestMethod.GET)
+	@RequestMapping(value = "/detailKinds" )
 	@ResponseBody
 	public JsonClazz detailKinds(Kinds kinds) throws Exception {
 		jsonClazz.getData().clear();
@@ -29,7 +29,7 @@ public class KindsController {
 		return jsonClazz;
 	}
 	
-	@RequestMapping(value = "/listKinds", method = RequestMethod.GET)
+	@RequestMapping(value = "/listKinds" )
 	@ResponseBody
 	public JsonClazz listKinds(Kinds kinds)throws Exception{
 		jsonClazz.getData().clear();
@@ -39,7 +39,7 @@ public class KindsController {
 		return jsonClazz;
 	}
 	
-	@RequestMapping(value = "/updateKinds", method = RequestMethod.GET)
+	@RequestMapping(value = "/updateKinds" )
 	@ResponseBody
 	public JsonClazz updateKinds(Kinds kinds)throws Exception{
 		jsonClazz.getData().clear();
@@ -49,7 +49,7 @@ public class KindsController {
 		return jsonClazz;
 	}
 
-	@RequestMapping(value = "/addKinds", method = RequestMethod.GET)
+	@RequestMapping(value = "/addKinds" )
 	@ResponseBody
 	public JsonClazz addKinds(Kinds kinds)throws Exception{
 		jsonClazz.getData().clear();
@@ -60,7 +60,7 @@ public class KindsController {
 	}
 
 	
-	@RequestMapping(value = "/detailKinds", method = RequestMethod.GET)
+	@RequestMapping(value = "/deleteKinds" )
 	@ResponseBody
 	public JsonClazz deleteKinds(Kinds kinds)throws Exception{
 		jsonClazz.getData().clear();

@@ -20,7 +20,7 @@ public class CommodityController {
 	@Resource(name = "commodityService")
 	private CommodityService commodityService;
 	
-	@RequestMapping(value = "/detailCommodity", method = RequestMethod.GET)
+	@RequestMapping(value = "/detailCommodity" )
 	@ResponseBody
 	public JsonClazz detailCommodity(Commodity commodity) throws Exception {
 		jsonClazz.getData().clear();
@@ -30,7 +30,7 @@ public class CommodityController {
 		return jsonClazz;
 	}
 	
-	@RequestMapping(value = "/listCommodity", method = RequestMethod.GET)
+	@RequestMapping(value = "/listCommodity" )
 	@ResponseBody
 	public JsonClazz listCommodity(Commodity commodity)throws Exception{
 		jsonClazz.getData().clear();
@@ -40,7 +40,7 @@ public class CommodityController {
 		return jsonClazz;
 	}
 	
-	@RequestMapping(value = "/updateCommodity", method = RequestMethod.GET)
+	@RequestMapping(value = "/updateCommodity" )
 	@ResponseBody
 	public JsonClazz updateCommodity(Commodity commodity)throws Exception{
 		jsonClazz.getData().clear();
@@ -50,7 +50,7 @@ public class CommodityController {
 		return jsonClazz;
 	}
 
-	@RequestMapping(value = "/addCommodity", method = RequestMethod.GET)
+	@RequestMapping(value = "/addCommodity" )
 	@ResponseBody
 	public JsonClazz addCommodity(Commodity commodity)throws Exception{
 		jsonClazz.getData().clear();
@@ -61,7 +61,7 @@ public class CommodityController {
 	}
 
 	
-	@RequestMapping(value = "/detailCommodity", method = RequestMethod.GET)
+	@RequestMapping(value = "/deleteCommodity" )
 	@ResponseBody
 	public JsonClazz deleteCommodity(Commodity commodity)throws Exception{
 		jsonClazz.getData().clear();
