@@ -2,22 +2,22 @@ package com.dream.service.impl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dream.bean.Area;
-import com.dream.dao.AreaDao;
+import com.dream.dao.AreaMapper;
 import com.dream.service.AreaService;
 
 @Repository(value = "areaService")
 public class AreaServiceImpl implements AreaService {
 
-	@Resource(name = "areaDao")
-	private AreaDao areaDao;
+	@Autowired
+	private AreaMapper areaDao;
 
 	@Override
 	public Area detailArea(Area area) {
+		
 		return areaDao.detailArea(area);
 	}
 
@@ -27,18 +27,19 @@ public class AreaServiceImpl implements AreaService {
 	}
 
 	@Override
-	public Area updateArea(Area area) {
-		return areaDao.updateArea(area);
+	public int updateArea(Area area) {
+		return areaDao.updateByPrimaryKeySelective(area);
 	}
 
 	@Override
-	public void addArea(Area area) {
-		areaDao.addArea(area);
+	public int addArea(Area area) {
+		return areaDao.insert(area);
 	}
 
 	@Override
-	public void deleteArea(Area area) {
-		areaDao.deleteArea(area);
+	public int deleteArea(int areaid) {
+		return areaDao.deleteByPrimaryKey(areaid);
 	}
+
 
 }

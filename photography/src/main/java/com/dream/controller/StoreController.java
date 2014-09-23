@@ -15,11 +15,8 @@ import com.dream.service.StoreService;
 @Controller
 public class StoreController {
 
-
 	@Resource(name = "jsonClazz")
 	private JsonClazz jsonClazz;
-//	@Resource(name = "store")
-//	private Store store;
 	@Resource(name = "storeService")
 	private StoreService storeService;
 	
@@ -63,11 +60,12 @@ public class StoreController {
 		return jsonClazz;
 	}
 
+	
 	@RequestMapping(value = "/detailStore", method = RequestMethod.GET)
 	@ResponseBody
 	public JsonClazz deleteStore(Store store)throws Exception{
 		jsonClazz.getData().clear();
-		storeService.deleteStore(store);
+		storeService.deleteStore(store.getStoreid());
 		jsonClazz.setState(Constant.SUCCESS);
 		jsonClazz.setCode(Constant.SUCCESS_CODE);
 		return jsonClazz;

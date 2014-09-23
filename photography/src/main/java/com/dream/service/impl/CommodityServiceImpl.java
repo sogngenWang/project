@@ -2,19 +2,18 @@ package com.dream.service.impl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dream.bean.Commodity;
-import com.dream.dao.CommodityDao;
+import com.dream.dao.CommodityMapper;
 import com.dream.service.CommodityService;
 
 @Repository(value = "commodityService")
 public class CommodityServiceImpl implements CommodityService {
 	
-	@Resource(name = "commodityDao")
-	private CommodityDao commodityDao;
+	@Autowired
+	private CommodityMapper commodityDao;
 
 	@Override
 	public Commodity detailCommodity(Commodity commodity) {
@@ -27,18 +26,18 @@ public class CommodityServiceImpl implements CommodityService {
 	}
 
 	@Override
-	public Commodity updateCommodity(Commodity commodity) {
-		return commodityDao.updateCommodity(commodity);
+	public int updateCommodity(Commodity commodity) {
+		return commodityDao.updateByPrimaryKeySelective(commodity);
 	}
 
 	@Override
-	public void addCommodity(Commodity commodity) {
-		commodityDao.addCommodity(commodity);
+	public int addCommodity(Commodity commodity) {
+		return commodityDao.insert(commodity);
 	}
 
 	@Override
-	public void deleteCommodity(Commodity commodity) {
-		commodityDao.deleteCommodity(commodity);
+	public int deleteCommodity(int commodityid) {
+		return commodityDao.deleteByPrimaryKey(commodityid);
 	}
 
 }

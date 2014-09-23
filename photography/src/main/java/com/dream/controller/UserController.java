@@ -17,8 +17,6 @@ public class UserController {
 
 	@Resource(name = "jsonClazz")
 	private JsonClazz jsonClazz;
-//	@Resource(name = "user")
-//	private User user;
 	@Resource(name = "userService")
 	private UserService userService;
 	
@@ -62,11 +60,12 @@ public class UserController {
 		return jsonClazz;
 	}
 
+	
 	@RequestMapping(value = "/detailUser", method = RequestMethod.GET)
 	@ResponseBody
 	public JsonClazz deleteUser(User user)throws Exception{
 		jsonClazz.getData().clear();
-		userService.deleteUser(user);
+		userService.deleteUser(user.getUserid());
 		jsonClazz.setState(Constant.SUCCESS);
 		jsonClazz.setCode(Constant.SUCCESS_CODE);
 		return jsonClazz;

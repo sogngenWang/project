@@ -2,19 +2,18 @@ package com.dream.service.impl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dream.bean.Store;
-import com.dream.dao.StoreDao;
+import com.dream.dao.StoreMapper;
 import com.dream.service.StoreService;
 
 @Repository(value = "storeService")
 public class StoreServiceImpl implements StoreService {
-
-	@Resource(name = "storeDao")
-	private StoreDao storeDao;
+	
+	@Autowired
+	private StoreMapper storeDao;
 
 	@Override
 	public Store detailStore(Store store) {
@@ -27,18 +26,21 @@ public class StoreServiceImpl implements StoreService {
 	}
 
 	@Override
-	public Store updateStore(Store store) {
-		return storeDao.updateStore(store);
+	public int updateStore(Store store) {
+		return storeDao.updateByPrimaryKeySelective(store);
 	}
 
 	@Override
-	public void addStore(Store store) {
-		storeDao.addStore(store);
+	public int addStore(Store store) {
+		return storeDao.insert(store);
 	}
 
 	@Override
-	public void deleteStore(Store store) {
-		storeDao.deleteStore(store);
+	public int deleteStore(int storeid) {
+		return storeDao.deleteByPrimaryKey(storeid);
 	}
+
+
+
 
 }

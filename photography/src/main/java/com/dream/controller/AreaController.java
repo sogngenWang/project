@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.dream.bean.Area;
 import com.dream.bean.JsonClazz;
+import com.dream.bean.Area;
 import com.dream.constants.Constant;
 import com.dream.service.AreaService;
 
@@ -16,8 +16,6 @@ import com.dream.service.AreaService;
 public class AreaController {
 	@Resource(name = "jsonClazz")
 	private JsonClazz jsonClazz;
-//	@Resource(name = "area")
-//	private Area are;
 	@Resource(name = "areaService")
 	private AreaService areaService;
 	
@@ -61,15 +59,14 @@ public class AreaController {
 		return jsonClazz;
 	}
 
+	
 	@RequestMapping(value = "/detailArea", method = RequestMethod.GET)
 	@ResponseBody
 	public JsonClazz deleteArea(Area area)throws Exception{
 		jsonClazz.getData().clear();
-		areaService.deleteArea(area);
+		areaService.deleteArea(area.getAreaid());
 		jsonClazz.setState(Constant.SUCCESS);
 		jsonClazz.setCode(Constant.SUCCESS_CODE);
 		return jsonClazz;
 	}
-
-
 }

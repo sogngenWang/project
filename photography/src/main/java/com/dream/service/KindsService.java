@@ -10,9 +10,9 @@ public interface KindsService {
 
 	List<Kinds> listKinds(Kinds kinds);
 
-	Kinds updateKinds(Kinds kinds);
+	int updateKinds(Kinds kinds);
 
-	void addKinds(Kinds kinds);
+	int addKinds(Kinds kinds);
 
-	void deleteKinds(Kinds kinds);
+	int deleteKinds(int kindsid);
 }

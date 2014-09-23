@@ -2,19 +2,18 @@ package com.dream.service.impl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dream.bean.Kinds;
-import com.dream.dao.KindsDao;
+import com.dream.dao.KindsMapper;
 import com.dream.service.KindsService;
 
 @Repository(value = "kindsService")
 public class KindsServiceImpl implements KindsService {
 	
-	@Resource(name = "kindsDao")
-	private KindsDao kindsDao;
+	@Autowired
+	private KindsMapper kindsDao;
 
 	@Override
 	public Kinds detailKinds(Kinds kinds) {
@@ -27,18 +26,19 @@ public class KindsServiceImpl implements KindsService {
 	}
 
 	@Override
-	public Kinds updateKinds(Kinds kinds) {
-		return kindsDao.updateKinds(kinds);
+	public int updateKinds(Kinds kinds) {
+		return kindsDao.updateByPrimaryKeySelective(kinds);
 	}
 
 	@Override
-	public void addKinds(Kinds kinds) {
-		kindsDao.addKinds(kinds);
+	public int addKinds(Kinds kinds) {
+		return kindsDao.insert(kinds);
 	}
 
 	@Override
-	public void deleteKinds(Kinds kinds) {
-		kindsDao.deleteKinds(kinds);
+	public int deleteKinds(int kindsid) {
+		return kindsDao.deleteByPrimaryKey(kindsid);
 	}
+
 
 }

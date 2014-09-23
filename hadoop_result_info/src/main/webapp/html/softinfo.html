@@ -1,0 +1,93 @@
+
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+
+
+<title>hadoop分析结果查询</title>
+
+<link rel="stylesheet" type="text/css" href="/hadoop_result_info/css/base.css">
+
+
+<script type="text/javascript" src="/hadoop_result_info/js/juicer-min.js"></script>
+<script type="text/javascript" src="/hadoop_result_info/js/jquery/jquery-1.8.0.min.js"></script>
+
+<!-- aptan_studio 3 -->
+<script id="tpl" type="text/template">
+<table>	
+	<tr><th>软件包名</th><th>软件名称</th><th>性别倾向</th></tr>
+	{@each list as it, index}
+	<tr><td>${it.software}</td><td>${it.softwarename}</td><td>${it.frequency}</td></tr>
+	{@/each}
+</table>
+</script>
+
+<script id="tpl2" type="text/template">
+<table>	
+	<tr><th>软件包名</th><th>平台</th><th>版本号</th><th>版本名称</th><th>升级热情</th></tr>
+	{@each list as it, index}
+	<tr><td>${it.software}</td><td>${it.platform}</td><td>${it.versioncode}</td><td>${it.versionname}</td><td>${it.score}</td></tr>
+	{@/each}
+</table>
+</script>
+
+<script type="text/javascript">
+	function getGenderTrendInfo() {
+		var software = $("#software").val();
+		if (software != '') {
+			$.ajax({
+				type : "get",
+				url : "/hadoop_result_info/softInfo/genderTrend/" + software,
+				success : function(msg) {
+					var tpl = document.getElementById("tpl").innerHTML;
+					var html = juicer(tpl, msg);
+					document.getElementById("result").innerHTML = html;
+				}
+			});
+		} else {
+			document.getElementById("result").innerHTML = '';
+		}
+
+	}
+
+	function getGenderTrendInfo2() {
+		var software = $("#software2").val();
+		if (software != '') {
+			$.ajax({
+				type : "get",
+				url : "/hadoop_result_info/softInfo/pashion/" + software,
+				success : function(msg) {
+					var tpl = document.getElementById("tpl2").innerHTML;
+					var html = juicer(tpl, msg);
+					document.getElementById("result2").innerHTML = html;
+				}
+			});
+		} else {
+			document.getElementById("result2").innerHTML = '';
+		}
+
+	}
+</script>
+</head>
+<body>
+<table>
+<tr><th>性别倾向</th><th>升级热情</th></tr>
+	<tr>
+	<td valign="top">
+		<table>
+			<tr><td>软件包名：<input type="text" id="software"   style="width: 330px"/><button id="search" onclick="getGenderTrendInfo()">搜索</button></td></tr>
+			<tr><td align="center"><span id="result"></span></td></tr>
+		</table>
+	</td>
+	<td valign="top">
+		<table>
+			<tr><td><label>软件包名：</label><input type="text"   style="width: 330px"
+			id="software2" /><button id="search" onclick="getGenderTrendInfo2()">搜索</button></td></tr>
+			<tr><td align="center"><span id="result2" ></span></td></tr>
+		</table>
+	</td>
+	</tr>
+</table>
+</body>
+
+</html>

@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.dream.bean.Commodity;
 import com.dream.bean.JsonClazz;
+import com.dream.bean.Commodity;
 import com.dream.constants.Constant;
 import com.dream.service.CommodityService;
 
@@ -17,8 +17,6 @@ public class CommodityController {
 
 	@Resource(name = "jsonClazz")
 	private JsonClazz jsonClazz;
-//	@Resource(name = "commodity")
-//	private Commodity commodity;
 	@Resource(name = "commodityService")
 	private CommodityService commodityService;
 	
@@ -62,11 +60,12 @@ public class CommodityController {
 		return jsonClazz;
 	}
 
+	
 	@RequestMapping(value = "/detailCommodity", method = RequestMethod.GET)
 	@ResponseBody
 	public JsonClazz deleteCommodity(Commodity commodity)throws Exception{
 		jsonClazz.getData().clear();
-		commodityService.deleteCommodity(commodity);
+		commodityService.deleteCommodity(commodity.getCommodityid());
 		jsonClazz.setState(Constant.SUCCESS);
 		jsonClazz.setCode(Constant.SUCCESS_CODE);
 		return jsonClazz;

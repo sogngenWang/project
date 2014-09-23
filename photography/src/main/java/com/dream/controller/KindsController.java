@@ -7,19 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.dream.bean.JsonClazz;
 import com.dream.bean.Kinds;
+import com.dream.bean.JsonClazz;
 import com.dream.constants.Constant;
 import com.dream.service.KindsService;
 
 @Controller
 public class KindsController {
-
-
 	@Resource(name = "jsonClazz")
 	private JsonClazz jsonClazz;
-//	@Resource(name = "kinds")
-//	private Kinds kinds;
 	@Resource(name = "kindsService")
 	private KindsService kindsService;
 	
@@ -63,15 +59,15 @@ public class KindsController {
 		return jsonClazz;
 	}
 
+	
 	@RequestMapping(value = "/detailKinds", method = RequestMethod.GET)
 	@ResponseBody
 	public JsonClazz deleteKinds(Kinds kinds)throws Exception{
 		jsonClazz.getData().clear();
-		kindsService.deleteKinds(kinds);
+		kindsService.deleteKinds(kinds.getKindsid());
 		jsonClazz.setState(Constant.SUCCESS);
 		jsonClazz.setCode(Constant.SUCCESS_CODE);
 		return jsonClazz;
 	}
-
 
 }

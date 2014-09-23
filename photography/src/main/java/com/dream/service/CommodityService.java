@@ -10,9 +10,9 @@ public interface CommodityService {
 
 	List<Commodity> listCommodity(Commodity commodity);
 
-	Commodity updateCommodity(Commodity commodity);
+	int updateCommodity(Commodity commodity);
 
-	void addCommodity(Commodity commodity);
+	int addCommodity(Commodity commodity);
 
-	void deleteCommodity(Commodity commodity);
+	int deleteCommodity(int commodityid);
 }

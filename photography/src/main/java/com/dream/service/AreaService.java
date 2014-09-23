@@ -10,9 +10,9 @@ public interface AreaService {
 
 	List<Area> listArea(Area area);
 
-	Area updateArea(Area area);
+	int updateArea(Area area);
 
-	void addArea(Area area);
+	int addArea(Area area);
 
-	void deleteArea(Area area);
+	int deleteArea(int areaid);
 }

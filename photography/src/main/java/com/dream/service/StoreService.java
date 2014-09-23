@@ -10,9 +10,9 @@ public interface StoreService {
 
 	List<Store> listStore(Store store);
 
-	Store updateStore(Store store);
+	int updateStore(Store store);
 
-	void addStore(Store store);
+	int addStore(Store store);
 
-	void deleteStore(Store store);
+	int deleteStore(int storeid);
 }

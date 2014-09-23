@@ -6,13 +6,14 @@ import com.dream.bean.User;
 
 public interface UserService {
 
+	List<User> listUser(User user);
+	
 	User detailUser(User user);
 
-	List<User> listUser(User user);
-
-	User updateUser(User user);
-
-	void addUser(User user);
-
-	void deleteUser(User user);
+	int updateUser(User user);
+	
+	int deleteUser(int uid);
+	
+	int addUser(User user);
+	
 }
