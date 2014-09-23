@@ -19,7 +19,7 @@ public class TestController {
 	@Resource(name = "jsonClazz")
 	private JsonClazz jsonClazz;
 
-	@RequestMapping(value = "test", method = RequestMethod.GET)
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	@ResponseBody
 	public JsonClazz test(Area area) throws Exception {
 		jsonClazz.getData().clear();
