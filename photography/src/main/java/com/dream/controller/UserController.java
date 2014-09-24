@@ -4,7 +4,6 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dream.bean.JsonClazz;
@@ -70,6 +69,26 @@ public class UserController {
 		jsonClazz.setCode(Constant.SUCCESS_CODE);
 		return jsonClazz;
 	}
+	
+	@RequestMapping(value = "/login")
+	@ResponseBody
+	public JsonClazz loginUser(User user) throws Exception {
+		jsonClazz.getData().clear();
+		if(userService.login(user)){
+			jsonClazz.setState(Constant.SUCCESS);
+			jsonClazz.setCode(Constant.SUCCESS_CODE);
+		}
+		return jsonClazz;
+	}
 
-
+	@RequestMapping(value = "/register")
+	@ResponseBody
+	public JsonClazz registerUser(User user) throws Exception {
+		jsonClazz.getData().clear();
+		if(userService.register(user)) {
+			jsonClazz.setState(Constant.SUCCESS);
+			jsonClazz.setCode(Constant.SUCCESS_CODE);
+		}
+		return jsonClazz;
+	}
 }

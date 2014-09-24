@@ -15,5 +15,9 @@ public interface UserService {
 	int deleteUser(int uid);
 	
 	int addUser(User user);
+
+	boolean login(User user);
+	
+	boolean register(User user);
 	
 }

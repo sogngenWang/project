@@ -1,14 +1,15 @@
 package com.dream.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.dream.bean.JsonClazz;
 import com.dream.bean.Commodity;
+import com.dream.bean.JsonClazz;
 import com.dream.constants.Constant;
 import com.dream.service.CommodityService;
 
@@ -71,5 +72,17 @@ public class CommodityController {
 		return jsonClazz;
 	}
 
-
+	@RequestMapping(value = "/listAndOrderCommodity" )
+	@ResponseBody
+	public JsonClazz listAndOrderCommodity(Commodity commodity)throws Exception{
+		jsonClazz.getData().clear();
+		List<Commodity> commodityList = commodityService.listCommodity(commodity); 
+		//TODO 根据order字段名字  商品排序
+		String order = commodity.getOrder();
+		
+		jsonClazz.getData().put(Constant.JSON_LIST,commodityList);
+		jsonClazz.setState(Constant.SUCCESS);
+		jsonClazz.setCode(Constant.SUCCESS_CODE);
+		return jsonClazz;
+	}
 }
