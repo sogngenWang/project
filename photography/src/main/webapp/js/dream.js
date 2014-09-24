@@ -31,11 +31,44 @@ function reflushIframe(iframeID,action){
 function resolveJSON(type,json,struct){
 	//如{"state":"SUCCESS","data":{"list":[{"areaid":1,"areaname":"福州"},{"areaid":2,"areaname":"泉州"},{"areaid":3,"areaname":"厦门"},{"areaid":4,"areaname":"漳州"},{"areaid":5,"areaname":"宁德"},{"areaid":6,"areaname":"莆田"}]},"code":"0"}
 	//如{"state":"SUCCESS","data":{"obj":{"areaid":2,"areaname":"泉州"}},"code":"0"}
-	if(json.state!="SUCCESS"){
-		//返回错误码
-		alert(json.code);
-		return ;
+	var state = json.state;
+	var code = json.code;
+	var data = json.data;
+	if(state == "SUCCESS"){
+		if(type == "list"){
+//			alert("xx");
+			//创建一个数组
+			var Objs = data.list;
+			var objStruct = struct.split(",");
+			var array1 = [];
+			var array2 = [];
+			
+			
+//			alert(Objs.length);
+			for (var int = 0; int < Objs.length; int++) {
+				var array_element = Objs[int];
+//				alert(array_element.areaname+"|A");
+//				alert(array_element.length+"|B");
+				for (var int2 = 0; int2 < objStruct.length; int2++) {
+					alert(array_element[objStruct[int2]]+"|C");
+				}
+				
+			}
+			
+		}
+		//成功
+		//alert(data.list);
+		
+		//alert(data.obj);
+		
+	}else if (state == "BusinessException"){
+		//业务异常
+		alert(code);
+	}else{
+		//其他非业务异常
+		alert(code);
 	}
+	
 	
 	
 	
