@@ -77,6 +77,9 @@ public class UserController {
 		if(userService.login(user)){
 			jsonClazz.setState(Constant.SUCCESS);
 			jsonClazz.setCode(Constant.SUCCESS_CODE);
+		}else{
+			jsonClazz.setState(Constant.FAILED);
+			jsonClazz.setCode(Constant.FAILED_CODE);
 		}
 		return jsonClazz;
 	}

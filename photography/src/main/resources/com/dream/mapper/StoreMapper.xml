@@ -136,9 +136,6 @@
 				<when test="storedetail != null and storedetail != ''">
 					AND storedetail = #{storedetail, jdbcType=VARCHAR}
 				</when>
-				<when test="type != null and type != ''">
-					AND type = #{type, jdbcType=VARCHAR}
-				</when>
 				<when test="areaid != null and areaid != ''">
 					AND areaid = #{areaid, jdbcType=INTEGER}
 				</when>
@@ -163,9 +160,6 @@
 				</when>
 				<when test="storedetail != null and storedetail != ''">
 					AND storedetail = #{storedetail, jdbcType=VARCHAR}
-				</when>
-				<when test="type != null and type != ''">
-					AND type = #{type, jdbcType=VARCHAR}
 				</when>
 				<when test="areaid != null and areaid != ''">
 					AND areaid = #{areaid, jdbcType=INTEGER}
