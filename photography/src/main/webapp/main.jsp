@@ -115,11 +115,11 @@
 
 
 	// 按照某种排序列出所有商品信息
-	function displayCommodity(order,areaid) {
+	function displayCommodity(order) {
 		
 		//如果order为undifined,则使用默认排序
 		if(typeof order == "undefined"){
-			order = "";
+			order = null;
 		}
 		//如果没有选择地区，则不进行过滤
 		
@@ -169,11 +169,9 @@
 	}
 	
 	function displayStore(areaid){
-		// TODO
-		
-		//如果order为undifined,则使用默认排序
+		//如果areaid为undifined,不传输areaid
 		if(typeof areaid == "undefined"){
-			areaid = "";
+			areaid = null;
 		}
 		//如果没有选择地区，则不进行过滤
 		
@@ -315,13 +313,14 @@
 			$("#listStore").css("display","none");
 		}else{
 			displayStore(areaid);
+			//显示该地区的所有商家
 			$("#listStore").css("display","inline-block");
 			$("#listCommodity").css("display","none");
 		}
-		
-		
-		//显示该地区的所有商家
-		
+	}
+	function selectOrder(){
+		var order = $("#selectOrder option:selected").val();
+		displayCommodity(order);
 		
 	}
 </script>
@@ -449,7 +448,16 @@ input {
 	width:1050px;
 	display: block;
 }
+#listOrder {
+	width:1050px;
+	display: block;
+}
 
+#buttom{
+	width: 100%;
+	height: 200px;
+	border: none;
+}
 
 </style>
 
@@ -490,7 +498,14 @@ input {
 
 
 	<div id="content">
-		<div id="orderBy"></div>
+		<div id="orderBy">
+			<select id="selectOrder" onchange="selectOrder()">
+				<option value="committime" selected="selected">商品创建时间</option>
+				<option value="commodityname">商品名字</option>
+				<option value="lastupdatetime">商品最后修改时间</option>
+				<option value="commodityprice">商品价格</option>				
+			</select>
+		</div>
 		<div id="listArea">
 			<!-- 地区选择 -->
 			<select id="selectArea" onchange="selectArea()"></select>
@@ -502,7 +517,7 @@ input {
 		<div id="pageDiv"></div>
 	</div>
 
-	<iframe src="${pageContext.request.contextPath}/bottom.jsp"	style="width: 100%;height: 200px;border: none;"></iframe>
+	<iframe id="buttom" src="${pageContext.request.contextPath}/bottom.jsp"	></iframe>
 		
 </body>
 </html>
