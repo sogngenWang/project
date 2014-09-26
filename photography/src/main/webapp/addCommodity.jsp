@@ -122,6 +122,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    $(document).ready(function() {
 			$("#submit").click(function(){
 				var text=UM.getEditor('myEditor').getContent();
+				
+				// TODO
 				//$("#messageContent").val(text);
 				//$("#textEditForm").submit();
 			});

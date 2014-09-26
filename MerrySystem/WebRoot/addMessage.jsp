@@ -8,8 +8,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <html>
 <head>
-
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <title>新闻添加页</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href="um/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
@@ -126,7 +124,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$("#textEditForm").submit();
 			});
 		});
-	    
 	    
 	 </script>
 </head>

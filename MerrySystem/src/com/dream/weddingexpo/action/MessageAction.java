@@ -2,11 +2,14 @@ package com.dream.weddingexpo.action;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Scope;
+
 import com.dream.weddingexpo.bean.Message;
 import com.dream.weddingexpo.constant.Constants;
 import com.dream.weddingexpo.service.MessageService;
 import com.opensymphony.xwork2.ActionSupport;
 
+@Scope("prototype")
 public class MessageAction extends ActionSupport{
 	/**
 	 * 

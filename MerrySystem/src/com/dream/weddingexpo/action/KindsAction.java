@@ -10,12 +10,14 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.apache.struts2.ServletActionContext;
+import org.springframework.context.annotation.Scope;
 
 import com.dream.weddingexpo.bean.Kinds;
 import com.dream.weddingexpo.bean.Store;
 import com.dream.weddingexpo.service.KindsService;
 import com.opensymphony.xwork2.ActionSupport;
 
+@Scope("prototype")
 public class KindsAction extends ActionSupport {
 
 	/**
@@ -83,4 +85,33 @@ public class KindsAction extends ActionSupport {
 		kinds.setKindsList(kindsList);
 		return SUCCESS;
 	}
+	
+	public String listKindsAjax() {
+		
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html; charset=utf-8");
+		JSONArray obj = new JSONArray();
+		List<Kinds> kindsList = kindsService.listKinds(kinds);
+		kinds.setKindsList(kindsList);
+		obj.add(kindsList.toArray());
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("list", obj.toString().substring(1,
+				obj.toString().length() - 1));
+		System.out.println(jsonObject);
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+			out.println(jsonObject);
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (null != out) {
+				out.flush();
+				out.close();
+			}
+		}
+		return null;
+		
+	}
+	
 }

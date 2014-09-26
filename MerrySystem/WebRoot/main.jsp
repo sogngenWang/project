@@ -90,11 +90,13 @@ body {
 	height: 8%;
 }
 
+
 #kinds {
 	width: 100%;
 	height: 20%;
 }
 
+/*
 #kinds a {
 	background-image: url("./img/button1.gif");
 	background-repeat: no-repeat;
@@ -103,7 +105,7 @@ body {
 	display: block;
 	text-decoration: none;
 }
-
+*/
 #ad_2 {
 	margin: 4% auto;
 	width: 100%;
@@ -121,9 +123,12 @@ body {
 	height: 34%%;
 }
 
+
+/* 设置图片的透明度  */
 a img {
 	width: 100%;
 	height: 100%;
+	opacity: 0.1;
 }
 
 #mainFrameNews {
@@ -134,6 +139,17 @@ a img {
 .messageTitleDiv {
 	
 }
+
+#aboutExpo{
+	margin: 10px;
+	display: inline;
+}
+#visitExpo {
+	margin: 10px;
+	display: inline;
+}
+
+
 </style>
 </head>
 <body>
@@ -176,11 +192,12 @@ a img {
 </div>
 <div id="right">
 	<div id="kinds">
-		<button type="button" class="btn btn-lg btn-primary"
-			style="margin:20px 10px 10px 100px;">关于展会</button>
-		<br />
-		<button type="button" class="btn btn-lg btn-primary"
-			style="margin:20px 10px 10px 100px;">参加展会</button>
+		<button id="aboutExpo">关于展会</button>
+		<button id="visitExpo">参加展会</button>
+		<!-- 
+		<div id="aboutExpo">关于展会</div>
+		<div id="visitExpo">参加展会</div>
+		-->
 	</div>
 	<div id="ad_2">
 		<a href="javascript:void(0);"> <img alt="广告图片" src="./img/AD.gif" />

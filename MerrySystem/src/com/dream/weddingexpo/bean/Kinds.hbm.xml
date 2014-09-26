@@ -7,6 +7,7 @@
 		schema="merrysystem">
 		<id name="kindsId" type="java.lang.String">
 			<column name="kindsId" length="20" />
+			<generator class="native" />
 		</id>
 		<property name="kindsName" type="java.lang.String">
 			<column name="kindsName" length="20" />

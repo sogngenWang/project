@@ -3,6 +3,9 @@ package com.dream.weddingexpo.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.annotation.Scope;
+
+@Scope("prototype")
 public class Message {
 	// 信息id
 	private String messageId;

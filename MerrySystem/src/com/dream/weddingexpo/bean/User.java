@@ -1,5 +1,8 @@
 package com.dream.weddingexpo.bean;
 
+import org.springframework.context.annotation.Scope;
+
+@Scope("prototype")
 public class User {
 	// 用户唯一标识符
 	private String userId;

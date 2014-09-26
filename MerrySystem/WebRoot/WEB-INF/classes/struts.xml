@@ -22,7 +22,7 @@
 			<result name="success">listStores.jsp</result>
 		</action>
 		<action name="detailMessageAction" class="messageAction" method="detailMessage" >  
-			<result name="success">detailMessage.jsp</result>
+			<result  name="success">detailMessage.jsp</result>
 		</action>
 		 
 		<action name="listStoreByKindsStoreAction" class="kindsAction" method="listStoreByKindsStore" />
@@ -30,6 +30,15 @@
 		<action name="addMessageAction" class="messageAction" method="addMessage" >
 			<result name="success">addMessage.jsp</result>
 		</action>
+	
+		<action name="addStoreAction" class="storeAction" method="addStore">
+			<result name="success">addStore.jsp</result>
+		</action>
 		
+		<action name="addStoreAjaxAction" class="storeAction" method="addStoreAjax" />
+			
+		<action name="listKindsAjaxAction" class="kindsAction" method="listKindsAjax" />
+			
+ 		
 	</package>
 </struts>    

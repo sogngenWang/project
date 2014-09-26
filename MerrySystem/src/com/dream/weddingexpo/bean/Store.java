@@ -1,8 +1,12 @@
 package com.dream.weddingexpo.bean;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
+import org.springframework.context.annotation.Scope;
+
+@Scope("prototype")
 public class Store {
 	// 商家id
 	private String storeId;
@@ -14,6 +18,16 @@ public class Store {
 	private String storePosition;
 	// ********************************
 	private List<Store> storeList = new ArrayList<Store>();
+
+	private String storeInfo;
+
+	public String getStoreInfo() {
+		return storeInfo;
+	}
+
+	public void setStoreInfo(String storeInfo) {
+		this.storeInfo = storeInfo;
+	}
 
 	public String getStoreId() {
 		return storeId;

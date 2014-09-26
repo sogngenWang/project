@@ -18,6 +18,7 @@
 	<bean id="storeAction" class="com.dream.weddingexpo.action.StoreAction" scope="prototype">
 		<property name="store" ref="store"></property>
 		<property name="storeService" ref="storeService"/>
+		<property name="kindsService" ref="kindsService"/>
 	</bean>
 	<bean id="kindsAction" class="com.dream.weddingexpo.action.KindsAction" scope="prototype">
 		<property name="kinds" ref="kinds"></property>

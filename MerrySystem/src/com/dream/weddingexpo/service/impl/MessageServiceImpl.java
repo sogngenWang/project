@@ -39,6 +39,9 @@ public class MessageServiceImpl implements MessageService {
 
 	@Override
 	public void addMessage(Message message){
+		
+		System.out.println(message.getMessageTitle()+"|+");
+		System.out.println(message.getMessageContent()+"|");
 		//写入到文件中，然后把文件路径写入到数据库中
 		String path = Constants.IMG_PATH_PRE+System.currentTimeMillis();
 		BufferedWriter writer = null;

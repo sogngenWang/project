@@ -14,10 +14,13 @@
 		<property name="format_sql">true</property>
 		<property name="show_sql">true</property>
 		<property name="hbm2ddl.auto">update</property>
-
+		<property name="connection.useUnicode">true</property>
+		<property name="connection.characterEncoding">UTF8</property>
+		<property name="connection.autoReconnect">true</property> 
+		
 		<mapping resource="com/dream/weddingexpo/bean/Store.hbm.xml" />
 		<mapping resource="com/dream/weddingexpo/bean/Message.hbm.xml" />
 		<mapping resource="com/dream/weddingexpo/bean/Kinds.hbm.xml" />
-		
+
 	</session-factory>
 </hibernate-configuration>
