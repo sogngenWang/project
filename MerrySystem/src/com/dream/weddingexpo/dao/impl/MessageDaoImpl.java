@@ -6,13 +6,14 @@ import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 
 import com.dream.weddingexpo.bean.Message;
 import com.dream.weddingexpo.constant.Constants;
 import com.dream.weddingexpo.dao.MessageDao;
-import com.dream.weddingexpo.hibernate.HibernateSessionFactory;
 import com.dream.weddingexpo.utils.CommonUtils;
 
 public class MessageDaoImpl implements MessageDao {
@@ -23,7 +24,9 @@ public class MessageDaoImpl implements MessageDao {
 	private Map<String, String> paramMap = new HashMap<String, String>();
 
 	public MessageDaoImpl() {
-		session = HibernateSessionFactory.getSession();
+		Configuration conf = new Configuration().configure();
+		SessionFactory sessionFactory = conf.buildSessionFactory();
+		session = sessionFactory.openSession();
 	}
 
 	private Map<String, String> getMessageParamMap(Message message) {

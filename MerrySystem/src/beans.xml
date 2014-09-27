@@ -4,7 +4,6 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- bean -->
-	<bean id="user" class="com.dream.weddingexpo.bean.User" scope="prototype" />
 	<bean id="store" class="com.dream.weddingexpo.bean.Store" scope="prototype" />
 	<bean id="message" class="com.dream.weddingexpo.bean.Message" scope="prototype" />
 	<bean id="messageTitle" class="com.dream.weddingexpo.bean.MessageTitle" scope="prototype" />

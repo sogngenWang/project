@@ -6,12 +6,13 @@ import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 
 import com.dream.weddingexpo.bean.Store;
 import com.dream.weddingexpo.constant.Constants;
 import com.dream.weddingexpo.dao.StoreDao;
-import com.dream.weddingexpo.hibernate.HibernateSessionFactory;
 import com.dream.weddingexpo.utils.CommonUtils;
 
 public class StoreDaoImpl implements StoreDao{
@@ -22,7 +23,10 @@ public class StoreDaoImpl implements StoreDao{
 	private Map<String, String> paramMap = new HashMap<String, String>();
 
 	public StoreDaoImpl() {
-		session = HibernateSessionFactory.getSession();
+//		session = HibernateSessionFactory.getSession();
+		Configuration conf = new Configuration().configure();
+		SessionFactory sessionFactory = conf.buildSessionFactory();
+		session = sessionFactory.openSession();
 	}
 
 	private Map<String, String> getStoreParamMap(Store store) {
