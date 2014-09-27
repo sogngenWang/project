@@ -3,6 +3,7 @@ package com.dream.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -74,7 +75,8 @@ public class CommodityController {
 
 	@RequestMapping(value = "/listAndOrderCommodity" )
 	@ResponseBody
-	public JsonClazz listAndOrderCommodity(Commodity commodity)throws Exception{
+	public JsonClazz listAndOrderCommodity(Commodity commodity,HttpSession session)throws Exception{
+		System.out.println(session.getAttribute("test")+"||||||");
 		jsonClazz.getData().clear();
 		List<Commodity> commodityList = commodityService.listCommodity(commodity); 
 		//TODO 根据order字段名字  商品排序
