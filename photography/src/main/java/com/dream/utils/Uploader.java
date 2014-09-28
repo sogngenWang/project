@@ -69,7 +69,6 @@ public class Uploader {
 		tmp.put("IO", "IO异常");
 		tmp.put("DIR", "目录创建失败");
 		tmp.put("UNKNOWN", "未知错误");
-		
 	}
 
 	public void upload() throws Exception {

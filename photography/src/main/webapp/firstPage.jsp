@@ -11,7 +11,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta charset="utf-8">
-<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.js"></script>
+<script src="./js/jquery-1.9.1.js"></script>
 <title>拍得好</title>
 <style type="text/css">
 body {

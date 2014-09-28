@@ -1,18 +1,17 @@
 package com.dream.controller;
 
-import java.lang.reflect.Method;
-
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dream.bean.JsonClazz;
 import com.dream.bean.User;
 import com.dream.constants.Constant;
 import com.dream.service.UserService;
+import com.dream.utils.CommonUtils;
 
 @Controller
 public class UserController {
@@ -75,15 +74,18 @@ public class UserController {
 	
 	@RequestMapping(value = "/login")
 	@ResponseBody
-	public JsonClazz loginUser(User user) throws Exception {
+	public JsonClazz loginUser(User user, HttpSession session) throws Exception {
 		jsonClazz.getData().clear();
 		if(userService.login(user)){
 			jsonClazz.setState(Constant.SUCCESS);
 			jsonClazz.setCode(Constant.SUCCESS_CODE);
+			//把用户登录信息通过DES加密后放入session中
+			session.setAttribute(Constant.SESSION_USER_INFO, CommonUtils.getEncodeStr(user.getUsername()));
 		}else{
 			jsonClazz.setState(Constant.FAILED);
 			jsonClazz.setCode(Constant.FAILED_CODE);
 		}
+		
 		return jsonClazz;
 	}
 
@@ -97,4 +99,16 @@ public class UserController {
 		}
 		return jsonClazz;
 	}
+	
+	@RequestMapping(value = "/logout")
+	@ResponseBody
+	public JsonClazz logout(User user, HttpSession session) throws Exception {
+		jsonClazz.getData().clear();
+//		CommonUtils.isValidUser((String)session.getAttribute(Constant.SESSION_USER_INFO)
+		
+		//设置session失效 TODO
+		session.invalidate();
+		return jsonClazz;
+	}
+	
 }

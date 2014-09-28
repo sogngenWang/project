@@ -11,18 +11,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <title>新闻添加页</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link href="${pageContext.request.contextPath}/js/um/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/um/third-party/jquery.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/js/um/umeditor.config.js"></script>
-    <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/js/um/umeditor.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/um/lang/zh-cn/zh-cn.js"></script>
+    <link href="./js/um/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="./js/um/third-party/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/um/umeditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./js/um/umeditor.min.js"></script>
+    <script type="text/javascript" src="./js/um/lang/zh-cn/zh-cn.js"></script>
+    <!-- 以下1行为upload空间  -->
+	<script src="./js/uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
+	
     <style type="text/css">
-        h1{
-            font-family: "微软雅黑";
+        h1 {
+			font-family: "微软雅黑";  
             font-weight: normal;
         }
-        .btn {
+        .btn { 
             display: inline-block;
             *display: inline;
             padding: 4px 12px;
@@ -127,13 +129,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				//$("#messageContent").val(text);
 				//$("#textEditForm").submit();
 			});
+			
+			//
+			//$("#file_upload").uploadify({
+			//	'formData'     : {
+			//		'timestamp' : '<?php echo $timestamp;?>',
+			//		'token'     : '<?php echo md5('unique_salt' . $timestamp);?>'
+			//	},
+			//	'swf'      : 'uploadify.swf',
+			//	'uploader' : 'uploadify.php'
+			//});
+			
+			
 		});
 	    
 	 </script>
 </head>
 <body>
 
-    <form id="textEditForm" method="post" action="${pageContext.request.contextPath}/addCommodity">
+    <form id="textEditForm" method="post" action="./addCommodity">
         <!-- 加载编辑器的容器 -->
 		<!--style给定宽度可以影响编辑器的最终宽度-->
         <script type="text/plain" id="myEditor" style="width:1000px;height:240px;">
@@ -149,6 +163,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div style="color: red;">
 	${message.messageInfo}
 </div>
+
+
+<!-- 上传用户头像  -->
+<!--  -->
+
 
 
 <script type="text/javascript">

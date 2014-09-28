@@ -63,11 +63,12 @@ public class UserServiceImpl implements UserService {
 		User userTmp = new User();
 		userTmp.setUsername(user.getUsername());
 		userTmp = userDao.detailUser(userTmp);
-		if(null != userTmp && !userTmp.getPasswd().isEmpty()){
+		if(null == userTmp && !user.getPasswd().isEmpty()){
 			userDao.insert(user);
 			return true;
 		}else{
 			// TODO 抛出业务异常
+			System.out.println("||||userServiceImpl Exception|||||");
 		}
 		return false;
 	}

@@ -4,11 +4,10 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.dream.bean.Kinds;
 import com.dream.bean.JsonClazz;
+import com.dream.bean.Kinds;
 import com.dream.constants.Constant;
 import com.dream.service.KindsService;
 

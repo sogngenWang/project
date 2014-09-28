@@ -1,10 +1,7 @@
 package com.dream.controller;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,8 +30,7 @@ public class AreaController {
 
 	@RequestMapping(value = "/listArea")
 	@ResponseBody
-	public JsonClazz listArea(Area area, HttpServletRequest request, HttpSession session) throws Exception {
-		session.setAttribute("test", "test");
+	public JsonClazz listArea(Area area) throws Exception {
 		jsonClazz.getData().clear();
 		jsonClazz.getData().put(Constant.JSON_LIST, areaService.listArea(area));
 		jsonClazz.setState(Constant.SUCCESS);

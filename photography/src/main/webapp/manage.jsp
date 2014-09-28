@@ -8,12 +8,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>IN ADMIN PANEL | Powered by INDEZINER</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/frontModule/style.css" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/frontModule/clockp.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/frontModule/clockh.js"></script> 
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/frontModule/jquery.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/frontModule/ddaccordion.js"></script>
+<title>后台管理页面</title>
+<link rel="stylesheet" type="text/css" href="./js/frontModule/style.css" />
+<script type="text/javascript" src="./js/frontModule/clockp.js"></script>
+<script type="text/javascript" src="./js/frontModule/clockh.js"></script> 
+<script type="text/javascript" src="./js/frontModule/jquery.min.js"></script>
+<script type="text/javascript" src="./js/frontModule/ddaccordion.js"></script>
 <script type="text/javascript">
 ddaccordion.init({
 	headerclass: "submenuheader", //Shared CSS class name of headers group
@@ -26,7 +26,7 @@ ddaccordion.init({
 	animatedefault: false, //Should contents open by default be animated into view?
 	persiststate: true, //persist state of opened contents within browser session?
 	toggleclass: ["", ""], //Two CSS classes to be applied to the header when it's collapsed and expanded, respectively ["class1", "class2"]
-	togglehtml: ["suffix", "<img src='${pageContext.request.contextPath}/js/frontModule/images/plus.gif' class='statusicon' />", "<img src='${pageContext.request.contextPath}/js/frontModule/images/minus.gif' class='statusicon' />"], //Additional HTML added to the header when it's collapsed and expanded, respectively  ["position", "html1", "html2"] (see docs)
+	togglehtml: ["suffix", "<img src='./js/frontModule/images/plus.gif' class='statusicon' />", "<img src='./js/frontModule/images/minus.gif' class='statusicon' />"], //Additional HTML added to the header when it's collapsed and expanded, respectively  ["position", "html1", "html2"] (see docs)
 	animatespeed: "fast", //speed of animation: integer in milliseconds (ie: 200), or keywords "fast", "normal", or "slow"
 	oninit:function(headers, expandedindices){ //custom code to run when headers have initalized
 		//do nothing
@@ -34,10 +34,10 @@ ddaccordion.init({
 	onopenclose:function(header, index, state, isuseractivated){ //custom code to run whenever a header is opened or closed
 		//do nothing
 	}
-})
+});
 </script>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/frontModule/jconfirmaction.jquery.js"></script>
+<script type="text/javascript" src="./js/frontModule/jconfirmaction.jquery.js"></script>
 <script type="text/javascript">
 	
 	$(document).ready(function() {
@@ -46,8 +46,8 @@ ddaccordion.init({
 	
 </script>
 
-<script language="javascript" type="text/javascript" src="${pageContext.request.contextPath}/js/frontModule/niceforms.js"></script>
-<link rel="stylesheet" type="text/css" media="all" href="${pageContext.request.contextPath}/js/frontModule/niceforms-default.css" />
+<script language="javascript" type="text/javascript" src="./js/frontModule/niceforms.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="./js/frontModule/niceforms-default.css" />
 
 </head>
 <body>
@@ -56,7 +56,7 @@ ddaccordion.init({
 		<div class="header">
 			<!-- 标题栏logo -->
 			<div class="logo">
-				<a href="#"><img src="${pageContext.request.contextPath}/js/frontModule/images/logo.gif"
+				<a href="#"><img src="./js/frontModule/images/logo.gif"
 					alt="" title="" border="0" /></a>
 			</div>
 			<!-- 已登录用户以及用户注销 -->
@@ -70,11 +70,11 @@ ddaccordion.init({
 		<div class="main_content">
 			<div class="menu">
 				<ul>
-					<li><a class="current" href="${pageContext.request.contextPath}/js/frontModule/indexPage.jsp">用户管理</a>
+					<li><a class="current" href="#">帐号管理</a>
 					</li>
 				</ul>
 			</div>
-			<div class="center_content">
+		 	<div class="center_content">
 				<div class="left_content">
 
 					<div class="sidebarmenu">
@@ -111,7 +111,7 @@ ddaccordion.init({
 						<div class="sidebar_box_top"></div>
 						<div class="sidebar_box_content">
 							<h3>notice</h3>
-							<img src="${pageContext.request.contextPath}/js/frontModule/images/info.png"
+							<img src="./js/frontModule/images/info.png"
 								alt="" title="" class="sidebar_icon_right" />
 							<ul>
 								<li>故障联系人:王松根</li>
@@ -137,7 +137,7 @@ ddaccordion.init({
 								<input type="text" name="" class="search_input"
 									value="搜索用户" onclick="this.value=''" /> <input
 									type="image" class="search_submit"
-									src="${pageContext.request.contextPath}/js/frontModule/images/search.png" />
+									src="./js/frontModule/images/search.png" />
 							</form>
 						</div>
 						<table id="rounded-corner">
@@ -167,15 +167,11 @@ ddaccordion.init({
 							<span class="current">1</span>
 							<a href="">2</a>
 							<a href="">3</a>
-							<a href="">4</a>
+							...
 							<a href="">5</a>
 							...
 							<a href="">10</a>
 							<a href="">11</a>
-							<a href="">12</a>
-							...
-							<a href="">100</a>
-							<a href="">101</a>
 							<a href="">next >></a>
 						</div>
 
@@ -201,7 +197,7 @@ ddaccordion.init({
 									<td class="telephone">15159628259</td>
 									<td class="email">wangsonggen@126.com</td>
 									<td class="active">active</td>
-									 <td><a href="#"><img src="${pageContext.request.contextPath}/js/frontModule/images/user_edit.png"
+									 <td><a href="#"><img src="./js/frontModule/images/user_edit.png"
 										alt="" title="" border="0" /></a></td>
 								</tr>
 							</tbody>
@@ -209,10 +205,16 @@ ddaccordion.init({
 
 						<!-- 分页 -->
 						<div class="pagination">
-							<span class="disabled"><< prev</span><span class="current">1</span><a
-								href="">2</a><a href="">3</a><a href="">4</a><a href="">5</a>...<a
-								href="">10</a><a href="">11</a><a href="">12</a>...<a href="">100</a><a
-								href="">101</a><a href="">next >></a>
+							<span class="disabled"><< prev</span>
+							<span class="current">1</span>
+							<a href="">2</a>
+							<a href="">3</a>
+							...
+							<a href="">5</a>
+							...
+							<a href="">10</a>
+							<a href="">11</a>
+							<a href="">next >></a>
 						</div>
 					</div>
 
@@ -236,7 +238,7 @@ ddaccordion.init({
 										<td class="telephone">15159628259</td>
 										<td class="email">wangsonggen@126.com</td>
 										<td class="active">active</td>
-										 <td><a href="#" class="ask"><img src="${pageContext.request.contextPath}/js/frontModule/images/trash.png"
+										 <td><a href="#" class="ask"><img src="./js/frontModule/images/trash.png"
 										alt="" title="" border="0" /></a></td>
 									</tr>
 								</tbody>
@@ -249,9 +251,8 @@ ddaccordion.init({
 									href="">10</a><a href="">11</a><a href="">12</a>...<a href="">100</a><a
 									href="">101</a><a href="">next >></a>
 							</div>
-
 					</div>
-						
+					
 					<div id="addUser">
 					<h2>添加用户</h2>
 					<div class="form">
@@ -307,7 +308,6 @@ ddaccordion.init({
 										<input type="text" name="telephone" id="" size="54" />
 									</dd>
 								</dl>
-
 								<dl>
 									<dt>
 										<label for="active">用户状态:</label>
@@ -317,44 +317,30 @@ ddaccordion.init({
 										<input type="radio" name="active" id="" value="2" /><label class="check_label">禁用</label>
 									</dd>
 								</dl>
-
 								<dl class="submit">
 									<input type="submit" name="submit" id="submit" value="创建用户" />
 								</dl>
-
 							</fieldset>
 						</form>
 						</div>
-						
 					</div>
 					<!-- 此处填写错误信息 -->
 					<div class="error_box"> 无(无的时候该div应该为display:none)</div>
-					
 				</div>
 				<!-- end of right content-->
-
-
 			</div>
 			<!--end of center content -->
-
-
-
-
 			<div class="clear"></div>
 		</div>
 		<!--end of main content-->
-
-
 		<div class="footer">
-
 			<div class="left_footer">
 				IN ADMIN PANEL | Powered by <a href="http://indeziner.com">INDEZINER</a>
 			</div>
 			<div class="right_footer">
-				<a href="http://indeziner.com"><img src="${pageContext.request.contextPath}/js/frontModule/images/indeziner_logo.gif"
+				<a href="http://indeziner.com"><img src="./js/frontModule/images/indeziner_logo.gif"
 					alt="" title="" border="0" /></a>
 			</div>
-
 		</div>
 
 	</div>
