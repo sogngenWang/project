@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dream.bean.Area;
@@ -18,7 +19,7 @@ public class AreaController {
 	@Resource(name = "areaService")
 	private AreaService areaService;
 
-	@RequestMapping(value = "/detailArea")
+	@RequestMapping(value = "/detailArea", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz detailArea(Area area) throws Exception {
 		jsonClazz.getData().clear();
@@ -28,7 +29,7 @@ public class AreaController {
 		return jsonClazz;
 	}
 
-	@RequestMapping(value = "/listArea")
+	@RequestMapping(value = "/listArea", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz listArea(Area area) throws Exception {
 		jsonClazz.getData().clear();
@@ -38,7 +39,7 @@ public class AreaController {
 		return jsonClazz;
 	}
 
-	@RequestMapping(value = "/updateArea")
+	@RequestMapping(value = "/updateArea", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz updateArea(Area area) throws Exception {
 		jsonClazz.getData().clear();
@@ -49,7 +50,7 @@ public class AreaController {
 		return jsonClazz;
 	}
 
-	@RequestMapping(value = "/addArea")
+	@RequestMapping(value = "/addArea", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz addArea(Area area) throws Exception {
 		jsonClazz.getData().clear();
@@ -59,7 +60,7 @@ public class AreaController {
 		return jsonClazz;
 	}
 
-	@RequestMapping(value = "/deleteArea")
+	@RequestMapping(value = "/deleteArea", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz deleteArea(Area area) throws Exception {
 		jsonClazz.getData().clear();

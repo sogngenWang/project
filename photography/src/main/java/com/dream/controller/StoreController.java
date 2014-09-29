@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dream.bean.JsonClazz;
@@ -19,7 +20,7 @@ public class StoreController {
 	@Resource(name = "storeService")
 	private StoreService storeService;
 	
-	@RequestMapping(value = "/detailStore")
+	@RequestMapping(value = "/detailStore", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz detailStore(Store store) throws Exception {
 		jsonClazz.getData().clear();
@@ -29,7 +30,7 @@ public class StoreController {
 		return jsonClazz;
 	}
 	
-	@RequestMapping(value = "/listStore")
+	@RequestMapping(value = "/listStore", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz listStore(Store store)throws Exception{
 		jsonClazz.getData().clear();
@@ -39,7 +40,7 @@ public class StoreController {
 		return jsonClazz;
 	}
 	
-	@RequestMapping(value = "/updateStore")
+	@RequestMapping(value = "/updateStore", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz updateStore(Store store)throws Exception{
 		jsonClazz.getData().clear();
@@ -49,7 +50,7 @@ public class StoreController {
 		return jsonClazz;
 	}
 
-	@RequestMapping(value = "/addStore")
+	@RequestMapping(value = "/addStore", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz addStore(Store store)throws Exception{
 		jsonClazz.getData().clear();
@@ -60,7 +61,7 @@ public class StoreController {
 	}
 
 	
-	@RequestMapping(value = "/deleteStore")
+	@RequestMapping(value = "/deleteStore", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz deleteStore(Store store)throws Exception{
 		jsonClazz.getData().clear();

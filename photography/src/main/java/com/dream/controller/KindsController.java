@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dream.bean.JsonClazz;
@@ -18,7 +19,7 @@ public class KindsController {
 	@Resource(name = "kindsService")
 	private KindsService kindsService;
 	
-	@RequestMapping(value = "/detailKinds" )
+	@RequestMapping(value = "/detailKinds", method={RequestMethod.GET,RequestMethod.POST} )
 	@ResponseBody
 	public JsonClazz detailKinds(Kinds kinds) throws Exception {
 		jsonClazz.getData().clear();
@@ -28,7 +29,7 @@ public class KindsController {
 		return jsonClazz;
 	}
 	
-	@RequestMapping(value = "/listKinds" )
+	@RequestMapping(value = "/listKinds" , method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz listKinds(Kinds kinds)throws Exception{
 		jsonClazz.getData().clear();
@@ -38,7 +39,7 @@ public class KindsController {
 		return jsonClazz;
 	}
 	
-	@RequestMapping(value = "/updateKinds" )
+	@RequestMapping(value = "/updateKinds" , method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz updateKinds(Kinds kinds)throws Exception{
 		jsonClazz.getData().clear();
@@ -48,7 +49,7 @@ public class KindsController {
 		return jsonClazz;
 	}
 
-	@RequestMapping(value = "/addKinds" )
+	@RequestMapping(value = "/addKinds", method={RequestMethod.GET,RequestMethod.POST} )
 	@ResponseBody
 	public JsonClazz addKinds(Kinds kinds)throws Exception{
 		jsonClazz.getData().clear();
@@ -59,7 +60,7 @@ public class KindsController {
 	}
 
 	
-	@RequestMapping(value = "/deleteKinds" )
+	@RequestMapping(value = "/deleteKinds", method={RequestMethod.GET,RequestMethod.POST} )
 	@ResponseBody
 	public JsonClazz deleteKinds(Kinds kinds)throws Exception{
 		jsonClazz.getData().clear();

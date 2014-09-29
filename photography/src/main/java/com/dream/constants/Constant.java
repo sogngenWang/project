@@ -11,6 +11,7 @@ public interface Constant {
 	String SUCCESS = "SUCCESS";
 	String ERROR = "ERROR" ;
 	String FAILED = "FAILED";
+	String JSON_IMG_PATH = "img";
 	
 	//*********************************json返回码
 	String SUCCESS_CODE = "0";
@@ -30,6 +31,13 @@ public interface Constant {
 	//	String IMG_PATH_PRE = "//opt//data//";
 	//dev
 	String FILE_PATH_PRE = "D://tmp/";
-	
-	
+
+	// 文件上传，前台所使用的name，后台根据这个变量名字来获取文件
+	String UPLOAD_PARAM_NAME = "uploadImg";
+	// 文件上传后保存的文件路径
+	String UPLOAD_FILE_UPLOAD_PATH = "D://JAVA//SERVER//apache-tomcat-7.0.33//webapps//Photography//uploads//";
+//	String UPLOAD_FILE_UPLOAD_PATH = "uploads//";
+	// 定义允许上传的图片类型
+	String UPLOAD_IMG_TYPE = "jpg|jpeg|bmp|gif|png";
+
 }

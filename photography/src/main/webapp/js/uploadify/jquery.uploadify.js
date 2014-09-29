@@ -96,8 +96,9 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 				var settings = $.extend({
 					// Required Settings
 					id       : $this.attr('id'), // The ID of the DOM object
-					swf      : 'uploadify.swf',  // The path to the uploadify SWF file
-					uploader : 'uploadify.php',  // The path to the server-side upload script
+					// TODO 新项目需要修改此项
+					swf      : 'js/uploadify/uploadify.swf',  // The path to the uploadify SWF file
+					uploader : 'js/uploadify/uploadify.php',  // The path to the server-side upload script
 					
 					// Options
 					auto            : true,               // Automatically upload files when added to the queue

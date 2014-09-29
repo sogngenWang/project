@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dream.bean.Commodity;
@@ -21,7 +22,7 @@ public class CommodityController {
 	@Resource(name = "commodityService")
 	private CommodityService commodityService;
 	
-	@RequestMapping(value = "/detailCommodity" )
+	@RequestMapping(value = "/detailCommodity", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz detailCommodity(Commodity commodity) throws Exception {
 		jsonClazz.getData().clear();
@@ -31,7 +32,7 @@ public class CommodityController {
 		return jsonClazz;
 	}
 	
-	@RequestMapping(value = "/listCommodity" )
+	@RequestMapping(value = "/listCommodity", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz listCommodity(Commodity commodity)throws Exception{
 		jsonClazz.getData().clear();
@@ -41,7 +42,7 @@ public class CommodityController {
 		return jsonClazz;
 	}
 	
-	@RequestMapping(value = "/updateCommodity" )
+	@RequestMapping(value = "/updateCommodity", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz updateCommodity(Commodity commodity)throws Exception{
 		jsonClazz.getData().clear();
@@ -51,7 +52,7 @@ public class CommodityController {
 		return jsonClazz;
 	}
 
-	@RequestMapping(value = "/addCommodity" )
+	@RequestMapping(value = "/addCommodity" , method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz addCommodity(Commodity commodity)throws Exception{
 		jsonClazz.getData().clear();
@@ -62,7 +63,7 @@ public class CommodityController {
 	}
 
 	
-	@RequestMapping(value = "/deleteCommodity" )
+	@RequestMapping(value = "/deleteCommodity" , method={RequestMethod.GET,RequestMethod.POST} )
 	@ResponseBody
 	public JsonClazz deleteCommodity(Commodity commodity)throws Exception{
 		jsonClazz.getData().clear();
@@ -72,7 +73,7 @@ public class CommodityController {
 		return jsonClazz;
 	}
 
-	@RequestMapping(value = "/listAndOrderCommodity" )
+	@RequestMapping(value = "/listAndOrderCommodity", method={RequestMethod.GET,RequestMethod.POST} )
 	@ResponseBody
 	public JsonClazz listAndOrderCommodity(Commodity commodity)throws Exception{
 		jsonClazz.getData().clear();

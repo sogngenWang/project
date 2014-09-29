@@ -130,20 +130,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				//$("#textEditForm").submit();
 			});
 			
-			//
-			//$("#file_upload").uploadify({
-			//	'formData'     : {
-			//		'timestamp' : '<?php echo $timestamp;?>',
-			//		'token'     : '<?php echo md5('unique_salt' . $timestamp);?>'
-			//	},
-			//	'swf'      : 'uploadify.swf',
-			//	'uploader' : 'uploadify.php'
-			//});
-			
-			
-		});
-	    
-	 </script>
+
+			$("#file_upload").uploadify({
+				'auto'           : false,  
+				'swf'            : './js/uploadify/uploadify.swf',  
+				'uploader'       : 'upload',//后台处理的请求  
+				'queueID' : 'fileQueue',//与下面的id对应  
+				'queueSizeLimit' : 1,
+				//'fileTypeDesc' : 'rar文件或zip文件',
+				//'fileTypeExts' : '*.rar;*.zip', //控制可上传文件的扩展名，启用本项时需同时声明fileDesc  
+				'multi' : true,
+				'buttonText' : '上传'
+			});
+
+					});
+				</script>
 </head>
 <body>
 
@@ -154,6 +155,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 		</script>
     </form>
+    
     <!-- 实例化编辑器 -->
     <script type="text/javascript">
         var editor = UE.getEditor('container');
@@ -167,7 +169,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!-- 上传用户头像  -->
 <!--  -->
-
+<form>
+	<div id="queue"></div>
+	<input id="file_upload" name="file_upload" type="file" multiple="true">
+	<button type="submit">222</button>
+</form>
 
 
 <script type="text/javascript">
