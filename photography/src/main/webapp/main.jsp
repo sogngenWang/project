@@ -9,11 +9,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>后台管理页面</title>
+<!-- Bootstrap core CSS -->
+    <link href="./js/bootstrap-3.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="./js/frontModule/style.css" />
 <script type="text/javascript" src="./js/frontModule/clockp.js"></script>
 <script type="text/javascript" src="./js/frontModule/clockh.js"></script> 
 <script type="text/javascript" src="./js/frontModule/jquery.min.js"></script>
-<script type="text/javascript" src="./js/frontModule/ddaccordion.js"></script>
+<script type="text/javascript" src="./js/frontModule/ddaccordion.js"></script>    
+
+
+    
 <script type="text/javascript">
 ddaccordion.init({
 	headerclass: "submenuheader", //Shared CSS class name of headers group
@@ -385,14 +390,14 @@ ddaccordion.init({
 	}
 </script>
 <style type="text/css">
-/* 设置输入框长度 */
+/* 设置输入框长度
 #loginWindow input {
 	width: 130px;
-}
+} */
 #registerWindow input {
 	width: 130px;
 }
-/* 设置登录框 */
+/* 设置登录框 
 #loginWindow {
 	visibility: hidden;
 	position: fixed;
@@ -402,7 +407,7 @@ ddaccordion.init({
 	height: 20%;
 	width: 210px;
 	background-color: gray;
-}
+} */
 
 /* 设置注册窗 */
 #registerWindow {
@@ -417,7 +422,7 @@ ddaccordion.init({
 }
 
 /* 设置登录，注册框下的行长度 */
-.line{
+.line {
 	width: 200px;
 }
 /* 设置登录，注册框下的行第一个div长度 */
@@ -443,46 +448,102 @@ ddaccordion.init({
 	background-color: rgb(0, 0, 0);
 	opacity: 0.3;
 }
-.commodity{
-	text-align:center;
+
+.commodity {
+	text-align: center;
 	width: 145px;
 	height: 200px;
 	background-color: yellow;
 	display: inline-block;
-	margin: 10px 10px 0  0;
+	margin: 10px 10px 0 0;
 }
-.commodityImg{
+
+.commodityImg {
 	width: 145px;
 	height: 150px;
-} 
+}
 
 .store {
-	text-align:center;
+	text-align: center;
 	width: 145px;
 	height: 170px;
 	background-color: yellow;
 	display: inline-block;
-	margin: 10px 10px 0  0;
+	margin: 10px 10px 0 0;
 }
 
-.storeImg{
+.storeImg {
 	width: 145px;
 	height: 150px;
 }
 
 
+.center{
+	top: 40%;
+	left: 40%;
+}
+
+#loginWindow {
+	visibility: hidden;
+	max-width: 330px;
+	padding: 15px;
+	position: fixed;
+	z-index: 100;
+	width: 210px;
+	background-color: #eee;
+}
+
+#loginWindow .form-signin-heading {
+	margin-bottom: 10px;
+	font-size: large;
+}
+
+#loginWindow .form-control {
+	position: relative;
+	height: auto;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 10px;
+	font-size: 16px;
+}
+
+#loginWindow .form-control:focus {
+	z-index: 2;
+}
+
+#loginWindow input[type="email"] {
+	margin-bottom: -1px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+#loginWindow input[type="password"] {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
 </style>
 </head>
 <body>
 	<!-- 遮罩层 -->
 	<div id="page_mask"></div>
 	<!-- 显示登录窗口 -->
-	<div id="loginWindow">
-		<div class="line"><div class="windowFirst">用户名:</div><div class="windowSecond"><input type="text"  name="username" /></div></div>
-		<div class="line"><div class="windowFirst">密码:</div><div class="windowSecond"><input type="password"  name="passwd"/></div></div>
-		<div class="line"><div class="windowFirst"><button id="login">登录</button></div><div class="windowSecond"><button class="back">返回</button></div></div>
-		<div id="loginMessage"></div>
+	<div class="container">
+		<div id="loginWindow" class="center">
+			<!-- <div class="line"><div class="windowFirst">用户名:</div><div class="windowSecond"><input type="text"  name="username" /></div></div>
+			<div class="line"><div class="windowFirst">密码:</div><div class="windowSecond"><input type="password"  name="passwd"/></div></div>
+			<div class="line"><div class="windowFirst"><button id="login">登录</button></div><div class="windowSecond"><button class="back">返回</button></div></div>
+			 -->
+			 <h2 class="form-signin-heading">Please sign in</h2>
+			<input type="email" class="form-control" placeholder="Email address"required autofocus>
+			<input type="password" class="form-control" placeholder="Password" required> 
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+	
+			<div id="loginMessage"></div>
+		</div>
 	</div>
+	
 	<!-- 显示注册窗口 -->
 	<div id="registerWindow">
 		<div class="line"><div class="windowFirst">用户名:</div><div class="windowSecond"><input type="text"  name="username" /></div></div>
@@ -505,6 +566,10 @@ ddaccordion.init({
 			</div>
 			<div id="clock_a"></div>
 		</div>
+
+		<!--  // TODO 图片轮转的照片墙   -->
+		
+	
 
 		<!-- 标题栏 -->
 		<div class="main_content">

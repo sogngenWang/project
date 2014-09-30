@@ -23,7 +23,7 @@
     	
         $("#uploadify").uploadify({
             'uploader' : 'js/uploadify/uploadify.swf',
-            'script' : 'upload',//后台处理的请求
+            'script' : 'UploadFileServlet',//后台处理的请求
             'cancelImg' : 'js/uploadify/uplodify-cancel.png',
             'folder' : 'upload',//您想将文件保存到的路径
             'queueID' : 'fileQueue',//与下面的id对应
