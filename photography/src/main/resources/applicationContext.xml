@@ -99,6 +99,11 @@
 		 <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
     </bean>
     
+    <bean id="commentDao"  class="org.mybatis.spring.mapper.MapperFactoryBean">
+    	<property name="mapperInterface" value="com.dream.dao.CommentMapper"></property>
+		 <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+    </bean>
+    
     <bean id="areaDao"  class="org.mybatis.spring.mapper.MapperFactoryBean">
      	<property name="mapperInterface" value="com.dream.dao.AreaMapper"></property> 
 		 <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>

@@ -15,6 +15,7 @@
 
 		<!-- <mapper resource="com/baidu/mapper/testMapper.xml" /> -->
 		<!-- <mapper resource="com/baidu/mapper/GenderTrendMapper.xml" /> <mapper resource="com/baidu/mapper/PashionMapper.xml /> -->
+		<mapper resource="com/dream/mapper/CommentMapper.xml" />
 		<mapper resource="com/dream/mapper/UserMapper.xml" />
 		<mapper resource="com/dream/mapper/AreaMapper.xml" />
 		<mapper resource="com/dream/mapper/CommodityMapper.xml" />

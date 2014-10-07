@@ -95,7 +95,19 @@ ddaccordion.init({
 			userLogin();
 		});
 		$("#register").click(function(){
-			userRegister();
+		
+			//先校验两次密码输入是否正确，如果错误则不提交
+			var passwd1 = $("#newPasswd").val();
+			var passwd2 = $("#reNewPasswd").val();
+			alert(passwd1+"|"+passwd2);
+			if(null != passwd1 && null !== passwd2){
+				if(passwd1 == passwd2 ){
+					userRegister();
+				}
+			}
+			
+			
+			//userRegister();
 		});
 		
 		$("#leftBarCommodity").click(function(){
@@ -201,7 +213,7 @@ ddaccordion.init({
 						var array_element = Objs[int];
 						// commodityid commodityname commodityprice commoditydetail commoditypic committime lastupdatetime kindsid);
 						string += "<div attr=\""+ array_element.commodityid + "\" class=\"commodity\">";
-						string += "<img src=\""+array_element.commoditypic +"\" class=\"commodityImg\"/>";
+						string += "<a href=\"javascript:void(0);\"><img src=\""+array_element.commoditypic +"\" class=\"commodityImg\"/></a>";
 						string += "<div>"+array_element.commodityprice +"￥</div>";
 						string += "<div>"+array_element.commodityname +"</div>";
 						string += "</div>";
@@ -209,6 +221,15 @@ ddaccordion.init({
 					}
 					
 					$("#listCommodity").append(string);
+					
+					//注册点击事件
+					$(".commodityImg").click(function(){
+						//页面跳转
+						var commodityid = $(this).parent().parent().attr("attr");
+						window.location.href="listCommodity.jsp?commodityid="+commodityid;
+					});
+					
+					
 				}else if (state == "BusinessException"){
 					//业务异常
 					alert("业务异常:"+code);
@@ -285,6 +306,7 @@ ddaccordion.init({
 	//		usrename : $("#loginWindow [name='username']").val(),
 	//		password : $("#loginWindow [name='passwd']").val()
 	//	};
+	
 		var username = $("#loginWindow [name='username']").val();
 		var passwd  = $("#loginWindow [name='passwd']").val();
 		//用户登录 
@@ -303,6 +325,15 @@ ddaccordion.init({
 				if(json.state == "SUCCESS"){
 					$("#loginMessage").html("");
 					$("#loginMessage").append("登录成功!");
+					alert("xxxxxxx");
+					$("#welcome").val("欢迎回来  " + username);
+					$("#welcome").css("visibility","visible");
+					$("#logoutLink").css("visibility","visible");
+					
+					$("#loginLink").css("visibility","hidden");
+					$("#registerLink").css("visibility","hidden");
+					
+					
 				}else if(json.state == "FAILED"){
 					$("#loginMessage").html("");
 					$("#loginMessage").append("登录失败!用户名或者密码错误");
@@ -359,7 +390,7 @@ ddaccordion.init({
 	}
 	
 	function userLogout(){
-		// TODO 用户注销
+		//用户注销
 		$.ajax({
 			type : "post",//使用post方法访问后台  
 			dataType : "text",//返回json格式的数据  
@@ -374,7 +405,13 @@ ddaccordion.init({
 				//清空该标签下的所有数据	
 				if(json.state == "SUCCESS"){
 					alert("注销成功!");
-					// TODO 页面刷新.去掉用户信息,
+					//隐藏已经登录的用户标签
+					//  页面刷新.去掉用户信息,
+					$("#welcome").css("visibility","hidden");
+					$("#logoutLink").css("visibility","hidden");
+					
+					$("#loginLink").css("visibility","visible");
+					$("#registerLink").css("visibility","visible");
 					
 				}else if (state == "BusinessException"){
 					//业务异常
@@ -390,51 +427,6 @@ ddaccordion.init({
 	}
 </script>
 <style type="text/css">
-/* 设置输入框长度
-#loginWindow input {
-	width: 130px;
-} */
-#registerWindow input {
-	width: 130px;
-}
-/* 设置登录框 
-#loginWindow {
-	visibility: hidden;
-	position: fixed;
-	z-index: 100;
-	top: 40%;
-	left: 40%;
-	height: 20%;
-	width: 210px;
-	background-color: gray;
-} */
-
-/* 设置注册窗 */
-#registerWindow {
-	visibility: hidden;
-	position: fixed;
-	z-index: 100;
-	top: 40%;
-	left: 40%;
-	height: 20%;
-	width: 210px;
-	background-color: gray;
-}
-
-/* 设置登录，注册框下的行长度 */
-.line {
-	width: 200px;
-}
-/* 设置登录，注册框下的行第一个div长度 */
-.windowFirst {
-	width: 70px;
-	display: inline-block;
-}
-/* 设置登录，注册框下的行第二个div长度 */
-.windowSecond {
-	width: 70px;
-	display: inline-block;
-}
 /* 设置遮罩层 */
 #page_mask {
 	visibility: hidden;
@@ -479,7 +471,7 @@ ddaccordion.init({
 
 
 .center{
-	top: 40%;
+	top: 20%;
 	left: 40%;
 }
 
@@ -493,12 +485,24 @@ ddaccordion.init({
 	background-color: #eee;
 }
 
-#loginWindow .form-signin-heading {
+#registerWindow {
+	visibility: hidden;
+	max-width: 330px;
+	padding: 15px;
+	position: fixed;
+	z-index: 100;
+	width: 210px;
+	background-color: #eee;
+}
+
+
+
+.form-signin-heading {
 	margin-bottom: 10px;
 	font-size: large;
 }
 
-#loginWindow .form-control {
+.form-control {
 	position: relative;
 	height: auto;
 	-webkit-box-sizing: border-box;
@@ -508,17 +512,17 @@ ddaccordion.init({
 	font-size: 16px;
 }
 
-#loginWindow .form-control:focus {
+ .form-control:focus {
 	z-index: 2;
 }
 
-#loginWindow input[type="email"] {
+ input[type="email"] {
 	margin-bottom: -1px;
 	border-bottom-right-radius: 0;
 	border-bottom-left-radius: 0;
 }
 
-#loginWindow input[type="password"] {
+ input[type="password"] {
 	margin-bottom: 10px;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
@@ -528,30 +532,31 @@ ddaccordion.init({
 <body>
 	<!-- 遮罩层 -->
 	<div id="page_mask"></div>
-	<!-- 显示登录窗口 -->
-	<div class="container">
-		<div id="loginWindow" class="center">
-			<!-- <div class="line"><div class="windowFirst">用户名:</div><div class="windowSecond"><input type="text"  name="username" /></div></div>
-			<div class="line"><div class="windowFirst">密码:</div><div class="windowSecond"><input type="password"  name="passwd"/></div></div>
-			<div class="line"><div class="windowFirst"><button id="login">登录</button></div><div class="windowSecond"><button class="back">返回</button></div></div>
-			 -->
-			 <h2 class="form-signin-heading">Please sign in</h2>
-			<input type="email" class="form-control" placeholder="Email address"required autofocus>
-			<input type="password" class="form-control" placeholder="Password" required> 
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 	
+	<div class="container">
+			<!-- 显示登录窗口 -->
+			<div id="loginWindow" class="center">
+			<h2 class="form-signin-heading">登录</h2>
+			<input type="text" class="form-control" placeholder="用户名"  name="username" required autofocus />
+			<input type="password" class="form-control" placeholder="密码"   name="passwd" required  /> 
+			<button class="btn btn-lg btn-primary btn-block" type="submit" id="login">登录</button>
+			<button class="btn btn-lg btn-primary btn-block back" >返回</button>
 			<div id="loginMessage"></div>
 		</div>
-	</div>
 	
-	<!-- 显示注册窗口 -->
-	<div id="registerWindow">
-		<div class="line"><div class="windowFirst">用户名:</div><div class="windowSecond"><input type="text"  name="username" /></div></div>
-		<div class="line"><div class="windowFirst">密码:</div><div class="windowSecond"><input type="password" name="passwd"/></div></div>
-		<div class="line"><div class="windowFirst">手机:</div><div class="windowSecond"><input type="text"  name="telephone"/></div></div>
-		<div class="line"><div class="windowFirst">邮箱:</div><div class="windowSecond"><input type="text"  name="email"/></div></div>
-		<div class="line"><div class="windowFirst"><button id="register">注册</button></div><div class="windowSecond"><button class="back">返回</button></div></div>
-		<div id="registerMessage"></div>
+		<!-- 显示注册窗口 -->
+		<div id="registerWindow" class="center">
+				<h2 class="form-signin-heading">用户注册</h2>
+				<input type="text" class="form-control" placeholder="用户名"  name="username" required autofocus />
+				<input type="password" class="form-control" placeholder="密码" id="newPasswd" required  /> 
+				<input type="password" class="form-control" placeholder="再次输入密码" id="reNewPasswd" name="passwd" required /> 
+				<input type="text" class="form-control" placeholder="手机"  name="telephone" required />
+				<input type="text" class="form-control" placeholder="邮箱"  name="email" required />
+				<button class="btn btn-lg btn-primary btn-block" type="submit" id="register">注册</button>
+				<button class="btn btn-lg btn-primary btn-block back" >返回</button>
+				<div id="loginMessage"></div>
+			<div id="registerMessage"></div>
+		</div>
 	</div>
 	
 	<div id="main_container">
@@ -562,7 +567,7 @@ ddaccordion.init({
 			</div>
 			<!-- 已登录用户以及用户注销 -->
 			<div class="right_header">
-				<span>欢迎回来   Admin</span>| <a href="javascript:void(0);" id="loginLink">登录</a> |<a id="registerLink" href="javascript:void(0);">注册</a>| <a href="javascript:void(0);" id="logoutLink">注销</a>
+				<span id="welcome">欢迎回来   Admin |</span><a href="javascript:void(0);" id="loginLink">登录|</a><a id="registerLink" href="javascript:void(0);">注册|</a><a href="javascript:void(0);" id="logoutLink">注销</a>
 			</div>
 			<div id="clock_a"></div>
 		</div>

@@ -45,6 +45,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean login(User user) {
 		String username = user.getUsername();
+		if(null == username){
+			return false;
+		}
 		User userTmp = new User();
 		userTmp.setUsername(username);
 		userTmp = userDao.detailUser(userTmp);
@@ -61,6 +64,7 @@ public class UserServiceImpl implements UserService {
 	public boolean register(User user) {
 		// 判断用户名是否存在，如果用户名不存在则新建该用户
 		User userTmp = new User();
+
 		userTmp.setUsername(user.getUsername());
 		userTmp = userDao.detailUser(userTmp);
 		if(null == userTmp && !user.getPasswd().isEmpty()){
