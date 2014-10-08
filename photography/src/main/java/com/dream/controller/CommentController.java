@@ -20,7 +20,7 @@ public class CommentController {
 	@Resource(name = "commentService")
 	private CommentService commentService;
 	
-	@RequestMapping(value = "/detailComment", method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/api/detailComment", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz detailComment(Comment comment) throws Exception {
 		jsonClazz.getData().clear();
@@ -30,7 +30,7 @@ public class CommentController {
 		return jsonClazz;
 	}
 	
-	@RequestMapping(value = "/listComment", method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/api/listComment", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz listComment(Comment comment)throws Exception{
 		jsonClazz.getData().clear();
@@ -40,7 +40,7 @@ public class CommentController {
 		return jsonClazz;
 	}
 	
-	@RequestMapping(value = "/updateComment", method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/api/updateComment", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz updateComment(Comment comment)throws Exception{
 		jsonClazz.getData().clear();
@@ -50,7 +50,7 @@ public class CommentController {
 		return jsonClazz;
 	}
 
-	@RequestMapping(value = "/addComment" , method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/api/addComment" , method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz addComment(Comment comment)throws Exception{
 		jsonClazz.getData().clear();
@@ -61,7 +61,7 @@ public class CommentController {
 	}
 
 	
-	@RequestMapping(value = "/deleteComment" , method={RequestMethod.GET,RequestMethod.POST} )
+	@RequestMapping(value = "/api/deleteComment" , method={RequestMethod.GET,RequestMethod.POST} )
 	@ResponseBody
 	public JsonClazz deleteComment(Comment comment)throws Exception{
 		jsonClazz.getData().clear();

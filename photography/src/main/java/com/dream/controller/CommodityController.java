@@ -22,7 +22,7 @@ public class CommodityController {
 	@Resource(name = "commodityService")
 	private CommodityService commodityService;
 	
-	@RequestMapping(value = "/detailCommodity", method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/api/detailCommodity", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz detailCommodity(Commodity commodity) throws Exception {
 		jsonClazz.getData().clear();
@@ -32,7 +32,7 @@ public class CommodityController {
 		return jsonClazz;
 	}
 	
-	@RequestMapping(value = "/listCommodity", method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/api/listCommodity", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz listCommodity(Commodity commodity)throws Exception{
 		jsonClazz.getData().clear();
@@ -42,7 +42,7 @@ public class CommodityController {
 		return jsonClazz;
 	}
 	
-	@RequestMapping(value = "/updateCommodity", method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/api/updateCommodity", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz updateCommodity(Commodity commodity)throws Exception{
 		jsonClazz.getData().clear();
@@ -52,7 +52,7 @@ public class CommodityController {
 		return jsonClazz;
 	}
 
-	@RequestMapping(value = "/addCommodity" , method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/api/addCommodity" , method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz addCommodity(Commodity commodity)throws Exception{
 		jsonClazz.getData().clear();
@@ -63,7 +63,7 @@ public class CommodityController {
 	}
 
 	
-	@RequestMapping(value = "/deleteCommodity" , method={RequestMethod.GET,RequestMethod.POST} )
+	@RequestMapping(value = "/api/deleteCommodity" , method={RequestMethod.GET,RequestMethod.POST} )
 	@ResponseBody
 	public JsonClazz deleteCommodity(Commodity commodity)throws Exception{
 		jsonClazz.getData().clear();
@@ -73,7 +73,7 @@ public class CommodityController {
 		return jsonClazz;
 	}
 
-	@RequestMapping(value = "/listAndOrderCommodity", method={RequestMethod.GET,RequestMethod.POST} )
+	@RequestMapping(value = "/api/listAndOrderCommodity", method={RequestMethod.GET,RequestMethod.POST} )
 	@ResponseBody
 	public JsonClazz listAndOrderCommodity(Commodity commodity)throws Exception{
 		jsonClazz.getData().clear();

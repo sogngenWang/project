@@ -11,16 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "UploadFileServlet", urlPatterns = "/UploadFileServlet")
-@MultipartConfig(location = "/upload/", maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5)
-public class UploadFileServlet extends HttpServlet {
+@MultipartConfig(location = "/", maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5)
+public class CopyOfUploadFileServlet extends HttpServlet {
 
 	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		request.setCharacterEncoding("utf-8");
 		String filename = request.getParameter("filename");
 		String json = "{'state':'Success', data:{'url':'$(url)'}}";
-		String filepath = filename.substring(filename.indexOf("filecenter") + 10);
+		String filepath = filename
+				.substring(filename.indexOf("filecenter") + 10);
 
 		json = json.replace("$(url)", filepath);
 		PrintWriter pw = response.getWriter();
@@ -28,12 +30,6 @@ public class UploadFileServlet extends HttpServlet {
 		pw.flush();
 		pw.close();
 
-	}
-	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		doPost(req, resp);
 	}
 
 }

@@ -20,7 +20,7 @@ public class StoreController {
 	@Resource(name = "storeService")
 	private StoreService storeService;
 	
-	@RequestMapping(value = "/detailStore", method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/api/detailStore", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz detailStore(Store store) throws Exception {
 		jsonClazz.getData().clear();
@@ -30,7 +30,7 @@ public class StoreController {
 		return jsonClazz;
 	}
 	
-	@RequestMapping(value = "/listStore", method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/api/listStore", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz listStore(Store store)throws Exception{
 		jsonClazz.getData().clear();
@@ -40,7 +40,7 @@ public class StoreController {
 		return jsonClazz;
 	}
 	
-	@RequestMapping(value = "/updateStore", method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/api/updateStore", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz updateStore(Store store)throws Exception{
 		jsonClazz.getData().clear();
@@ -50,7 +50,7 @@ public class StoreController {
 		return jsonClazz;
 	}
 
-	@RequestMapping(value = "/addStore", method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/api/addStore", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz addStore(Store store)throws Exception{
 		jsonClazz.getData().clear();
@@ -61,7 +61,7 @@ public class StoreController {
 	}
 
 	
-	@RequestMapping(value = "/deleteStore", method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/api/deleteStore", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz deleteStore(Store store)throws Exception{
 		jsonClazz.getData().clear();

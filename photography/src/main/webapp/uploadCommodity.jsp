@@ -16,15 +16,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <script type="text/javascript">
 	    $(document).ready(function() {
-	    				
+			$("#submit").click(function(){
+				$("formAction").submit(test());
+			});
+			
 		});
+	    function test(){
+	    	alert($("#myiframe body pre").html());
+	    }
+	    
+	    function uploadCallBack(message){
+	    	alert(message);
+	    }
+	    
 </script>
 </head>
 <body>
+	<iframe id="myiframe" style="display: none"></iframe>
 	<div style="color: red;">${message.messageInfo}</div>
-
-
-<iframe id="myiframe" style="height: 500px ; width: 500px;" src="uploadCommodity.jsp"></iframe>
-
+	<!-- 上传用户头像  -->
+	<form action="./upload" method="post" enctype="multipart/form-data" id="formAction" target="myiframe">
+		<div id="queue"></div>
+		<input id="uploadImg" name="uploadImg" type="file" multiple="true">
+		<button id="submit">222</button>
+	</form>
 </body>
 </html>

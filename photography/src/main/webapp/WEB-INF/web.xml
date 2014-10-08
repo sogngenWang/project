@@ -23,9 +23,11 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	
+	
 	<servlet-mapping>
 		<servlet-name>spring-servlet</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>/api/</url-pattern>
 	</servlet-mapping>
 	<filter>
 		<filter-name>encodingFilter</filter-name>

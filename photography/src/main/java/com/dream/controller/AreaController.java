@@ -19,7 +19,7 @@ public class AreaController {
 	@Resource(name = "areaService")
 	private AreaService areaService;
 
-	@RequestMapping(value = "/detailArea", method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/api/detailArea", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz detailArea(Area area) throws Exception {
 		jsonClazz.getData().clear();
@@ -29,7 +29,7 @@ public class AreaController {
 		return jsonClazz;
 	}
 
-	@RequestMapping(value = "/listArea", method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/api/listArea", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz listArea(Area area) throws Exception {
 		jsonClazz.getData().clear();
@@ -39,7 +39,7 @@ public class AreaController {
 		return jsonClazz;
 	}
 
-	@RequestMapping(value = "/updateArea", method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/api/updateArea", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz updateArea(Area area) throws Exception {
 		jsonClazz.getData().clear();
@@ -50,7 +50,7 @@ public class AreaController {
 		return jsonClazz;
 	}
 
-	@RequestMapping(value = "/addArea", method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/api/addArea", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz addArea(Area area) throws Exception {
 		jsonClazz.getData().clear();
@@ -60,7 +60,7 @@ public class AreaController {
 		return jsonClazz;
 	}
 
-	@RequestMapping(value = "/deleteArea", method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/api/deleteArea", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz deleteArea(Area area) throws Exception {
 		jsonClazz.getData().clear();

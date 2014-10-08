@@ -38,17 +38,76 @@ ddaccordion.init({
 </script>
 
 <script type="text/javascript" src="./js/frontModule/jconfirmaction.jquery.js"></script>
-<script type="text/javascript" src="./js/manage.js" />
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+		$('.ask').jConfirmAction();
+	});
+	
+	function displayUser(){
+		
+		//获取到所有的区域Area，通过ajax后台查询
+		$.ajax({
+			type : "post",//使用post方法访问后台  
+			dataType : "json",//返回json格式的数据  
+			url : "./listUser" ,//要访问的后台地址  
+			contentType : "application/json;charset=utf-8",
+			data : "", //要发送的数据  
+			beforeSend : function() { //数据发送前报告
+				//alert("ajax发送消息前。。。");
+			},
+			success : function(json) {//data为返回的数据，在这里做数据绑定 
+				
+				//var jsonobj = resolveJSON("list",json,"areaid,areaname");
+				if(json.state == "SUCCESS"){
+					var Objs = json.data.list;
+					var string = "";
+					$("#areaUl").html("");
+					for (var int = 0; int < Objs.length; int++) {
+						var array_element = Objs[int];
+						// 加入到页面的标签元素中
+						string+="<li><a href=\"javascript:void(0);\" attr=\""+array_element.areaid+"\" class=\"areaclassli\">";
+						string+=array_element.areaname;
+						string+="</a></li>";
+						// areaid  areaname
+					}
+					
+					$("#areaUl").append(string);
+					//添加完之后才可以注册事件
+					$(".areaclassli").click(function(){
+						displayStore($(this).attr("attr"));
+						//显示该地区的所有商家
+						$("#listStore").css("display","inline-block");
+						$("#listCommodity").css("display","none");
+					});
+					
+				}else if (state == "BusinessException"){
+					//业务异常
+					alert("业务异常:"+code);
+				} else {
+					//其他非业务异常
+					alert("系统异常:"+code);
+				}
+
+			},
+			error : function() {
+				alert("ajax error....");
+			}
+		});
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+</script>
 
 <script language="javascript" type="text/javascript" src="./js/frontModule/niceforms.js"></script>
 <link rel="stylesheet" type="text/css" media="all" href="./js/frontModule/niceforms-default.css" />
 
-<style type="text/css">
-	#errorMessage {
-		display: none;
-	}
-	
-</style>
 </head>
 <body>
 	<div id="main_container">
@@ -81,32 +140,38 @@ ddaccordion.init({
 						<a class="menuitem menuitem_green submenuheader" href="">用户管理</a>
 						<div class="submenu">
 							<ul>
-								<li><a href="javascript:void(0); " id="listUserManu">用户查询</a></li>
-								<li><a href="javascript:void(0);" id="addUserManu">用户添加</a></li>
+								<li><a href="">用户查询</a></li>
+								<li><a href="">用户添加</a></li>
+								<li><a href="">用户修改</a></li>
+								<li><a href="">用户删除</a></li>
 							</ul>
 						</div>
 						<a class="menuitem menuitem_green submenuheader" href="">区域管理</a>
 						<div class="submenu">
 							<ul>
-								<li><a href="javascript:void(0);" id="listAreaManu">区域查询</a></li>
-								<li><a href="javascript:void(0);" id="addAreaManu">区域添加</a></li>
+								<li><a href="">区域查询</a></li>
+								<li><a href="">区域添加</a></li>
+								<li><a href="">区域修改</a></li>
+								<li><a href="">区域删除</a></li>
 							</ul>
 						</div>
 						<a class="menuitem menuitem_green submenuheader" href="">商品管理</a>
 						<div class="submenu">
 							<ul>
-								<li><a href="javascript:void(0);" id="listCommodityManu" >商品查询</a></li>
-								<li><a href="javascript:void(0);" id="addCommodityManu" >商品添加</a></li>
+								<li><a href="">商品查询</a></li>
+								<li><a href="">商品添加</a></li>
+								<li><a href="">商品修改</a></li>
+								<li><a href="">商品删除</a></li>
 							</ul>
 						</div>
 					</div>
-					
 					
 					<div class="sidebar_box">
 						<div class="sidebar_box_top"></div>
 						<div class="sidebar_box_content">
 							<h3>notice</h3>
-							<img src="./js/frontModule/images/info.png" class="sidebar_icon_right" />
+							<img src="./js/frontModule/images/info.png"
+								alt="" title="" class="sidebar_icon_right" />
 							<ul>
 								<li>故障联系人:王松根</li>
 								<li>联系电话:15159628259</li>
@@ -121,14 +186,17 @@ ddaccordion.init({
 				</div>
 
 
+
+
 				<div class="right_content">
-					<!-- ******************************************************************** -->
-					<div id="listUser" class="right_div_clazz">
+					<div id="listUser" >
 						<h2>用户查询</h2>
 						<div class="sidebar_search">
 							<form>
-								<input type="text" name="" class="search_input" value="搜索用户" onclick="this.value=''" />
-								<input type="image" class="search_submit"  src="./js/frontModule/images/search.png" />
+								<input type="text" name="" class="search_input"
+									value="搜索用户" onclick="this.value=''" /> <input
+									type="image" class="search_submit"
+									src="./js/frontModule/images/search.png" />
 							</form>
 						</div>
 						<table id="rounded-corner">
@@ -139,12 +207,17 @@ ddaccordion.init({
 									<th scope="col" class="rounded">用户手机</th>
 									<th scope="col" class="rounded">用户邮箱</th>
 									<th scope="col" class="rounded">用户状态</th>
-									<th scope="col" class="rounded">编辑</th>
-									<th scope="col" class="rounded">删除</th>
 								</tr>
 							</thead>
-							<!-- 表格内容<tr><td></td><td></td></tr> -->
-							<tbody></tbody>
+							<tbody>
+								<tr>
+									<td class="username">admin</td>
+									<td class="type">管理员</td>
+									<td class="telephone">15159628259</td>
+									<td class="email">wangsonggen@126.com</td>
+									<td class="active">active</td>
+								</tr>
+							</tbody>
 						</table>
 
 						<!-- 分页 -->
@@ -160,9 +233,10 @@ ddaccordion.init({
 							<a href="">11</a>
 							<a href="">next >></a>
 						</div>
+
 					</div>
-					<!-- ******************************************************************** -->
-					<div id="editUser" class="right_div_clazz" >
+
+					<div id="editUser" >
 						<h2>编辑用户</h2>
 						<table id="rounded-corner">
 							<thead>
@@ -173,7 +247,6 @@ ddaccordion.init({
 									<th scope="col" class="rounded">用户邮箱</th>
 									<th scope="col" class="rounded">用户状态</th>
 									<th scope="col" class="rounded">编辑</th>
-									<th scope="col" class="rounded">删除</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -184,8 +257,6 @@ ddaccordion.init({
 									<td class="email">wangsonggen@126.com</td>
 									<td class="active">active</td>
 									 <td><a href="#"><img src="./js/frontModule/images/user_edit.png"
-										alt="" title="" border="0" /></a></td>
-									 <td><a href="#" class="ask"><img src="./js/frontModule/images/trash.png"
 										alt="" title="" border="0" /></a></td>
 								</tr>
 							</tbody>
@@ -205,11 +276,46 @@ ddaccordion.init({
 							<a href="">next >></a>
 						</div>
 					</div>
-					<!-- ******************************************************************** -->
-					<div id="addUser" class="right_div_clazz">
+
+					<div id="deleteUser">
+							<h2>删除用户</h2>
+							<table id="rounded-corner">
+								<thead>
+									<tr>
+										<th scope="col" class="rounded">用户名</th>
+										<th scope="col" class="rounded">用户类型</th>
+										<th scope="col" class="rounded">用户手机</th>
+										<th scope="col" class="rounded">用户邮箱</th>
+										<th scope="col" class="rounded">用户状态</th>
+										 <th scope="col" class="rounded">删除</th> 
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="username">admin</td>
+										<td class="type">管理员</td>
+										<td class="telephone">15159628259</td>
+										<td class="email">wangsonggen@126.com</td>
+										<td class="active">active</td>
+										 <td><a href="#" class="ask"><img src="./js/frontModule/images/trash.png"
+										alt="" title="" border="0" /></a></td>
+									</tr>
+								</tbody>
+							</table>
+
+							<!-- 分页 -->
+							<div class="pagination">
+								<span class="disabled"><< prev</span><span class="current">1</span><a
+									href="">2</a><a href="">3</a><a href="">4</a><a href="">5</a>...<a
+									href="">10</a><a href="">11</a><a href="">12</a>...<a href="">100</a><a
+									href="">101</a><a href="">next >></a>
+							</div>
+					</div>
+					
+					<div id="addUser">
 					<h2>添加用户</h2>
 					<div class="form">
-						<form action="" method="post" >
+						<form action="" method="post" class="niceform">
 							<fieldset>
 								<dl>
 									<dt>
@@ -240,9 +346,9 @@ ddaccordion.init({
 										<label for="type">用户类型:</label>
 									</dt>
 									<dd>
-										<input type="radio" name="type"  value="1" /><label class="check_label">管理员</label>
-										<input type="radio" name="type"  value="2" /><label class="check_label">商家</label>
-										<input type="radio" name="type"  value="3" checked="checked"/><label class="check_label">普通会员</label>
+										<input type="radio" name="type" id="" value="1" /><label class="check_label">管理员</label>
+										<input type="radio" name="type" id="" value="2" /><label class="check_label">商家</label>
+										<input type="radio" name="type" id="" value="3" checked="checked"/><label class="check_label">普通会员</label>
 									</dd>
 								</dl>
 								<dl>
@@ -266,7 +372,7 @@ ddaccordion.init({
 										<label for="active">用户状态:</label>
 									</dt>
 									<dd>
-										<input type="radio" name="active" id="" value="1" checked="checked"/><label class="check_label">激活</label>
+										<input type="radio" name="active" id="" value="1"checked="checked"/><label class="check_label">激活</label>
 										<input type="radio" name="active" id="" value="2" /><label class="check_label">禁用</label>
 									</dd>
 								</dl>
@@ -277,160 +383,8 @@ ddaccordion.init({
 						</form>
 						</div>
 					</div>
-					<!-- ******************************************************************** -->
-					<div id="listArea" class="right_div_clazz">
-						<h2>区域查询</h2>
-						<div class="sidebar_search">
-							<form>
-								<input type="text" name="" class="search_input" value="搜索区域" onclick="this.value=''" />
-								<input type="image" class="search_submit"  src="./js/frontModule/images/search.png" />
-							</form>
-						</div>
-						<table id="rounded-corner">
-							<thead>
-								<tr>
-									<th scope="col" class="rounded">区域名</th>
-									<th scope="col" class="rounded">编辑</th>
-									<th scope="col" class="rounded">删除</th>
-								</tr>
-							</thead>
-							<!-- 表格内容<tr><td></td><td></td></tr> -->
-							<tbody></tbody>
-						</table>
-
-						<!-- 分页 -->
-						<div class="pagination">
-							<span class="disabled"><< prev</span>
-							<span class="current">1</span>
-							<a href="">2</a>
-							<a href="">3</a>
-							...
-							<a href="">5</a>
-							...
-							<a href="">10</a>
-							<a href="">11</a>
-							<a href="">next >></a>
-						</div>
-					</div>
-					
-					<!-- ******************************************************************** -->
-					<div id="listCommodity" class="right_div_clazz">
-						<h2>商品查询</h2>
-						<div class="sidebar_search">
-							<form>
-								<input type="text" name="" class="search_input" value="搜索商品" onclick="this.value=''" />
-								<input type="image" class="search_submit"  src="./js/frontModule/images/search.png" />
-							</form>
-						</div>
-						<table id="rounded-corner">
-							<thead>
-								<tr>
-									<th scope="col" class="rounded">商品名</th>
-									<th scope="col" class="rounded">详细信息</th>
-									<th scope="col" class="rounded">编辑</th>
-									<th scope="col" class="rounded">删除</th>
-								</tr>
-							</thead>
-							<!-- 表格内容<tr><td></td><td></td></tr> -->
-							<tbody></tbody>
-						</table>
-
-						<!-- 分页 -->
-						<div class="pagination">
-							<span class="disabled"><< prev</span>
-							<span class="current">1</span>
-							<a href="">2</a>
-							<a href="">3</a>
-							...
-							<a href="">5</a>
-							...
-							<a href="">10</a>
-							<a href="">11</a>
-							<a href="">next >></a>
-						</div>
-					</div>
-					<!-- ******************************************************************** -->
-					<div id="addArea" class="right_div_clazz">
-					<h2>添加区域</h2>
-					<div class="form">
-						<form action="" method="post" >
-							<fieldset>
-								<dl>
-									<dt>
-										<label for="areaname">区域名:</label>
-									</dt>
-									<dd>
-										<input type="text" name="areaname" id="" size="54" />
-									</dd>
-								</dl>
-								<dl class="submit">
-									<input type="submit" name="submit" id="submit" value="创建区域" />
-								</dl>
-							</fieldset>
-						</form>
-						</div>
-					</div>
-					<!-- ******************************************************************** -->
-					<div id="addCommodity" class="right_div_clazz">
-					<h2>添加商品</h2>
-					<div class="form">
-						<form action="" method="post" >
-							<fieldset>
-								<dl>
-									<dt>
-										<label for="commodityname">商品名:</label>
-									</dt>
-									<dd>
-										<input type="text" name="commodityname" id="" size="54" />
-									</dd>
-								</dl>
-								<dl>
-									<dt>
-										<label for="commodityprice">商品价格:</label>
-									</dt>
-									<dd>
-										<input type="commodityprice" id="" size="54" />
-									</dd>
-								</dl>
-								<dl>
-									<dt>
-										<label for="type">用户类型:</label>
-									</dt>
-									<dd>
-										<input type="radio" name="kindsid"  value="1" /><label class="check_label">婚纱摄影</label>
-										<input type="radio" name="kindsid"  value="2" /><label class="check_label">儿童摄影</label>
-									</dd>
-								</dl>
-								<dl>
-									<dt>
-										<label for="suggestlev">推荐指数:</label>
-									</dt>
-									<dd>
-										<input type="text" name="suggestlev" id="" size="54" />
-									</dd>
-								</dl>
-								<!--   TODO    商品图片，商品详情 
-								<dl>
-									<dt>
-										<label for="commoditypic">商品图片:</label>
-									</dt>
-									<dd>
-										<input type="text" name="commoditypic" id="" size="54" />
-									</dd>
-								</dl>
-								 -->
-								
-								<dl class="submit">
-									<input type="submit" name="submit" id="submit" value="创建商品" />
-								</dl>
-							</fieldset>
-						</form>
-						</div>
-					</div>
-					<!-- ******************************************************************** -->
-					
 					<!-- 此处填写错误信息 -->
-					<div class="error_box" id="errorMessage"> 无(无的时候该div应该为display:none)</div>
+					<div class="error_box"> 无(无的时候该div应该为display:none)</div>
 				</div>
 				<!-- end of right content-->
 			</div>
@@ -440,10 +394,10 @@ ddaccordion.init({
 		<!--end of main content-->
 		<div class="footer">
 			<div class="left_footer">
-				IN ADMIN PANEL | Powered by <a href="#">INDEZINER</a>
+				IN ADMIN PANEL | Powered by <a href="http://indeziner.com">INDEZINER</a>
 			</div>
 			<div class="right_footer">
-				<a href="#"><img src="./js/frontModule/images/indeziner_logo.gif"
+				<a href="http://indeziner.com"><img src="./js/frontModule/images/indeziner_logo.gif"
 					alt="" title="" border="0" /></a>
 			</div>
 		</div>

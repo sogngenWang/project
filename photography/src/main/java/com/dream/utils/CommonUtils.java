@@ -1,5 +1,8 @@
 package com.dream.utils;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import com.dream.constants.Constant;
 
 public class CommonUtils {
@@ -94,5 +97,17 @@ public class CommonUtils {
 		return false;
 	}
 	
-
+	
+	/**
+	 * 返回格式为yyyy-MM-dd HH:mm:ss格式的时间字符串 
+	 * 如 2014-10-08 15:40:45
+	 * @return
+	 */
+	public  static String getDate1(long time){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Calendar ca = Calendar.getInstance();
+		ca.setTimeInMillis(time);
+		return sdf.format(ca.getTime());
+	}
+	
 }

@@ -81,6 +81,9 @@
 	<!-- 使Spring关注Annotation 其实使用了下面的component-scan这个可以去掉-->
     <context:annotation-config/>
     
+    <!-- 全局异常处理 -->
+	<bean id="exceptionResolver" class="com.dream.exception.MyExceptionHandler"/> 
+	
     
     <!-- mybatis dao bean -->
  
@@ -113,5 +116,8 @@
     	<property name="mapperInterface" value="com.dream.dao.KindsMapper"></property>
 		 <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
     </bean>
+
+	
+    
     
 </beans>
