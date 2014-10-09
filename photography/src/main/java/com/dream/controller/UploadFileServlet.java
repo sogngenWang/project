@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "UploadFileServlet", urlPatterns = "/UploadFileServlet")
-@MultipartConfig(location = "/upload/", maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5)
+//@WebServlet(name = "UploadFileServlet", urlPatterns = "/UploadFileServlet")
+//@MultipartConfig(location = "/", maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5)
 public class UploadFileServlet extends HttpServlet {
 
 	@Override

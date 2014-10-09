@@ -23,39 +23,143 @@
     	
         $("#uploadify").uploadify({
             'uploader' : 'js/uploadify/uploadify.swf',
-            'script' : 'UploadFileServlet',//后台处理的请求
+            'script' : '/api/upload',//后台处理的请求
             'cancelImg' : 'js/uploadify/uplodify-cancel.png',
             'folder' : 'upload',//您想将文件保存到的路径
             'queueID' : 'fileQueue',//与下面的id对应
             'queueSizeLimit' : 5,
             'fileDesc' : 'rar文件或zip文件',
-            'fileExt' : '*.rar;*.zip', //控制可上传文件的扩展名，启用本项时需同时声明fileDesc
+            'fileExt' : '*.jpg;*.rar;*.zip', //控制可上传文件的扩展名，启用本项时需同时声明fileDesc
             'auto' : false,
             'multi' : true,
             'simUploadLimit' : 2,
             'buttonText' : '选择上传文件',
-            'method': 'POST'
+            'method': 'POST',
+            onDialogClose : function(swfuploadifyQueue) {//当文件选择对话框关闭时触发 
+            	 if( swfuploadifyQueue.filesErrored > 0 ){ 
+	            	alert( '添加至队列时有'+swfuploadifyQueue.filesErrored 
+	            	+'个文件发生错误n' 
+	            	+'错误信息:' 
+	            	+swfuploadifyQueue.errorMsg 
+	            	+'n选定的文件数:' 
+	            	+swfuploadifyQueue.filesSelected 
+	            	+'n成功添加至队列的文件数:' 
+	            	+swfuploadifyQueue.filesQueued 
+	            	+'n队列中的总文件数量:' 
+	            	+swfuploadifyQueue.queueLength); 
+            	} 
+            },
+            onDialogOpen : function() {//当选择文件对话框打开时触发 
+            		alert( 'Open!'); 
+            },
+            	onSelect : function(file) {//当每个文件添加至队列后触发 
+		            	alert( 'id: ' + file.id 
+		            	+ ' - 索引: ' + file.index 
+		            	+ ' - 文件名: ' + file.name 
+		            + ' - 文件大小: ' + file.size 
+		            + ' - 类型: ' + file.type 
+		            + ' - 创建日期: ' + file.creationdate 
+		            + ' - 修改日期: ' + file.modificationdate 
+		            + ' - 文件状态: ' + file.filestatus); 
+            	},
+
+            	onSelectError : function(file,errorCode,errorMsg) {//当文件选定发生错误时触发 
+		            alert( 'id: ' + file.id 
+		            + ' - 索引: ' + file.index 
+		            + ' - 文件名: ' + file.name 
+		            + ' - 文件大小: ' + file.size 
+		            + ' - 类型: ' + file.type 
+		            + ' - 创建日期: ' + file.creationdate 
+		            + ' - 修改日期: ' + file.modificationdate 
+		            + ' - 文件状态: ' + file.filestatus 
+		            + ' - 错误代码: ' + errorCode 
+		            + ' - 错误信息: ' + errorMsg); 
+            	},
+
+            	onQueueComplete : function(stats) {//当队列中的所有文件全部完成上传时触发 
+		            alert( '成功上传的文件数: ' + stats.successful_uploads 
+		            + ' - 上传出错的文件数: ' + stats.upload_errors 
+		            + ' - 取消上传的文件数: ' + stats.upload_cancelled 
+		            + ' - 出错的文件数' + stats.queue_errors); 
+            	},
+
+            	onUploadComplete : function(file,swfuploadifyQueue) {//队列中的每个文件上传完成时触发一次 
+		            alert( 'id: ' + file.id 
+		            + ' - 索引: ' + file.index 
+		            + ' - 文件名: ' + file.name 
+		            + ' - 文件大小: ' + file.size 
+		            + ' - 类型: ' + file.type 
+		            + ' - 创建日期: ' + file.creationdate 
+		            + ' - 修改日期: ' + file.modificationdate 
+		            + ' - 文件状态: ' + file.filestatus 
+		            + ' - 出错的文件数: ' + swfuploadifyQueue.filesErrored 
+		            + ' - 错误信息: ' + swfuploadifyQueue.errorMsg 
+		            + ' - 要添加至队列的数量: ' + swfuploadifyQueue.filesSelected 
+		            + ' - 添加至对立的数量: ' + swfuploadifyQueue.filesQueued 
+		            + ' - 队列长度: ' + swfuploadifyQueue.queueLength); 
+            	},
+
+            	onUploadError : function(file,errorCode,errorMsg,errorString,swfuploadifyQueue) {//上传文件出错是触发（每个出错文件触发一次） 
+          		  alert( 'id: ' + file.id 
+		            + ' - 索引: ' + file.index 
+		            + ' - 文件名: ' + file.name 
+		            + ' - 文件大小: ' + file.size 
+		            + ' - 类型: ' + file.type 
+		            + ' - 创建日期: ' + file.creationdate 
+		            + ' - 修改日期: ' + file.modificationdate 
+		            + ' - 文件状态: ' + file.filestatus 
+		            + ' - 错误代码: ' + errorCode 
+		            + ' - 错误描述: ' + errorMsg 
+		            + ' - 简要错误描述: ' + errorString 
+		            + ' - 出错的文件数: ' + swfuploadifyQueue.filesErrored 
+		            + ' - 错误信息: ' + swfuploadifyQueue.errorMsg 
+		            + ' - 要添加至队列的数量: ' + swfuploadifyQueue.filesSelected 
+		            + ' - 添加至对立的数量: ' + swfuploadifyQueue.filesQueued 
+		            + ' - 队列长度: ' + swfuploadifyQueue.queueLength); 
+            	},
+
+            	onUploadProgress : function(file,fileBytesLoaded,fileTotalBytes, 
+            	queueBytesLoaded,swfuploadifyQueueUploadSize) {//上传进度发生变更时触发 
+            	alert( 'id: ' + file.id 
+	            + ' - 索引: ' + file.index 
+	            + ' - 文件名: ' + file.name 
+	            + ' - 文件大小: ' + file.size 
+	            + ' - 类型: ' + file.type 
+	            + ' - 创建日期: ' + file.creationdate 
+	            + ' - 修改日期: ' + file.modificationdate 
+	            + ' - 文件状态: ' + file.filestatus 
+	            + ' - 当前文件已上传: ' + fileBytesLoaded 
+	            + ' - 当前文件大小: ' + fileTotalBytes 
+	            + ' - 队列已上传: ' + queueBytesLoaded 
+	            + ' - 队列大小: ' + swfuploadifyQueueUploadSize); 
+            },
+            	onUploadStart: function(file) {//上传开始时触发（每个文件触发一次） 
+            	   alert( 'id: ' + file.id 
+            	   + ' - 索引: ' + file.index 
+            	   + ' - 文件名: ' + file.name 
+            	   + ' - 文件大小: ' + file.size 
+            	   + ' - 类型: ' + file.type 
+            	   + ' - 创建日期: ' + file.creationdate 
+            	   + ' - 修改日期: ' + file.modificationdate 
+            	   + ' - 文件状态: ' + file.filestatus ); 
+            	},
+            	onUploadSuccess : function(file,data,response) {//上传完成时触发（每个文件触发一次） 
+				            alert( 'id: ' + file.id 
+				            + ' - 索引: ' + file.index 
+				            + ' - 文件名: ' + file.name 
+				            + ' - 文件大小: ' + file.size 
+				            + ' - 类型: ' + file.type 
+				            + ' - 创建日期: ' + file.creationdate 
+				            + ' - 修改日期: ' + file.modificationdate 
+				            + ' - 文件状态: ' + file.filestatus 
+				            + ' - 服务器端消息: ' + data 
+				            + ' - 是否上传成功: ' + response); 
+			} 
+            
         });
-        
+
     });
     
-    
-	function UpladFile() {
-		
-        var fileObj = document.getElementById("uploadFileInput").files[0]; // js 获取文件对象
-        var FileController = "upload";                    // 接收上传文件的后台地址 
-        
-        // FormData 对象
-        var form = new FormData();
-        form.append("file", fileObj);  
-        
-        // XMLHttpRequest 对象
-        var xhr = new XMLHttpRequest();
-        xhr.open("post", FileController, true);
-        xhr.onload = function () {
-            alert("上传完成!");
-        };
-	};
         
 </script>
 </head>
@@ -69,14 +173,5 @@
         <a href="javascript:jQuery('#uploadify').uplaodify('cancel','*')">取消所有上传</a>
     </p>
   
-    
-    <!-- 此处的method必须为post 
-    <form action="upload" enctype="multipart/form-data" method="post" target="frameFile" >
-   		 <input type="file" name="uploadImg" id="uploadFileInput"/>
-   		 <button type="submit">submit</button>
-    </form>
-    
-   <iframe id="frameFile" name="frameFile" style="display:none;"></iframe>
--->
 </body>
 </html>

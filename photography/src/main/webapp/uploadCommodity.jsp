@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<iframe id="myiframe" style="display: none"></iframe>
 	<div style="color: red;">${message.messageInfo}</div>
 	<!-- 上传用户头像  -->
-	<form action="./upload" method="post" enctype="multipart/form-data" id="formAction" target="myiframe">
+	<form action="/api/upload" method="post" enctype="multipart/form-data" id="formAction" target="myiframe">
 		<div id="queue"></div>
 		<input id="uploadImg" name="uploadImg" type="file" multiple="true">
 		<button id="submit">222</button>

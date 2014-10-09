@@ -22,7 +22,7 @@ public class UserController {
 	@Resource(name = "userService")
 	private UserService userService;
 	
-	@RequestMapping(value = "/api/detailUser", method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/detailUser", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz detailUser(User user) throws Exception {
 		jsonClazz.getData().clear();
@@ -32,7 +32,7 @@ public class UserController {
 		return jsonClazz;
 	}
 	
-	@RequestMapping(value = "/api/listUser", method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/listUser", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz listUser(User user)throws Exception{
 		jsonClazz.getData().clear();
@@ -42,7 +42,7 @@ public class UserController {
 		return jsonClazz;
 	}
 	
-	@RequestMapping(value = "/api/updateUser", method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/updateUser", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz updateUser(User user)throws Exception{
 		jsonClazz.getData().clear();
@@ -52,7 +52,7 @@ public class UserController {
 		return jsonClazz;
 	}
 
-	@RequestMapping(value = "/api/addUser", method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/addUser", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz addUser(User user)throws Exception{
 		jsonClazz.getData().clear();
@@ -63,7 +63,7 @@ public class UserController {
 	}
 
 	
-	@RequestMapping(value = "/api/deleteUser", method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/deleteUser", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz deleteUser(User user)throws Exception{
 		jsonClazz.getData().clear();
@@ -73,7 +73,7 @@ public class UserController {
 		return jsonClazz;
 	}
 	
-	@RequestMapping(value = "/api/login", method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/login", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz loginUser(User user, HttpSession session) throws Exception {
 		jsonClazz.getData().clear();
@@ -90,7 +90,7 @@ public class UserController {
 		return jsonClazz;
 	}
 
-	@RequestMapping(value = "/api/register",method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/register",method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz registerUser(User user) throws Exception {
 		jsonClazz.getData().clear();
@@ -101,7 +101,7 @@ public class UserController {
 		return jsonClazz;
 	}
 	
-	@RequestMapping(value = "/api/logout" , method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/logout" , method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public JsonClazz logout(User user, HttpSession session) throws Exception {
 		jsonClazz.getData().clear();
