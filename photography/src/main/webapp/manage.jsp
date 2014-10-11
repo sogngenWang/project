@@ -99,6 +99,20 @@ ddaccordion.init({
 								<li><a href="javascript:void(0);" id="addCommodityManu" >商品添加</a></li>
 							</ul>
 						</div>
+						<a class="menuitem menuitem_green submenuheader" href="">商家管理</a>
+						<div class="submenu">
+							<ul>
+								<li><a href="javascript:void(0);" id="listStoreManu" >商家查询</a></li>
+								<li><a href="javascript:void(0);" id="addStoreManu" >商家添加</a></li>
+							</ul>
+						</div>
+						<a class="menuitem menuitem_green submenuheader" href="">评论管理</a>
+						<div class="submenu">
+							<ul>
+								<li><a href="javascript:void(0);" id="listCommentManu" >评论查询</a></li>
+								<li><a href="javascript:void(0);" id="addCommentManu" >评论添加</a></li>
+							</ul>
+						</div>
 					</div>
 					
 					
@@ -312,7 +326,27 @@ ddaccordion.init({
 							<a href="">next >></a>
 						</div>
 					</div>
-					
+					<!-- ******************************************************************** -->
+					<div id="addArea" class="right_div_clazz">
+					<h2>添加区域</h2>
+					<div class="form">
+						<form action="" method="post" >
+							<fieldset>
+								<dl>
+									<dt>
+										<label for="areaname">区域名:</label>
+									</dt>
+									<dd>
+										<input type="text" name="areaname" id="" size="54" />
+									</dd>
+								</dl>
+								<dl class="submit">
+									<input type="submit" name="submit" id="submit" value="创建区域" />
+								</dl>
+							</fieldset>
+						</form>
+						</div>
+					</div>
 					<!-- ******************************************************************** -->
 					<div id="listCommodity" class="right_div_clazz">
 						<h2>商品查询</h2>
@@ -349,27 +383,7 @@ ddaccordion.init({
 							<a href="">next >></a>
 						</div>
 					</div>
-					<!-- ******************************************************************** -->
-					<div id="addArea" class="right_div_clazz">
-					<h2>添加区域</h2>
-					<div class="form">
-						<form action="" method="post" >
-							<fieldset>
-								<dl>
-									<dt>
-										<label for="areaname">区域名:</label>
-									</dt>
-									<dd>
-										<input type="text" name="areaname" id="" size="54" />
-									</dd>
-								</dl>
-								<dl class="submit">
-									<input type="submit" name="submit" id="submit" value="创建区域" />
-								</dl>
-							</fieldset>
-						</form>
-						</div>
-					</div>
+					
 					<!-- ******************************************************************** -->
 					<div id="addCommodity" class="right_div_clazz">
 					<h2>添加商品</h2>
@@ -427,8 +441,119 @@ ddaccordion.init({
 						</form>
 						</div>
 					</div>
-					<!-- ******************************************************************** -->
 					
+					<!-- ******************************************************************** -->
+					<div id="listStore" class="right_div_clazz">
+						<h2>商品查询</h2>
+						<div class="sidebar_search">
+							<form>
+								<input type="text" name="" class="search_input" value="搜索商品" onclick="this.value=''" />
+								<input type="image" class="search_submit"  src="./js/frontModule/images/search.png" />
+							</form>
+						</div>
+						<table id="rounded-corner">
+							<thead>
+								<tr>
+									<th scope="col" class="rounded">商品名</th>
+									<th scope="col" class="rounded">详细信息</th>
+									<th scope="col" class="rounded">编辑</th>
+									<th scope="col" class="rounded">删除</th>
+								</tr>
+							</thead>
+							<!-- 表格内容<tr><td></td><td></td></tr> -->
+							<tbody></tbody>
+						</table>
+
+						<!-- 分页 -->
+						<div class="pagination">
+							<span class="disabled"><< prev</span>
+							<span class="current">1</span>
+							<a href="">2</a>
+							<a href="">3</a>
+							...
+							<a href="">5</a>
+							...
+							<a href="">10</a>
+							<a href="">11</a>
+							<a href="">next >></a>
+						</div>
+					</div>
+					
+					<!-- ******************************************************************** -->
+					<div id="addStore" class="right_div_clazz">
+					<h2>添加商品</h2>
+					<div class="form">
+						<form action="" method="post" >
+							<fieldset>
+								<dl>
+									<dt>
+										<label for="commodityname">商家名:</label>
+									</dt>
+									<dd>
+										<input type="text" name="commodityname" id="" size="54" />
+									</dd>
+								</dl>
+								<dl>
+									<dt>
+										<label for="commodityprice">商品价格:</label>
+									</dt>
+									<dd>
+										<input type="commodityprice" id="" size="54" />
+									</dd>
+								</dl>
+								<dl>
+									<dt>
+										<label for="type">用户类型:</label>
+									</dt>
+									<dd>
+										<input type="radio" name="kindsid"  value="1" /><label class="check_label">婚纱摄影</label>
+										<input type="radio" name="kindsid"  value="2" /><label class="check_label">儿童摄影</label>
+									</dd>
+								</dl>
+								<dl>
+									<dt>
+										<label for="suggestlev">推荐指数:</label>
+									</dt>
+									<dd>
+										<input type="text" name="suggestlev" id="" size="54" />
+									</dd>
+								</dl>
+								<!--   TODO    商品图片，商品详情 
+								<dl>
+									<dt>
+										<label for="commoditypic">商品图片:</label>
+									</dt>
+									<dd>
+										<input type="text" name="commoditypic" id="" size="54" />
+									</dd>
+								</dl>
+								 -->
+								
+								<dl class="submit">
+									<input type="submit" name="submit" id="submit" value="创建商品" />
+								</dl>
+							</fieldset>
+						</form>
+						</div>
+					</div>
+					<!-- ******************************************************************** -->
+					<div id="listComment" class="right_div_clazz">
+						<!-- 分页 -->
+						<div class="pagination">
+							<span class="disabled"><< prev</span>
+							<span class="current">1</span>
+							<a href="">2</a>
+							<a href="">3</a>
+							...
+							<a href="">5</a>
+							...
+							<a href="">10</a>
+							<a href="">11</a>
+							<a href="">next >></a>
+						</div>
+					</div>
+					
+					<!-- ******************************************************************** -->
 					<!-- 此处填写错误信息 -->
 					<div class="error_box" id="errorMessage"> 无(无的时候该div应该为display:none)</div>
 				</div>

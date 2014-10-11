@@ -70,5 +70,15 @@ public class CommentController {
 		jsonClazz.setCode(Constant.SUCCESS_CODE);
 		return jsonClazz;
 	}
-
+	
+	@RequestMapping(value = "/listCommodityOrStoreComment", method={RequestMethod.GET,RequestMethod.POST})
+	@ResponseBody
+	public JsonClazz listCommodityOrStoreComment(Comment comment)throws Exception{
+		jsonClazz.getData().clear();
+		// TODO
+		
+		jsonClazz.setState(Constant.SUCCESS);
+		jsonClazz.setCode(Constant.SUCCESS_CODE);
+		return jsonClazz;
+	}
 }

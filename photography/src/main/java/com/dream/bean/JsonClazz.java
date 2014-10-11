@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Scope("prototype")
 @Repository(value="jsonClazz")
-public class JsonClazz {
+public class JsonClazz extends BaseBean {
 	/**
 	 * 该类用于跟前台的json交互
 	 */
