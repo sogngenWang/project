@@ -30,7 +30,7 @@ public interface Constant {
 	 */
 	//	String IMG_PATH_PRE = "//opt//data//";
 	//dev
-	String FILE_PATH_PRE = "imgages";
+	String FILE_PATH_PRE = "images";
 
 	// 文件上传，前台所使用的name，后台根据这个变量名字来获取文件
 	String UPLOAD_PARAM_NAME = "uploadImg";

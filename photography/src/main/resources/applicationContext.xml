@@ -18,7 +18,7 @@
 	<!-- 
 	<context:property-placeholder location="classpath:jdbc.properties"/>
 	 -->
-	 
+
 	<bean name="dataSource" id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl" value="jdbc:mysql://121.40.99.112:3306/photography" />
@@ -81,9 +81,6 @@
 	<!-- 使Spring关注Annotation 其实使用了下面的component-scan这个可以去掉-->
     <context:annotation-config/>
     
-    <!-- 全局异常处理 -->
-	<bean id="exceptionResolver" class="com.dream.exception.MyExceptionHandler"/> 
-	
     
     <!-- mybatis dao bean -->
  

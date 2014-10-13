@@ -3,69 +3,28 @@
  */
 
 
-$(document).ready(function() {
-		//删除按钮点击的时候，返回是否提交的提示框
-		//$('.ask').jConfirmAction();
-		
-		displayUser();
-		$(".right_div_clazz").css("display","none");
-		$("#listUser").css("display","block");
-		
-		$("#listUserManu").click(function(){
-			$(".right_div_clazz").css("display","none");
-			displayUser();
-			$("#listUser").css("display","block");
-		});
-		
-		$("#addUserManu").click(function(){
-			$(".right_div_clazz").css("display","none");
-			$("#addUser").css("display","block");
-		});
-		
-		$("#listAreaManu").click(function(){
-			$(".right_div_clazz").css("display","none");
-			displayArea();
-			$("#listArea").css("display","block");
-		});
-		
-		$("#addAreaManu").click(function(){
-			$(".right_div_clazz").css("display","none");
-			$("#addArea").css("display","block");
-		});
-		$("#listCommodityManu").click(function(){
-			$(".right_div_clazz").css("display","none");
-			displayCommodity();
-			$("#listCommodity").css("display","block");
-		});
-		
-		$("#addCommodityManu").click(function(){
-			$(".right_div_clazz").css("display","none");
-			$("#addCommodity").css("display","block");
-		});
-		
-		$("#listStoreManu").click(function(){
-			$(".right_div_clazz").css("display","none");
-			displayCommodity();
-			$("#listStore").css("display","block");
-		});
-		
-		$("#addStoreManu").click(function(){
-			$(".right_div_clazz").css("display","none");
-			$("#addStore").css("display","block");
-		});
-		
-		$("#listCommentManu").click(function(){
-			$(".right_div_clazz").css("display","none");
-			displayCommodity();
-			$("#listComment").css("display","block");
-		});
-		
-		$("#addCommentManu").click(function(){
-			$(".right_div_clazz").css("display","none");
-			$("#addComment").css("display","block");
-		});
-		
-});
+
+function displayUploadImg(data){
+	var jsonObj = eval('('+ data + ')');
+	if(jsonObj.state == "SUCCESS"){
+		var Objs = jsonObj.data.obj;
+		$("#commodityImg").attr("src",Objs);
+		$("#commodityImg").show();
+	}
+}
+
+//根据传入的名字name，来提交表单
+function addForm(name){
+	//获取表单的所有参数以及值
+	var dataJS = $("#add"+name+"Form").serialize(); 
+	
+	$.post("./api/add"+name, dataJS , function(data){
+		var json = eval('('+ data + ')');
+		if(json.state == "SUCCESS"){
+			alert("add success..");
+		}
+	});	
+}
 	
 function displayUser(){
 		//获取到所有的区域Area，通过ajax后台查询
@@ -79,8 +38,7 @@ function displayUser(){
 				//alert("ajax发送消息前。。。");
 			},
 			
-			success : function(json) {//data为返回的数据，在这里做数据绑定 
-				
+			success : function(json) {//data为返回的数据，在这里做数据绑定
 				//var jsonobj = resolveJSON("list",json,"areaid,areaname");
 				if(json.state == "SUCCESS"){
 					var Objs = json.data.list;
@@ -126,7 +84,7 @@ function displayUser(){
 					// 注册事件
 					$(".user_edit").click(function(){
 						userid = $(this).parent().parent().attr("attr");
-						editUser(userid);
+						detailUser(userid);
 					});
 					$(".user_delete").click(function(){
 						userid = $(this).parent().parent().attr("attr");
@@ -242,6 +200,10 @@ function displayCommodity(){
 				alert("ajax error....");
 			}
 		});
+}
+
+function setImgUrl(imgSrc){
+	imgSrc
 }
 
 function displayStore(){
@@ -441,7 +403,7 @@ function deleteCommodity(commodityid){
 	$.ajax({
 		type : "post",//使用post方法访问后台  
 		dataType : "json",//返回json格式的数据  
-		url : "./api/deleteStore?commodityid="+commodityid ,//要访问的后台地址  
+		url : "./api/deleteCommodity?commodityid="+commodityid ,//要访问的后台地址  
 		contentType : "application/json;charset=utf-8",
 		data : "", //要发送的数据  
 		beforeSend : function() { //数据发送前报告
@@ -473,7 +435,7 @@ function deleteComment(commentid,storeid,commodityid){
 	$.ajax({
 		type : "post",//使用post方法访问后台  
 		dataType : "json",//返回json格式的数据  
-		url : "./api/deleteStore?commentid="+commentid + " &storeid="+storeid+"&commodityid="+commodityid,//要访问的后台地址  
+		url : "./api/deleteComment?commentid="+commentid + " &storeid="+storeid+"&commodityid="+commodityid,//要访问的后台地址  
 		contentType : "application/json;charset=utf-8",
 		data : "", //要发送的数据  
 		beforeSend : function() { //数据发送前报告
@@ -500,5 +462,201 @@ function deleteComment(commentid,storeid,commodityid){
 	});
 }
 
+function detailUser(userid){
+	$.ajax({
+		type : "post",//使用post方法访问后台  
+		dataType : "json",//返回json格式的数据  
+		url : "./api/detailUser?userid="+userid ,//要访问的后台地址  
+		contentType : "application/json;charset=utf-8",
+		data : "", //要发送的数据  
+		beforeSend : function() { //数据发送前报告
+			//alert("ajax发送消息前。。。");
+		},
+		
+		success : function(json) {//data为返回的数据，在这里做数据绑定 
+			
+			if(json.state == "SUCCESS"){
+				alert("detail success");
+				var array_element = json.data.obj;
+				// TODO
+				//隐藏右侧所有
+				$(".right_div_clazz").css("display","none");
+				var string = "";
+				string += "<div><span>用户名<span><input type=\"text\" >"
+				string += array_element.username
+				string += "</input></div>"
+				string += "<div><span>用户类型<span><input type=\"text\" >"
+				if(null != array_element.type){
+					if("1" == array_element.type){
+						string+="管理员";
+					}else if("2" == array_element.type){
+						string+="商家";
+					}else if("3" == array_element.type){
+						string+="会员";
+					}
+				}
+				string += "</input></div>"
+				string += "<div><span>手机号<span><input type=\"text\" >"
+				string += array_element.telephone
+				string += "</input></div>"
+				string += "<div><span>邮箱<span><input type=\"text\" >"
+				string += array_element.email
+				string += "</input></div>"
+				string += "<div><span>账户状态<span><input type=\"text\" >"
+				if(null != array_element.active){
+					if("1" == array_element.active){
+						string+="激活";
+					}else if("2" == array_element.active){
+						string+="未激活";
+					}
+				}			
+				string += "</input></div>"
+				
+				//添加到右侧栏中
+					
+					
+			}else if (state == "BusinessException"){
+				//业务异常
+				alert("业务异常:"+code);
+			} else {
+				//其他非业务异常
+				alert("系统异常:"+code);
+			}
 
+		},
+		error : function() {
+			alert("ajax error....");
+		}
+	});
+}
+
+
+function detailArea(areaid){
+	$.ajax({
+		type : "post",//使用post方法访问后台  
+		dataType : "json",//返回json格式的数据  
+		url : "./api/detailArea?areaid="+areaid ,//要访问的后台地址  
+		contentType : "application/json;charset=utf-8",
+		data : "", //要发送的数据  
+		beforeSend : function() { //数据发送前报告
+			//alert("ajax发送消息前。。。");
+		},
+		
+		success : function(json) {//data为返回的数据，在这里做数据绑定 
+			
+			if(json.state == "SUCCESS"){
+				alert("detail success");
+				// TODO
+			}else if (state == "BusinessException"){
+				//业务异常
+				alert("业务异常:"+code);
+			} else {
+				//其他非业务异常
+				alert("系统异常:"+code);
+			}
+
+		},
+		error : function() {
+			alert("ajax error....");
+		}
+	});
+}
+
+
+function detailStore(storeid){
+	$.ajax({
+		type : "post",//使用post方法访问后台  
+		dataType : "json",//返回json格式的数据  
+		url : "./api/detailStore?storeid="+storeid ,//要访问的后台地址  
+		contentType : "application/json;charset=utf-8",
+		data : "", //要发送的数据  
+		beforeSend : function() { //数据发送前报告
+			//alert("ajax发送消息前。。。");
+		},
+		
+		success : function(json) {//data为返回的数据，在这里做数据绑定 
+			
+			if(json.state == "SUCCESS"){
+				alert("detail success");
+				//TODO
+				
+			}else if (state == "BusinessException"){
+				//业务异常
+				alert("业务异常:"+code);
+			} else {
+				//其他非业务异常
+				alert("系统异常:"+code);
+			}
+
+		},
+		error : function() {
+			alert("ajax error....");
+		}
+	});
+}
+
+function detailCommodity(commodityid){
+	$.ajax({
+		type : "post",//使用post方法访问后台  
+		dataType : "json",//返回json格式的数据  
+		url : "./api/detailStore?commodityid="+commodityid ,//要访问的后台地址  
+		contentType : "application/json;charset=utf-8",
+		data : "", //要发送的数据  
+		beforeSend : function() { //数据发送前报告
+			//alert("ajax发送消息前。。。");
+		},
+		
+		success : function(json) {//data为返回的数据，在这里做数据绑定 
+			
+			if(json.state == "SUCCESS"){
+				alert("detail success");
+				//TODO
+				
+			}else if (state == "BusinessException"){
+				//业务异常
+				alert("业务异常:"+code);
+			} else {
+				//其他非业务异常
+				alert("系统异常:"+code);
+			}
+
+		},
+		error : function() {
+			alert("ajax error....");
+		}
+	});
+}
+
+function detailComment(commentid,storeid,commodityid){
+	$.ajax({
+		type : "post",//使用post方法访问后台  
+		dataType : "json",//返回json格式的数据  
+		url : "./api/detailStore?commentid="+commentid + " &storeid="+storeid+"&commodityid="+commodityid,//要访问的后台地址  
+		contentType : "application/json;charset=utf-8",
+		data : "", //要发送的数据  
+		beforeSend : function() { //数据发送前报告
+			//alert("ajax发送消息前。。。");
+		},
+		success : function(json) {//data为返回的数据，在这里做数据绑定 
+			
+			if(json.state == "SUCCESS"){
+				alert("detail success");
+				//TODO
+				
+			}else if (state == "BusinessException"){
+				//业务异常
+				alert("业务异常:"+code);
+			} else {
+				//其他非业务异常
+				alert("系统异常:"+code);
+			}
+
+		},
+		error : function() {
+			alert("ajax error....");
+		}
+	});
+	
+	
+}
 	

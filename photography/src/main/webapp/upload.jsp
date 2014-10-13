@@ -29,7 +29,7 @@
 			'uploader' : '/Photography/api/uploadFile', 
 			'fileObjName' : 'file',
 			'onUploadSuccess' : function(file, data, response) {
-				//data是一个json的字符串
+				//data是一个json的字符串	
 				if(true == response){
 					displayUploadImg(data);
 				}else{
@@ -45,8 +45,9 @@
 		var jsonObj = eval('('+ data + ')');
 		if(jsonObj.state == "SUCCESS"){
 			var Objs = jsonObj.data.obj;
-			$("#previewImgs").attr("src",Objs);
-			$("#previewImgs").show();
+			window.parent.setImgUrl(Objs);
+			//$("#previewImgs").attr("src",Objs);
+			//$("#previewImgs").show();
 		}
 	}
 	
@@ -69,7 +70,7 @@
 		
 	</form>
 	
-	<img src="" id="previewImgs" >
+	<!-- <img src="" id="previewImgs" > -->
 
 </body>
 </html>

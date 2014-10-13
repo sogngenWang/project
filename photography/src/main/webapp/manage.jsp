@@ -39,10 +39,117 @@ ddaccordion.init({
 
 <script type="text/javascript" src="./js/frontModule/jconfirmaction.jquery.js"></script>
 <script type="text/javascript" src="./js/manage.js" />
-
 <script language="javascript" type="text/javascript" src="./js/frontModule/niceforms.js"></script>
 <link rel="stylesheet" type="text/css" media="all" href="./js/frontModule/niceforms-default.css" />
+<link href="./js/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="./js/uploadify/jquery.uploadify.js"></script>
 
+<script type="text/javascript">
+
+
+$(document).ready(function() {
+		//删除按钮点击的时候，返回是否提交的提示框
+		//$('.ask').jConfirmAction();
+		
+		displayUser();
+		$(".right_div_clazz").css("display","none");
+		$("#listUser").css("display","block");
+		
+		$("#listUserManu").click(function(){
+			$(".right_div_clazz").css("display","none");
+			displayUser();
+			$("#listUser").css("display","block");
+		});
+		
+		$("#addUserManu").click(function(){
+			$(".right_div_clazz").css("display","none");
+			$("#addUser").css("display","block");
+		});
+		
+		$("#listAreaManu").click(function(){
+			$(".right_div_clazz").css("display","none");
+			displayArea();
+			$("#listArea").css("display","block");
+		});
+		
+		$("#addAreaManu").click(function(){
+			$(".right_div_clazz").css("display","none");
+			$("#addArea").css("display","block");
+		});
+		$("#listCommodityManu").click(function(){
+			$(".right_div_clazz").css("display","none");
+			displayCommodity();
+			$("#listCommodity").css("display","block");
+		});
+		
+		$("#addCommodityManu").click(function(){
+			$(".right_div_clazz").css("display","none");
+			$("#addCommodity").css("display","block");
+		});
+		
+		$("#listStoreManu").click(function(){
+			$(".right_div_clazz").css("display","none");
+			displayCommodity();
+			$("#listStore").css("display","block");
+		});
+		
+		$("#addStoreManu").click(function(){
+			$(".right_div_clazz").css("display","none");
+			$("#addStore").css("display","block");
+		});
+		
+		$("#listCommentManu").click(function(){
+			$(".right_div_clazz").css("display","none");
+			displayCommodity();
+			$("#listComment").css("display","block");
+		});
+		
+		$("#addCommentManu").click(function(){
+			$(".right_div_clazz").css("display","none");
+			$("#addComment").css("display","block");
+		});
+		
+		$("#addUserButton").click(function(){
+			//先校验2次密码是否正确
+			//TODO 
+			addForm("User");
+		});
+		$("#addStoreButton").click(function(){
+			addForm("Store");
+		});
+		$("#addCommodityButton").click(function(){
+			addForm("Commodity");
+		});
+		$("#addCommentButton").click(function(){
+			addForm("Comment");
+		});
+		$("#addAreaButton").click(function(){
+			addForm("Area");
+		});
+		
+		
+		//隐藏图片
+		$("#commodityImg").hide();
+		//图片上传事件
+		$("#file_upload").uploadify({
+			'auto' : false,
+			'swf' : 'js/uploadify/uploadify.swf',
+			'uploader' : '/Photography/api/uploadFile', 
+			'fileObjName' : 'file',
+			'onUploadSuccess' : function(file, data, response) {
+				alert("on upload success....");
+				//data是一个json的字符串
+				if(true == response){
+					displayUploadImg(data);
+				}else{
+					alert("upload failed ....");
+				}
+				
+			}
+		});
+		
+});
+</script>
 <style type="text/css">
 	#errorMessage {
 		display: none;
@@ -175,120 +282,49 @@ ddaccordion.init({
 							<a href="">next >></a>
 						</div>
 					</div>
-					<!-- ******************************************************************** -->
-					<div id="editUser" class="right_div_clazz" >
-						<h2>编辑用户</h2>
-						<table id="rounded-corner">
-							<thead>
-								<tr>
-									<th scope="col" class="rounded">用户名</th>
-									<th scope="col" class="rounded">用户类型</th>
-									<th scope="col" class="rounded">用户手机</th>
-									<th scope="col" class="rounded">用户邮箱</th>
-									<th scope="col" class="rounded">用户状态</th>
-									<th scope="col" class="rounded">编辑</th>
-									<th scope="col" class="rounded">删除</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td class="username">admin</td>
-									<td class="type">管理员</td>
-									<td class="telephone">15159628259</td>
-									<td class="email">wangsonggen@126.com</td>
-									<td class="active">active</td>
-									 <td><a href="#"><img src="./js/frontModule/images/user_edit.png"
-										alt="" title="" border="0" /></a></td>
-									 <td><a href="#" class="ask"><img src="./js/frontModule/images/trash.png"
-										alt="" title="" border="0" /></a></td>
-								</tr>
-							</tbody>
-						</table>
-
-						<!-- 分页 -->
-						<div class="pagination">
-							<span class="disabled"><< prev</span>
-							<span class="current">1</span>
-							<a href="">2</a>
-							<a href="">3</a>
-							...
-							<a href="">5</a>
-							...
-							<a href="">10</a>
-							<a href="">11</a>
-							<a href="">next >></a>
-						</div>
-					</div>
+					
 					<!-- ******************************************************************** -->
 					<div id="addUser" class="right_div_clazz">
-					<h2>添加用户</h2>
-					<div class="form">
-						<form action="" method="post" >
-							<fieldset>
-								<dl>
-									<dt>
-										<label for="email">用户名:</label>
-									</dt>
-									<dd>
-										<input type="text" name="username" id="" size="54" />
-									</dd>
-								</dl>
-								<dl>
-									<dt>
-										<label for="password">密码:</label>
-									</dt>
-									<dd>
-										<input type="password" id="" size="54" />
-									</dd>
-								</dl>
-								<dl>
-									<dt>
-										<label for="password">再次输入密码:</label>
-									</dt>
-									<dd>
-										<input type="password" name="passwd" id="" size="54" />
-									</dd>
-								</dl>
-								<dl>
-									<dt>
-										<label for="type">用户类型:</label>
-									</dt>
-									<dd>
-										<input type="radio" name="type"  value="1" /><label class="check_label">管理员</label>
-										<input type="radio" name="type"  value="2" /><label class="check_label">商家</label>
-										<input type="radio" name="type"  value="3" checked="checked"/><label class="check_label">普通会员</label>
-									</dd>
-								</dl>
-								<dl>
-									<dt>
-										<label for="email">邮箱地址:</label>
-									</dt>
-									<dd>
-										<input type="text" name="email" id="" size="54" />
-									</dd>
-								</dl>
-								<dl>
-									<dt>
-										<label for="telephone">手机号:</label>
-									</dt>
-									<dd>
-										<input type="text" name="telephone" id="" size="54" />
-									</dd>
-								</dl>
-								<dl>
-									<dt>
-										<label for="active">用户状态:</label>
-									</dt>
-									<dd>
-										<input type="radio" name="active" id="" value="1" checked="checked"/><label class="check_label">激活</label>
-										<input type="radio" name="active" id="" value="2" /><label class="check_label">禁用</label>
-									</dd>
-								</dl>
-								<dl class="submit">
-									<input type="submit" name="submit" id="submit" value="创建用户" />
-								</dl>
-							</fieldset>
-						</form>
+						<h2>添加用户</h2>
+						<div>
+							<!--  <form action="./api/addUser" method="post" > -->
+							<form id="addUserForm"  >
+								<table>
+									<tr>
+										<td><span>用户名:</span> <input type="text" name="username" size="20" /></td>
+									</tr>
+									<tr>
+										<td><span>密码:</span> <input type="password" size="20" />
+										</td>
+									</tr>
+									<tr>
+										<td><span>再次输入密码:</span> <input type="password" name="passwd" size="20" /></td>
+									</tr>
+									<tr>
+										<td><span>用户类型:</span>
+										<input type="radio" name="type" value="3" checked="checked" />普通会员
+										<input type="radio"name="type" value="1" />管理员
+										<input type="radio" name="type" value="2" />商家</td>
+									</tr>
+									<tr>
+										<td>
+										<span>邮箱地址:</span> 
+										<input type="text" name="email" id="" size="20" /></td>
+									</tr>
+									<tr> 
+										<td><span>手机号:</span> <input type="text" name="telephone"
+											id="" size="20" /></td>
+									</tr>
+									<tr>
+										<td><span>用户状态:</span> <input type="radio" name="active"
+											id="" value="1" checked="checked" />激活 <input type="radio"
+											name="active" id="" value="2" />禁用</td>
+									</tr>
+									<tr>
+										<td><input type="button" id="addUserButton" value="创建用户" /></td>
+									</tr>
+								</table>
+							</form>
 						</div>
 					</div>
 					<!-- ******************************************************************** -->
@@ -328,23 +364,18 @@ ddaccordion.init({
 					</div>
 					<!-- ******************************************************************** -->
 					<div id="addArea" class="right_div_clazz">
-					<h2>添加区域</h2>
-					<div class="form">
-						<form action="" method="post" >
-							<fieldset>
-								<dl>
-									<dt>
-										<label for="areaname">区域名:</label>
-									</dt>
-									<dd>
-										<input type="text" name="areaname" id="" size="54" />
-									</dd>
-								</dl>
-								<dl class="submit">
-									<input type="submit" name="submit" id="submit" value="创建区域" />
-								</dl>
-							</fieldset>
-						</form>
+						<h2>添加区域</h2>
+						<div>
+							<form id="addAreaForm">
+									<table>
+										<tr>
+											<td><span>区域名:</span> <input type="text" name="areaname" size="20" /></td>
+										</tr>
+										<tr>
+											<td><input type="button" id="addAreaButton" value="创建区域" /></td>
+										</tr>
+									</table>
+							</form>
 						</div>
 					</div>
 					<!-- ******************************************************************** -->
@@ -387,61 +418,49 @@ ddaccordion.init({
 					<!-- ******************************************************************** -->
 					<div id="addCommodity" class="right_div_clazz">
 					<h2>添加商品</h2>
-					<div class="form">
-						<form action="" method="post" >
-							<fieldset>
-								<dl>
-									<dt>
-										<label for="commodityname">商品名:</label>
-									</dt>
-									<dd>
-										<input type="text" name="commodityname" id="" size="54" />
-									</dd>
-								</dl>
-								<dl>
-									<dt>
-										<label for="commodityprice">商品价格:</label>
-									</dt>
-									<dd>
-										<input type="commodityprice" id="" size="54" />
-									</dd>
-								</dl>
-								<dl>
-									<dt>
-										<label for="type">用户类型:</label>
-									</dt>
-									<dd>
-										<input type="radio" name="kindsid"  value="1" /><label class="check_label">婚纱摄影</label>
-										<input type="radio" name="kindsid"  value="2" /><label class="check_label">儿童摄影</label>
-									</dd>
-								</dl>
-								<dl>
-									<dt>
-										<label for="suggestlev">推荐指数:</label>
-									</dt>
-									<dd>
-										<input type="text" name="suggestlev" id="" size="54" />
-									</dd>
-								</dl>
-								<!--   TODO    商品图片，商品详情 
-								<dl>
-									<dt>
-										<label for="commoditypic">商品图片:</label>
-									</dt>
-									<dd>
-										<input type="text" name="commoditypic" id="" size="54" />
-									</dd>
-								</dl>
-								 -->
-								
-								<dl class="submit">
-									<input type="submit" name="submit" id="submit" value="创建商品" />
-								</dl>
-							</fieldset>
-						</form>
+						<div>
+							<!--TODO 图片预览功能  
+							<form>
+								<div id="queue"></div>
+								<input type="file" name="file_upload" id="file_upload" /> 
+								<a href="javascript:$('#file_upload').uploadify('upload','*')">Upload Img</a>
+							</form>
+							<img src="" id="commodityImg" style="width: 100px;height: 100px;">
+							-->
+							<iframe src="upload.jsp" style="border: none; width: 400px;" ></iframe>
+							
+							<form id="addCommodityForm">
+									<table>
+										<tr>
+											<td>
+												<span>区域名:</span>
+												<input type="text" name="commodityname" size="20" />
+											</td>
+										</tr>
+										<tr>
+											<td><span>商品价格:</span> <input type="text" name="commodityprice" size="20" /></td>
+										</tr>									
+										<tr>
+											<td>
+												<span>用户类型:</span> 
+												<input type="radio" name="kindsid"  value="1" checked="checked"/>婚纱摄影
+												<input type="radio" name="kindsid"  value="2" />儿童摄影
+											</td>
+										</tr>										
+										<tr>
+											<td><span>推荐指数:</span> <input type="text" name="suggestlev" size="20" /></td>
+										</tr>										
+										<tr>
+											<td><span>区域名:</span> <input type="text" name="commodityname" size="20" /></td>
+										</tr>										<tr>
+											<td><input type="button" id="addCommodityButton" value="创建商品" /></td>
+										</tr>
+										
+							
+								</table>
+							</form>
 						</div>
 					</div>
-					
 					<!-- ******************************************************************** -->
 					<div id="listStore" class="right_div_clazz">
 						<h2>商品查询</h2>
@@ -552,6 +571,10 @@ ddaccordion.init({
 							<a href="">next >></a>
 						</div>
 					</div>
+					
+					<div id="editUser" class="right_div_clazz"></div>
+					<div id="addStore" class="right_div_clazz"/></div>
+					<div id="addStore" class="right_div_clazz"/></div>
 					
 					<!-- ******************************************************************** -->
 					<!-- 此处填写错误信息 -->

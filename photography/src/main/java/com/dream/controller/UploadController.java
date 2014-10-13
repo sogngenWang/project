@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.dream.bean.JsonClazz;
 import com.dream.constants.Constant;
+import com.dream.utils.JsonUtil;
 
 @Controller
 public class UploadController {
@@ -26,11 +27,10 @@ public class UploadController {
 
 	@RequestMapping(value="/uploadFile",method=RequestMethod.POST)
 	@ResponseBody
-	public JsonClazz uploadFile(HttpServletResponse response,HttpServletRequest request,@RequestParam(value="file", required=false) MultipartFile file) throws IOException{
+	public String uploadFile(HttpServletResponse response,HttpServletRequest request,@RequestParam(value="file", required=false) MultipartFile file) throws IOException{
         //临时目录在项目跟目录下会生成一个.tmp文件，上传完成之后会自动清理该文件
 		
 		byte[] bytes = file.getBytes();
-		System.out.println(file.getOriginalFilename());
 		String uploadDir = request.getServletContext().getRealPath("/")+ Constant.FILE_PATH_PRE;
         File dirPath = new File(uploadDir);
         if (!dirPath.exists()) {
@@ -45,7 +45,8 @@ public class UploadController {
 		jsonClazz.getData().put(Constant.JSON_OBJ,msg);
 		jsonClazz.setState(Constant.SUCCESS);
 		jsonClazz.setCode(Constant.SUCCESS_CODE);
-		return jsonClazz;
+		
+		return JsonUtil.bean2json(jsonClazz);
 	}
 	
 }
