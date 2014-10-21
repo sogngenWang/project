@@ -239,37 +239,12 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.hive</groupId>
-			<artifactId>hive-hwi</artifactId>
-			<version>0.10.0-cdh4.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.hive</groupId>
 			<artifactId>hive-jdbc</artifactId>
 			<version>0.10.0-cdh4.3.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.hive</groupId>
 			<artifactId>hive-metastore</artifactId>
-			<version>0.10.0-cdh4.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.hive</groupId>
-			<artifactId>hive-pdk</artifactId>
-			<version>0.10.0-cdh4.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.hive</groupId>
-			<artifactId>hive-serde</artifactId>
-			<version>0.10.0-cdh4.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.hive</groupId>
-			<artifactId>hive-service</artifactId>
-			<version>0.10.0-cdh4.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.hive</groupId>
-			<artifactId>hive-shims</artifactId>
 			<version>0.10.0-cdh4.3.2</version>
 		</dependency>
 		<dependency>
@@ -309,57 +284,12 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.flume</groupId>
-			<artifactId>flume-ng-core</artifactId>
-			<version>1.3.0-cdh4.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.flume</groupId>
-			<artifactId>flume-ng-embedded-agent</artifactId>
-			<version>1.3.0-cdh4.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.flume</groupId>
-			<artifactId>flume-ng-node</artifactId>
-			<version>1.3.0-cdh4.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.flume</groupId>
-			<artifactId>flume-ng-sdk</artifactId>
-			<version>1.3.0-cdh4.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.flume</groupId>
 			<artifactId>flume-ng-tests</artifactId>
 			<version>1.3.0-cdh4.3.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.flume.flume-ng-channels</groupId>
-			<artifactId>flume-file-channel</artifactId>
-			<version>1.3.0-cdh4.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.flume.flume-ng-channels</groupId>
 			<artifactId>flume-jdbc-channel</artifactId>
-			<version>1.3.0-cdh4.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.flume.flume-ng-channels</groupId>
-			<artifactId>flume-recoverable-memory-channel</artifactId>
-			<version>1.3.0-cdh4.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.flume.flume-ng-clients</groupId>
-			<artifactId>flume-ng-log4jappender</artifactId>
-			<version>1.3.0-cdh4.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.flume.flume-ng-legacy-sources</groupId>
-			<artifactId>flume-avro-source</artifactId>
-			<version>1.3.0-cdh4.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.flume.flume-ng-legacy-sources</groupId>
-			<artifactId>flume-thrift-source</artifactId>
 			<version>1.3.0-cdh4.3.2</version>
 		</dependency>
 		<dependency>
@@ -369,27 +299,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.flume.flume-ng-sinks</groupId>
-			<artifactId>flume-irc-sink</artifactId>
-			<version>1.3.0-cdh4.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.flume.flume-ng-sinks</groupId>
-			<artifactId>flume-ng-elasticsearch-sink</artifactId>
-			<version>1.3.0-cdh4.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.flume.flume-ng-sinks</groupId>
 			<artifactId>flume-ng-hbase-sink</artifactId>
-			<version>1.3.0-cdh4.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.flume.flume-ng-sources</groupId>
-			<artifactId>flume-jms-source</artifactId>
-			<version>1.3.0-cdh4.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.flume.flume-ng-sources</groupId>
-			<artifactId>flume-scribe-source</artifactId>
 			<version>1.3.0-cdh4.3.2</version>
 		</dependency>
 		<dependency>
@@ -406,16 +316,6 @@
 			<groupId>org.apache.oozie</groupId>
 			<artifactId>oozie-examples</artifactId>
 			<version>3.3.2-cdh4.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.mail</groupId>
-			<artifactId>javax.mail</artifactId>
-			<version>1.5.2</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.1.3</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
