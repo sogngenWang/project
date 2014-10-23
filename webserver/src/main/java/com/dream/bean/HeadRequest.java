@@ -28,6 +28,16 @@ public class HeadRequest {
 
 	private String versionName;
 
+	private String platform;
+
+	public String getPlatform() {
+		return platform;
+	}
+
+	public void setPlatform(String platform) {
+		this.platform = platform;
+	}
+
 	public String getBrand() {
 		return brand;
 	}

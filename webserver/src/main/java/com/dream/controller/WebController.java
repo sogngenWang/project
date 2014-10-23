@@ -27,13 +27,7 @@ public class WebController{
 		Gson gson = new Gson();
 		RequestDatagram requestDatagram = gson.fromJson(request, RequestDatagram.class);
 		Map<String,String> map = (Map<String,String>) requestDatagram.getContent();
-		
-//		String tmp = "{\"job\":\"FFFFFFB263FFFFFFD410FFFFFFE2FFFFFFC0FFFFFFE42A\",\"username\":\"1E1147FFFFFFA4FFFFFFDDFFFFFF9D31FFFFFFA3\"}";
-		
-		User user = new User();
-		user.setUsername(map.get("username"));
-		user.setJob(map.get("job"));
-		
+		User user = gson.fromJson(requestDatagram.getContent().toString(), User.class);
 		//进行校验
 		String verifyCode = TDESUtils.MAC_ECB(gson.toJson(user), requestDatagram.getHead().getSerial());
 		if(verifyCode.equals( requestDatagram.getMac())){
@@ -48,10 +42,9 @@ public class WebController{
 			String newUser = gson.toJson(user);
 			String newMac = TDESUtils.MAC_ECB(newUser, requestDatagram.getHead().getSerial() );
 			
-			
 			MsgResponse msgResponse = new MsgResponse();
 			msgResponse.setTime((new Date()).toString());
-			msgResponse.setCode("0");
+			msgResponse.setCode("0000");
 			msgResponse.setType("0");
 			responseDatagram.setMsg(msgResponse);
 			responseDatagram.setContent(user);
