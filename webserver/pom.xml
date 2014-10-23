@@ -14,6 +14,12 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.3</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>3.2.8.RELEASE</version>
@@ -179,6 +185,21 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.4</version>
+		</dependency>
+
+
+		<!-- 引入第三方的非开源Jar包 -->
+		<dependency>
+			<groupId>lib-security</groupId>
+			<artifactId>lib-security</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}\src\main\webapp\WEB-INF\lib\libSecurity.jar</systemPath>
+		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>

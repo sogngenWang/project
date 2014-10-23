@@ -5,12 +5,15 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#testbutton").click(function() {
-			displayGet();
+			displayPost();
 		});
 	});
 	
 	function displayPost() {
-		var requestData = "测试测试测试12332212";
+		//var requestData = "测试测试测试12332212";
+		request = "{\"head\":{\"brand\":\"Lenovo\",\"imei\":\"862321022176017\",\"imsi\":\"1234567890ABCDEF\",\"model\":\"Lenovo S960\",\"netype\":\"NETWORK_TYPE_WIFI\",\"release\":\"4.4.2\",\"sdk\":\"19\",\"serial\":\"TOV8Y5FQCAS8US6L\",\"time\":\"2014-10-22 10:01:46,462\",\"versionCode\":\"1\",\"versionName\":\"1.0\"},\"content\":{\"job\":\"FFFFFFB263FFFFFFD410FFFFFFE2FFFFFFC0FFFFFFE42A\",\"username\":\"1E1147FFFFFFA4FFFFFFDDFFFFFF9D31FFFFFFA3\"},\"mac\":\"695D3C76A1708968\"}";
+		
+		
 		//获取到所有的区域Area，通过ajax后台查询
 		$.ajax({
 			type : "post",//使用post方法访问后台  
@@ -19,7 +22,7 @@
 			url : "../testController",
 			//contentType : "application/text;charset=utf-8",
 			contentType : "application/x-www-form-urlencoded;charset=utf-8",
-			data : {requestData:requestData}, //要发送的数据 
+			data : {request:request}, //要发送的数据 
 			success : function(json) {//data为返回的数据，在这里做数据绑定 
 				//alert(json);
 			},
