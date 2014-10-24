@@ -201,6 +201,16 @@
 			<systemPath>${project.basedir}\src\main\webapp\WEB-INF\lib\libSecurity.jar</systemPath>
 		</dependency>
 
+
+		<dependency>
+			<groupId>lib-common</groupId>
+			<artifactId>lib-security</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}\src\main\webapp\WEB-INF\lib\libCommon.jar</systemPath>
+		</dependency>
+		
+		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

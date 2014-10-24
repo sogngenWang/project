@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 
 @JsonInclude(Include.NON_NULL)
-public class MsgResponse {
+public class TmpMsgResponse {
 
 	private String time;
 

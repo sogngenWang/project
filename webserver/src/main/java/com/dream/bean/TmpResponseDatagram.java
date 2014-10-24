@@ -1,24 +1,42 @@
 package com.dream.bean;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 
 //@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 @JsonInclude(Include.NON_NULL)
-public class ResponseDatagram {
+public class TmpResponseDatagram {
 
-	private MsgResponse msg;
+	private TmpMsgResponse msg;
 
 	private Object content;
 
 	private String mac;
+	
+	private Map<String,String> contentMap = new HashMap<String,String>();
+	
+	public TmpResponseDatagram() {
+		contentMap.put("username1", "heh");
+		contentMap.put("username2", "heh");
+	}
 
-	public MsgResponse getMsg() {
+	public Map<String, String> getContentMap() {
+		return contentMap;
+	}
+
+	public void setContentMap(Map<String, String> contentMap) {
+		this.contentMap = contentMap;
+	}
+
+	public TmpMsgResponse getMsg() {
 		return msg;
 	}
 
-	public void setMsg(MsgResponse msg) {
+	public void setMsg(TmpMsgResponse msg) {
 		this.msg = msg;
 	}
 

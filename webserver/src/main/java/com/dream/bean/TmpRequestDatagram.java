@@ -1,18 +1,18 @@
 package com.dream.bean;
 
-public class RequestDatagram {
+public class TmpRequestDatagram {
 
-	private HeadRequest head;
+	private TmpHeadRequest head;
 
 	private Object content;
 
 	private String mac;
 
-	public HeadRequest getHead() {
+	public TmpHeadRequest getHead() {
 		return head;
 	}
 
-	public void setHead(HeadRequest head) {
+	public void setHead(TmpHeadRequest head) {
 		this.head = head;
 	}
 
