@@ -3,7 +3,7 @@ package com.dream.bean;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.baidu.common.GsonUtils;
 import com.baidu.security.TDESUtils;

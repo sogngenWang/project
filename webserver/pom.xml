@@ -11,14 +11,9 @@
 	<url>http://maven.apache.org</url>
 
 
-
 	<dependencies>
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.3</version>
-		</dependency>
 
+		<!-- spring mvc + mybatis -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
@@ -185,10 +180,20 @@
 			<scope>provided</scope>
 		</dependency>
 
+
+		<!-- 其他jar包 -->
+
+
 		<dependency>
-			<groupId>net.sf.json-lib</groupId>
-			<artifactId>json-lib</artifactId>
-			<version>2.4</version>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.3</version>
 		</dependency>
 
 
@@ -209,8 +214,8 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}\src\main\webapp\WEB-INF\lib\libCommon.jar</systemPath>
 		</dependency>
-		
-		
+
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
