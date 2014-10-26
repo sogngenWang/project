@@ -1,6 +1,8 @@
 package com.dream.bean;
 
 import com.baidu.common.FormatUtils;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /**
  * 请求头部对象
@@ -8,34 +10,37 @@ import com.baidu.common.FormatUtils;
  * @author 林翔云
  * @date 2014年10月21日
  */
+@JsonInclude(Include.NON_NULL)
 public class HeadBean {
 	// 时间
-	public String time = FormatUtils.formatDate("yyyy-MM-dd HH:mm:ss,SSS");
+	private String time;
 	// 平台
-	public String platform = "";
+	private String platform;
 	// 型号
-	public String model = "";
+	private String model;
 	// 品牌
-	public String brand = "";
+	private String brand;
 	// SDK
-	public String sdk = "";
+	private String sdk;
 	// 版本
-	public String release = "";
+	private String release;
 	// 序列号
-	public String serial = "";
+	private String serial;
 	// IMEI
-	public String imei = "";
+	private String imei;
 	// IMSI
-	public String imsi = "";
+	private String imsi;
 	// 网络类型
-	public String netype = "";
+	private String netype;
 	// 版本号
-	public String versionCode = "0";
+	private String versionCode = "0";
 	// 版本名字
-	public String versionName = "";
+	private String versionName;
 
 	public String getTime() {
-		return time;
+		this.time = FormatUtils.formatDate("yyyy-MM-dd HH:mm:ss,SSS");
+		return this.time;
+
 	}
 
 	public void setTime(String time) {

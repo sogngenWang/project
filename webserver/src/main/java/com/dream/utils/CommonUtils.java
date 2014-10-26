@@ -1,113 +1,78 @@
 package com.dream.utils;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
-import com.dream.constants.Constant;
+import org.apache.commons.lang3.StringUtils;
+
+import com.baidu.security.TDESUtils;
+import com.dream.constants.HttpConst;
+import com.google.gson.Gson;
 
 public class CommonUtils {
 
 	/**
-	 * 把一个byte[]数组转成字符串 用4个字符表示一个字节，0 开头的为正，1开头的为负
+	 * 根据传入的content去读取相关字段，然后根据key进行加密
 	 * 
-	 * @param arrB
+	 * @param content
+	 * @param key
 	 * @return
-	 * @throws Exception
 	 */
-	public static String byteArr2Str(byte[] arrB) throws Exception {
-		int iLen = arrB.length;
-		// 每个byte用两个字符才能表示，所以字符串的长度是数组长度的两倍
-		StringBuffer sb = new StringBuffer(iLen * 2);
-		for (int i = 0; i < iLen; i++) {
-			int intTmp = arrB[i];
-			// 判断正负然后加前缀
-			if (intTmp < 0) {
-				sb.append("1");
-			} else {
-				sb.append("0");
+	public static String calculateMac(Map<String, String> content, String key) {
+		// 计算MAC校验信息
+		String data;
+		Gson gson = new Gson();
+		if (HttpConst.CHECK_FIELDS == null
+				|| HttpConst.CHECK_FIELDS.length == 0) {
+			data = gson.toJson(content);
+		} else {
+			StringBuffer buffer = new StringBuffer();
+			for (int i = 0; i < HttpConst.CHECK_FIELDS.length; i++) {
+				String value = content.get(HttpConst.CHECK_FIELDS[i]);
+				if (StringUtils.isNotBlank(value)) {
+					buffer.append(value);
+				}
 			}
-
-			// 小于0F的数需 要在前面补00
-			if (intTmp > -10 && intTmp < 10) {
-				sb.append("00");
-			}else if(intTmp > -100 && intTmp < 100){
-				//两位数的也补0
-				sb.append("0");
+			data = buffer.toString();
+			if (StringUtils.isBlank(data)) {
+				data = gson.toJson(content);
 			}
-			
-			sb.append(Math.abs(intTmp));
 		}
-		return sb.toString();
+		return TDESUtils.MAC_ECB(data, key);
+	}
+	
+	/**
+	 * 把一个普通的bean对象转化为Map对象
+	 * @param object
+	 * @return
+	 * @throws SecurityException
+	 * @throws NoSuchMethodException
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
+	 * @throws InvocationTargetException
+	 */
+
+	public static Map<String, String> objectToMap(Object object)
+			throws SecurityException, NoSuchMethodException,
+			IllegalArgumentException, IllegalAccessException,
+			InvocationTargetException {
+		Map<String, String> map = new HashMap<String, String>();
+		Field[] fields = object.getClass().getDeclaredFields();
+		StringBuffer sb = new StringBuffer();
+		for (Field field : fields) {
+			System.out.println(field.getName());
+			sb.append("get");
+			sb.append(field.getName().substring(0, 1).toUpperCase());
+			sb.append(field.getName().substring(1, field.getName().length()));
+			Method method = object.getClass().getMethod(sb.toString());
+			map.put(field.getName(), (String) method.invoke(object));
+			sb.setLength(0);
+		}
+
+		return map;
 	}
 
-	/**
-	 * 把一个字符串转成byte[]
-	 * 
-	 * @param str
-	 * @return
-	 * @throws Exception
-	 */
-	public static byte[] str2ByteArr(String str) throws Exception {
-		byte[] arr = new byte[str.length() / 4];
-		StringBuffer sbTmp = new StringBuffer();
-		for (int i = 0; i < arr.length; i++) {
-			sbTmp.setLength(0);
-			if ('1' == (str.charAt(0))) {
-				// 负数
-				sbTmp.append("-");
-			}
-			sbTmp.append(str.substring(1, 4));
-			arr[i] = new Byte(sbTmp.toString());
-			str = str.substring(4, str.length());
-		}
-		return arr;
-	}
-
-	/**
-	 * 返回一个加密字符串
-	 * 
-	 * @throws Exception
-	 */
-	public static String getEncodeStr(String str) throws Exception {
-		return byteArr2Str(DesUtil.getEncCode(str+Constant.ENCODE_SUFFIX));
-	}
-
-	/**
-	 * 返回一个解密字符串
-	 * 
-	 * @param str
-	 * @return
-	 * @throws Exception
-	 */
-	public static String getDecodeStr(String needDecodeStr) throws Exception {
-		return new String(DesUtil.getDesCode(str2ByteArr(needDecodeStr)));
-	}
-	
-	/**
-	 * 传入未解码的字符串，判断是否是正确的用户
-	 * @param needDecodeStr
-	 * @return
-	 * @throws Exception 
-	 */
-	public static boolean isValidUser(String needDecodeStr) throws Exception{
-		String strTmp = new String(DesUtil.getDesCode(str2ByteArr(needDecodeStr)));
-		if(strTmp.endsWith(Constant.ENCODE_SUFFIX)){
-			return true;
-		}
-		return false;
-	}
-	
-	
-	/**
-	 * 返回格式为yyyy-MM-dd HH:mm:ss格式的时间字符串 
-	 * 如 2014-10-08 15:40:45
-	 * @return
-	 */
-	public  static String getDate1(long time){
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Calendar ca = Calendar.getInstance();
-		ca.setTimeInMillis(time);
-		return sdf.format(ca.getTime());
-	}
-	
 }

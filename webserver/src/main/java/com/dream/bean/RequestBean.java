@@ -3,11 +3,9 @@ package com.dream.bean;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.baidu.common.GsonUtils;
-import com.baidu.security.TDESUtils;
-import com.dream.constants.HttpConst;
+import com.dream.utils.CommonUtils;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /**
  * POST请求对象
@@ -15,75 +13,39 @@ import com.dream.constants.HttpConst;
  * @author 林翔云
  * @date 2014年10月21日
  */
+@JsonInclude(Include.NON_NULL)
 public class RequestBean {
 
 	// 请求头部对象
-	private HeadBean head = null;
+	private HeadBean head = new HeadBean();
 	// 请求内容
-	private Map<String, String> content = null;
+	private Map<String, String> content = new HashMap<String, String>();
 	// 请求内容MAC校验值
-	private String mac = "";
+	private String mac;
 
-	/**
-	 * 构造函数
-	 */
-	public RequestBean() {
-		head = new HeadBean();
-		content = new HashMap<String, String>();
+	public void setHead(HeadBean head) {
+		this.head = head;
 	}
 
-	/**
-	 * 获得请求头部对象
-	 * 
-	 * @return
-	 */
+	public void setContent(Map<String, String> content) {
+		this.content = content;
+	}
+
+	public void setMac(String mac) {
+		this.mac = mac;
+	}
+
 	public HeadBean getHead() {
 		return head;
 	}
 
-	/**
-	 * 获得请求内容
-	 * 
-	 * @return
-	 */
 	public Map<String, String> getContent() {
 		return content;
 	}
 
-	/**
-	 * 获得校验信息
-	 * 
-	 * @return
-	 */
 	public String getMac() {
-		return mac;
-	}
-
-	/**
-	 * 计算MAC
-	 * 
-	 * @return
-	 */
-	private String calculateMac(String key) {
-		// 计算MAC校验信息
-		String data = "";
-		if (HttpConst.CHECK_FIELDS == null
-				|| HttpConst.CHECK_FIELDS.length == 0) {
-			data = GsonUtils.toJson(content);
-		} else {
-			StringBuffer buffer = new StringBuffer();
-			for (int i = 0; i < HttpConst.CHECK_FIELDS.length; i++) {
-				String value = content.get(HttpConst.CHECK_FIELDS[i]);
-				if (StringUtils.isNotBlank(value)) {
-					buffer.append(value);
-				}
-			}
-			data = buffer.toString();
-			if (StringUtils.isBlank(data)) {
-				data = GsonUtils.toJson(this.content);
-			}
-		}
-		return TDESUtils.MAC_ECB(data, key);
+		this.mac = CommonUtils.calculateMac(content, head.getSerial());
+		return this.mac;
 	}
 
 	/**
@@ -92,8 +54,8 @@ public class RequestBean {
 	 * @param key
 	 * @return
 	 */
-	public boolean checkMac(String key) {
-		return calculateMac(key).equals(mac);
+	public boolean checkMac() {
+		return getMac().equals(mac);
 	}
 
 }

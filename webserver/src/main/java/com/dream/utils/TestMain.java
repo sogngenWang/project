@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Map;
 
 import com.baidu.security.TDESUtils;
+import com.dream.bean.ResponseBean;
 import com.dream.bean.TmpMsgResponse;
 import com.dream.bean.TmpRequestDatagram;
 import com.dream.bean.TmpResponseDatagram;
@@ -25,11 +26,19 @@ public class TestMain {
 		System.out.println("job="+TDESUtils.decrypt(((User)responseDatagram.getContent()).getJob(),"1234567890ABCDEF"));
 		
 	}
-	public static void main(String[] args) throws UnsupportedEncodingException {
+	public static void main2(String[] args) throws UnsupportedEncodingException {
 		
 		String tmp = new String("{\"development\":\"91手机助手应用分发部门\",\"job\":\"FFFFFFB00F19FFFFFFE3FFFFFFEE05FFFFFFB86D2F01FFFFFFA41401FFFFFFB1FFFFFFA0FFFFFFBE\",\"username\":\"203811FFFFFFE4FFFFFFB1FFFFFFF362FFFFFFE903FFFFFF80FFFFFF9DFFFFFFB5FFFFFFEF262352\",\"level\":\"P3\"}".getBytes() ,"utf-8");
 		String serial = "HT22PV203276";
 		System.out.println(TDESUtils.MAC_ECB(tmp,serial));
+		
+	}
+	
+	public static void main(String[] args) {
+		ResponseBean responseBean = new ResponseBean();
+		responseBean.setContent(new User());
+		responseBean.setMac("ABC");
+		
 		
 	}
 	

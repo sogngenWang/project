@@ -8,6 +8,5 @@ package com.dream.constants;
  */
 public class HttpConst {
 	// MAC校验字段
-	public final static String[] CHECK_FIELDS = new String[] { "threadId",
-			"username", "job" };
+	public final static String[] CHECK_FIELDS = new String[] {"threadId", "username","job" };
 }

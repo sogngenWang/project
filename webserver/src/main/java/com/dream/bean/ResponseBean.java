@@ -1,13 +1,12 @@
 package com.dream.bean;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.baidu.common.GsonUtils;
-import com.baidu.security.TDESUtils;
-import com.dream.constants.HttpConst;
+import com.dream.utils.CommonUtils;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /**
  * POST响应对象
@@ -15,62 +14,65 @@ import com.dream.constants.HttpConst;
  * @author 林翔云
  * @date 2014年10月22日
  */
+@JsonInclude(Include.NON_NULL)
 public class ResponseBean {
 
 	// 响应消息对象
-	public MsgBean msg = new MsgBean();
+	private MsgBean msg = new MsgBean();
 	// 响应内容
-	private Map<String, String> content = new HashMap<String, String>();
+	private Object content ;
 	// 响应内容MAC校验值
-	public String mac = "";
+	private String mac;
 
-	public Map<String, String> getContent() {
+	public Object getContent() {
 		return content;
 	}
 
-	public void setContent(Map<String, String> content) {
+	public void setContent(Object content) {
 		this.content = content;
 	}
 
-	/**
-	 * 设置MAC
-	 * 
-	 * @param key
-	 *            密钥
-	 */
-	public void setMac(String key) {
-		this.mac = calculateMac(key);
+	public MsgBean getMsg() {
+		return msg;
 	}
 
-	/**
-	 * 计算MAC
-	 * 
-	 * @return
-	 */
-	public String calculateMac(String key) {
-		// 计算MAC校验信息
-		String data = "";
-		if (HttpConst.CHECK_FIELDS == null
-				|| HttpConst.CHECK_FIELDS.length <= 0) {
-			data = GsonUtils.toJson(this.content);
-		} else {
-			StringBuffer buffer = new StringBuffer();
-			for (int i = 0; i < HttpConst.CHECK_FIELDS.length; i++) {
-				String value = (String) content.get(HttpConst.CHECK_FIELDS[i]);
-				if (StringUtils.isNotBlank(value)) {
-					buffer.append(value);
-				}
-			}
-			data = buffer.toString();
-			if (StringUtils.isBlank(data)) {
-				data = GsonUtils.toJson(this.content);
-			}
+	public void setMsg(MsgBean msg) {
+		this.msg = msg;
+	}
+
+	public String getMac() {
+		return mac;
+	}
+
+	public String setMac(String key) {
+		// 把content对象转化成Map类型(原来应该是一个对象)
+
+		Map<String, String> map = null;
+		if (null != mac) {
+			return mac;
 		}
-		return TDESUtils.MAC_ECB(data, key);
+
+		try {
+			if(null != content){
+				map = CommonUtils.objectToMap(content);	
+			}else{
+				map = new HashMap<String,String>();
+				this.content = map;
+			}
+			
+			this.mac = CommonUtils.calculateMac(map, key);
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+
+		return this.mac;
 	}
-
-	private class MsgBean {
-
-	}
-
 }

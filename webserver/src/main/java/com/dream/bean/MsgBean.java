@@ -1,6 +1,8 @@
 package com.dream.bean;
 
 import com.baidu.common.FormatUtils;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /**
  * 响应消息对象
@@ -8,15 +10,37 @@ import com.baidu.common.FormatUtils;
  * @author 林翔云
  * @date 2014年10月21日
  */
+@JsonInclude(Include.NON_NULL)
 public class MsgBean {
 	// 时间
-	public String time = FormatUtils.formatDate("yyyy-MM-dd HH:mm:ss,SSS");
+	private String time;
 	// 类型
-	public String type = "";
+	private String type;
 	// 代码
-	public String code = "";
+	private String code;
 	// 描述
-	public String desc = "";
+	private String desc;
+
+	public String getTime() {
+		this.time = FormatUtils.formatDate("yyyy-MM-dd HH:mm:ss,SSS");
+		return this.time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
 
 	public void setType(String type) {
 		this.type = type;
