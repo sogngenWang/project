@@ -55,11 +55,11 @@ public class CommonUtils {
 	 * @throws InvocationTargetException
 	 */
 
-	public static Map<String, String> objectToMap(Object object)
-			throws SecurityException, NoSuchMethodException,
-			IllegalArgumentException, IllegalAccessException,
-			InvocationTargetException {
-		Map<String, String> map = new HashMap<String, String>();
+	public static Map<String, String> objectToMap(Map<String,String> map , Object object)
+			throws SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+		if(null == map ){
+			map = new HashMap<String, String>();
+		}
 		Field[] fields = object.getClass().getDeclaredFields();
 		StringBuffer sb = new StringBuffer();
 		for (Field field : fields) {

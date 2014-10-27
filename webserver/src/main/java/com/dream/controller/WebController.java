@@ -70,13 +70,14 @@ public class WebController{
 			System.out.println("job="+job + "|||username="+username);
 			
 			user.setUsername(TDESUtils.encrypt("you say your username is "+username,requestBean.getHead().getImei()));
-			user.setJob(TDESUtils.encrypt("you say your job is "+job,requestBean.getHead().getImsi()));
+//			user.setJob(TDESUtils.encrypt("you say your job is "+job,requestBean.getHead().getImsi()));
 			MsgBean msg = new MsgBean();
 			msg.setCode("0000");
 			msg.setDesc("成功");
 			msg.setType("0");
 			responseBean.setMsg(msg);
-			responseBean.setContent(new User());
+//			responseBean.setContent(new User());
+//			responseBean.getContent().put("username", "xxx");
 			responseBean.setMac(requestBean.getHead().getSerial());
 
 		}
