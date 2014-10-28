@@ -1,5 +1,7 @@
 package com.dream.dao;
 
+import java.util.List;
+
 import com.dream.bean.Comment;
 
 public interface CommentMapper {
@@ -58,4 +60,24 @@ public interface CommentMapper {
      * @mbggenerated Mon Oct 27 23:55:35 CST 2014
      */
     int updateByPrimaryKey(Comment record);
+    
+    
+	// ******************add by wsg**********************
+
+	/**
+	 * 根据条件查询，返回一个list
+	 * 
+	 * @param comment
+	 * @return
+	 */
+	List<Comment> listComment(Comment comment);
+
+	/**
+	 * 根据条件查询，返回一个对象
+	 * 
+	 * @param comment
+	 * @return
+	 */
+	Comment detailComment(Comment comment);
+	
 }

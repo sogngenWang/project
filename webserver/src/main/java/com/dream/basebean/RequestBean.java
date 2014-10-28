@@ -1,4 +1,4 @@
-package com.dream.bean;
+package com.dream.basebean;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,7 +19,7 @@ public class RequestBean {
 	// 请求头部对象
 	private HeadBean head = new HeadBean();
 	// 请求内容
-	private Map<String, String> content = new HashMap<String, String>();
+	private Map<String, Object> content = new HashMap<String, Object>();
 	// 请求内容MAC校验值
 	private String mac;
 
@@ -27,7 +27,7 @@ public class RequestBean {
 		this.head = head;
 	}
 
-	public void setContent(Map<String, String> content) {
+	public void setContent(Map<String, Object> content) {
 		this.content = content;
 	}
 
@@ -39,7 +39,7 @@ public class RequestBean {
 		return head;
 	}
 
-	public Map<String, String> getContent() {
+	public Map<String, Object> getContent() {
 		return content;
 	}
 

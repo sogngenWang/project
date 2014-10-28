@@ -1,5 +1,7 @@
 package com.dream.dao;
 
+import java.util.List;
+
 import com.dream.bean.Userinfo;
 
 public interface UserinfoMapper {
@@ -50,4 +52,24 @@ public interface UserinfoMapper {
      * @mbggenerated Mon Oct 27 23:55:35 CST 2014
      */
     int updateByPrimaryKey(Userinfo record);
+
+    
+	// ******************add by wsg**********************
+
+	/**
+	 * 根据条件查询，返回一个list
+	 * 
+	 * @param userinfo
+	 * @return
+	 */
+	List<Userinfo> listUserinfo(Userinfo userinfo);
+
+	/**
+	 * 根据条件查询，返回一个对象
+	 * 
+	 * @param userinfo
+	 * @return
+	 */
+	Userinfo detailUserinfo(Userinfo userinfo);
+	
 }

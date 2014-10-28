@@ -1,5 +1,7 @@
 package com.dream.dao;
 
+import java.util.List;
+
 import com.dream.bean.Theme;
 
 public interface ThemeMapper {
@@ -50,4 +52,24 @@ public interface ThemeMapper {
      * @mbggenerated Mon Oct 27 23:55:35 CST 2014
      */
     int updateByPrimaryKey(Theme record);
+
+    
+	// ******************add by wsg**********************
+
+	/**
+	 * 根据条件查询，返回一个list
+	 * 
+	 * @param theme
+	 * @return
+	 */
+	List<Theme> listTheme(Theme theme);
+
+	/**
+	 * 根据条件查询，返回一个对象
+	 * 
+	 * @param theme
+	 * @return
+	 */
+	Theme detailTheme(Theme theme);
+	
 }

@@ -1,4 +1,4 @@
-package com.dream.bean;
+package com.dream.basebean;
 
 import com.baidu.common.FormatUtils;
 import com.fasterxml.jackson.annotation.JsonInclude;

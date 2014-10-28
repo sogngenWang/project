@@ -3,7 +3,7 @@ package com.dream.utils;
 import java.io.UnsupportedEncodingException;
 
 import com.baidu.security.TDESUtils;
-import com.dream.bean.ResponseBean;
+import com.dream.basebean.ResponseBean;
 
 public class TestMain {
 	public static void main1(String[] args) throws Exception {

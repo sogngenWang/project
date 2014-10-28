@@ -1,5 +1,7 @@
 package com.dream.dao;
 
+import java.util.List;
+
 import com.dream.bean.Activity;
 
 public interface ActivityMapper {
@@ -50,4 +52,24 @@ public interface ActivityMapper {
      * @mbggenerated Mon Oct 27 23:55:35 CST 2014
      */
     int updateByPrimaryKey(Activity record);
+    
+    
+	// ******************add by wsg**********************
+
+	/**
+	 * 根据条件查询，返回一个list
+	 * 
+	 * @param activity
+	 * @return
+	 */
+	List<Activity> listActivity(Activity activity);
+
+	/**
+	 * 根据条件查询，返回一个对象
+	 * 
+	 * @param activity
+	 * @return
+	 */
+	Activity detailActivity(Activity activity);
+	
 }

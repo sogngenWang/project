@@ -10,7 +10,7 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 
 import com.baidu.security.TDESUtils;
-import com.dream.constants.HttpConst;
+import com.dream.constants.Constant;
 import com.google.gson.Gson;
 
 public class CommonUtils {
@@ -22,16 +22,16 @@ public class CommonUtils {
 	 * @param key
 	 * @return
 	 */
-	public static String calculateMac(Map<String, String> content, String key) {
+	public static String calculateMac(Map<String, Object> content, String key) {
 		// 计算MAC校验信息
 		String data;
 		Gson gson = new Gson();
-		if (HttpConst.CHECK_FIELDS == null || HttpConst.CHECK_FIELDS.length == 0) {
+		if (Constant.CHECK_FIELDS == null || Constant.CHECK_FIELDS.length == 0) {
 			data = gson.toJson(content);
 		} else {
 			StringBuffer buffer = new StringBuffer();
-			for (int i = 0; i < HttpConst.CHECK_FIELDS.length; i++) {
-				String value = content.get(HttpConst.CHECK_FIELDS[i]);
+			for (int i = 0; i < Constant.CHECK_FIELDS.length; i++) {
+				String value = (String)content.get(Constant.CHECK_FIELDS[i]);
 				if (StringUtils.isNotBlank(value)) {
 					buffer.append(value);
 				}
@@ -53,7 +53,6 @@ public class CommonUtils {
 		String data;
 		Gson gson = new Gson();
 		data = gson.toJson(content);
-		System.out.println("||||"+data);
 		return TDESUtils.MAC_ECB(data, key);
 	}
 	/**
@@ -67,10 +66,10 @@ public class CommonUtils {
 	 * @throws InvocationTargetException
 	 */
 
-	public static Map<String, String> objectToMap(Map<String,String> map , Object object)
+	public static Map<String, Object> objectToMap(Map<String,Object> map , Object object)
 			throws SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
 		if(null == map ){
-			map = new HashMap<String, String>();
+			map = new HashMap<String, Object>();
 		}
 		Field[] fields = object.getClass().getDeclaredFields();
 		StringBuffer sb = new StringBuffer();
@@ -79,7 +78,14 @@ public class CommonUtils {
 			sb.append(field.getName().substring(0, 1).toUpperCase());
 			sb.append(field.getName().substring(1, field.getName().length()));
 			Method method = object.getClass().getMethod(sb.toString());
-			map.put(field.getName(), (String) method.invoke(object));
+			Object result = method.invoke(object);
+			if(null == result){
+				// nothing to do ...
+			}else if(result instanceof String){
+				map.put(field.getName(), (String) method.invoke(object));
+			}else if(result instanceof Integer){
+				map.put(field.getName(), (Integer) method.invoke(object));
+			}
 			sb.setLength(0);
 		}
 

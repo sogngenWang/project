@@ -1,4 +1,4 @@
-package webserver;
+package junitbase;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

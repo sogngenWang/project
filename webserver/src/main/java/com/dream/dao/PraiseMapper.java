@@ -1,5 +1,7 @@
 package com.dream.dao;
 
+import java.util.List;
+
 import com.dream.bean.Praise;
 
 public interface PraiseMapper {
@@ -50,4 +52,24 @@ public interface PraiseMapper {
      * @mbggenerated Mon Oct 27 23:55:35 CST 2014
      */
     int updateByPrimaryKey(Praise record);
+    
+    
+	// ******************add by wsg**********************
+
+	/**
+	 * 根据条件查询，返回一个list
+	 * 
+	 * @param praise
+	 * @return
+	 */
+	List<Praise> listPraise(Praise praise);
+
+	/**
+	 * 根据条件查询，返回一个对象
+	 * 
+	 * @param praise
+	 * @return
+	 */
+	Praise detailPraise(Praise praise);
+	
 }

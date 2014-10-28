@@ -13,11 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baidu.security.TDESUtils;
-import com.dream.bean.RequestBean;
-import com.dream.bean.ResponseBean;
+import com.dream.basebean.RequestBean;
+import com.dream.basebean.ResponseBean;
 import com.dream.bean.User;
 import com.dream.service.UserService;
-import com.dream.utils.CommonUtils;
 import com.google.gson.Gson;
 
 @Controller
@@ -27,7 +26,7 @@ public class UserController {
 	private ResponseBean responseBean = new ResponseBean();
 	private Gson gson = new Gson();
 	private RequestBean requestBean;
-	private Map<String, String> content;
+	private Map<String, Object> content;
 
 	@Resource(name = "userService")
 	private UserService userService;
@@ -44,8 +43,7 @@ public class UserController {
 				content = requestBean.getContent();
 				User user = gson.fromJson(content.toString(), User.class);
 				user.setUsername(TDESUtils.decrypt(user.getUsername(), requestBean.getHead().getImei()));
-				String userid = userService.addUser(user);
-				user.setUserid(userid);
+				userService.addUser(user);
 				responseBean.setContent(user);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
@@ -58,7 +56,7 @@ public class UserController {
 			responseBean.getMsg().setDesc("成功");
 			responseBean.setMac(requestBean.getHead().getSerial());
 		}
-
+		LOG.info("返回报文是:"+gson.toJson(responseBean));
 		return responseBean;
 	}
 
@@ -73,16 +71,14 @@ public class UserController {
 			try {
 				content = requestBean.getContent();
 				User user = gson.fromJson(content.toString(), User.class);
+				user.setUsername(TDESUtils.decrypt(user.getUsername(), requestBean.getHead().getImei()));
 				user = userService.detailUser(user);
-				Map<String,String> map = CommonUtils.objectToMap(null, user);
-				responseBean.setContent(map);
-				
+				responseBean.setContent(user);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");
 				responseBean.getMsg().setDesc("业务异常");
 				return responseBean;
-				
 			}
 			LOG.info("业务执行成功，设置返回报文状态为成功...");
 			responseBean.getMsg().setCode("0000");
@@ -104,7 +100,6 @@ public class UserController {
 			try {
 				content = requestBean.getContent();
 				User user = gson.fromJson(content.toString(), User.class);
-//				List<User> userList = userService.listUser(new User());
 				List<User> userList = userService.listUser(user);
 				responseBean.setContent(userList);
 			} catch (Exception e) {
@@ -134,7 +129,7 @@ public class UserController {
 				content = requestBean.getContent();
 				User user = gson.fromJson(content.toString(), User.class);
 				userService.updateUser(user);
-				
+				responseBean.setContent(user);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");
@@ -161,7 +156,7 @@ public class UserController {
 			try {
 				content = requestBean.getContent();
 				User user = gson.fromJson(content.toString(), User.class);
-				userService.deleteUser(user.getUserid());
+				responseBean.setContent(user);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");

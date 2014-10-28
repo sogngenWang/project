@@ -15,9 +15,10 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserMapper userDao;
 
+	@Override
 	public List<User> listUser(User user) {
-		return userDao.listUser(user);
 
+		return userDao.listUser(user);
 	}
 
 	@Override
@@ -27,20 +28,23 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String updateUser(User user) {
+	public int updateUser(User user) {
 
 		return userDao.updateByPrimaryKeySelective(user);
 	}
 
 	@Override
-	public String deleteUser(String uid) {
+	public int deleteUser(int uid) {
+
 		return userDao.deleteByPrimaryKey(uid);
+
 	}
 
 	@Override
-	public String addUser(User user) {
-		return userDao.insert(user);
-	}
+	public int addUser(User user) {
 
+		return userDao.insert(user);
+
+	}
 
 }

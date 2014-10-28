@@ -7,7 +7,7 @@
 
 <generatorConfiguration>
 	<!-- 此处写jdbc的版本号，执行该命令的时候，右键项目-run as-maven build...-mybatis-generator:generate -->
-	<classPathEntry location="C:\Users\Dream\.m2\repository\mysql\mysql-connector-java\5.1.15\mysql-connector-java-5.1.15.jar" /> 
+	<classPathEntry location="D:\.m2\repository\mysql\mysql-connector-java\5.1.15\mysql-connector-java-5.1.15.jar" /> 
 
 	<context id="DB2Tables" targetRuntime="MyBatis3">
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
@@ -37,13 +37,26 @@
 		</javaClientGenerator>
 
 
-		<table schema=""  tableName="activity" domainObjectName="Activity"   enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-		<table schema=""  tableName="comment" domainObjectName="Comment"   enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-		<table schema=""  tableName="praise" domainObjectName="Praise"   enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-		<table schema=""  tableName="theme" domainObjectName="Theme"   enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-		<table schema=""  tableName="user" domainObjectName="User"   enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-		<table schema=""  tableName="userinfo" domainObjectName="Userinfo"   enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-		
+		 <table schema=""  tableName="activity" domainObjectName="Activity"   enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+			 <generatedKey column="activityid" sqlStatement="MySql" identity="true" />
+		 </table>
+		<table schema=""  tableName="comment" domainObjectName="Comment"   enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+			<generatedKey column="commentid" sqlStatement="MySql" identity="true" />
+		</table>
+		<table schema=""  tableName="praise" domainObjectName="Praise"   enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+			<generatedKey column="praiseid" sqlStatement="MySql" identity="true" />
+		</table>
+		<table schema=""  tableName="theme" domainObjectName="Theme"   enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+			<generatedKey column="themeid" sqlStatement="MySql" identity="true" />
+		</table>
+		 <table schema=""  tableName="userinfo" domainObjectName="Userinfo"   enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+		 	<generatedKey column="userinfoid" sqlStatement="MySql" identity="true" />
+		 </table>
+		 
+		<table schema=""  tableName="user" domainObjectName="User"   enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+			<generatedKey column="userid" sqlStatement="MySql" identity="true" />
+		</table>
+		<!-- -->
 		<!-- <table schema=""  tableName="area" domainObjectName="Area"   enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
 		<table schema=""  tableName="kinds" domainObjectName="Kinds"   enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
 		<table schema=""  tableName="store" domainObjectName="Store"   enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
