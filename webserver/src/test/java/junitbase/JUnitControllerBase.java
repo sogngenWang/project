@@ -3,8 +3,14 @@ package junitbase;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockServletContext;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.springframework.web.servlet.HandlerAdapter;
@@ -20,9 +26,18 @@ import org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMa
  * @author fule
  * 
  */
+@SuppressWarnings("deprecation")
 public class JUnitControllerBase {
+
+	public static final Log LOG = LogFactory.getLog(JUnitControllerBase.class);
+	
 	private static HandlerMapping handlerMapping;
 	private static HandlerAdapter handlerAdapter;
+	
+	//request response
+	protected static MockHttpServletRequest request ;
+	protected static MockHttpServletResponse response ;
+	
 
 	/**
 	 * 读取配置文件
@@ -44,6 +59,24 @@ public class JUnitControllerBase {
 			handlerAdapter = (HandlerAdapter) context.getBean(context.getBeanNamesForType(AnnotationMethodHandlerAdapter.class)[0]);
 
 		}
+		request = new MockHttpServletRequest();
+		response = new MockHttpServletResponse();
+		
+		request.setMethod(RequestMethod.POST.toString());
+	}
+	
+	/**
+	 * 此方法在Test方法全部执行完毕之后才会调用
+	 * @throws Exception 
+	 */
+	@AfterClass
+	public static void after() throws Exception {
+		LOG.info("******************************************************************************");
+		LOG.info("******************************************************************************");
+		//打印出返回报文内容
+		LOG.info("response="+response.getContentAsString());
+		LOG.info("******************************************************************************");
+		LOG.info("******************************************************************************");
 	}
 
 	/**

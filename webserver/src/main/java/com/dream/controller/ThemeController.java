@@ -12,28 +12,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.baidu.security.TDESUtils;
 import com.dream.basebean.RequestBean;
 import com.dream.basebean.ResponseBean;
-import com.dream.bean.User;
-import com.dream.service.UserService;
+import com.dream.bean.Theme;
+import com.dream.service.ThemeService;
 import com.google.gson.Gson;
 
 @Controller
-public class UserController {
+public class ThemeController {
 
-	public static final Log LOG = LogFactory.getLog(UserController.class);
+	public static final Log LOG = LogFactory.getLog(ThemeController.class);
 	private ResponseBean responseBean = new ResponseBean();
 	private Gson gson = new Gson();
 	private RequestBean requestBean;
 	private Map<String, Object> content;
 
-	@Resource(name = "userService")
-	private UserService userService;
+	@Resource(name = "themeService")
+	private ThemeService themeService;
 
-	@RequestMapping(value = "/addUser", method = { RequestMethod.POST })
+	@RequestMapping(value = "/addTheme", method = { RequestMethod.POST })
 	@ResponseBody
-	public ResponseBean addUser(String request) {
+	public ResponseBean addTheme(String request) {
 		requestBean = gson.fromJson(request, RequestBean.class);
 		// 进行校验
 		if (requestBean.checkMac()) {
@@ -41,10 +40,9 @@ public class UserController {
 			// 真正的业务逻辑
 			try {
 				content = requestBean.getContent();
-				User user = gson.fromJson(content.toString(), User.class);
-				user.setUsername(TDESUtils.decrypt(user.getUsername(), requestBean.getHead().getImei()));
-				userService.addUser(user);
-				responseBean.setContent(user);
+				Theme theme = gson.fromJson(content.toString(), Theme.class);
+				themeService.addTheme(theme);
+				responseBean.setContent(theme);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");
@@ -60,9 +58,9 @@ public class UserController {
 		return responseBean;
 	}
 
-	@RequestMapping(value = "/detailUser", method = { RequestMethod.POST })
+	@RequestMapping(value = "/detailTheme", method = { RequestMethod.POST })
 	@ResponseBody
-	public ResponseBean detailUser(String request) {
+	public ResponseBean detailTheme(String request) {
 		requestBean = gson.fromJson(request, RequestBean.class);
 		// 进行校验
 		if (requestBean.checkMac()) {
@@ -70,10 +68,9 @@ public class UserController {
 			// 真正的业务逻辑
 			try {
 				content = requestBean.getContent();
-				User user = gson.fromJson(content.toString(), User.class);
-				user.setUsername(TDESUtils.decrypt(user.getUsername(), requestBean.getHead().getImei()));
-				user = userService.detailUser(user);
-				responseBean.setContent(user);
+				Theme theme = gson.fromJson(content.toString(), Theme.class);
+				theme = themeService.detailTheme(theme);
+				responseBean.setContent(theme);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");
@@ -89,9 +86,9 @@ public class UserController {
 		return responseBean;
 	}
 
-	@RequestMapping(value = "/listUser", method = { RequestMethod.POST })
+	@RequestMapping(value = "/listTheme", method = { RequestMethod.POST })
 	@ResponseBody
-	public ResponseBean listlUser(String request) {
+	public ResponseBean listlTheme(String request) {
 		requestBean = gson.fromJson(request, RequestBean.class);
 		// 进行校验
 		if (requestBean.checkMac()) {
@@ -99,9 +96,9 @@ public class UserController {
 			// 真正的业务逻辑
 			try {
 				content = requestBean.getContent();
-				User user = gson.fromJson(content.toString(), User.class);
-				List<User> userList = userService.listUser(user);
-				responseBean.setContent(userList);
+				Theme theme = gson.fromJson(content.toString(), Theme.class);
+				List<Theme> themeList = themeService.listTheme(theme);
+				responseBean.setContent(themeList);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");
@@ -117,9 +114,9 @@ public class UserController {
 		return responseBean;
 	}
 
-	@RequestMapping(value = "/updateUser", method = { RequestMethod.POST })
+	@RequestMapping(value = "/updateTheme", method = { RequestMethod.POST })
 	@ResponseBody
-	public ResponseBean updateUser(String request) {
+	public ResponseBean updateTheme(String request) {
 		requestBean = gson.fromJson(request, RequestBean.class);
 		// 进行校验
 		if (requestBean.checkMac()) {
@@ -127,9 +124,9 @@ public class UserController {
 			// 真正的业务逻辑
 			try {
 				content = requestBean.getContent();
-				User user = gson.fromJson(content.toString(), User.class);
-				userService.updateUser(user);
-				responseBean.setContent(user);
+				Theme theme = gson.fromJson(content.toString(), Theme.class);
+				themeService.updateTheme(theme);
+				responseBean.setContent(theme);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");
@@ -145,9 +142,9 @@ public class UserController {
 		return responseBean;
 	}
 
-	@RequestMapping(value = "/deleteUser", method = { RequestMethod.POST })
+	@RequestMapping(value = "/deleteTheme", method = { RequestMethod.POST })
 	@ResponseBody
-	public ResponseBean deleteUser(String request) {
+	public ResponseBean deleteTheme(String request) {
 		requestBean = gson.fromJson(request, RequestBean.class);
 		// 进行校验
 		if (requestBean.checkMac()) {
@@ -155,8 +152,8 @@ public class UserController {
 			// 真正的业务逻辑
 			try {
 				content = requestBean.getContent();
-				User user = gson.fromJson(content.toString(), User.class);
-				responseBean.setContent(user);
+				Theme theme = gson.fromJson(content.toString(), Theme.class);
+				responseBean.setContent(theme);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");

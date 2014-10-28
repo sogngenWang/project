@@ -12,28 +12,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.baidu.security.TDESUtils;
 import com.dream.basebean.RequestBean;
 import com.dream.basebean.ResponseBean;
-import com.dream.bean.User;
-import com.dream.service.UserService;
+import com.dream.bean.Userinfo;
+import com.dream.service.UserinfoService;
 import com.google.gson.Gson;
 
 @Controller
-public class UserController {
+public class UserinfoController {
 
-	public static final Log LOG = LogFactory.getLog(UserController.class);
+	public static final Log LOG = LogFactory.getLog(UserinfoController.class);
 	private ResponseBean responseBean = new ResponseBean();
 	private Gson gson = new Gson();
 	private RequestBean requestBean;
 	private Map<String, Object> content;
 
-	@Resource(name = "userService")
-	private UserService userService;
+	@Resource(name = "userinfoService")
+	private UserinfoService userinfoService;
 
-	@RequestMapping(value = "/addUser", method = { RequestMethod.POST })
+	@RequestMapping(value = "/addUserinfo", method = { RequestMethod.POST })
 	@ResponseBody
-	public ResponseBean addUser(String request) {
+	public ResponseBean addUserinfo(String request) {
 		requestBean = gson.fromJson(request, RequestBean.class);
 		// 进行校验
 		if (requestBean.checkMac()) {
@@ -41,10 +40,9 @@ public class UserController {
 			// 真正的业务逻辑
 			try {
 				content = requestBean.getContent();
-				User user = gson.fromJson(content.toString(), User.class);
-				user.setUsername(TDESUtils.decrypt(user.getUsername(), requestBean.getHead().getImei()));
-				userService.addUser(user);
-				responseBean.setContent(user);
+				Userinfo userinfo = gson.fromJson(content.toString(), Userinfo.class);
+				userinfoService.addUserinfo(userinfo);
+				responseBean.setContent(userinfo);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");
@@ -60,9 +58,9 @@ public class UserController {
 		return responseBean;
 	}
 
-	@RequestMapping(value = "/detailUser", method = { RequestMethod.POST })
+	@RequestMapping(value = "/detailUserinfo", method = { RequestMethod.POST })
 	@ResponseBody
-	public ResponseBean detailUser(String request) {
+	public ResponseBean detailUserinfo(String request) {
 		requestBean = gson.fromJson(request, RequestBean.class);
 		// 进行校验
 		if (requestBean.checkMac()) {
@@ -70,10 +68,9 @@ public class UserController {
 			// 真正的业务逻辑
 			try {
 				content = requestBean.getContent();
-				User user = gson.fromJson(content.toString(), User.class);
-				user.setUsername(TDESUtils.decrypt(user.getUsername(), requestBean.getHead().getImei()));
-				user = userService.detailUser(user);
-				responseBean.setContent(user);
+				Userinfo userinfo = gson.fromJson(content.toString(), Userinfo.class);
+				userinfo = userinfoService.detailUserinfo(userinfo);
+				responseBean.setContent(userinfo);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");
@@ -89,9 +86,9 @@ public class UserController {
 		return responseBean;
 	}
 
-	@RequestMapping(value = "/listUser", method = { RequestMethod.POST })
+	@RequestMapping(value = "/listUserinfo", method = { RequestMethod.POST })
 	@ResponseBody
-	public ResponseBean listlUser(String request) {
+	public ResponseBean listlUserinfo(String request) {
 		requestBean = gson.fromJson(request, RequestBean.class);
 		// 进行校验
 		if (requestBean.checkMac()) {
@@ -99,9 +96,9 @@ public class UserController {
 			// 真正的业务逻辑
 			try {
 				content = requestBean.getContent();
-				User user = gson.fromJson(content.toString(), User.class);
-				List<User> userList = userService.listUser(user);
-				responseBean.setContent(userList);
+				Userinfo userinfo = gson.fromJson(content.toString(), Userinfo.class);
+				List<Userinfo> userinfoList = userinfoService.listUserinfo(userinfo);
+				responseBean.setContent(userinfoList);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");
@@ -117,9 +114,9 @@ public class UserController {
 		return responseBean;
 	}
 
-	@RequestMapping(value = "/updateUser", method = { RequestMethod.POST })
+	@RequestMapping(value = "/updateUserinfo", method = { RequestMethod.POST })
 	@ResponseBody
-	public ResponseBean updateUser(String request) {
+	public ResponseBean updateUserinfo(String request) {
 		requestBean = gson.fromJson(request, RequestBean.class);
 		// 进行校验
 		if (requestBean.checkMac()) {
@@ -127,9 +124,9 @@ public class UserController {
 			// 真正的业务逻辑
 			try {
 				content = requestBean.getContent();
-				User user = gson.fromJson(content.toString(), User.class);
-				userService.updateUser(user);
-				responseBean.setContent(user);
+				Userinfo userinfo = gson.fromJson(content.toString(), Userinfo.class);
+				userinfoService.updateUserinfo(userinfo);
+				responseBean.setContent(userinfo);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");
@@ -145,9 +142,9 @@ public class UserController {
 		return responseBean;
 	}
 
-	@RequestMapping(value = "/deleteUser", method = { RequestMethod.POST })
+	@RequestMapping(value = "/deleteUserinfo", method = { RequestMethod.POST })
 	@ResponseBody
-	public ResponseBean deleteUser(String request) {
+	public ResponseBean deleteUserinfo(String request) {
 		requestBean = gson.fromJson(request, RequestBean.class);
 		// 进行校验
 		if (requestBean.checkMac()) {
@@ -155,8 +152,8 @@ public class UserController {
 			// 真正的业务逻辑
 			try {
 				content = requestBean.getContent();
-				User user = gson.fromJson(content.toString(), User.class);
-				responseBean.setContent(user);
+				Userinfo userinfo = gson.fromJson(content.toString(), Userinfo.class);
+				responseBean.setContent(userinfo);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");
