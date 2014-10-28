@@ -3,6 +3,7 @@ package com.dream.utils;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,8 +26,7 @@ public class CommonUtils {
 		// 计算MAC校验信息
 		String data;
 		Gson gson = new Gson();
-		if (HttpConst.CHECK_FIELDS == null
-				|| HttpConst.CHECK_FIELDS.length == 0) {
+		if (HttpConst.CHECK_FIELDS == null || HttpConst.CHECK_FIELDS.length == 0) {
 			data = gson.toJson(content);
 		} else {
 			StringBuffer buffer = new StringBuffer();
@@ -44,6 +44,18 @@ public class CommonUtils {
 		return TDESUtils.MAC_ECB(data, key);
 	}
 	
+	
+	/**
+	 * 针对list类型数据进行加密
+	 */
+	public static String caculateList(ArrayList<Object> content, String key) {
+		// 计算MAC校验信息
+		String data;
+		Gson gson = new Gson();
+		data = gson.toJson(content);
+		System.out.println("||||"+data);
+		return TDESUtils.MAC_ECB(data, key);
+	}
 	/**
 	 * 把一个普通的bean对象转化为Map对象
 	 * @param object
@@ -63,7 +75,6 @@ public class CommonUtils {
 		Field[] fields = object.getClass().getDeclaredFields();
 		StringBuffer sb = new StringBuffer();
 		for (Field field : fields) {
-			System.out.println(field.getName());
 			sb.append("get");
 			sb.append(field.getName().substring(0, 1).toUpperCase());
 			sb.append(field.getName().substring(1, field.getName().length()));

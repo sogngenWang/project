@@ -14,8 +14,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class MsgBean {
 	// 时间
 	private String time;
-	// 类型
-	private String type;
+	// 类型 --此类型决定了客户端是否需要主动推送
+	private String type = "0";
 	// 代码
 	private String code;
 	// 描述

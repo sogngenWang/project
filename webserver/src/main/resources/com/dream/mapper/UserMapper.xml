@@ -154,4 +154,75 @@
       registertime = #{registertime,jdbcType=VARCHAR}
     where userid = #{userid,jdbcType=INTEGER}
   </update>
+  
+  	
+	<!-- add by wsg -->
+	<!-- 通用方法 -->
+	<!-- ，参数为对象，返回list<对象> -->
+
+
+	<select id="listUser" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		<where>
+			<choose>
+				<when test="userid != null and userid != '' ">
+					userid = #{userid, jdbcType=INTEGER}  
+				</when>
+				<when test="username != null and username != ''">
+					AND username = #{username, jdbcType=VARCHAR}  
+				</when>
+				<when test="nickname != null and nickname != ''">
+					AND nickname = #{nickname, jdbcType=VARCHAR}
+				</when>
+				<when test="password != null and password != ''">
+					AND password = #{password, jdbcType=VARCHAR}
+				</when>
+				<when test="type != null and type != ''">
+					AND type = #{type, jdbcType=VARCHAR}
+				</when>
+				<when test="isactive != null and isactive != ''">
+					AND isactive = #{isactive, jdbcType=VARCHAR}
+				</when>
+				<when test="registertime != null and registertime != ''">
+					AND registertime = #{registertime, jdbcType=VARCHAR}
+				</when>
+			</choose>
+		</where>
+	</select>
+	
+	<select id="detailUser" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		<where>
+			<choose>
+				<when test="userid != null and userid != '' ">
+					userid = #{userid, jdbcType=INTEGER}  
+				</when>
+				<when test="username != null and username != ''">
+					AND username = #{username, jdbcType=VARCHAR}  
+				</when>
+				<when test="nickname != null and nickname != ''">
+					AND nickname = #{nickname, jdbcType=VARCHAR}
+				</when>
+				<when test="password != null and password != ''">
+					AND password = #{password, jdbcType=VARCHAR}
+				</when>
+				<when test="type != null and type != ''">
+					AND type = #{type, jdbcType=VARCHAR}
+				</when>
+				<when test="isactive != null and isactive != ''">
+					AND isactive = #{isactive, jdbcType=VARCHAR}
+				</when>
+				<when test="registertime != null and registertime != ''">
+					AND registertime = #{registertime, jdbcType=VARCHAR}
+				</when>
+			</choose>
+		</where>
+	</select>
+	
+  
+  
 </mapper>

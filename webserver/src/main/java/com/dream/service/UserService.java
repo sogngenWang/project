@@ -10,14 +10,10 @@ public interface UserService {
 	
 	User detailUser(User user);
 
-	int updateUser(User user);
+	String updateUser(User user);
 	
-	int deleteUser(int uid);
+	String deleteUser(String uid);
 	
-	int addUser(User user);
-
-	boolean login(User user);
-	
-	boolean register(User user);
+	String addUser(User user);
 	
 }

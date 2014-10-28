@@ -27,31 +27,20 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int updateUser(User user) {
+	public String updateUser(User user) {
 
 		return userDao.updateByPrimaryKeySelective(user);
 	}
 
 	@Override
-	public int deleteUser(int uid) {
+	public String deleteUser(String uid) {
 		return userDao.deleteByPrimaryKey(uid);
 	}
 
 	@Override
-	public int addUser(User user) {
+	public String addUser(User user) {
 		return userDao.insert(user);
 	}
 
-	@Override
-	public boolean login(User user) {
-
-		return false;
-	}
-
-	@Override
-	public boolean register(User user) {
-
-		return false;
-	}
 
 }
