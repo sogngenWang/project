@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 public class CommonUtils {
 
 	public static final Log LOG = LogFactory.getLog(CommonUtils.class);
+	
 	/**
 	 * 根据传入的content去读取相关字段，然后根据key进行加密
 	 * 
@@ -50,7 +51,7 @@ public class CommonUtils {
 	}
 	
 	/**
-	 * 根据传入的对象，去解密相关字段
+	 * 根据传入的对象，去解密相关字段|注意：当前只支持String，Integer类型的字段
 	 * @param object
 	 * @throws Exception 
 	 * @throws  
@@ -59,17 +60,22 @@ public class CommonUtils {
 		if(null == object || Constant.CHECK_FIELDS == null || Constant.CHECK_FIELDS.length == 0){
 			return ;
 		}
+
+		List<Field> fields = Arrays.asList(object.getClass().getDeclaredFields());
+		List<String> fieldsName = new ArrayList<String>();
+		//取出所有字段的字段名
+		for (int i = 0; i < fields.size() ; i++) {
+			fieldsName.add(fields.get(i).getName());
+		}
 		
 		for (int i = 0; i < Constant.CHECK_FIELDS.length; i++) {
-			List<Field> fields = Arrays.asList(object.getClass().getDeclaredFields());
-			
-			if(fields.contains(Constant.CHECK_FIELDS[i])){
+			if(fieldsName.contains(Constant.CHECK_FIELDS[i])){
 				boolean flag = false;
 				//字段中包含加密字段，需要解密然后回传
-				String getMethodName = "";
-				String setMethodName = "";
+				String getMethodName = getStringMethodName(Constant.CHECK_FIELDS[i]);
+				String setMethodName = setStringMethodName(Constant.CHECK_FIELDS[i]);
 				Method getMethod = object.getClass().getMethod(getMethodName);
-				Method setMethod = object.getClass().getMethod(setMethodName);
+				Method setMethod = null;
 				Object getValue = getMethod.invoke(object);
 				//把非String转成字符串
 				if(getValue instanceof String){
@@ -78,9 +84,15 @@ public class CommonUtils {
 					flag = true;
 					getValue = Integer.toString((Integer) getValue);
 				}
+				//使用反射前需要判断字段类型
+				if(flag){
+					setMethod = object.getClass().getMethod(setMethodName,Integer.class);
+				}else{
+					setMethod = object.getClass().getMethod(setMethodName,String.class);
+				}
 				
 				
-				String key = Constant.keyMap.get(getValue);
+				String key = Constant.keyMap.get(Constant.CHECK_FIELDS[i]);
 				if(null == key ){
 					LOG.error("加密key的map设置与加密字段不匹配...请检查");
 					return;
@@ -101,13 +113,15 @@ public class CommonUtils {
 						setMethod.invoke(object, setValueString);
 					}
 				}
-				
 			}		
 		}
 	}
 	
 	/**
 	 * 针对list类型数据进行加密
+	 * @param content
+	 * @param key
+	 * @return
 	 */
 	public static String caculateList(ArrayList<Object> content, String key) {
 		// 计算MAC校验信息
@@ -134,12 +148,8 @@ public class CommonUtils {
 			map = new HashMap<String, Object>();
 		}
 		Field[] fields = object.getClass().getDeclaredFields();
-		StringBuffer sb = new StringBuffer();
 		for (Field field : fields) {
-			sb.append("get");
-			sb.append(field.getName().substring(0, 1).toUpperCase());
-			sb.append(field.getName().substring(1, field.getName().length()));
-			Method method = object.getClass().getMethod(sb.toString());
+			Method method = object.getClass().getMethod(getStringMethodName(field.getName()));
 			Object result = method.invoke(object);
 			if(null == result){
 				// nothing to do ...
@@ -148,10 +158,34 @@ public class CommonUtils {
 			}else if(result instanceof Integer){
 				map.put(field.getName(), (Integer) method.invoke(object));
 			}
-			sb.setLength(0);
 		}
 
 		return map;
 	}
 
+
+	/**
+	 * 传入字段名字，返回该字段对应的get方法名
+	 * @param fieldName
+	 * @return
+	 */
+	public static String getStringMethodName(String fieldName){
+		StringBuffer sb = new StringBuffer("get");
+		sb.append(fieldName.substring(0,1).toUpperCase());
+		sb.append(fieldName.substring(1,fieldName.length()));
+		return sb.toString();
+	}
+	
+
+	/**
+	 * 传入字段名字，返回该字段对应的set方法名
+	 * @param fieldName
+	 * @return
+	 */
+	public static String setStringMethodName(String fieldName){
+		StringBuffer sb = new StringBuffer("set");
+		sb.append(fieldName.substring(0,1).toUpperCase());
+		sb.append(fieldName.substring(1,fieldName.length()));
+		return sb.toString();
+	}
 }

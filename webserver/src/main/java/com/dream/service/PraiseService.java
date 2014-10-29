@@ -15,5 +15,6 @@ public interface PraiseService {
 	int deletePraise(int uid);
 	
 	int addPraise(Praise praise);
-	
+
+	int countPraise(Praise praise);
 }

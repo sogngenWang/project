@@ -47,4 +47,10 @@ public class ThemeServiceImpl implements ThemeService {
 
 	}
 
+	@Override
+	public int countTheme(Theme theme) {
+		
+		return themeDao.countTheme(theme);
+	}
+
 }

@@ -16,6 +16,7 @@ import com.dream.basebean.RequestBean;
 import com.dream.basebean.ResponseBean;
 import com.dream.bean.Activity;
 import com.dream.service.ActivityService;
+import com.dream.utils.CommonUtils;
 import com.google.gson.Gson;
 
 @Controller
@@ -41,6 +42,7 @@ public class ActivityController {
 			try {
 				content = requestBean.getContent();
 				Activity activity = gson.fromJson(content.toString(), Activity.class);
+				CommonUtils.decriptObject(activity, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				activityService.addActivity(activity);
 				responseBean.setContent(activity);
 			} catch (Exception e) {
@@ -68,7 +70,11 @@ public class ActivityController {
 			// 真正的业务逻辑
 			try {
 				content = requestBean.getContent();
+				//转化request请求中的 activity|获取条件
 				Activity activity = gson.fromJson(content.toString(), Activity.class);
+				//把需要解密的字段全部解密
+				CommonUtils.decriptObject(activity, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
+				LOG.info(activityService.countActivity(activity));
 				activity = activityService.detailActivity(activity);
 				responseBean.setContent(activity);
 			} catch (Exception e) {
@@ -97,6 +103,7 @@ public class ActivityController {
 			try {
 				content = requestBean.getContent();
 				Activity activity = gson.fromJson(content.toString(), Activity.class);
+				CommonUtils.decriptObject(activity, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				List<Activity> activityList = activityService.listActivity(activity);
 				responseBean.setContent(activityList);
 			} catch (Exception e) {
@@ -125,6 +132,7 @@ public class ActivityController {
 			try {
 				content = requestBean.getContent();
 				Activity activity = gson.fromJson(content.toString(), Activity.class);
+				CommonUtils.decriptObject(activity, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				activityService.updateActivity(activity);
 				responseBean.setContent(activity);
 			} catch (Exception e) {
@@ -153,6 +161,7 @@ public class ActivityController {
 			try {
 				content = requestBean.getContent();
 				Activity activity = gson.fromJson(content.toString(), Activity.class);
+				CommonUtils.decriptObject(activity, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				responseBean.setContent(activity);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());

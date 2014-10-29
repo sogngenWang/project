@@ -16,6 +16,7 @@ import com.dream.basebean.RequestBean;
 import com.dream.basebean.ResponseBean;
 import com.dream.bean.Userinfo;
 import com.dream.service.UserinfoService;
+import com.dream.utils.CommonUtils;
 import com.google.gson.Gson;
 
 @Controller
@@ -41,6 +42,7 @@ public class UserinfoController {
 			try {
 				content = requestBean.getContent();
 				Userinfo userinfo = gson.fromJson(content.toString(), Userinfo.class);
+				CommonUtils.decriptObject(userinfo, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				userinfoService.addUserinfo(userinfo);
 				responseBean.setContent(userinfo);
 			} catch (Exception e) {
@@ -69,6 +71,7 @@ public class UserinfoController {
 			try {
 				content = requestBean.getContent();
 				Userinfo userinfo = gson.fromJson(content.toString(), Userinfo.class);
+				CommonUtils.decriptObject(userinfo, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				userinfo = userinfoService.detailUserinfo(userinfo);
 				responseBean.setContent(userinfo);
 			} catch (Exception e) {
@@ -97,6 +100,7 @@ public class UserinfoController {
 			try {
 				content = requestBean.getContent();
 				Userinfo userinfo = gson.fromJson(content.toString(), Userinfo.class);
+				CommonUtils.decriptObject(userinfo, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				List<Userinfo> userinfoList = userinfoService.listUserinfo(userinfo);
 				responseBean.setContent(userinfoList);
 			} catch (Exception e) {
@@ -125,6 +129,7 @@ public class UserinfoController {
 			try {
 				content = requestBean.getContent();
 				Userinfo userinfo = gson.fromJson(content.toString(), Userinfo.class);
+				CommonUtils.decriptObject(userinfo, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				userinfoService.updateUserinfo(userinfo);
 				responseBean.setContent(userinfo);
 			} catch (Exception e) {
@@ -153,6 +158,7 @@ public class UserinfoController {
 			try {
 				content = requestBean.getContent();
 				Userinfo userinfo = gson.fromJson(content.toString(), Userinfo.class);
+				CommonUtils.decriptObject(userinfo, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				responseBean.setContent(userinfo);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());

@@ -241,5 +241,37 @@
 			</choose>
 		</where>
 	</select>
-	
+
+	<select id="countActivity"  resultType="java.lang.Integer">
+		select count(*)  
+		from activity
+		<where>
+			<choose>
+				<when test="activityid != null and activityid != '' ">
+					activityid = #{activityid, jdbcType=INTEGER}  
+				</when>
+				<when test="activityname != null and activityname != ''">
+					AND activityname = #{activityname, jdbcType=VARCHAR}  
+				</when>
+				<when test="activitystarttime != null and activitystarttime != ''">
+					AND activitystarttime = #{activitystarttime, jdbcType=VARCHAR}
+				</when>
+				<when test="activityendtime != null and activityendtime != ''">
+					AND activityendtime = #{activityendtime, jdbcType=VARCHAR}
+				</when>
+				<when test="activitystatus != null and activitystatus != ''">
+					AND activitystatus = #{activitystatus, jdbcType=VARCHAR}
+				</when>
+				<when test="activityquota != null and activityquota != ''">
+					AND activityquota = #{activityquota, jdbcType=VARCHAR}
+				</when>
+				<when test="activityaddress != null and activityaddress != ''">
+					AND activityaddress = #{activityaddress, jdbcType=VARCHAR}
+				</when>
+				<when test="activitycreatetime != null and activitycreatetime != ''">
+					AND registertime = #{activitycreatetime, jdbcType=VARCHAR}
+				</when>
+			</choose>
+		</where>
+	</select>
 </mapper>

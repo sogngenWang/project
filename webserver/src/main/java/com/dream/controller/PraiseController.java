@@ -16,6 +16,7 @@ import com.dream.basebean.RequestBean;
 import com.dream.basebean.ResponseBean;
 import com.dream.bean.Praise;
 import com.dream.service.PraiseService;
+import com.dream.utils.CommonUtils;
 import com.google.gson.Gson;
 
 @Controller
@@ -41,6 +42,7 @@ public class PraiseController {
 			try {
 				content = requestBean.getContent();
 				Praise praise = gson.fromJson(content.toString(), Praise.class);
+				CommonUtils.decriptObject(praise, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				praiseService.addPraise(praise);
 				responseBean.setContent(praise);
 			} catch (Exception e) {
@@ -69,6 +71,7 @@ public class PraiseController {
 			try {
 				content = requestBean.getContent();
 				Praise praise = gson.fromJson(content.toString(), Praise.class);
+				CommonUtils.decriptObject(praise, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				praise = praiseService.detailPraise(praise);
 				responseBean.setContent(praise);
 			} catch (Exception e) {
@@ -97,6 +100,7 @@ public class PraiseController {
 			try {
 				content = requestBean.getContent();
 				Praise praise = gson.fromJson(content.toString(), Praise.class);
+				CommonUtils.decriptObject(praise, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				List<Praise> praiseList = praiseService.listPraise(praise);
 				responseBean.setContent(praiseList);
 			} catch (Exception e) {
@@ -125,6 +129,7 @@ public class PraiseController {
 			try {
 				content = requestBean.getContent();
 				Praise praise = gson.fromJson(content.toString(), Praise.class);
+				CommonUtils.decriptObject(praise, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				praiseService.updatePraise(praise);
 				responseBean.setContent(praise);
 			} catch (Exception e) {
@@ -153,6 +158,7 @@ public class PraiseController {
 			try {
 				content = requestBean.getContent();
 				Praise praise = gson.fromJson(content.toString(), Praise.class);
+				CommonUtils.decriptObject(praise, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				responseBean.setContent(praise);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());

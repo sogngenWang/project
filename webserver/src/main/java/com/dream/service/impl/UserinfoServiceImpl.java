@@ -47,4 +47,10 @@ public class UserinfoServiceImpl implements UserinfoService {
 
 	}
 
+	@Override
+	public int countUserinfo(Userinfo userinfo) {
+		
+		return userinfoDao.countUserinfo(userinfo);
+	}
+
 }

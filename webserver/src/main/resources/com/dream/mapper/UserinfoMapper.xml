@@ -188,6 +188,27 @@
 			</choose>
 		</where>
 	</select>
-	
-  
+	<select id="countUserinfo" resultType="java.lang.Integer">
+		select count(*)
+  		from userinfo
+		<where>
+			<choose>
+				<when test="userid != null and userid != '' ">
+					userid = #{userid, jdbcType=INTEGER}  
+				</when>
+				<when test="telephone != null and telephone != ''">
+					AND telephone = #{telephone, jdbcType=VARCHAR}  
+				</when>
+				<when test="email != null and email != ''">
+					AND email = #{email, jdbcType=VARCHAR}
+				</when>
+				<when test="company != null and company != ''">
+					AND company = #{company, jdbcType=VARCHAR}
+				</when>
+				<when test="department != null and department != ''">
+					AND department = #{department, jdbcType=VARCHAR}
+				</when>
+			</choose>
+		</where>
+	</select>
 </mapper>

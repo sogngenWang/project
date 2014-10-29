@@ -154,6 +154,21 @@
 			</choose>
 		</where>
 	</select>
-	
-  
+	<select id="countTheme" resultType="java.lang.Integer">
+		select count(*)
+  		from theme
+		<where>
+			<choose>
+				<when test="themeid != null and themeid != '' ">
+					themeid = #{themeid, jdbcType=INTEGER}  
+				</when>
+				<when test="themename != null and themename != ''">
+					AND themename = #{themename, jdbcType=VARCHAR}  
+				</when>
+				<when test="activityid != null and activityid != ''">
+					AND activityid = #{activityid, jdbcType=INTEGER}
+				</when>
+			</choose>
+		</where>
+	</select>
 </mapper>

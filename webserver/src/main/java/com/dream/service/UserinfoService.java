@@ -16,4 +16,5 @@ public interface UserinfoService {
 	
 	int addUserinfo(Userinfo userinfo);
 	
+	int countUserinfo(Userinfo userinfo);
 }

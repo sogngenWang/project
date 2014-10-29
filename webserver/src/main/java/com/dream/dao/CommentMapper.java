@@ -80,4 +80,10 @@ public interface CommentMapper {
 	 */
 	Comment detailComment(Comment comment);
 	
+	/**
+	 * 根据条件统计记录数
+	 * @param comment
+	 * @return
+	 */
+	int countComment(Comment comment);
 }

@@ -71,6 +71,10 @@ public interface UserMapper {
 	 */
 	User detailUser(User user);
 	
-	
-	
+	/**
+	 * 根据条件统计记录数
+	 * @param user
+	 * @return
+	 */
+	int countUser(User user);
 }

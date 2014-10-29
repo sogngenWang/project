@@ -16,4 +16,5 @@ public interface ThemeService {
 	
 	int addTheme(Theme theme);
 	
+	int countTheme(Theme theme);
 }

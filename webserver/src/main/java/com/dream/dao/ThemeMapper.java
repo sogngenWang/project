@@ -72,4 +72,10 @@ public interface ThemeMapper {
 	 */
 	Theme detailTheme(Theme theme);
 	
+	/**
+	 * 根据条件统计记录数
+	 * @param theme
+	 * @return
+	 */
+	int countTheme(Theme theme);
 }

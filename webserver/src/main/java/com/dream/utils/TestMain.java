@@ -3,7 +3,8 @@ package com.dream.utils;
 import java.io.UnsupportedEncodingException;
 
 import com.baidu.security.TDESUtils;
-import com.dream.basebean.ResponseBean;
+import com.dream.bean.User;
+import com.google.gson.Gson;
 
 public class TestMain {
 	public static void main1(String[] args) throws Exception {
@@ -27,12 +28,15 @@ public class TestMain {
 		
 	}
 	
-	public static void main(String[] args) {
-		ResponseBean responseBean = new ResponseBean();
+	public static void main(String[] args) throws Exception {
+//		ResponseBean responseBean = new ResponseBean();
 //		responseBean.setContent(new User());
-		responseBean.setMac("ABC");
-		
-		
+//		responseBean.setMac("ABC");
+		Gson gson = new Gson();
+		User user = new User();
+		user.setUsername("1E1147FFFFFFA4FFFFFFDDFFFFFF9D31FFFFFFA3");
+		CommonUtils.decriptObject(user, "862321022176017", "1234567890ABCDEF");
+		System.out.println(gson.toJson(user));
 	}
 	
 //	public static TmpResponseDatagram testController(String request) throws Exception {

@@ -47,4 +47,10 @@ public class PraiseServiceImpl implements PraiseService {
 
 	}
 
+	@Override
+	public int countPraise(Praise praise) {
+		
+		return praiseDao.countPraise(praise);
+	}
+
 }

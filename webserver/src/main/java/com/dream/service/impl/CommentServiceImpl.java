@@ -47,4 +47,11 @@ public class CommentServiceImpl implements CommentService {
 
 	}
 
+	@Override
+	public int countComment(Comment comment) {
+
+		return commentDao.countComment(comment);
+
+	}
+
 }

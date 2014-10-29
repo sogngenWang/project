@@ -72,4 +72,11 @@ public interface ActivityMapper {
 	 */
 	Activity detailActivity(Activity activity);
 	
+	/**
+	 * 根据条件统计记录数
+	 * @param activity
+	 * @return
+	 */
+	int countActivity(Activity activity);
+	
 }

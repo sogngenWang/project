@@ -16,4 +16,6 @@ public interface ActivityService {
 	
 	int addActivity(Activity activity);
 	
+	int countActivity(Activity activity);
+	
 }

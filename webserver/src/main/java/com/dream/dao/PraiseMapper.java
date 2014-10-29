@@ -72,4 +72,10 @@ public interface PraiseMapper {
 	 */
 	Praise detailPraise(Praise praise);
 	
+	/**
+	 * 根据条件统计记录数
+	 * @param praise
+	 * @return
+	 */
+	int countPraise(Praise praise);
 }

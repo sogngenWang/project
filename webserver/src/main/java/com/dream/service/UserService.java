@@ -16,4 +16,5 @@ public interface UserService {
 	
 	int addUser(User user);
 	
+	int countUser(User user);
 }

@@ -16,6 +16,7 @@ import com.dream.basebean.RequestBean;
 import com.dream.basebean.ResponseBean;
 import com.dream.bean.Theme;
 import com.dream.service.ThemeService;
+import com.dream.utils.CommonUtils;
 import com.google.gson.Gson;
 
 @Controller
@@ -41,6 +42,7 @@ public class ThemeController {
 			try {
 				content = requestBean.getContent();
 				Theme theme = gson.fromJson(content.toString(), Theme.class);
+				CommonUtils.decriptObject(theme, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				themeService.addTheme(theme);
 				responseBean.setContent(theme);
 			} catch (Exception e) {
@@ -69,6 +71,7 @@ public class ThemeController {
 			try {
 				content = requestBean.getContent();
 				Theme theme = gson.fromJson(content.toString(), Theme.class);
+				CommonUtils.decriptObject(theme, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				theme = themeService.detailTheme(theme);
 				responseBean.setContent(theme);
 			} catch (Exception e) {
@@ -97,6 +100,7 @@ public class ThemeController {
 			try {
 				content = requestBean.getContent();
 				Theme theme = gson.fromJson(content.toString(), Theme.class);
+				CommonUtils.decriptObject(theme, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				List<Theme> themeList = themeService.listTheme(theme);
 				responseBean.setContent(themeList);
 			} catch (Exception e) {
@@ -125,6 +129,7 @@ public class ThemeController {
 			try {
 				content = requestBean.getContent();
 				Theme theme = gson.fromJson(content.toString(), Theme.class);
+				CommonUtils.decriptObject(theme, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				themeService.updateTheme(theme);
 				responseBean.setContent(theme);
 			} catch (Exception e) {
@@ -153,6 +158,7 @@ public class ThemeController {
 			try {
 				content = requestBean.getContent();
 				Theme theme = gson.fromJson(content.toString(), Theme.class);
+				CommonUtils.decriptObject(theme, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				responseBean.setContent(theme);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());

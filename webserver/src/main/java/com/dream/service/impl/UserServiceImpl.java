@@ -47,4 +47,10 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	@Override
+	public int countUser(User user) {
+
+		return countUser(user);
+	}
+
 }

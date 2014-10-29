@@ -15,5 +15,6 @@ public interface CommentService {
 	int deleteComment(int uid);
 	
 	int addComment(Comment comment);
-	
+
+	int countComment(Comment comment);
 }

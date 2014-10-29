@@ -72,4 +72,10 @@ public interface UserinfoMapper {
 	 */
 	Userinfo detailUserinfo(Userinfo userinfo);
 	
+	/**
+	 * 根据条件统计记录数
+	 * @param userinfo
+	 * @return
+	 */
+	int countUserinfo(Userinfo userinfo);
 }

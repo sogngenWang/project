@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.baidu.security.TDESUtils;
 import com.dream.basebean.RequestBean;
 import com.dream.basebean.ResponseBean;
 import com.dream.bean.User;
@@ -43,11 +42,11 @@ public class UserController {
 			try {
 				content = requestBean.getContent();
 				User user = gson.fromJson(content.toString(), User.class);
-				user.setUsername(TDESUtils.decrypt(user.getUsername(), requestBean.getHead().getImei()));
+				CommonUtils.decriptObject(user, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				userService.addUser(user);
 				responseBean.setContent(user);
 			} catch (Exception e) {
-				LOG.error("业务执行异常...." + e.getMessage());
+				LOG.error("业务执行异常...." + e.getMessage()+e.getCause().getMessage());
 				responseBean.getMsg().setCode("0001");
 				responseBean.getMsg().setDesc("业务异常");
 				return responseBean;
@@ -72,7 +71,7 @@ public class UserController {
 			try {
 				content = requestBean.getContent();
 				User user = gson.fromJson(content.toString(), User.class);
-				user.setUsername(TDESUtils.decrypt(user.getUsername(), requestBean.getHead().getImei()));
+				CommonUtils.decriptObject(user, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				user = userService.detailUser(user);
 				responseBean.setContent(user);
 			} catch (Exception e) {
@@ -130,6 +129,7 @@ public class UserController {
 			try {
 				content = requestBean.getContent();
 				User user = gson.fromJson(content.toString(), User.class);
+				CommonUtils.decriptObject(user, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				userService.updateUser(user);
 				responseBean.setContent(user);
 			} catch (Exception e) {
@@ -158,6 +158,7 @@ public class UserController {
 			try {
 				content = requestBean.getContent();
 				User user = gson.fromJson(content.toString(), User.class);
+				CommonUtils.decriptObject(user, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				responseBean.setContent(user);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
@@ -189,7 +190,7 @@ public class UserController {
 			try {
 				content = requestBean.getContent();
 				User user = gson.fromJson(content.toString(), User.class);
-				user.setUsername(TDESUtils.decrypt(user.getUsername(), requestBean.getHead().getImei()));
+				CommonUtils.decriptObject(user, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				user = userService.detailUser(user);
 				responseBean.setContent(user);
 			} catch (Exception e) {
@@ -223,7 +224,7 @@ public class UserController {
 			try {
 				content = requestBean.getContent();
 				User user = gson.fromJson(content.toString(), User.class);
-				user.setUsername(TDESUtils.decrypt(user.getUsername(), requestBean.getHead().getImei()));
+				CommonUtils.decriptObject(user, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				user = userService.detailUser(user);
 				responseBean.setContent(user);
 			} catch (Exception e) {

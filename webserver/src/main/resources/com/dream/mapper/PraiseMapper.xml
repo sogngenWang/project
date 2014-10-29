@@ -155,5 +155,21 @@
 			</choose>
 		</where>
 	</select>
-	
+	<select id="countPraise" resultType="java.lang.Integer">
+		select count(*)
+		from praise
+		<where>
+			<choose>
+				<when test="praiseid != null and praiseid != '' ">
+					praiseid = #{praiseid, jdbcType=INTEGER}  
+				</when>
+				<when test="praiseiduserid != null and praiseiduserid != ''">
+					AND praiseiduserid = #{praiseiduserid, jdbcType=INTEGER}  
+				</when>
+				<when test="praiseidactivityid != null and praiseidactivityid != ''">
+					AND praiseidactivityid = #{praiseidactivityid, jdbcType=INTEGER}
+				</when>
+			</choose>
+		</where>
+	</select>
 </mapper>

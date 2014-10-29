@@ -16,6 +16,7 @@ import com.dream.basebean.RequestBean;
 import com.dream.basebean.ResponseBean;
 import com.dream.bean.Comment;
 import com.dream.service.CommentService;
+import com.dream.utils.CommonUtils;
 import com.google.gson.Gson;
 
 @Controller
@@ -41,6 +42,7 @@ public class CommentController {
 			try {
 				content = requestBean.getContent();
 				Comment comment = gson.fromJson(content.toString(), Comment.class);
+				CommonUtils.decriptObject(comment, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				commentService.addComment(comment);
 				responseBean.setContent(comment);
 			} catch (Exception e) {
@@ -69,6 +71,7 @@ public class CommentController {
 			try {
 				content = requestBean.getContent();
 				Comment comment = gson.fromJson(content.toString(), Comment.class);
+				CommonUtils.decriptObject(comment, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				comment = commentService.detailComment(comment);
 				responseBean.setContent(comment);
 			} catch (Exception e) {
@@ -97,6 +100,7 @@ public class CommentController {
 			try {
 				content = requestBean.getContent();
 				Comment comment = gson.fromJson(content.toString(), Comment.class);
+				CommonUtils.decriptObject(comment, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				List<Comment> commentList = commentService.listComment(comment);
 				responseBean.setContent(commentList);
 			} catch (Exception e) {
@@ -125,6 +129,7 @@ public class CommentController {
 			try {
 				content = requestBean.getContent();
 				Comment comment = gson.fromJson(content.toString(), Comment.class);
+				CommonUtils.decriptObject(comment, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				commentService.updateComment(comment);
 				responseBean.setContent(comment);
 			} catch (Exception e) {
@@ -153,6 +158,7 @@ public class CommentController {
 			try {
 				content = requestBean.getContent();
 				Comment comment = gson.fromJson(content.toString(), Comment.class);
+				CommonUtils.decriptObject(comment, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				responseBean.setContent(comment);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
