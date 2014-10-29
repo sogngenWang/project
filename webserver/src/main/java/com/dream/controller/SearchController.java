@@ -28,7 +28,7 @@ public class SearchController {
 	@Resource(name = "userService")
 	private UserService userService;
 
-	@RequestMapping(value = "/listUser", method = { RequestMethod.POST })
+	@RequestMapping(value = "/search", method = { RequestMethod.POST })
 	@ResponseBody
 	public ResponseBean listlUser(String request) {
 		requestBean = gson.fromJson(request, RequestBean.class);

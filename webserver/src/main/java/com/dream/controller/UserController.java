@@ -92,7 +92,7 @@ public class UserController {
 
 	@RequestMapping(value = "/listUser", method = { RequestMethod.POST })
 	@ResponseBody
-	public ResponseBean listlUser(String request) {
+	public ResponseBean listUser(String request) {
 		requestBean = gson.fromJson(request, RequestBean.class);
 		// 进行校验
 		if (requestBean.checkMac()) {
