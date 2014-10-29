@@ -17,6 +17,7 @@ import com.dream.basebean.RequestBean;
 import com.dream.basebean.ResponseBean;
 import com.dream.bean.User;
 import com.dream.service.UserService;
+import com.dream.utils.CommonUtils;
 import com.google.gson.Gson;
 
 @Controller
@@ -100,6 +101,7 @@ public class UserController {
 			try {
 				content = requestBean.getContent();
 				User user = gson.fromJson(content.toString(), User.class);
+				CommonUtils.decriptObject(user, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				List<User> userList = userService.listUser(user);
 				responseBean.setContent(userList);
 			} catch (Exception e) {
@@ -171,4 +173,72 @@ public class UserController {
 
 		return responseBean;
 	}
+	/**
+	 * 用户登录
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/loginUser", method = { RequestMethod.POST })
+	@ResponseBody
+	public ResponseBean loginUser(String request) {
+		requestBean = gson.fromJson(request, RequestBean.class);
+		// 进行校验
+		if (requestBean.checkMac()) {
+			LOG.info("校验成功....");
+			// 真正的业务逻辑
+			try {
+				content = requestBean.getContent();
+				User user = gson.fromJson(content.toString(), User.class);
+				user.setUsername(TDESUtils.decrypt(user.getUsername(), requestBean.getHead().getImei()));
+				user = userService.detailUser(user);
+				responseBean.setContent(user);
+			} catch (Exception e) {
+				LOG.error("业务执行异常...." + e.getMessage());
+				responseBean.getMsg().setCode("0001");
+				responseBean.getMsg().setDesc("业务异常");
+				return responseBean;
+			}
+			LOG.info("业务执行成功，设置返回报文状态为成功...");
+			responseBean.getMsg().setCode("0000");
+			responseBean.getMsg().setDesc("成功");
+			responseBean.setMac(requestBean.getHead().getSerial());
+		}
+
+		return responseBean;
+	}
+	
+	/**
+	 * 用户注册
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/registerUser", method = { RequestMethod.POST })
+	@ResponseBody
+	public ResponseBean registerUser(String request) {
+		requestBean = gson.fromJson(request, RequestBean.class);
+		// 进行校验
+		if (requestBean.checkMac()) {
+			LOG.info("校验成功....");
+			// 真正的业务逻辑
+			try {
+				content = requestBean.getContent();
+				User user = gson.fromJson(content.toString(), User.class);
+				user.setUsername(TDESUtils.decrypt(user.getUsername(), requestBean.getHead().getImei()));
+				user = userService.detailUser(user);
+				responseBean.setContent(user);
+			} catch (Exception e) {
+				LOG.error("业务执行异常...." + e.getMessage());
+				responseBean.getMsg().setCode("0001");
+				responseBean.getMsg().setDesc("业务异常");
+				return responseBean;
+			}
+			LOG.info("业务执行成功，设置返回报文状态为成功...");
+			responseBean.getMsg().setCode("0000");
+			responseBean.getMsg().setDesc("成功");
+			responseBean.setMac(requestBean.getHead().getSerial());
+		}
+
+		return responseBean;
+	}
+	
 }

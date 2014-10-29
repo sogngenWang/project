@@ -1,11 +1,13 @@
 package com.dream.basebean;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.dream.constants.Constant;
 import com.dream.utils.CommonUtils;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -61,7 +63,10 @@ public class ResponseBean {
 			return null;
 		}else if (content instanceof ArrayList) {
 			//针对传入的是一个List的情况
-			this.mac = CommonUtils.caculateList((ArrayList<Object>) content, key);
+			ArrayList<Object> contentList = (ArrayList<Object>) content;
+			this.mac = CommonUtils.caculateList(contentList, key);
+			content = new HashMap<String,ArrayList<Object>>();
+			((HashMap<String,ArrayList<Object>>)content).put(Constant.JSON_LIST, contentList);
 		}else {
 			//普通对象型
 			// 把对象转化成map
