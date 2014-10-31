@@ -23,7 +23,7 @@ import org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMa
 /**
  * JUnit测试action时使用的基类
  * 
- * @author fule
+ * @author wsg
  * 
  */
 @SuppressWarnings("deprecation")

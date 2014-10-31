@@ -1,6 +1,11 @@
 package com.dream.bean;
 
-public class Activity {
+import com.dream.basebean.PageBase;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@JsonInclude(Include.NON_NULL)
+public class Activity extends PageBase{
 	
 	
 	//*****新增费数据库字段****

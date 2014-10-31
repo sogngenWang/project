@@ -189,7 +189,7 @@
 		<where>
 			<choose>
 				<when test="commentid != null and commentid != '' ">
-					userid = #{commentid, jdbcType=INTEGER}  
+					commentid = #{commentid, jdbcType=INTEGER}  
 				</when>
 				<when test="userid != null and userid != ''">
 					AND userid = #{userid, jdbcType=INTEGER}  
@@ -214,7 +214,7 @@
 		<where>
 			<choose>
 				<when test="commentid != null and commentid != '' ">
-					userid = #{commentid, jdbcType=INTEGER}  
+					commentid = #{commentid, jdbcType=INTEGER}  
 				</when>
 				<when test="userid != null and userid != ''">
 					AND userid = #{userid, jdbcType=INTEGER}  
@@ -237,7 +237,7 @@
 		<where>
 			<choose>
 				<when test="commentid != null and commentid != '' ">
-					userid = #{commentid, jdbcType=INTEGER}  
+					commentid = #{commentid, jdbcType=INTEGER}  
 				</when>
 				<when test="userid != null and userid != ''">
 					AND userid = #{userid, jdbcType=INTEGER}  

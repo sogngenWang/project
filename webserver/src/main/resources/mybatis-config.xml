@@ -14,5 +14,7 @@
 		<mapper resource="com/dream/mapper/ThemeMapper.xml" />
 		<mapper resource="com/dream/mapper/UserinfoMapper.xml" />
 		<mapper resource="com/dream/mapper/UserMapper.xml" />
+		<mapper resource="com/dream/mapper/KindsMapper.xml" />
+		
 	</mappers>
 </configuration>

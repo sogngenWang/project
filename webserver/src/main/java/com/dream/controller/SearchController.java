@@ -38,9 +38,9 @@ public class SearchController {
 			// 真正的业务逻辑
 			try {
 				content = requestBean.getContent();
-				
+				LOG.info("content is .... " + gson.toJson(content));
 				// TODO 搜索算法，根据传过来的参数去搜索——主要搜索 活动主题名
-				
+
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");
@@ -56,5 +56,4 @@ public class SearchController {
 		return responseBean;
 	}
 
-	
 }
