@@ -50,7 +50,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int countUser(User user) {
 
-		return countUser(user);
+		return userDao.countUser(user);
+	}
+
+	@Override
+	public int updateByTelephone(User user) {
+		
+		return userDao.updateByTelephone(user);
 	}
 
 }

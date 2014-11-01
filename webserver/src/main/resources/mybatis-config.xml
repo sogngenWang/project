@@ -8,13 +8,14 @@
 	<mappers>
 		<!-- <mapper resource="com/baidu/mapper/testMapper.xml" /> -->
 		<!-- <mapper resource="com/baidu/mapper/GenderTrendMapper.xml" /> <mapper resource="com/baidu/mapper/PashionMapper.xml /> -->
-		<mapper resource="com/dream/mapper/ActivityMapper.xml" />
+		<mapper resource="com/dream/mapper/CheckcodeMapper.xml" />
 		<mapper resource="com/dream/mapper/CommentMapper.xml" />
 		<mapper resource="com/dream/mapper/PraiseMapper.xml" />
 		<mapper resource="com/dream/mapper/ThemeMapper.xml" />
 		<mapper resource="com/dream/mapper/UserinfoMapper.xml" />
 		<mapper resource="com/dream/mapper/UserMapper.xml" />
 		<mapper resource="com/dream/mapper/KindsMapper.xml" />
-		
+		<mapper resource="com/dream/mapper/ActivityMapper.xml" />
+		<mapper resource="com/dream/mapper/ActivityvipMapper.xml" />
 	</mappers>
 </configuration>

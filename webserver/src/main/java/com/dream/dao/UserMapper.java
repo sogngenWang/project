@@ -77,4 +77,10 @@ public interface UserMapper {
 	 * @return
 	 */
 	int countUser(User user);
+	/**
+	 * 根据传入的手机号去更新其他字段
+	 * @param user
+	 * @return
+	 */
+	int updateByTelephone(User user);
 }

@@ -3,8 +3,11 @@ package com.dream.utils;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -141,7 +144,6 @@ public class CommonUtils {
 	 * @throws IllegalAccessException
 	 * @throws InvocationTargetException
 	 */
-
 	public static Map<String, Object> objectToMap(Map<String,Object> map , Object object)
 			throws SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
 		if(null == map ){
@@ -188,4 +190,89 @@ public class CommonUtils {
 		sb.append(fieldName.substring(1,fieldName.length()));
 		return sb.toString();
 	}
+	
+	/**
+	 * 通过传入手机号以及相关的校验码，把该校验码发送到该手机上
+	 * @param telephone
+	 * @param checkCode
+	 * @return
+	 */
+	public static boolean sendCheckCode(String telephone , String checkCode){
+		// TODO 接入手机短信功能 
+		LOG.info("验证码"+checkCode+"发送到手机"+ telephone );
+		return true;
+	}
+	
+
+	/**
+	 * 指定校验码长度，随机生成一个校验码
+	 * @param codeLength
+	 * @return
+	 */
+	public static String createCheckCode(int codeLength){
+		long checkCode = (long) ( Math.random() * Math.pow(10, codeLength));
+		return String.valueOf(checkCode);
+	}
+
+	/**
+	 * 根据传入的时间格式来格式化一个时间，返回字符串
+	 * @return
+	 */
+	public static String getSYSDate(String ...formatString) {
+		SimpleDateFormat sdf = null ;
+		String format = null;
+		//如果没有传入格式化规范，则按照默认的规范来
+		if(null == formatString || formatString.length == 0){
+			format = Constant.DEFAULT_DATEFORMAT;
+		}else{
+			format = formatString[0];
+		}
+		
+		sdf = new SimpleDateFormat(format);
+		return sdf.format(new Date());
+	}
+	
+	/**
+	 * 根据传入的Checkcode时间参数，判断校验码是否过期
+	 * 如果过期则返回true，没有过期返回false
+	 * @param checkCodeTime
+	 * @return
+	 * @throws ParseException
+	 */
+	public static boolean isCheckCodeExpire(String checkCodeTime) throws ParseException{
+		long checkCodeLongTime = -1;
+		long nowLongTime = System.currentTimeMillis();
+		checkCodeLongTime = transferStrDate2Long(checkCodeTime);
+		long expireLongTime = Constant.CHECKCODE_EXPIRE_MILLISECOND;
+		LOG.info("nowLongTime = "+ nowLongTime +"|checkCodeLongTime = "+ checkCodeLongTime + "|expireLongTime = "+ expireLongTime);
+		if(expireLongTime > (nowLongTime - checkCodeLongTime)){
+			//没有超时
+			return false;
+		}else{
+			//超时了
+			return true;
+		}
+	}
+	
+	/**
+	 * 把字符串类型的日期，根据传入的模版解析，然后返回该日期的Long型时间
+	 * 如果没有传入格式化的模版，则默认调用系统自带的模版
+	 * @param date
+	 * @param formatString
+	 * @return
+	 * @throws ParseException
+	 */
+	public static long transferStrDate2Long(String date,String ...formatString) throws ParseException{
+		SimpleDateFormat sdf = null ;
+		String format = null;
+		//如果没有传入格式化规范，则按照默认的规范来
+		if(null == formatString || formatString.length == 0){
+			format = Constant.DEFAULT_DATEFORMAT;
+		}else{
+			format = formatString[0];
+		}
+		sdf = new SimpleDateFormat(format);
+		return sdf.parse(date).getTime();
+	}
+	
 }

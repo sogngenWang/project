@@ -50,7 +50,7 @@ public class KindsServiceImpl implements KindsService {
 	@Override
 	public int countKinds(Kinds kinds) {
 
-		return countKinds(kinds);
+		return kindsDao.countKinds(kinds);
 	}
 
 }
