@@ -17,5 +17,6 @@
 		<mapper resource="com/dream/mapper/KindsMapper.xml" />
 		<mapper resource="com/dream/mapper/ActivityMapper.xml" />
 		<mapper resource="com/dream/mapper/ActivityvipMapper.xml" />
+		<mapper resource="com/dream/mapper/RegisteractivityMapper.xml" />
 	</mappers>
 </configuration>

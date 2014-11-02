@@ -74,8 +74,7 @@ public class ActivityController {
 				Activity activity = gson.fromJson(content.toString(), Activity.class);
 				//把需要解密的字段全部解密
 				CommonUtils.decriptObject(activity, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
-				LOG.info(activityService.countActivity(activity));
-				activity = activityService.detailActivity(activity);
+				activity = activityService.detailActivityPage(activity);
 				responseBean.setContent(activity);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
@@ -94,7 +93,7 @@ public class ActivityController {
 
 	@RequestMapping(value = "/listActivity", method = { RequestMethod.POST })
 	@ResponseBody
-	public ResponseBean listlActivity(String request) {
+	public ResponseBean listActivity(String request) {
 		requestBean = gson.fromJson(request, RequestBean.class);
 		// 进行校验
 		if (requestBean.checkMac()) {
@@ -107,6 +106,7 @@ public class ActivityController {
 				List<Activity> activityList = activityService.listActivity(activity);
 				responseBean.setContent(activityList);
 			} catch (Exception e) {
+				e.printStackTrace();
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");
 				responseBean.getMsg().setDesc("业务异常");
@@ -177,4 +177,36 @@ public class ActivityController {
 
 		return responseBean;
 	}
+	
+	
+	@RequestMapping(value = "/recommendActivity", method = { RequestMethod.POST })
+	@ResponseBody
+	public ResponseBean recommendActivity(String request) {
+		requestBean = gson.fromJson(request, RequestBean.class);
+		// 进行校验
+		if (requestBean.checkMac()) {
+			LOG.info("校验成功....");
+			// 真正的业务逻辑
+			try {
+				content = requestBean.getContent();
+				Activity activity = gson.fromJson(content.toString(), Activity.class);
+				CommonUtils.decriptObject(activity, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
+				// TODO 首页推荐活动
+				responseBean.setContent(activity);
+			} catch (Exception e) {
+				LOG.error("业务执行异常...." + e.getMessage());
+				responseBean.getMsg().setCode("0001");
+				responseBean.getMsg().setDesc("业务异常");
+				return responseBean;
+			}
+			LOG.info("业务执行成功，设置返回报文状态为成功...");
+			responseBean.getMsg().setCode("0000");
+			responseBean.getMsg().setDesc("成功");
+			responseBean.setMac(requestBean.getHead().getSerial());
+		}
+
+		return responseBean;
+	}
+	
+	
 }

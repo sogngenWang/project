@@ -83,4 +83,11 @@ public interface UserMapper {
 	 * @return
 	 */
 	int updateByTelephone(User user);
+
+	/**
+	 * 提供给activityvip的接口
+	 * @param user
+	 * @return
+	 */
+	User detailUserForActivityvip(int userid);
 }

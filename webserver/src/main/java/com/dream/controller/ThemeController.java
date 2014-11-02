@@ -91,7 +91,7 @@ public class ThemeController {
 
 	@RequestMapping(value = "/listTheme", method = { RequestMethod.POST })
 	@ResponseBody
-	public ResponseBean listlTheme(String request) {
+	public ResponseBean listTheme(String request) {
 		requestBean = gson.fromJson(request, RequestBean.class);
 		// 进行校验
 		if (requestBean.checkMac()) {

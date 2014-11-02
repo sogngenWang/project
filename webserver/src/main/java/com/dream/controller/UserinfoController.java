@@ -91,7 +91,7 @@ public class UserinfoController {
 
 	@RequestMapping(value = "/listUserinfo", method = { RequestMethod.POST })
 	@ResponseBody
-	public ResponseBean listlUserinfo(String request) {
+	public ResponseBean listUserinfo(String request) {
 		requestBean = gson.fromJson(request, RequestBean.class);
 		// 进行校验
 		if (requestBean.checkMac()) {

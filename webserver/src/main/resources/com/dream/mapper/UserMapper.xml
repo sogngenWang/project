@@ -319,5 +319,13 @@
     </set>
     where telephone = #{telephone,jdbcType=VARCHAR}
   </update>
-  
+
+	<select id="detailUserForActivityvip" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		    userid, telephone, username, email, company, position
+		from user
+		<where>
+			userid = #{userid, jdbcType=INTEGER}
+		</where>
+	</select>
 </mapper>

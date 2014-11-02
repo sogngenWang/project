@@ -78,5 +78,12 @@ public interface ActivityMapper {
 	 * @return
 	 */
 	int countActivity(Activity activity);
+
+	/**
+	 * 
+	 * @param i
+	 * @return
+	 */
+	int addActivityViewcount(Activity activity);
 	
 }

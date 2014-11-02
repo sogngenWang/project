@@ -108,6 +108,10 @@
 		<property name="mapperInterface" value="com.dream.dao.CheckcodeMapper"></property>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
+	<bean id="registeractivityDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.dream.dao.RegisteractivityMapper"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
 	
 	
 </beans>

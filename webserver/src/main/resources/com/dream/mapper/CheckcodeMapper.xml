@@ -1,85 +1,84 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.dream.dao.CheckcodeMapper" >
-  <resultMap id="BaseResultMap" type="com.dream.bean.Checkcode" >
-    <id column="checkcodeid" property="checkcodeid" jdbcType="INTEGER" />
-    <result column="checkcode" property="checkcode" jdbcType="VARCHAR" />
-    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
-    <result column="createtime" property="createtime" jdbcType="VARCHAR" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="checkcode">
+  <resultMap id="BaseResultMap" type="com.dream.bean.Checkcode">
+    <id column="checkcodeid" jdbcType="INTEGER" property="checkcodeid" />
+    <result column="checkcode" jdbcType="VARCHAR" property="checkcode" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="createtime" jdbcType="VARCHAR" property="createtime" />
   </resultMap>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     checkcodeid, checkcode, telephone, createtime
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from checkcode
     where checkcodeid = #{checkcodeid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from checkcode
     where checkcodeid = #{checkcodeid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.dream.bean.Checkcode" >
+  <insert id="insert" parameterType="com.dream.bean.Checkcode">
     insert into checkcode (checkcodeid, checkcode, telephone, 
       createtime)
     values (#{checkcodeid,jdbcType=INTEGER}, #{checkcode,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
       #{createtime,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.dream.bean.Checkcode" >
+  <insert id="insertSelective" parameterType="com.dream.bean.Checkcode">
     insert into checkcode
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="checkcodeid != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="checkcodeid != null">
         checkcodeid,
       </if>
-      <if test="checkcode != null" >
+      <if test="checkcode != null">
         checkcode,
       </if>
-      <if test="telephone != null" >
+      <if test="telephone != null">
         telephone,
       </if>
-      <if test="createtime != null" >
+      <if test="createtime != null">
         createtime,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="checkcodeid != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="checkcodeid != null">
         #{checkcodeid,jdbcType=INTEGER},
       </if>
-      <if test="checkcode != null" >
+      <if test="checkcode != null">
         #{checkcode,jdbcType=VARCHAR},
       </if>
-      <if test="telephone != null" >
+      <if test="telephone != null">
         #{telephone,jdbcType=VARCHAR},
       </if>
-      <if test="createtime != null" >
+      <if test="createtime != null">
         #{createtime,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.dream.bean.Checkcode" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.dream.bean.Checkcode">
     update checkcode
-    <set >
-      <if test="checkcode != null" >
+    <set>
+      <if test="checkcode != null">
         checkcode = #{checkcode,jdbcType=VARCHAR},
       </if>
-      <if test="telephone != null" >
+      <if test="telephone != null">
         telephone = #{telephone,jdbcType=VARCHAR},
       </if>
-      <if test="createtime != null" >
+      <if test="createtime != null">
         createtime = #{createtime,jdbcType=VARCHAR},
       </if>
     </set>
     where checkcodeid = #{checkcodeid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.dream.bean.Checkcode" >
+  <update id="updateByPrimaryKey" parameterType="com.dream.bean.Checkcode">
     update checkcode
     set checkcode = #{checkcode,jdbcType=VARCHAR},
       telephone = #{telephone,jdbcType=VARCHAR},
       createtime = #{createtime,jdbcType=VARCHAR}
     where checkcodeid = #{checkcodeid,jdbcType=INTEGER}
   </update>
-  
   <!-- add by wsg -->
 	<!-- 通用方法 -->
 	<!-- ，参数为对象，返回list<对象> -->

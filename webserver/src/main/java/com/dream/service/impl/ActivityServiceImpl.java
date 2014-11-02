@@ -8,10 +8,13 @@ import org.springframework.stereotype.Repository;
 import com.dream.bean.Activity;
 import com.dream.bean.Comment;
 import com.dream.bean.Praise;
+import com.dream.bean.Registeractivity;
 import com.dream.bean.Theme;
+import com.dream.constants.Constant;
 import com.dream.dao.ActivityMapper;
 import com.dream.dao.CommentMapper;
 import com.dream.dao.PraiseMapper;
+import com.dream.dao.RegisteractivityMapper;
 import com.dream.dao.ThemeMapper;
 import com.dream.service.ActivityService;
 
@@ -26,6 +29,8 @@ public class ActivityServiceImpl implements ActivityService {
 	private CommentMapper commentDao;
 	@Autowired
 	private ThemeMapper themeDao;
+	@Autowired
+	private RegisteractivityMapper registeractivityDao; 
 	
 	
 
@@ -37,34 +42,7 @@ public class ActivityServiceImpl implements ActivityService {
 
 	@Override
 	public Activity detailActivity(Activity activity) {
-		//先从数据库中查询出该跳记录的详细信息
-		activity = activityDao.detailActivity(activity);
-		int commentCount = 0;
-		int praiseCount = 0;
-		int caredegree = 0;
-		//计算评论数量
-		//先计算该活动所拥有的话题，然后分别计算每个话题下有多少个评论
-		Theme theme = new Theme();
-		theme.setActivityid(activity.getActivityid());
-		Comment comment = new Comment();
-		for(Theme themeTmp : themeDao.listTheme(theme)){
-			comment.setThemeid(themeTmp.getThemeid());
-			commentCount+=commentDao.countComment(comment);
-		}
-		//计算点赞数量
-		Praise praise = new Praise();
-		praise.setPraiseidactivityid(activity.getActivityid());
-		praiseCount = praiseDao.countPraise(praise);
-
-		//计算关注度 TOOD 关注度暂时仅仅使用评论的50%+点赞的50%
-		caredegree = (int) (commentCount * 1.0 / 2 + praiseCount * 1.0 / 2);
-		
-		
-		activity.setCommentCount(commentCount);
-		activity.setPraiseCount(praiseCount);
-		activity.setCaredegree(caredegree);
-		
-		return activity;
+		return activityDao.detailActivity(activity);
 	}
 
 	@Override
@@ -94,4 +72,51 @@ public class ActivityServiceImpl implements ActivityService {
 		
 	}
 
+	@Override
+	public Activity detailActivityPage(Activity activity) {
+		//先从数据库中查询出该跳记录的详细信息
+		activity = activityDao.detailActivity(activity);
+		int commentCount = 0;
+		int praiseCount = 0;
+		int caredegree = 0;
+		int registerCount = 0;
+		//计算评论数量
+		//先计算该活动所拥有的话题，然后分别计算每个话题下有多少个评论
+		Theme theme = new Theme();
+		theme.setActivityid(activity.getActivityid());
+		Comment comment = new Comment();
+		List<Theme> themeList = themeDao.listTheme(theme);
+		for(Theme themeTmp : themeList){
+			comment.setThemeid(themeTmp.getThemeid());
+			commentCount+=commentDao.countComment(comment);
+		}
+		//计算点赞数量
+		Praise praise = new Praise();
+		praise.setPraiseidactivityid(activity.getActivityid());
+		praiseCount = praiseDao.countPraise(praise);
+
+		//TODO 计算关注度  关注度暂时仅仅使用评论的50%+点赞的50%
+		caredegree = (int) (commentCount * 1.0 / 2 + praiseCount * 1.0 / 2);
+
+		//设置已经报名人数 
+		Registeractivity registeractivity = new Registeractivity();
+		registeractivity.setActivityid(activity.getActivityid());
+		registerCount = registeractivityDao.countRegisteractivity(registeractivity);
+		
+		//设置活动头图片位置
+		activity.setActivitypicture(activity.getActivitypicturedir()+Constant.ACTIVITY_PICTURE_HEADER_NAME);
+		activity.setActivitypicturedir(null);
+		//活动的具体信息不返回
+		activity.setActivitydetail(null);		
+		activity.setCommentcount(commentCount);
+		activity.setPraisecount(praiseCount);
+		activity.setCaredegree(caredegree);
+		activity.setRegistercount(registerCount);
+		activity.setViewcount(activity.getViewcount()+1);
+		// 每次查询完，都需要把该活动的查阅数+1
+		activityDao.addActivityViewcount(activity);
+		
+		return activity;
+	}
+	
 }

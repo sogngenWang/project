@@ -1,5 +1,8 @@
 package com.dream.dao;
 
+import java.util.List;
+
+import com.dream.bean.Activity;
 import com.dream.bean.Activityvip;
 
 public interface ActivityvipMapper {
@@ -14,4 +17,8 @@ public interface ActivityvipMapper {
     int updateByPrimaryKeySelective(Activityvip record);
 
     int updateByPrimaryKey(Activityvip record);
+
+	List<Activityvip> listActivityvip(Activity activity);
+    
+    
 }

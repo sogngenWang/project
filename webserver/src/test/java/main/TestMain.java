@@ -10,13 +10,14 @@ public class TestMain extends JUnitControllerBase {
 	@Test
 	public void test() throws Exception {
 		JUnitTest test = new JUnitTest();
-		test.Test("resetPasswdUserController");
+//		test.Test("resetPasswdUserController");
 //		test.Test("findbackUserController");
 //		test.Test("registerUserController");
 //		test.Test("loginUserController");
 //		test.Test("addActivityController");
 //		test.Test("listActivityController");
-//		test.Test("detailActivityController");
+		test.Test("detailActivityController");
+//		test.Test("listActivityvipController");
 //		test.Test("detailCommentController");
 //		test.Test("	detailPraiseController");
 //		test.Test("detailUserinfoController");

@@ -8,7 +8,7 @@
 <generatorConfiguration>
 	<!-- 此处写jdbc的版本号，执行该命令的时候，右键项目-run as-maven build...-mybatis-generator:generate -->
 	<classPathEntry
-		location="C:\Users\Dream\.m2\repository\mysql\mysql-connector-java\5.1.15\mysql-connector-java-5.1.15.jar" />
+		location="C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\5.1.15\mysql-connector-java-5.1.15.jar" />
 
 	<context id="DB2Tables" targetRuntime="MyBatis3">
 
@@ -42,15 +42,21 @@
 		</sqlMapGenerator>
 
 		<!-- generate Mapper -->
+		
 		<javaClientGenerator type="XMLMAPPER"
 			targetPackage="com.dream.dao" targetProject="src\main\java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		
 		
-		
-		
-		
+					<table schema="" tableName="registeractivity" domainObjectName="Registeractivity"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="userid" sqlStatement="MySql"
+				identity="true" />
+		</table>	
+		<!-- 
 			<table schema="" tableName="checkcode" domainObjectName="Checkcode"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
@@ -59,8 +65,6 @@
 				identity="true" />
 		</table>	
 		
-		
-		<!--
 			<table schema="" tableName="user" domainObjectName="User"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
@@ -81,6 +85,7 @@
 			<generatedKey column="kindsid" sqlStatement="MySql"
 				identity="true" />
 		</table>
+		
 		<table schema="" tableName="activity" domainObjectName="Activity"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
@@ -88,6 +93,7 @@
 			<generatedKey column="activityid" sqlStatement="MySql"
 				identity="true" />
 		</table>
+		
 		<table schema="" tableName="comment" domainObjectName="Comment"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"

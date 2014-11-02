@@ -91,7 +91,7 @@ public class CommentController {
 
 	@RequestMapping(value = "/listComment", method = { RequestMethod.POST })
 	@ResponseBody
-	public ResponseBean listlComment(String request) {
+	public ResponseBean listComment(String request) {
 		requestBean = gson.fromJson(request, RequestBean.class);
 		// 进行校验
 		if (requestBean.checkMac()) {

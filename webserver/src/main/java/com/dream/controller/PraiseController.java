@@ -91,7 +91,7 @@ public class PraiseController {
 
 	@RequestMapping(value = "/listPraise", method = { RequestMethod.POST })
 	@ResponseBody
-	public ResponseBean listlPraise(String request) {
+	public ResponseBean listPraise(String request) {
 		requestBean = gson.fromJson(request, RequestBean.class);
 		// 进行校验
 		if (requestBean.checkMac()) {

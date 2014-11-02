@@ -17,5 +17,12 @@ public interface ActivityService {
 	int addActivity(Activity activity);
 	
 	int countActivity(Activity activity);
+
+	/**
+	 * 活动详情页需要用到的活动相关信息
+	 * @param activity
+	 * @return
+	 */
+	Activity detailActivityPage(Activity activity);
 	
 }

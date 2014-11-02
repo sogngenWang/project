@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dream.dao.RegisteractivityMapper" >
+  <resultMap id="BaseResultMap" type="com.dream.bean.Registeractivity" >
+    <id column="registrationid" property="registrationid" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="activityid" property="activityid" jdbcType="INTEGER" />
+    <result column="signstatus" property="signstatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    registrationid, userid, activityid, signstatus
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from registeractivity
+    where registrationid = #{registrationid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from registeractivity
+    where registrationid = #{registrationid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dream.bean.Registeractivity" >
+    <selectKey resultType="java.lang.Integer" keyProperty="userid" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into registeractivity (registrationid, activityid, signstatus
+      )
+    values (#{registrationid,jdbcType=INTEGER}, #{activityid,jdbcType=INTEGER}, #{signstatus,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dream.bean.Registeractivity" >
+    <selectKey resultType="java.lang.Integer" keyProperty="userid" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into registeractivity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="registrationid != null" >
+        registrationid,
+      </if>
+      <if test="activityid != null" >
+        activityid,
+      </if>
+      <if test="signstatus != null" >
+        signstatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="registrationid != null" >
+        #{registrationid,jdbcType=INTEGER},
+      </if>
+      <if test="activityid != null" >
+        #{activityid,jdbcType=INTEGER},
+      </if>
+      <if test="signstatus != null" >
+        #{signstatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dream.bean.Registeractivity" >
+    update registeractivity
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="activityid != null" >
+        activityid = #{activityid,jdbcType=INTEGER},
+      </if>
+      <if test="signstatus != null" >
+        signstatus = #{signstatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where registrationid = #{registrationid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dream.bean.Registeractivity" >
+    update registeractivity
+    set userid = #{userid,jdbcType=INTEGER},
+      activityid = #{activityid,jdbcType=INTEGER},
+      signstatus = #{signstatus,jdbcType=INTEGER}
+    where registrationid = #{registrationid,jdbcType=INTEGER}
+  </update>
+  
+   <!-- add by wsg -->
+	<!-- 通用方法 -->
+	<!-- ，参数为对象，返回list<对象> -->
+
+	<select id="listRegisteractivity" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from registeractivity
+		<where>
+			<choose>
+				<when test="registrationid != null and registrationid != '' ">
+					registrationid = #{registrationid, jdbcType=INTEGER}  
+				</when>
+				<when test="userid != null and userid != ''">
+					AND userid = #{userid, jdbcType=INTEGER}  
+				</when>
+				<when test="activityid != null and activityid != ''">
+					AND activityid = #{activityid, jdbcType=INTEGER}
+				</when>
+				<when test="signstatus != null and signstatus != ''">
+					AND signstatus = #{signstatus, jdbcType=INTEGER}
+				</when>
+			</choose>
+		</where>
+	</select>
+	
+	<select id="detailRegisteractivity" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+				from registeractivity
+		<where>
+			<choose>
+				<when test="registrationid != null and registrationid != '' ">
+					registrationid = #{registrationid, jdbcType=INTEGER}  
+				</when>
+				<when test="userid != null and userid != ''">
+					AND userid = #{userid, jdbcType=INTEGER}  
+				</when>
+				<when test="activityid != null and activityid != ''">
+					AND activityid = #{activityid, jdbcType=INTEGER}
+				</when>
+				<when test="signstatus != null and signstatus != ''">
+					AND signstatus = #{signstatus, jdbcType=INTEGER}
+				</when>
+			</choose>
+		</where>
+	</select>
+	<select id="countRegisteractivity" resultType="java.lang.Integer">
+		select count(*)
+ 				from registeractivity
+		<where>
+			<choose>
+				<when test="registrationid != null and registrationid != '' ">
+					registrationid = #{registrationid, jdbcType=INTEGER}  
+				</when>
+				<when test="userid != null and userid != ''">
+					AND userid = #{userid, jdbcType=INTEGER}  
+				</when>
+				<when test="activityid != null and activityid != ''">
+					AND activityid = #{activityid, jdbcType=INTEGER}
+				</when>
+				<when test="signstatus != null and signstatus != ''">
+					AND signstatus = #{signstatus, jdbcType=INTEGER}
+				</when>
+			</choose>
+		</where>
+	</select>
+  
+  
+</mapper>

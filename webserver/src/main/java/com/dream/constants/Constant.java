@@ -3,8 +3,6 @@ package com.dream.constants;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.dream.bean.Checkcode;
-
 public interface Constant {
 	// MAC校验字段
 	public final static String[] CHECK_FIELDS = new String[] { };
@@ -38,7 +36,7 @@ public interface Constant {
 	public static final String DEFAULT_DATEFORMAT = "yyyy-MM-dd HH:mm:ss,SSS";
 
 	//校验码过期时间(分钟)
-	public static final int CHECKCODE_EXPIRE_MINUTE = 100;
+	public static final int CHECKCODE_EXPIRE_MINUTE = 30;
 	//校验码过期时间(毫秒)，自动根据上个参数计算
 	public static final long CHECKCODE_EXPIRE_MILLISECOND  = CHECKCODE_EXPIRE_MINUTE * 60 * 1000;
 
@@ -52,5 +50,7 @@ public interface Constant {
 	public static final String CODE_0005="校验码已过期，过期时间为"+CHECKCODE_EXPIRE_MINUTE+"分钟";
 	public static final String CODE_0006="";
 	public static final String CODE_0007="";
+	
+	public static final String ACTIVITY_PICTURE_HEADER_NAME = "header.jpg";
 	
 }
