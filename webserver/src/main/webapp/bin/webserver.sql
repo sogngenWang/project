@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 生产
-Source Server Version : 50173
-Source Host           : 121.40.99.112:3306
+Source Server         : own
+Source Server Version : 50520
+Source Host           : localhost:3306
 Source Database       : webserver
 
 Target Server Type    : MYSQL
-Target Server Version : 50173
+Target Server Version : 50520
 File Encoding         : 65001
 
-Date: 2014-11-03 21:52:13
+Date: 2014-11-04 00:59:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -110,11 +110,13 @@ CREATE TABLE `friends` (
   `frienduserid` int(11) DEFAULT NULL COMMENT '用户好友id',
   `isbefriend` varchar(2) DEFAULT NULL COMMENT '是否已经互为好友(0.待确认 1.是)',
   PRIMARY KEY (`friendid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='好友关系表';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='好友关系表';
 
 -- ----------------------------
 -- Records of friends
 -- ----------------------------
+INSERT INTO friends VALUES ('1', '1', '2', '0');
+INSERT INTO friends VALUES ('2', '1', '3', '1');
 
 -- ----------------------------
 -- Table structure for `kinds`
@@ -148,11 +150,13 @@ CREATE TABLE `onlinequestion` (
   `question` varchar(255) DEFAULT NULL COMMENT '已注册用户提问的问题',
   `answer` varchar(255) DEFAULT NULL COMMENT '活动人员/管理员回答的答案',
   PRIMARY KEY (`questionid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='在线提问列表';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='在线提问列表';
 
 -- ----------------------------
 -- Records of onlinequestion
 -- ----------------------------
+INSERT INTO onlinequestion VALUES ('1', '1', '2014-11-03 21:55:55', '什么时候开始', '2014年11月3日');
+INSERT INTO onlinequestion VALUES ('2', '1', '2014-11-03 21:56:17', '有谁参加', '参照以上嘉宾');
 
 -- ----------------------------
 -- Table structure for `praise`
@@ -182,13 +186,15 @@ CREATE TABLE `registeractivity` (
   `activityid` int(11) DEFAULT NULL COMMENT '活动id',
   `signstatus` int(11) DEFAULT NULL COMMENT '签到状态(0.未签到 1.已签到)',
   PRIMARY KEY (`registrationid`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='用户活动关系表';
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='用户活动关系表';
 
 -- ----------------------------
 -- Records of registeractivity
 -- ----------------------------
 INSERT INTO registeractivity VALUES ('1', '1', '1', '1');
-INSERT INTO registeractivity VALUES ('2', '1', '1', '0');
+INSERT INTO registeractivity VALUES ('2', '2', '1', '0');
+INSERT INTO registeractivity VALUES ('3', '3', '1', '1');
+INSERT INTO registeractivity VALUES ('4', '1', '2', '1');
 
 -- ----------------------------
 -- Table structure for `theme`
@@ -231,7 +237,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 INSERT INTO user VALUES ('1', '15155445597', '王松根', 'dream', 'wsg96321', '1', '1', '2014-10-28 11:25:04', 'wangsonggen@126.com', '博远无线', '研发工程师');
 INSERT INTO user VALUES ('2', '15155221122', '测试', '测试昵称', '123', '3', '1', '2014-10-28 11:25:31', 'test@163.com', '腾讯', '总工程师');
-INSERT INTO user VALUES ('36', '13067266273', 'Jack', '测试a昵v称哦123', null, null, null, null, null, null, null);
+INSERT INTO user VALUES ('3', '13067266273', 'Jack', '测试a昵v称哦123', 'dream', '2', '1', '2014-11-03 21:57:31', 'heh@qq.com', '百度', '美工');
 INSERT INTO user VALUES ('30', '18211112333', 'Jack2123', null, null, null, null, null, null, null, null);
 INSERT INTO user VALUES ('37', '15159628259', null, '昵称测试1', 'wsg', null, null, null, null, '新大陆软件有限公司', null);
 
