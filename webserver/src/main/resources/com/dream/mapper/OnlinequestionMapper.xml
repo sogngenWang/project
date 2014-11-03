@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dream.dao.OnlinequestionMapper" >
+  <resultMap id="BaseResultMap" type="com.dream.bean.Onlinequestion" >
+    <id column="questionid" property="questionid" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="asktime" property="asktime" jdbcType="VARCHAR" />
+    <result column="question" property="question" jdbcType="VARCHAR" />
+    <result column="answer" property="answer" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    questionid, userid, asktime, question, answer
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from onlinequestion
+    where questionid = #{questionid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from onlinequestion
+    where questionid = #{questionid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dream.bean.Onlinequestion" >
+    <selectKey resultType="java.lang.Integer" keyProperty="questionid" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into onlinequestion (userid, asktime, question, 
+      answer)
+    values (#{userid,jdbcType=INTEGER}, #{asktime,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR}, 
+      #{answer,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dream.bean.Onlinequestion" >
+    <selectKey resultType="java.lang.Integer" keyProperty="questionid" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into onlinequestion
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="asktime != null" >
+        asktime,
+      </if>
+      <if test="question != null" >
+        question,
+      </if>
+      <if test="answer != null" >
+        answer,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="asktime != null" >
+        #{asktime,jdbcType=VARCHAR},
+      </if>
+      <if test="question != null" >
+        #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        #{answer,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dream.bean.Onlinequestion" >
+    update onlinequestion
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="asktime != null" >
+        asktime = #{asktime,jdbcType=VARCHAR},
+      </if>
+      <if test="question != null" >
+        question = #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        answer = #{answer,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where questionid = #{questionid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dream.bean.Onlinequestion" >
+    update onlinequestion
+    set userid = #{userid,jdbcType=INTEGER},
+      asktime = #{asktime,jdbcType=VARCHAR},
+      question = #{question,jdbcType=VARCHAR},
+      answer = #{answer,jdbcType=VARCHAR}
+    where questionid = #{questionid,jdbcType=INTEGER}
+  </update>
+</mapper>

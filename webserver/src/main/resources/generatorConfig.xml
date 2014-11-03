@@ -6,10 +6,12 @@
 
 
 <generatorConfiguration>
-	<!-- 此处写jdbc的版本号，执行该命令的时候，右键项目-run as-maven build...-mybatis-generator:generate -->
-	<classPathEntry
-		location="C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\5.1.15\mysql-connector-java-5.1.15.jar" />
-
+	<!-- 此处写jdbc的版本号，执行该命令的时候，右键项目-run as-maven build...-
+	mybatis-generator:generate 
+	-->
+	<classPathEntry location="D:\.m2\repository\mysql\mysql-connector-java\5.1.15\mysql-connector-java-5.1.15.jar" />
+		<!-- location="C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\5.1.15\mysql-connector-java-5.1.15.jar" /> -->
+		
 	<context id="DB2Tables" targetRuntime="MyBatis3">
 
 		<!-- 生成代码的时候，不会有注解 -->
@@ -49,14 +51,30 @@
 		</javaClientGenerator>
 		
 		
-					<table schema="" tableName="registeractivity" domainObjectName="Registeractivity"
+		<table schema="" tableName="onlinequestion" domainObjectName="Onlinequestion"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="questionid" sqlStatement="MySql"
+				identity="true" />
+		</table>
+		<table schema="" tableName="friends" domainObjectName="Friends"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="friendid" sqlStatement="MySql"
+				identity="true" />
+		</table>
+		
+		<!-- 
+		<table schema="" tableName="registeractivity" domainObjectName="Registeractivity"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 			<generatedKey column="userid" sqlStatement="MySql"
 				identity="true" />
-		</table>	
-		<!-- 
+		</table>
+		
 			<table schema="" tableName="checkcode" domainObjectName="Checkcode"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"

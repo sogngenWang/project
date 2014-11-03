@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dream.dao.FriendsMapper" >
+  <resultMap id="BaseResultMap" type="com.dream.bean.Friends" >
+    <id column="friendid" property="friendid" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="frienduserid" property="frienduserid" jdbcType="INTEGER" />
+    <result column="isbefriend" property="isbefriend" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    friendid, userid, frienduserid, isbefriend
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from friends
+    where friendid = #{friendid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from friends
+    where friendid = #{friendid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dream.bean.Friends" >
+    <selectKey resultType="java.lang.Integer" keyProperty="friendid" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into friends (userid, frienduserid, isbefriend
+      )
+    values (#{userid,jdbcType=INTEGER}, #{frienduserid,jdbcType=INTEGER}, #{isbefriend,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dream.bean.Friends" >
+    <selectKey resultType="java.lang.Integer" keyProperty="friendid" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into friends
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="frienduserid != null" >
+        frienduserid,
+      </if>
+      <if test="isbefriend != null" >
+        isbefriend,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="frienduserid != null" >
+        #{frienduserid,jdbcType=INTEGER},
+      </if>
+      <if test="isbefriend != null" >
+        #{isbefriend,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dream.bean.Friends" >
+    update friends
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="frienduserid != null" >
+        frienduserid = #{frienduserid,jdbcType=INTEGER},
+      </if>
+      <if test="isbefriend != null" >
+        isbefriend = #{isbefriend,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where friendid = #{friendid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dream.bean.Friends" >
+    update friends
+    set userid = #{userid,jdbcType=INTEGER},
+      frienduserid = #{frienduserid,jdbcType=INTEGER},
+      isbefriend = #{isbefriend,jdbcType=VARCHAR}
+    where friendid = #{friendid,jdbcType=INTEGER}
+  </update>
+</mapper>

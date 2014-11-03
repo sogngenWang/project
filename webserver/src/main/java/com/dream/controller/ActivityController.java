@@ -60,6 +60,11 @@ public class ActivityController {
 		return responseBean;
 	}
 
+	/**
+	 * 查询具体某个活动，需要传活动id
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/detailActivity", method = { RequestMethod.POST })
 	@ResponseBody
 	public ResponseBean detailActivity(String request) {

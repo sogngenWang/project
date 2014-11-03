@@ -21,7 +21,7 @@
     where registrationid = #{registrationid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.dream.bean.Registeractivity" >
-    <selectKey resultType="java.lang.Integer" keyProperty="userid" order="AFTER" >
+    <selectKey resultType="java.lang.Integer" keyProperty="registrationid" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into registeractivity (registrationid, activityid, signstatus
@@ -30,7 +30,7 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.dream.bean.Registeractivity" >
-    <selectKey resultType="java.lang.Integer" keyProperty="userid" order="AFTER" >
+    <selectKey resultType="java.lang.Integer" keyProperty="registrationid" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into registeractivity

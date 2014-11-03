@@ -18,5 +18,7 @@
 		<mapper resource="com/dream/mapper/ActivityMapper.xml" />
 		<mapper resource="com/dream/mapper/ActivityvipMapper.xml" />
 		<mapper resource="com/dream/mapper/RegisteractivityMapper.xml" />
+		<mapper resource="com/dream/mapper/FriendsMapper.xml" />
+		<mapper resource="com/dream/mapper/OnlinequestionMapper.xml" />
 	</mappers>
 </configuration>
