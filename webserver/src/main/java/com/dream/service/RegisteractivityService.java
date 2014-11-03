@@ -3,6 +3,7 @@ package com.dream.service;
 import java.util.List;
 
 import com.dream.bean.Registeractivity;
+import com.dream.bean.User;
 
 public interface RegisteractivityService {
 
@@ -17,4 +18,11 @@ public interface RegisteractivityService {
 	int addRegisteractivity(Registeractivity registeractivity);
 	
 	int countRegisteractivity(Registeractivity registeractivity);
+
+	int countRegisterSign(Registeractivity registeractivity);
+
+	List<User> listRegisterSignUser(Registeractivity registeractivity);
+
+	boolean isUserSign(Registeractivity registeractivity);
+
 }

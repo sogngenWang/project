@@ -1,6 +1,10 @@
 package com.dream.bean;
 
-public class Onlinequestion {
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@JsonInclude(Include.NON_NULL)
+public class Onlinequestion  {
     private Integer questionid;
 
     private Integer userid;

@@ -48,9 +48,21 @@ public interface Constant {
 	public static final String CODE_0003="用户已经存在，注册失败";
 	public static final String CODE_0004="校验码错误";
 	public static final String CODE_0005="校验码已过期，过期时间为"+CHECKCODE_EXPIRE_MINUTE+"分钟";
-	public static final String CODE_0006="";
+	public static final String CODE_0006="用户还未签到，列出已签到用户失败";
 	public static final String CODE_0007="";
 	
 	public static final String ACTIVITY_PICTURE_HEADER_NAME = "header.jpg";
+	
+	//二维码的宽以及高
+	public static final int QRCODE_WIDTH = 200;
+	public static final int QRCODE_HEIGHT = 200;
+	
+	//数据库默认常量值
+	//普通用户
+	public static final String USER_NORMAL_TYPE = "3";
+	//用户激活状态
+	public static final String USER_ACTIVE = "1";
+	//活动已签到用户
+	public static final Integer REGISTERACTIVITY_SIGN = 1;
 	
 }

@@ -90,4 +90,83 @@
       answer = #{answer,jdbcType=VARCHAR}
     where questionid = #{questionid,jdbcType=INTEGER}
   </update>
+  
+  
+    
+  	<!-- add by wsg -->
+	<!-- 通用方法 -->
+	<!-- ，参数为对象，返回list<对象> -->
+
+	<select id="listOnlinequestion" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from onlinequestion
+		<where>
+			<choose>
+				<when test="userid != null and userid != '' ">
+					themeid = #{userid, jdbcType=INTEGER}  
+				</when>
+				<when test="asktime != null and asktime != ''">
+					AND asktime = #{asktime, jdbcType=VARCHAR}  
+				</when>
+				<when test="question != null and question != ''">
+					AND question = #{question, jdbcType=INTEGER}
+				</when>
+				<when test="answer != null and answer != ''">
+					AND answer = #{answer, jdbcType=INTEGER}
+				</when>
+				<when test="questionid != null and questionid != ''">
+					AND questionid = #{questionid, jdbcType=INTEGER}
+				</when>
+			</choose>
+		</where>
+	</select>
+	
+	<select id="detailOnlinequestion" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from onlinequestion
+		<where>
+			<choose>
+				<when test="userid != null and userid != '' ">
+					themeid = #{userid, jdbcType=INTEGER}  
+				</when>
+				<when test="asktime != null and asktime != ''">
+					AND asktime = #{asktime, jdbcType=VARCHAR}  
+				</when>
+				<when test="question != null and question != ''">
+					AND question = #{question, jdbcType=INTEGER}
+				</when>
+				<when test="answer != null and answer != ''">
+					AND answer = #{answer, jdbcType=INTEGER}
+				</when>
+				<when test="questionid != null and questionid != ''">
+					AND questionid = #{questionid, jdbcType=INTEGER}
+				</when>
+			</choose>
+		</where>
+	</select>
+	<select id="countOnlinequestion" resultType="java.lang.Integer">
+		select count(*)
+		from onlinequestion
+		<where>
+			<choose>
+				<when test="userid != null and userid != '' ">
+					themeid = #{userid, jdbcType=INTEGER}  
+				</when>
+				<when test="asktime != null and asktime != ''">
+					AND asktime = #{asktime, jdbcType=VARCHAR}  
+				</when>
+				<when test="question != null and question != ''">
+					AND question = #{question, jdbcType=INTEGER}
+				</when>
+				<when test="answer != null and answer != ''">
+					AND answer = #{answer, jdbcType=INTEGER}
+				</when>
+				<when test="questionid != null and questionid != ''">
+					AND questionid = #{questionid, jdbcType=INTEGER}
+				</when>
+			</choose>
+		</where>
+	</select>
 </mapper>

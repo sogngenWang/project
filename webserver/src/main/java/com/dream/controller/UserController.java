@@ -197,7 +197,8 @@ public class UserController {
 				User user = gson.fromJson(content.toString(), User.class);
 				CommonUtils.decriptObject(user, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				LOG.info("用户名，密码 |username="+user.getUsername()+",password="+user.getPassword());
-				user = userService.detailUser(user);
+//				user = userService.detailUser(user);
+				user = userService.loginUser(user);
 				if(null == user){
 					//用户名或者密码错误
 					LOG.error("用户名或者密码错误");
@@ -248,9 +249,8 @@ public class UserController {
 					responseBean.getMsg().setDesc(Constant.CODE_0003);
 					return responseBean;
 				}
-				
 				//真正的注册该用户
-				userService.addUser(user);
+				userService.addNormalUser(user);
 				//注册完用户需要把该用户资料填充到名片夹中  TODO
 				
 			} catch (Exception e) {

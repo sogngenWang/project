@@ -218,8 +218,12 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}\src\main\webapp\WEB-INF\lib\libCommon.jar</systemPath>
 		</dependency>
-
-
+		<!-- 二维码相关 -->
+		<dependency>
+			<groupId>net.glxn</groupId>
+			<artifactId>qrgen</artifactId>
+			<version>1.4</version>
+		</dependency>
 		<!-- 单元测试相关 -->
 		<dependency>
 			<groupId>org.mockito</groupId>

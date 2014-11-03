@@ -1,5 +1,7 @@
 package com.dream.dao;
 
+import java.util.List;
+
 import com.dream.bean.Onlinequestion;
 
 public interface OnlinequestionMapper {
@@ -14,4 +16,10 @@ public interface OnlinequestionMapper {
     int updateByPrimaryKeySelective(Onlinequestion record);
 
     int updateByPrimaryKey(Onlinequestion record);
+
+	int countOnlinequestion(Onlinequestion onlinequestion);
+
+	Onlinequestion detailOnlinequestion(Onlinequestion onlinequestion);
+
+	List<Onlinequestion> listOnlinequestion(Onlinequestion onlinequestion);
 }

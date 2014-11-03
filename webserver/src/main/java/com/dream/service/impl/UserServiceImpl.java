@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dream.bean.User;
+import com.dream.constants.Constant;
 import com.dream.dao.UserMapper;
 import com.dream.service.UserService;
+import com.dream.utils.CommonUtils;
 
 @Repository(value = "userService")
 public class UserServiceImpl implements UserService {
@@ -57,6 +59,29 @@ public class UserServiceImpl implements UserService {
 	public int updateByTelephone(User user) {
 		
 		return userDao.updateByTelephone(user);
+	}
+
+	@Override
+	public int addNormalUser(User user) {
+		//设置用户状态等等
+		user.setIsactive(Constant.USER_ACTIVE);
+		user.setRegistertime(CommonUtils.getSYSDate());
+		user.setType(Constant.USER_NORMAL_TYPE);
+		return userDao.insert(user);
+	}
+
+	@Override
+	public User loginUser(User user) {
+
+		user.setIsactive(Constant.USER_ACTIVE);
+		user.setType(Constant.USER_NORMAL_TYPE);
+		
+		user = userDao.detailUser(user);
+		user.setPassword(null);
+		user.setIsactive(null);
+		user.setType(null);
+		
+		return user;
 	}
 
 }

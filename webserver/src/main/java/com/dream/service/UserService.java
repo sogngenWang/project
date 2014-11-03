@@ -19,4 +19,8 @@ public interface UserService {
 	int countUser(User user);
 	
 	int updateByTelephone(User user);
+
+	int addNormalUser(User user);
+
+	User loginUser(User user);
 }
