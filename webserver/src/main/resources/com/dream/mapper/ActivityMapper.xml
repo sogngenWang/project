@@ -7,7 +7,7 @@
     <result column="activitystarttime" jdbcType="VARCHAR" property="activitystarttime" />
     <result column="activityendtime" jdbcType="VARCHAR" property="activityendtime" />
     <result column="activitystatus" jdbcType="VARCHAR" property="activitystatus" />
-    <result column="activityquota" jdbcType="VARCHAR" property="activityquota" />
+    <result column="activityquota" jdbcType="INTEGER" property="activityquota" />
     <result column="activityaddress" jdbcType="VARCHAR" property="activityaddress" />
     <result column="activitycreatetime" jdbcType="VARCHAR" property="activitycreatetime" />
     <result column="activitypicturedir" jdbcType="VARCHAR" property="activitypicturedir" />
@@ -41,7 +41,7 @@
       kindsid, viewcount, secondkindsid, activityabout, viewcount,
       activitydetail)
     values (#{activityname,jdbcType=VARCHAR}, #{activitystarttime,jdbcType=VARCHAR}, 
-      #{activityendtime,jdbcType=VARCHAR}, #{activitystatus,jdbcType=VARCHAR}, #{activityquota,jdbcType=VARCHAR}, 
+      #{activityendtime,jdbcType=VARCHAR}, #{activitystatus,jdbcType=VARCHAR}, #{activityquota,jdbcType=INTEGER}, 
       #{activityaddress,jdbcType=VARCHAR}, #{activitycreatetime,jdbcType=VARCHAR}, #{activitypicturedir,jdbcType=VARCHAR}, 
       #{kindsid,jdbcType=INTEGER}, #{viewcount,jdbcType=INTEGER}, #{secondkindsid,jdbcType=INTEGER}, #{activityabout,jdbcType=LONGVARCHAR}, 
       #{activitydetail,jdbcType=LONGVARCHAR})
@@ -106,7 +106,7 @@
         #{activitystatus,jdbcType=VARCHAR},
       </if>
       <if test="activityquota != null">
-        #{activityquota,jdbcType=VARCHAR},
+        #{activityquota,jdbcType=INTEGER},
       </if>
       <if test="activityaddress != null">
         #{activityaddress,jdbcType=VARCHAR},
@@ -150,7 +150,7 @@
         activitystatus = #{activitystatus,jdbcType=VARCHAR},
       </if>
       <if test="activityquota != null">
-        activityquota = #{activityquota,jdbcType=VARCHAR},
+        activityquota = #{activityquota,jdbcType=INTEGER},
       </if>
       <if test="activityaddress != null">
         activityaddress = #{activityaddress,jdbcType=VARCHAR},
@@ -185,7 +185,7 @@
       activitystarttime = #{activitystarttime,jdbcType=VARCHAR},
       activityendtime = #{activityendtime,jdbcType=VARCHAR},
       activitystatus = #{activitystatus,jdbcType=VARCHAR},
-      activityquota = #{activityquota,jdbcType=VARCHAR},
+      activityquota = #{activityquota,jdbcType=INTEGER},
       activityaddress = #{activityaddress,jdbcType=VARCHAR},
       activitycreatetime = #{activitycreatetime,jdbcType=VARCHAR},
       activitypicturedir = #{activitypicturedir,jdbcType=VARCHAR},
@@ -222,7 +222,7 @@
 					AND activitystatus = #{activitystatus, jdbcType=VARCHAR}
 				</if>
 				<if test="activityquota != null and activityquota != ''">
-					AND activityquota = #{activityquota, jdbcType=VARCHAR}
+					AND activityquota = #{activityquota, jdbcType=INTEGER}
 				</if>
 				<if test="activityaddress != null and activityaddress != ''">
 					AND activityaddress = #{activityaddress, jdbcType=VARCHAR}
@@ -272,7 +272,7 @@
 					AND activitystatus = #{activitystatus, jdbcType=VARCHAR}
 				</if>
 				<if test="activityquota != null and activityquota != ''">
-					AND activityquota = #{activityquota, jdbcType=VARCHAR}
+					AND activityquota = #{activityquota, jdbcType=INTEGER}
 				</if>
 				<if test="activityaddress != null and activityaddress != ''">
 					AND activityaddress = #{activityaddress, jdbcType=VARCHAR}
@@ -315,7 +315,7 @@
 					AND activitystatus = #{activitystatus, jdbcType=VARCHAR}
 				</if>
 				<if test="activityquota != null and activityquota != ''">
-					AND activityquota = #{activityquota, jdbcType=VARCHAR}
+					AND activityquota = #{activityquota, jdbcType=INTEGER}
 				</if>
 				<if test="activityaddress != null and activityaddress != ''">
 					AND activityaddress = #{activityaddress, jdbcType=VARCHAR}

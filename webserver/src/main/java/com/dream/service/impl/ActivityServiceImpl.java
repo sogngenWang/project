@@ -118,5 +118,16 @@ public class ActivityServiceImpl implements ActivityService {
 		
 		return activity;
 	}
+
+	@Override
+	public boolean isRegistering(Integer activityid) {
+		Activity activity = new Activity();
+		activity.setActivityid(activityid); 
+		activity = activityDao.detailActivity(activity);
+		if(null != activity && Constant.ACTIVITY_REGISTER_STATUS.equals(activity.getActivitystatus())){
+			return true;
+		}
+		return false;
+	}
 	
 }

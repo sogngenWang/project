@@ -49,7 +49,13 @@ public interface Constant {
 	public static final String CODE_0004="校验码错误";
 	public static final String CODE_0005="校验码已过期，过期时间为"+CHECKCODE_EXPIRE_MINUTE+"分钟";
 	public static final String CODE_0006="用户还未签到，列出已签到用户失败";
-	public static final String CODE_0007="";
+	public static final String CODE_0007="用户已经报名过";
+	public static final String CODE_0008="报名人数已经达到上限";
+	public static final String CODE_0009="该活动还未开始报名或者已经停止报名";
+	public static final String CODE_0010="";
+	public static final String CODE_0011="";
+	public static final String CODE_0012="";
+	public static final String CODE_0013="";
 	
 	public static final String ACTIVITY_PICTURE_HEADER_NAME = "header.jpg";
 	
@@ -66,5 +72,6 @@ public interface Constant {
 	public static final Integer REGISTERACTIVITY_SIGN = 1;
 	//每页显示多少条记录，默认值
 	public static final Integer PAGE_RECORD_PER_PAGE_DEFAULT = 3;
+	public static final String ACTIVITY_REGISTER_STATUS = "2";
 	
 }

@@ -94,91 +94,91 @@ public class UserController {
 		return responseBean;
 	}
 
-	@RequestMapping(value = "/listUser", method = { RequestMethod.POST })
-	@ResponseBody
-	public ResponseBean listUser(String request) {
-		requestBean = gson.fromJson(request, RequestBean.class);
-		// 进行校验
-		if (requestBean.checkMac()) {
-			LOG.info("校验成功....");
-			// 真正的业务逻辑
-			try {
-				content = requestBean.getContent();
-				User user = gson.fromJson(content.toString(), User.class);
-				CommonUtils.decriptObject(user, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
-				List<User> userList = userService.listUser(user);
-				responseBean.setContent(userList);
-			} catch (Exception e) {
-				LOG.error("业务执行异常...." + e.getMessage());
-				responseBean.getMsg().setCode("0001");
-				responseBean.getMsg().setDesc("业务异常");
-				return responseBean;
-			}
-			LOG.info("业务执行成功，设置返回报文状态为成功...");
-			responseBean.getMsg().setCode("0000");
-			responseBean.getMsg().setDesc(Constant.CODE_0000);
-			responseBean.setMac(requestBean.getHead().getSerial());
-		}
+//	@RequestMapping(value = "/listUser", method = { RequestMethod.POST })
+//	@ResponseBody
+//	public ResponseBean listUser(String request) {
+//		requestBean = gson.fromJson(request, RequestBean.class);
+//		// 进行校验
+//		if (requestBean.checkMac()) {
+//			LOG.info("校验成功....");
+//			// 真正的业务逻辑
+//			try {
+//				content = requestBean.getContent();
+//				User user = gson.fromJson(content.toString(), User.class);
+//				CommonUtils.decriptObject(user, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
+//				List<User> userList = userService.listUser(user);
+//				responseBean.setContent(userList);
+//			} catch (Exception e) {
+//				LOG.error("业务执行异常...." + e.getMessage());
+//				responseBean.getMsg().setCode("0001");
+//				responseBean.getMsg().setDesc("业务异常");
+//				return responseBean;
+//			}
+//			LOG.info("业务执行成功，设置返回报文状态为成功...");
+//			responseBean.getMsg().setCode("0000");
+//			responseBean.getMsg().setDesc(Constant.CODE_0000);
+//			responseBean.setMac(requestBean.getHead().getSerial());
+//		}
+//
+//		return responseBean;
+//	}
 
-		return responseBean;
-	}
+//	@RequestMapping(value = "/updateUser", method = { RequestMethod.POST })
+//	@ResponseBody
+//	public ResponseBean updateUser(String request) {
+//		requestBean = gson.fromJson(request, RequestBean.class);
+//		// 进行校验
+//		if (requestBean.checkMac()) {
+//			LOG.info("校验成功....");
+//			// 真正的业务逻辑
+//			try {
+//				content = requestBean.getContent();
+//				User user = gson.fromJson(content.toString(), User.class);
+//				CommonUtils.decriptObject(user, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
+//				userService.updateUser(user);
+//				responseBean.setContent(user);
+//			} catch (Exception e) {
+//				LOG.error("业务执行异常...." + e.getMessage());
+//				responseBean.getMsg().setCode("0001");
+//				responseBean.getMsg().setDesc("业务异常");
+//				return responseBean;
+//			}
+//			LOG.info("业务执行成功，设置返回报文状态为成功...");
+//			responseBean.getMsg().setCode("0000");
+//			responseBean.getMsg().setDesc(Constant.CODE_0000);
+//			responseBean.setMac(requestBean.getHead().getSerial());
+//		}
+//
+//		return responseBean;
+//	}
 
-	@RequestMapping(value = "/updateUser", method = { RequestMethod.POST })
-	@ResponseBody
-	public ResponseBean updateUser(String request) {
-		requestBean = gson.fromJson(request, RequestBean.class);
-		// 进行校验
-		if (requestBean.checkMac()) {
-			LOG.info("校验成功....");
-			// 真正的业务逻辑
-			try {
-				content = requestBean.getContent();
-				User user = gson.fromJson(content.toString(), User.class);
-				CommonUtils.decriptObject(user, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
-				userService.updateUser(user);
-				responseBean.setContent(user);
-			} catch (Exception e) {
-				LOG.error("业务执行异常...." + e.getMessage());
-				responseBean.getMsg().setCode("0001");
-				responseBean.getMsg().setDesc("业务异常");
-				return responseBean;
-			}
-			LOG.info("业务执行成功，设置返回报文状态为成功...");
-			responseBean.getMsg().setCode("0000");
-			responseBean.getMsg().setDesc(Constant.CODE_0000);
-			responseBean.setMac(requestBean.getHead().getSerial());
-		}
-
-		return responseBean;
-	}
-
-	@RequestMapping(value = "/deleteUser", method = { RequestMethod.POST })
-	@ResponseBody
-	public ResponseBean deleteUser(String request) {
-		requestBean = gson.fromJson(request, RequestBean.class);
-		// 进行校验
-		if (requestBean.checkMac()) {
-			LOG.info("校验成功....");
-			// 真正的业务逻辑
-			try {
-				content = requestBean.getContent();
-				User user = gson.fromJson(content.toString(), User.class);
-				CommonUtils.decriptObject(user, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
-				responseBean.setContent(user);
-			} catch (Exception e) {
-				LOG.error("业务执行异常...." + e.getMessage());
-				responseBean.getMsg().setCode("0001");
-				responseBean.getMsg().setDesc(Constant.CODE_0001);
-				return responseBean;
-			}
-			LOG.info("业务执行成功，设置返回报文状态为成功...");
-			responseBean.getMsg().setCode("0000");
-			responseBean.getMsg().setDesc(Constant.CODE_0000);
-			responseBean.setMac(requestBean.getHead().getSerial());
-		}
-
-		return responseBean;
-	}
+//	@RequestMapping(value = "/deleteUser", method = { RequestMethod.POST })
+//	@ResponseBody
+//	public ResponseBean deleteUser(String request) {
+//		requestBean = gson.fromJson(request, RequestBean.class);
+//		// 进行校验
+//		if (requestBean.checkMac()) {
+//			LOG.info("校验成功....");
+//			// 真正的业务逻辑
+//			try {
+//				content = requestBean.getContent();
+//				User user = gson.fromJson(content.toString(), User.class);
+//				CommonUtils.decriptObject(user, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
+//				responseBean.setContent(user);
+//			} catch (Exception e) {
+//				LOG.error("业务执行异常...." + e.getMessage());
+//				responseBean.getMsg().setCode("0001");
+//				responseBean.getMsg().setDesc(Constant.CODE_0001);
+//				return responseBean;
+//			}
+//			LOG.info("业务执行成功，设置返回报文状态为成功...");
+//			responseBean.getMsg().setCode("0000");
+//			responseBean.getMsg().setDesc(Constant.CODE_0000);
+//			responseBean.setMac(requestBean.getHead().getSerial());
+//		}
+//
+//		return responseBean;
+//	}
 	/**
 	 * 用户登录
 	 * @param request
@@ -249,10 +249,29 @@ public class UserController {
 					responseBean.getMsg().setDesc(Constant.CODE_0003);
 					return responseBean;
 				}
-				//真正的注册该用户
-				userService.addNormalUser(user);
-				//注册完用户需要把该用户资料填充到名片夹中  TODO
-				
+				//校验码验证查询
+				Checkcode checkcode = new Checkcode();
+				checkcode.setTelephone(user.getTelephone());
+				checkcode.setCheckcode(user.getCheckcode());
+				LOG.info("checkcode="+user.getCheckcode()+"|telephone = "+user.getTelephone());
+				checkcode = checkcodeService.detailCheckcode(checkcode);
+				if(null == checkcode){
+					responseBean.getMsg().setCode("0004");
+					responseBean.getMsg().setDesc(Constant.CODE_0004);
+					return responseBean;
+				}else{
+					//判断校验码是否过期
+					if(CommonUtils.isCheckCodeExpire(checkcode.getCreatetime())){
+						//校验码过期
+						responseBean.getMsg().setCode("0005");
+						responseBean.getMsg().setDesc(Constant.CODE_0005);
+						return responseBean;
+					}
+					//真正的注册该用户
+					userService.addNormalUser(user);
+					//注册完用户需要把该用户资料填充到名片夹中  TODO
+					
+				}
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");
@@ -285,17 +304,17 @@ public class UserController {
 				User user = gson.fromJson(content.toString(), User.class);
 				CommonUtils.decriptObject(user, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				//获取手机号，然后发送验证码到手机上,再次确认
-				String telephone = user.getTelephone();
-				String checkCode = CommonUtils.createCheckCode(Constant.CHECKCODE_LENGTH);
-				// 发送校验码到手机上
-				CommonUtils.sendCheckCode(telephone, checkCode);
-				LOG.info("telephone = "+ telephone +"checkCode = " + checkCode);
-				// 把该娇艳存入到数据库中
-				Checkcode checkcode = new Checkcode();
-				checkcode.setTelephone(telephone);
-				checkcode.setCheckcode(checkCode);
-				checkcode.setCreatetime(CommonUtils.getSYSDate());
-				checkcodeService.addCheckcode(checkcode);
+//				String telephone = user.getTelephone();
+//				String checkCode = CommonUtils.createCheckCode(Constant.CHECKCODE_LENGTH);
+//				// 发送校验码到手机上
+//				CommonUtils.sendCheckCode(telephone, checkCode);
+//				LOG.info("telephone = "+ telephone +"checkCode = " + checkCode);
+//				// 把该娇艳存入到数据库中
+//				Checkcode checkcode = new Checkcode();
+//				checkcode.setTelephone(telephone);
+//				checkcode.setCheckcode(checkCode);
+//				checkcode.setCreatetime(CommonUtils.getSYSDate());
+				checkcodeService.addCheckcodeAndSendMobile(user.getTelephone());
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");

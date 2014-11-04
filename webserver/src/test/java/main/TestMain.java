@@ -28,11 +28,19 @@ public class TestMain extends JUnitControllerBase {
 //		test.Test("listRegisterSignUserController");
 		//话题页面——列出所有的该活动的话题 | 1.分页 
 //		test.Test("listThemeController");
-		
+		//注册新用户 —— 获取验证码并显示
+//		test.Test("generateCheckcodeController");
+		//某个具体的活动页面详细信息——活动页面的首页  TODO 需要解决活动状态要如何自动改变?还是人工改变?或者说，只有从预定状态到报名状态需要人工干涉，其他状态需要数据库存储过程自动实现吗?
+//		test.Test("detailActivityController");
+		//活动详情页——立即预定(TODO 状态改变成报名状态之后，提示用户?新建一个usermessage表来提示消息)
+
+		//活动详情页——立即报名 
+//		test.Test("addRegisteractivityController");
+		// TODO 话题里面的评论也需要允许点赞
+		//总结功能额外做
 
 //		test.Test("addActivityController");
 //		test.Test("listActivityController");
-//		test.Test("detailActivityController");
 //		test.Test("detailCommentController");
 //		test.Test("detailPraiseController");
 //		test.Test("detailUserinfoController");

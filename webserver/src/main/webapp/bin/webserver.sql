@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 121.40.99.112
-Source Server Version : 50173
-Source Host           : 121.40.99.112:3306
+Source Server         : own
+Source Server Version : 50520
+Source Host           : localhost:3306
 Source Database       : webserver
 
 Target Server Type    : MYSQL
-Target Server Version : 50173
+Target Server Version : 50520
 File Encoding         : 65001
 
-Date: 2014-11-04 21:47:38
+Date: 2014-11-05 02:22:11
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,8 +23,8 @@ CREATE TABLE `activity` (
   `activityname` varchar(255) DEFAULT NULL COMMENT '活动名字',
   `activitystarttime` varchar(255) DEFAULT NULL COMMENT '活动开始时间',
   `activityendtime` varchar(255) DEFAULT NULL COMMENT '活动结束时间',
-  `activitystatus` varchar(2) DEFAULT NULL COMMENT '活动状态(1.预定中 2.报名中 3.报名结束 4.活动中 5.活动结束)',
-  `activityquota` varchar(30) DEFAULT NULL COMMENT '活动人数上线',
+  `activitystatus` varchar(2) DEFAULT '1' COMMENT '活动状态(1.预定中 2.报名中 3.报名结束 4.活动中 5.活动结束)',
+  `activityquota` int(11) DEFAULT NULL COMMENT '活动人数上限',
   `activityaddress` varchar(255) DEFAULT NULL COMMENT '活动地点',
   `activitycreatetime` varchar(255) DEFAULT NULL COMMENT '活动创建时间',
   `activitypicturedir` varchar(255) DEFAULT NULL COMMENT '活动图片目录，活动相关的所有图片都存放在该目录下，该目录下以head开头的为活动主图片',
@@ -39,8 +39,8 @@ CREATE TABLE `activity` (
 -- ----------------------------
 -- Records of activity
 -- ----------------------------
-INSERT INTO activity VALUES ('1', '大数据时代', '2014-02-02 23:29:37', '2014-10-24 23:29:58', '1', '100', '福建省福州市鼓楼区', '2014-01-29 23:30:17', 'http://localhost:8080/webserver/imgs/activity/1/', '1', '2', '测试活动概要内容~', '活动详情。。。', '16');
-INSERT INTO activity VALUES ('2', '机器学习算法', '2014-10-21 23:30:42', '2014-11-29 23:30:52', '3', '1000', '福建省福州市仓山区', '2014-10-20 23:31:21', null, null, null, null, null, null);
+INSERT INTO activity VALUES ('1', '大数据时代', '2014-02-02 23:29:37', '2014-10-24 23:29:58', '2', '100', '福建省福州市鼓楼区', '2014-01-29 23:30:17', 'http://localhost:8080/webserver/imgs/activity/1/', '1', '2', '测试活动概要内容~', '活动详情。。。', '19');
+INSERT INTO activity VALUES ('2', '机器学习算法', '2014-10-21 23:30:42', '2014-11-29 23:30:52', '2', '1000', '福建省福州市仓山区', '2014-10-20 23:31:21', null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `activityvip`
@@ -69,7 +69,7 @@ CREATE TABLE `checkcode` (
   `telephone` varchar(255) DEFAULT NULL COMMENT '该校验码对应的手机号',
   `createtime` varchar(255) DEFAULT NULL COMMENT '校验码生成时间',
   PRIMARY KEY (`checkcodeid`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='用户校验码';
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='用户校验码';
 
 -- ----------------------------
 -- Records of checkcode
@@ -79,6 +79,8 @@ INSERT INTO checkcode VALUES ('2', '704477', '15159628259', '2014-11-01 12:02:04
 INSERT INTO checkcode VALUES ('3', '511007', '15159628259', '2014-11-01 12:02:23,878');
 INSERT INTO checkcode VALUES ('4', '601515', '15159628259', '2014-11-01 12:02:33,078');
 INSERT INTO checkcode VALUES ('5', '600074', '15159628259', '2014-11-04 21:09:01,306');
+INSERT INTO checkcode VALUES ('6', '977708', '15155105527', '2014-11-05 00:35:23,258');
+INSERT INTO checkcode VALUES ('7', '198858', '15159628259', '2014-11-05 00:26:25,466');
 
 -- ----------------------------
 -- Table structure for `comment`
@@ -90,7 +92,7 @@ CREATE TABLE `comment` (
   `userid` int(11) NOT NULL COMMENT '发这条评论的用户id',
   `themeid` int(11) NOT NULL COMMENT '该评论对应的话题id',
   `commentseq` int(11) NOT NULL COMMENT '评论顺序',
-  `commenttime` varchar(20) NOT NULL COMMENT '评论时间',
+  `commenttime` varchar(30) NOT NULL COMMENT '评论时间',
   PRIMARY KEY (`commentid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='用户评论表';
 
@@ -112,15 +114,16 @@ CREATE TABLE `friends` (
   `friendid` int(11) NOT NULL AUTO_INCREMENT COMMENT '朋友关系id',
   `userid` int(11) DEFAULT NULL COMMENT '用户id',
   `frienduserid` int(11) DEFAULT NULL COMMENT '用户好友id',
-  `isbefriend` varchar(2) DEFAULT NULL COMMENT '是否已经互为好友(0.待确认 1.是)',
+  `isbefriend` varchar(2) DEFAULT '0' COMMENT '是否已经互为好友(0.待确认 1.是)',
+  `accesstime` varchar(30) DEFAULT NULL COMMENT '成为好友的时间——只有同意之后才有值',
   PRIMARY KEY (`friendid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='好友关系表';
 
 -- ----------------------------
 -- Records of friends
 -- ----------------------------
-INSERT INTO friends VALUES ('1', '1', '2', '0');
-INSERT INTO friends VALUES ('2', '1', '3', '1');
+INSERT INTO friends VALUES ('1', '1', '2', '0', null);
+INSERT INTO friends VALUES ('2', '1', '3', '1', null);
 
 -- ----------------------------
 -- Table structure for `kinds`
@@ -149,7 +152,7 @@ INSERT INTO kinds VALUES ('6', '移动互联网', '1');
 DROP TABLE IF EXISTS `onlinequestion`;
 CREATE TABLE `onlinequestion` (
   `questionid` int(11) NOT NULL AUTO_INCREMENT COMMENT '问题id',
-  `userid` int(11) DEFAULT NULL COMMENT '提问用户的id',
+  `userid` int(11) NOT NULL COMMENT '提问用户的id',
   `asktime` varchar(20) DEFAULT NULL COMMENT '问题提问的时间',
   `question` varchar(255) DEFAULT NULL COMMENT '已注册用户提问的问题',
   `answer` varchar(255) DEFAULT NULL COMMENT '活动人员/管理员回答的答案',
@@ -198,9 +201,9 @@ CREATE TABLE `registeractivity` (
   `registrationid` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户报名id',
   `userid` int(11) DEFAULT NULL COMMENT '用户id',
   `activityid` int(11) DEFAULT NULL COMMENT '活动id',
-  `signstatus` int(11) DEFAULT NULL COMMENT '签到状态(0.未签到 1.已签到)',
+  `signstatus` int(11) DEFAULT '0' COMMENT '签到状态(0.未签到 1.已签到)',
   PRIMARY KEY (`registrationid`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='用户活动关系表';
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='用户活动关系表';
 
 -- ----------------------------
 -- Records of registeractivity
@@ -209,6 +212,7 @@ INSERT INTO registeractivity VALUES ('1', '1', '1', '1');
 INSERT INTO registeractivity VALUES ('2', '2', '1', '0');
 INSERT INTO registeractivity VALUES ('3', '3', '1', '1');
 INSERT INTO registeractivity VALUES ('4', '1', '2', '1');
+INSERT INTO registeractivity VALUES ('7', '5', '1', '0');
 
 -- ----------------------------
 -- Table structure for `theme`
@@ -237,14 +241,14 @@ CREATE TABLE `user` (
   `username` varchar(20) DEFAULT NULL COMMENT '用户真实姓名',
   `nickname` varchar(20) DEFAULT NULL COMMENT '昵称',
   `password` varchar(255) DEFAULT NULL COMMENT '用户密码',
-  `type` varchar(2) DEFAULT NULL COMMENT '用户类型(1.管理员 2.企业顾问3.普通会员4.讲师5.嘉宾6.临时会员)',
-  `isactive` varchar(1) DEFAULT NULL COMMENT '账户的状态   1.激活 2.禁用',
+  `type` varchar(2) DEFAULT '3' COMMENT '用户类型(1.管理员 2.企业顾问3.普通会员4.讲师5.嘉宾6.临时会员)',
+  `isactive` varchar(1) DEFAULT '1' COMMENT '账户的状态   1.激活 2.禁用',
   `registertime` varchar(30) DEFAULT NULL COMMENT '注册时间',
   `email` varchar(25) DEFAULT NULL COMMENT '电子邮箱',
   `company` varchar(100) DEFAULT NULL COMMENT '所属公司',
   `position` varchar(30) DEFAULT NULL COMMENT '职位',
   PRIMARY KEY (`userid`)
-) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='用户登录信息表';
+) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COMMENT='用户登录信息表';
 
 -- ----------------------------
 -- Records of user
@@ -255,6 +259,7 @@ INSERT INTO user VALUES ('3', '13067266273', 'Jack', '测试a昵v称哦123', 'dr
 INSERT INTO user VALUES ('36', '18211112333', 'Jack2123', null, null, null, null, null, null, null, null);
 INSERT INTO user VALUES ('37', '15159628259', null, '昵称测试1', 'wsg123', null, null, null, null, '新大陆软件有限公司', null);
 INSERT INTO user VALUES ('38', '15155005597', null, '测试', 'w321', '3', '1', '2014-11-04 21:18:22,289', null, '网龙', null);
+INSERT INTO user VALUES ('39', '15155105527', null, '测试22', 'test321', '3', '1', '2014-11-05 00:57:03,513', null, '福富', null);
 
 -- ----------------------------
 -- Table structure for `userinfo`

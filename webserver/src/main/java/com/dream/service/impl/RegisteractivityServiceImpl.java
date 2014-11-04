@@ -6,9 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dream.bean.Activity;
 import com.dream.bean.Registeractivity;
 import com.dream.bean.User;
 import com.dream.constants.Constant;
+import com.dream.dao.ActivityMapper;
 import com.dream.dao.RegisteractivityMapper;
 import com.dream.dao.UserMapper;
 import com.dream.service.RegisteractivityService;
@@ -20,6 +22,9 @@ public class RegisteractivityServiceImpl implements RegisteractivityService {
 	private RegisteractivityMapper registeractivityDao;
 	@Autowired
 	private UserMapper userDao;
+	@Autowired
+	private ActivityMapper activityDao;
+	
 
 	@Override
 	public List<Registeractivity> listRegisteractivity(Registeractivity registeractivity) {
@@ -91,5 +96,29 @@ public class RegisteractivityServiceImpl implements RegisteractivityService {
 		}else{
 			return false;
 		}
+	}
+
+	@Override
+	public boolean isUpperRegist(Integer activityid) {
+		Registeractivity registeractivity = new Registeractivity();
+		registeractivity.setActivityid(activityid); 
+		//计算活动当前已经报名人数
+		int registerCount = registeractivityDao.countRegisteractivity(registeractivity);
+		//计算活动上限人数
+		Activity activity = new Activity();
+		activity.setActivityid(activityid); 
+		activity = activityDao.detailActivity(activity);
+		int activityUpperCount = activity.getActivityquota();
+		if(registerCount < activityUpperCount){
+			return false;
+		}
+		
+		return true;
+	}
+
+	@Override
+	public int userRegisteractivity(Registeractivity registeractivity) {
+		registeractivity.setSignstatus(0);
+		return registeractivityDao.insert(registeractivity);
 	}
 }

@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dream.basebean.PageBase;
 import com.dream.basebean.RequestBean;
 import com.dream.basebean.ResponseBean;
 import com.dream.bean.Activity;
+import com.dream.constants.Constant;
 import com.dream.service.ActivityService;
 import com.dream.utils.CommonUtils;
 import com.google.gson.Gson;
@@ -31,34 +33,34 @@ public class ActivityController {
 	@Resource(name = "activityService")
 	private ActivityService activityService;
 
-	@RequestMapping(value = "/addActivity", method = { RequestMethod.POST })
-	@ResponseBody
-	public ResponseBean addActivity(String request) {
-		requestBean = gson.fromJson(request, RequestBean.class);
-		// 进行校验
-		if (requestBean.checkMac()) {
-			LOG.info("校验成功....");
-			// 真正的业务逻辑
-			try {
-				content = requestBean.getContent();
-				Activity activity = gson.fromJson(content.toString(), Activity.class);
-				CommonUtils.decriptObject(activity, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
-				activityService.addActivity(activity);
-				responseBean.setContent(activity);
-			} catch (Exception e) {
-				LOG.error("业务执行异常...." + e.getMessage());
-				responseBean.getMsg().setCode("0001");
-				responseBean.getMsg().setDesc("业务异常");
-				return responseBean;
-			}
-			LOG.info("业务执行成功，设置返回报文状态为成功...");
-			responseBean.getMsg().setCode("0000");
-			responseBean.getMsg().setDesc("成功");
-			responseBean.setMac(requestBean.getHead().getSerial());
-		}
-		LOG.info("返回报文是:"+gson.toJson(responseBean));
-		return responseBean;
-	}
+//	@RequestMapping(value = "/addActivity", method = { RequestMethod.POST })
+//	@ResponseBody
+//	public ResponseBean addActivity(String request) {
+//		requestBean = gson.fromJson(request, RequestBean.class);
+//		// 进行校验
+//		if (requestBean.checkMac()) {
+//			LOG.info("校验成功....");
+//			// 真正的业务逻辑
+//			try {
+//				content = requestBean.getContent();
+//				Activity activity = gson.fromJson(content.toString(), Activity.class);
+//				CommonUtils.decriptObject(activity, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
+//				activityService.addActivity(activity);
+//				responseBean.setContent(activity);
+//			} catch (Exception e) {
+//				LOG.error("业务执行异常...." + e.getMessage());
+//				responseBean.getMsg().setCode("0001");
+//				responseBean.getMsg().setDesc("业务异常");
+//				return responseBean;
+//			}
+//			LOG.info("业务执行成功，设置返回报文状态为成功...");
+//			responseBean.getMsg().setCode("0000");
+//			responseBean.getMsg().setDesc("成功");
+//			responseBean.setMac(requestBean.getHead().getSerial());
+//		}
+//		LOG.info("返回报文是:"+gson.toJson(responseBean));
+//		return responseBean;
+//	}
 
 	/**
 	 * 查询具体某个活动，需要传活动id
@@ -84,12 +86,12 @@ public class ActivityController {
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");
-				responseBean.getMsg().setDesc("业务异常");
+				responseBean.getMsg().setDesc(Constant.CODE_0001);
 				return responseBean;
 			}
 			LOG.info("业务执行成功，设置返回报文状态为成功...");
 			responseBean.getMsg().setCode("0000");
-			responseBean.getMsg().setDesc("成功");
+			responseBean.getMsg().setDesc(Constant.CODE_0000);
 			responseBean.setMac(requestBean.getHead().getSerial());
 		}
 
@@ -108,80 +110,82 @@ public class ActivityController {
 				content = requestBean.getContent();
 				Activity activity = gson.fromJson(content.toString(), Activity.class);
 				CommonUtils.decriptObject(activity, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
+				PageBase pageBase = CommonUtils.createNewPageBase(activity);
 				List<Activity> activityList = activityService.listActivity(activity);
-				responseBean.setContent(activityList);
+				responseBean.setContent(CommonUtils.createListPage(activityList, pageBase));
+				responseBean.setContent(pageBase);
 			} catch (Exception e) {
 				e.printStackTrace();
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");
-				responseBean.getMsg().setDesc("业务异常");
+				responseBean.getMsg().setDesc(Constant.CODE_0001);
 				return responseBean;
 			}
 			LOG.info("业务执行成功，设置返回报文状态为成功...");
 			responseBean.getMsg().setCode("0000");
-			responseBean.getMsg().setDesc("成功");
+			responseBean.getMsg().setDesc(Constant.CODE_0000);
 			responseBean.setMac(requestBean.getHead().getSerial());
 		}
 
 		return responseBean;
 	}
 
-	@RequestMapping(value = "/updateActivity", method = { RequestMethod.POST })
-	@ResponseBody
-	public ResponseBean updateActivity(String request) {
-		requestBean = gson.fromJson(request, RequestBean.class);
-		// 进行校验
-		if (requestBean.checkMac()) {
-			LOG.info("校验成功....");
-			// 真正的业务逻辑
-			try {
-				content = requestBean.getContent();
-				Activity activity = gson.fromJson(content.toString(), Activity.class);
-				CommonUtils.decriptObject(activity, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
-				activityService.updateActivity(activity);
-				responseBean.setContent(activity);
-			} catch (Exception e) {
-				LOG.error("业务执行异常...." + e.getMessage());
-				responseBean.getMsg().setCode("0001");
-				responseBean.getMsg().setDesc("业务异常");
-				return responseBean;
-			}
-			LOG.info("业务执行成功，设置返回报文状态为成功...");
-			responseBean.getMsg().setCode("0000");
-			responseBean.getMsg().setDesc("成功");
-			responseBean.setMac(requestBean.getHead().getSerial());
-		}
+//	@RequestMapping(value = "/updateActivity", method = { RequestMethod.POST })
+//	@ResponseBody
+//	public ResponseBean updateActivity(String request) {
+//		requestBean = gson.fromJson(request, RequestBean.class);
+//		// 进行校验
+//		if (requestBean.checkMac()) {
+//			LOG.info("校验成功....");
+//			// 真正的业务逻辑
+//			try {
+//				content = requestBean.getContent();
+//				Activity activity = gson.fromJson(content.toString(), Activity.class);
+//				CommonUtils.decriptObject(activity, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
+//				activityService.updateActivity(activity);
+//				responseBean.setContent(activity);
+//			} catch (Exception e) {
+//				LOG.error("业务执行异常...." + e.getMessage());
+//				responseBean.getMsg().setCode("0001");
+//				responseBean.getMsg().setDesc("业务异常");
+//				return responseBean;
+//			}
+//			LOG.info("业务执行成功，设置返回报文状态为成功...");
+//			responseBean.getMsg().setCode("0000");
+//			responseBean.getMsg().setDesc("成功");
+//			responseBean.setMac(requestBean.getHead().getSerial());
+//		}
+//
+//		return responseBean;
+//	}
 
-		return responseBean;
-	}
-
-	@RequestMapping(value = "/deleteActivity", method = { RequestMethod.POST })
-	@ResponseBody
-	public ResponseBean deleteActivity(String request) {
-		requestBean = gson.fromJson(request, RequestBean.class);
-		// 进行校验
-		if (requestBean.checkMac()) {
-			LOG.info("校验成功....");
-			// 真正的业务逻辑
-			try {
-				content = requestBean.getContent();
-				Activity activity = gson.fromJson(content.toString(), Activity.class);
-				CommonUtils.decriptObject(activity, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
-				responseBean.setContent(activity);
-			} catch (Exception e) {
-				LOG.error("业务执行异常...." + e.getMessage());
-				responseBean.getMsg().setCode("0001");
-				responseBean.getMsg().setDesc("业务异常");
-				return responseBean;
-			}
-			LOG.info("业务执行成功，设置返回报文状态为成功...");
-			responseBean.getMsg().setCode("0000");
-			responseBean.getMsg().setDesc("成功");
-			responseBean.setMac(requestBean.getHead().getSerial());
-		}
-
-		return responseBean;
-	}
+//	@RequestMapping(value = "/deleteActivity", method = { RequestMethod.POST })
+//	@ResponseBody
+//	public ResponseBean deleteActivity(String request) {
+//		requestBean = gson.fromJson(request, RequestBean.class);
+//		// 进行校验
+//		if (requestBean.checkMac()) {
+//			LOG.info("校验成功....");
+//			// 真正的业务逻辑
+//			try {
+//				content = requestBean.getContent();
+//				Activity activity = gson.fromJson(content.toString(), Activity.class);
+//				CommonUtils.decriptObject(activity, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
+//				responseBean.setContent(activity);
+//			} catch (Exception e) {
+//				LOG.error("业务执行异常...." + e.getMessage());
+//				responseBean.getMsg().setCode("0001");
+//				responseBean.getMsg().setDesc("业务异常");
+//				return responseBean;
+//			}
+//			LOG.info("业务执行成功，设置返回报文状态为成功...");
+//			responseBean.getMsg().setCode("0000");
+//			responseBean.getMsg().setDesc("成功");
+//			responseBean.setMac(requestBean.getHead().getSerial());
+//		}
+//
+//		return responseBean;
+//	}
 	
 	
 	@RequestMapping(value = "/recommendActivity", method = { RequestMethod.POST })
@@ -197,7 +201,10 @@ public class ActivityController {
 				Activity activity = gson.fromJson(content.toString(), Activity.class);
 				CommonUtils.decriptObject(activity, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				// TODO 首页推荐活动
-				responseBean.setContent(activity);
+				PageBase pageBase = CommonUtils.createNewPageBase(activity);
+				List<Activity> activityList = activityService.listActivity(activity);
+				responseBean.setContent(CommonUtils.createListPage(activityList, pageBase));
+				responseBean.setContent(pageBase);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");

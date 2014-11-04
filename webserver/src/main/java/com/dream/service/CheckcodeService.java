@@ -17,4 +17,6 @@ public interface CheckcodeService {
 	int addCheckcode(Checkcode checkcode);
 	
 	int countCheckcode(Checkcode checkcode);
+
+	String addCheckcodeAndSendMobile(String telephone);
 }

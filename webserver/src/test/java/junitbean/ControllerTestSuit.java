@@ -6,6 +6,15 @@ import annotation.RequestParameter;
 import annotation.RequestServletPath;
 
 public class ControllerTestSuit {
+	
+	//****************Checkcode|**********************
+	
+	@Test
+	@RequestServletPath("/generateCheckcode")
+	// 正确
+	@RequestParameter(name = "request", value = "{\"content\":{\"telephone\":\"15159628259\"},\"head\":{\"brand\":\"HTC\",\"imei\":\"356871046099762\",\"imsi\":\"1234567890ABCDEF\",\"model\":\"Evo 3D GSM\",\"netype\":\"NETWORK_TYPE_WIFI\",\"platform\":\"Android\",\"release\":\"4.2.2\",\"sdk\":\"17\",\"serial\":\"HT22PV203276\",\"time\":\"2014-10-24 13:51:55,611\",\"versionCode\":\"1\",\"versionName\":\"1.0\"},\"mac\":\"F4F26357424C5C61\"}")
+	public void generateCheckcodeController() throws Exception {
+	}
 	//****************Registeractivity|**************
 	@Test
 	@RequestServletPath("/countRegisterSign")
@@ -14,13 +23,20 @@ public class ControllerTestSuit {
 	public void countRegisterSignController() throws Exception {
 	}
 	
-	
 	@Test
 	@RequestServletPath("/listRegisterSignUser")
 	// 正确
 	@RequestParameter(name = "request", value = "{\"content\":{\"userid\":\"1\",\"activityid\":\"1\",\"currentPage\":\"1\"},\"head\":{\"brand\":\"HTC\",\"imei\":\"356871046099762\",\"imsi\":\"1234567890ABCDEF\",\"model\":\"Evo 3D GSM\",\"netype\":\"NETWORK_TYPE_WIFI\",\"platform\":\"Android\",\"release\":\"4.2.2\",\"sdk\":\"17\",\"serial\":\"HT22PV203276\",\"time\":\"2014-10-24 13:51:55,611\",\"versionCode\":\"1\",\"versionName\":\"1.0\"},\"mac\":\"F4F26357424C5C61\"}")
 	public void listRegisterSignUserController() throws Exception {
 	}
+	
+	@Test
+	@RequestServletPath("/addRegisteractivity")
+	// 正确
+	@RequestParameter(name = "request", value = "{\"content\":{\"userid\":\"5\",\"activityid\":\"1\"},\"head\":{\"brand\":\"HTC\",\"imei\":\"356871046099762\",\"imsi\":\"1234567890ABCDEF\",\"model\":\"Evo 3D GSM\",\"netype\":\"NETWORK_TYPE_WIFI\",\"platform\":\"Android\",\"release\":\"4.2.2\",\"sdk\":\"17\",\"serial\":\"HT22PV203276\",\"time\":\"2014-10-24 13:51:55,611\",\"versionCode\":\"1\",\"versionName\":\"1.0\"},\"mac\":\"F4F26357424C5C61\"}")
+	public void addRegisteractivityController() throws Exception {
+	}
+	
 	
 	//****************Onlinequestion|***************
 	@Test
@@ -135,7 +151,7 @@ public class ControllerTestSuit {
 	@Test
 	@RequestServletPath("/registerUser")
 	//正确,执行两次该测试用力会报错|手机号相同
-	@RequestParameter(name = "request", value = "{\"content\":{\"telephone\":\"15155005597\",\"nickname\":\"测试\",\"company\":\"网龙\",\"password\":\"w321\"},\"head\":{\"brand\":\"HTC\",\"imei\":\"356871046099762\",\"imsi\":\"1234567890ABCDEF\",\"model\":\"Evo 3D GSM\",\"netype\":\"NETWORK_TYPE_WIFI\",\"platform\":\"Android\",\"release\":\"4.2.2\",\"sdk\":\"17\",\"serial\":\"HT22PV203276\",\"time\":\"2014-10-24 13:51:55,611\",\"versionCode\":\"1\",\"versionName\":\"1.0\"},\"mac\":\"F4F26357424C5C61\"}")
+	@RequestParameter(name = "request", value = "{\"content\":{\"telephone\":\"15155105527\",\"nickname\":\"测试22\",\"company\":\"福富\",\"password\":\"test321\",\"checkcode\":\"977708\"},\"head\":{\"brand\":\"HTC\",\"imei\":\"356871046099762\",\"imsi\":\"1234567890ABCDEF\",\"model\":\"Evo 3D GSM\",\"netype\":\"NETWORK_TYPE_WIFI\",\"platform\":\"Android\",\"release\":\"4.2.2\",\"sdk\":\"17\",\"serial\":\"HT22PV203276\",\"time\":\"2014-10-24 13:51:55,611\",\"versionCode\":\"1\",\"versionName\":\"1.0\"},\"mac\":\"F4F26357424C5C61\"}")
 	public void registerUserController() throws Exception {
 	}
 	

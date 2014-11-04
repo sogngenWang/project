@@ -51,11 +51,11 @@
 		</javaClientGenerator>
 		
 		
-		<table schema="" tableName="onlinequestion" domainObjectName="Onlinequestion"
+		<table schema="" tableName="usermessage" domainObjectName="Usermessage"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
-			<generatedKey column="questionid" sqlStatement="MySql"
+			<generatedKey column="messageid" sqlStatement="MySql"
 				identity="true" />
 		</table>
 		<table schema="" tableName="friends" domainObjectName="Friends"
@@ -67,6 +67,14 @@
 		</table>
 		
 		<!-- 
+		<table schema="" tableName="onlinequestion" domainObjectName="Onlinequestion"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="questionid" sqlStatement="MySql"
+				identity="true" />
+		</table>
+		
 		<table schema="" tableName="registeractivity" domainObjectName="Registeractivity"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"

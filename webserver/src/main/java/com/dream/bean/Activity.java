@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_NULL)
-public class Activity extends PageBase{
+public class Activity extends PageBase {
 
 	// *****新增非数据库字段****
 	// 评论数
@@ -69,7 +69,7 @@ public class Activity extends PageBase{
 
 	private String activitystatus;
 
-	private String activityquota;
+	private Integer activityquota;
 
 	private String activityaddress;
 
@@ -86,6 +86,14 @@ public class Activity extends PageBase{
 	private String activitydetail;
 
 	private Integer viewcount;
+
+	public Integer getActivityquota() {
+		return activityquota;
+	}
+
+	public void setActivityquota(Integer activityquota) {
+		this.activityquota = activityquota;
+	}
 
 	public Integer getViewcount() {
 		return viewcount;
@@ -153,15 +161,6 @@ public class Activity extends PageBase{
 
 	public void setActivitystatus(String activitystatus) {
 		this.activitystatus = activitystatus == null ? null : activitystatus
-				.trim();
-	}
-
-	public String getActivityquota() {
-		return activityquota;
-	}
-
-	public void setActivityquota(String activityquota) {
-		this.activityquota = activityquota == null ? null : activityquota
 				.trim();
 	}
 

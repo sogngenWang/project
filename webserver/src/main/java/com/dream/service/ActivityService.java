@@ -24,5 +24,12 @@ public interface ActivityService {
 	 * @return
 	 */
 	Activity detailActivityPage(Activity activity);
+
+	/**
+	 * 返回的值表示该活动是否正在报名ing
+	 * @param activityid
+	 * @return
+	 */
+	boolean isRegistering(Integer activityid);
 	
 }

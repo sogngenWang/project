@@ -24,9 +24,9 @@
     <selectKey resultType="java.lang.Integer" keyProperty="registrationid" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into registeractivity (registrationid, activityid, signstatus
+    insert into registeractivity (registrationid, userid , activityid, signstatus
       )
-    values (#{registrationid,jdbcType=INTEGER}, #{activityid,jdbcType=INTEGER}, #{signstatus,jdbcType=INTEGER}
+    values (#{registrationid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{activityid,jdbcType=INTEGER}, #{signstatus,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.dream.bean.Registeractivity" >
@@ -38,6 +38,9 @@
       <if test="registrationid != null" >
         registrationid,
       </if>
+       <if test="userid != null" >
+        userid,
+      </if>
       <if test="activityid != null" >
         activityid,
       </if>
@@ -48,6 +51,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="registrationid != null" >
         #{registrationid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
       </if>
       <if test="activityid != null" >
         #{activityid,jdbcType=INTEGER},
