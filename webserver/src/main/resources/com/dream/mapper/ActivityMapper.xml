@@ -206,50 +206,48 @@
 		<include refid="Base_Column_List" />
 		from activity
 		<where>
-			<choose>
-				<when test="activityid != null and activityid != '' ">
+				<if test="activityid != null and activityid != '' ">
 					activityid = #{activityid, jdbcType=INTEGER}  
-				</when>
-				<when test="activityname != null and activityname != ''">
+				</if>
+				<if test="activityname != null and activityname != ''">
 					AND activityname = #{activityname, jdbcType=VARCHAR}  
-				</when>
-				<when test="activitystarttime != null and activitystarttime != ''">
+				</if>
+				<if test="activitystarttime != null and activitystarttime != ''">
 					AND activitystarttime = #{activitystarttime, jdbcType=VARCHAR}
-				</when>
-				<when test="activityendtime != null and activityendtime != ''">
+				</if>
+				<if test="activityendtime != null and activityendtime != ''">
 					AND activityendtime = #{activityendtime, jdbcType=VARCHAR}
-				</when>
-				<when test="activitystatus != null and activitystatus != ''">
+				</if>
+				<if test="activitystatus != null and activitystatus != ''">
 					AND activitystatus = #{activitystatus, jdbcType=VARCHAR}
-				</when>
-				<when test="activityquota != null and activityquota != ''">
+				</if>
+				<if test="activityquota != null and activityquota != ''">
 					AND activityquota = #{activityquota, jdbcType=VARCHAR}
-				</when>
-				<when test="activityaddress != null and activityaddress != ''">
+				</if>
+				<if test="activityaddress != null and activityaddress != ''">
 					AND activityaddress = #{activityaddress, jdbcType=VARCHAR}
-				</when>
-				<when test="activitycreatetime != null and activitycreatetime != ''">
+				</if>
+				<if test="activitycreatetime != null and activitycreatetime != ''">
 					AND activitycreatetime = #{activitycreatetime, jdbcType=VARCHAR}
-				</when>
-				<when test="activitypicturedir != null and activitypicturedir != ''">
+				</if>
+				<if test="activitypicturedir != null and activitypicturedir != ''">
 					AND activitypicturedir = #{activitypicturedir, jdbcType=VARCHAR}
-				</when>
-				<when test="kindsid != null and kindsid != ''">
+				</if>
+				<if test="kindsid != null and kindsid != ''">
 					AND kindsid = #{kindsid, jdbcType=INTEGER}
-				</when>
-				<when test="viewcount != null and viewcount != ''">
+				</if>
+				<if test="viewcount != null and viewcount != ''">
 					AND viewcount = #{viewcount, jdbcType=INTEGER}
-				</when>
-				<when test="secondkindsid != null and secondkindsid != ''">
+				</if>
+				<if test="secondkindsid != null and secondkindsid != ''">
 					AND secondkindsid = #{secondkindsid, jdbcType=INTEGER}
-				</when>
-				<when test="activityabout != null and activityabout != ''">
+				</if>
+				<if test="activityabout != null and activityabout != ''">
 					AND activityabout = #{activityabout, jdbcType=LONGVARCHAR}
-				</when>
-				<when test="activitydetail != null and activitydetail != ''">
+				</if>
+				<if test="activitydetail != null and activitydetail != ''">
 					AND activitydetail = #{activitydetail, jdbcType=LONGVARCHAR}
-				</when>
-			</choose>
+				</if>
 		</where>
 	</select>
 	
@@ -258,44 +256,42 @@
 		<include refid="Base_Column_List" />
 		from activity
 				<where>
-			<choose>
-				<when test="activityid != null and activityid != '' ">
+				<if test="activityid != null and activityid != '' ">
 					activityid = #{activityid, jdbcType=INTEGER}  
-				</when>
-				<when test="activityname != null and activityname != ''">
+				</if>
+				<if test="activityname != null and activityname != ''">
 					AND activityname = #{activityname, jdbcType=VARCHAR}  
-				</when>
-				<when test="activitystarttime != null and activitystarttime != ''">
+				</if>
+				<if test="activitystarttime != null and activitystarttime != ''">
 					AND activitystarttime = #{activitystarttime, jdbcType=VARCHAR}
-				</when>
-				<when test="activityendtime != null and activityendtime != ''">
+				</if>
+				<if test="activityendtime != null and activityendtime != ''">
 					AND activityendtime = #{activityendtime, jdbcType=VARCHAR}
-				</when>
-				<when test="activitystatus != null and activitystatus != ''">
+				</if>
+				<if test="activitystatus != null and activitystatus != ''">
 					AND activitystatus = #{activitystatus, jdbcType=VARCHAR}
-				</when>
-				<when test="activityquota != null and activityquota != ''">
+				</if>
+				<if test="activityquota != null and activityquota != ''">
 					AND activityquota = #{activityquota, jdbcType=VARCHAR}
-				</when>
-				<when test="activityaddress != null and activityaddress != ''">
+				</if>
+				<if test="activityaddress != null and activityaddress != ''">
 					AND activityaddress = #{activityaddress, jdbcType=VARCHAR}
-				</when>
-				<when test="activitycreatetime != null and activitycreatetime != ''">
+				</if>
+				<if test="activitycreatetime != null and activitycreatetime != ''">
 					AND activitycreatetime = #{activitycreatetime, jdbcType=VARCHAR}
-				</when>
-				<when test="activitypicturedir != null and activitypicturedir != ''">
+				</if>
+				<if test="activitypicturedir != null and activitypicturedir != ''">
 					AND activitypicturedir = #{activitypicturedir, jdbcType=VARCHAR}
-				</when>
-				<when test="kindsid != null and kindsid != ''">
+				</if>
+				<if test="kindsid != null and kindsid != ''">
 					AND kindsid = #{kindsid, jdbcType=INTEGER}
-				</when>
-				<when test="viewcount != null and viewcount != ''">
+				</if>
+				<if test="viewcount != null and viewcount != ''">
 					AND viewcount = #{viewcount, jdbcType=INTEGER}
-				</when>
-				<when test="secondkindsid != null and secondkindsid != ''">
+				</if>
+				<if test="secondkindsid != null and secondkindsid != ''">
 					AND secondkindsid = #{secondkindsid, jdbcType=INTEGER}
-				</when>
-			</choose>
+				</if>
 		</where>
 	</select>
 
@@ -303,44 +299,42 @@
 		select count(*)  
 		from activity
 				<where>
-			<choose>
-				<when test="activityid != null and activityid != '' ">
+				<if test="activityid != null and activityid != '' ">
 					activityid = #{activityid, jdbcType=INTEGER}  
-				</when>
-				<when test="activityname != null and activityname != ''">
+				</if>
+				<if test="activityname != null and activityname != ''">
 					AND activityname = #{activityname, jdbcType=VARCHAR}  
-				</when>
-				<when test="activitystarttime != null and activitystarttime != ''">
+				</if>
+				<if test="activitystarttime != null and activitystarttime != ''">
 					AND activitystarttime = #{activitystarttime, jdbcType=VARCHAR}
-				</when>
-				<when test="activityendtime != null and activityendtime != ''">
+				</if>
+				<if test="activityendtime != null and activityendtime != ''">
 					AND activityendtime = #{activityendtime, jdbcType=VARCHAR}
-				</when>
-				<when test="activitystatus != null and activitystatus != ''">
+				</if>
+				<if test="activitystatus != null and activitystatus != ''">
 					AND activitystatus = #{activitystatus, jdbcType=VARCHAR}
-				</when>
-				<when test="activityquota != null and activityquota != ''">
+				</if>
+				<if test="activityquota != null and activityquota != ''">
 					AND activityquota = #{activityquota, jdbcType=VARCHAR}
-				</when>
-				<when test="activityaddress != null and activityaddress != ''">
+				</if>
+				<if test="activityaddress != null and activityaddress != ''">
 					AND activityaddress = #{activityaddress, jdbcType=VARCHAR}
-				</when>
-				<when test="activitycreatetime != null and activitycreatetime != ''">
+				</if>
+				<if test="activitycreatetime != null and activitycreatetime != ''">
 					AND activitycreatetime = #{activitycreatetime, jdbcType=VARCHAR}
-				</when>
-				<when test="activitypicturedir != null and activitypicturedir != ''">
+				</if>
+				<if test="activitypicturedir != null and activitypicturedir != ''">
 					AND activitypicturedir = #{activitypicturedir, jdbcType=VARCHAR}
-				</when>
-				<when test="kindsid != null and kindsid != ''">
+				</if>
+				<if test="kindsid != null and kindsid != ''">
 					AND kindsid = #{kindsid, jdbcType=INTEGER}
-				</when>
-				<when test="viewcount != null and viewcount != ''">
+				</if>
+				<if test="viewcount != null and viewcount != ''">
 					AND viewcount = #{viewcount, jdbcType=INTEGER}
-				</when>
-				<when test="secondkindsid != null and secondkindsid != ''">
+				</if>
+				<if test="secondkindsid != null and secondkindsid != ''">
 					AND secondkindsid = #{secondkindsid, jdbcType=INTEGER}
-				</when>
-			</choose>
+				</if>
 		</where>
 	</select>
 	

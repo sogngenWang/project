@@ -187,23 +187,21 @@
 		<include refid="Base_Column_List" />
 		from comment
 		<where>
-			<choose>
-				<when test="commentid != null and commentid != '' ">
+				<if test="commentid != null and commentid != '' ">
 					commentid = #{commentid, jdbcType=INTEGER}  
-				</when>
-				<when test="userid != null and userid != ''">
+				</if>
+				<if test="userid != null and userid != ''">
 					AND userid = #{userid, jdbcType=INTEGER}  
-				</when>
-				<when test="themeid != null and themeid != ''">
+				</if>
+				<if test="themeid != null and themeid != ''">
 					AND themeid = #{themeid, jdbcType=INTEGER}
-				</when>
-				<when test="commentseq != null and commentseq != ''">
+				</if>
+				<if test="commentseq != null and commentseq != ''">
 					AND commentseq = #{commentseq, jdbcType=INTEGER}
-				</when>
-				<when test="commenttime != null and commenttime != ''">
+				</if>
+				<if test="commenttime != null and commenttime != ''">
 					AND commenttime = #{commenttime, jdbcType=VARCHAR}
-				</when>
-			</choose>
+				</if>
 		</where>
 	</select>
 	
@@ -212,46 +210,42 @@
 		<include refid="Base_Column_List" />
 		from comment
 		<where>
-			<choose>
-				<when test="commentid != null and commentid != '' ">
+				<if test="commentid != null and commentid != '' ">
 					commentid = #{commentid, jdbcType=INTEGER}  
-				</when>
-				<when test="userid != null and userid != ''">
+				</if>
+				<if test="userid != null and userid != ''">
 					AND userid = #{userid, jdbcType=INTEGER}  
-				</when>
-				<when test="themeid != null and themeid != ''">
+				</if>
+				<if test="themeid != null and themeid != ''">
 					AND themeid = #{themeid, jdbcType=INTEGER}
-				</when>
-				<when test="commentseq != null and commentseq != ''">
+				</if>
+				<if test="commentseq != null and commentseq != ''">
 					AND commentseq = #{commentseq, jdbcType=INTEGER}
-				</when>
-				<when test="commenttime != null and commenttime != ''">
+				</if>
+				<if test="commenttime != null and commenttime != ''">
 					AND commenttime = #{commenttime, jdbcType=VARCHAR}
-				</when>
-			</choose>
+				</if>
 		</where>
 	</select>
 	<select id="countComment"  resultType="java.lang.Integer">
 		select count(*)  
 		from comment
 		<where>
-			<choose>
-				<when test="commentid != null and commentid != '' ">
+				<if test="commentid != null and commentid != '' ">
 					commentid = #{commentid, jdbcType=INTEGER}  
-				</when>
-				<when test="userid != null and userid != ''">
+				</if>
+				<if test="userid != null and userid != ''">
 					AND userid = #{userid, jdbcType=INTEGER}  
-				</when>
-				<when test="themeid != null and themeid != ''">
+				</if>
+				<if test="themeid != null and themeid != ''">
 					AND themeid = #{themeid, jdbcType=INTEGER}
-				</when>
-				<when test="commentseq != null and commentseq != ''">
+				</if>
+				<if test="commentseq != null and commentseq != ''">
 					AND commentseq = #{commentseq, jdbcType=INTEGER}
-				</when>
-				<when test="commenttime != null and commenttime != ''">
+				</if>
+				<if test="commenttime != null and commenttime != ''">
 					AND commenttime = #{commenttime, jdbcType=VARCHAR}
-				</when>
-			</choose>
+				</if>
 		</where>
 	</select>
 </mapper>

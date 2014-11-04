@@ -78,7 +78,7 @@ public class TestMain {
 	public static void main(String[] args) {
 //		System.out.println((long) (Math.random()*Math.pow(10, 8)));
 		
-		
+		System.out.println(Math.ceil(10/(3*1.0)));
 		
 	}
 	

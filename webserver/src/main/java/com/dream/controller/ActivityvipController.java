@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dream.basebean.PageBase;
 import com.dream.basebean.RequestBean;
 import com.dream.basebean.ResponseBean;
 import com.dream.bean.Activity;
@@ -45,9 +46,11 @@ public class ActivityvipController {
 				content = requestBean.getContent();
 				Activity activity = gson.fromJson(content.toString(), Activity.class);
 				CommonUtils.decriptObject(activity, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
+				PageBase pageBase = CommonUtils.createNewPageBase(activity);
 				//查询该活动对应的嘉宾信息
 				List<User> userList = activityvipService.listUservip(activity);
-				responseBean.setContent(userList);
+				responseBean.setContent(CommonUtils.createListPage(userList , pageBase));
+				responseBean.setContent(pageBase);
 			} catch (Exception e) {
 				e.printStackTrace();
 				LOG.error("业务执行异常...." + e.getMessage());

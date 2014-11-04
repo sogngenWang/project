@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dream.basebean.PageBase;
 import com.dream.basebean.RequestBean;
 import com.dream.basebean.ResponseBean;
 import com.dream.bean.Theme;
@@ -101,8 +102,10 @@ public class ThemeController {
 				content = requestBean.getContent();
 				Theme theme = gson.fromJson(content.toString(), Theme.class);
 				CommonUtils.decriptObject(theme, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
-				List<Theme> themeList = themeService.listTheme(theme);
-				responseBean.setContent(themeList);
+				PageBase pageBase = CommonUtils.createNewPageBase(theme);
+				List<Theme> themeList = themeService.listThemeInclueCommentCount(theme);
+				responseBean.setContent(CommonUtils.createListPage(themeList, pageBase));
+				responseBean.setContent(pageBase);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");

@@ -1,152 +1,148 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="checkcode">
-  <resultMap id="BaseResultMap" type="com.dream.bean.Checkcode">
-    <id column="checkcodeid" jdbcType="INTEGER" property="checkcodeid" />
-    <result column="checkcode" jdbcType="VARCHAR" property="checkcode" />
-    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
-    <result column="createtime" jdbcType="VARCHAR" property="createtime" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    checkcodeid, checkcode, telephone, createtime
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from checkcode
-    where checkcodeid = #{checkcodeid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from checkcode
-    where checkcodeid = #{checkcodeid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.dream.bean.Checkcode">
-    insert into checkcode (checkcodeid, checkcode, telephone, 
-      createtime)
-    values (#{checkcodeid,jdbcType=INTEGER}, #{checkcode,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
-      #{createtime,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.dream.bean.Checkcode">
-    insert into checkcode
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="checkcodeid != null">
-        checkcodeid,
-      </if>
-      <if test="checkcode != null">
-        checkcode,
-      </if>
-      <if test="telephone != null">
-        telephone,
-      </if>
-      <if test="createtime != null">
-        createtime,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="checkcodeid != null">
-        #{checkcodeid,jdbcType=INTEGER},
-      </if>
-      <if test="checkcode != null">
-        #{checkcode,jdbcType=VARCHAR},
-      </if>
-      <if test="telephone != null">
-        #{telephone,jdbcType=VARCHAR},
-      </if>
-      <if test="createtime != null">
-        #{createtime,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.dream.bean.Checkcode">
-    update checkcode
-    <set>
-      <if test="checkcode != null">
-        checkcode = #{checkcode,jdbcType=VARCHAR},
-      </if>
-      <if test="telephone != null">
-        telephone = #{telephone,jdbcType=VARCHAR},
-      </if>
-      <if test="createtime != null">
-        createtime = #{createtime,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where checkcodeid = #{checkcodeid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.dream.bean.Checkcode">
-    update checkcode
-    set checkcode = #{checkcode,jdbcType=VARCHAR},
-      telephone = #{telephone,jdbcType=VARCHAR},
-      createtime = #{createtime,jdbcType=VARCHAR}
-    where checkcodeid = #{checkcodeid,jdbcType=INTEGER}
-  </update>
-  <!-- add by wsg -->
+<mapper namespace="com.dream.dao.CheckcodeMapper">
+	<resultMap id="BaseResultMap" type="com.dream.bean.Checkcode">
+		<id column="checkcodeid" jdbcType="INTEGER" property="checkcodeid" />
+		<result column="checkcode" jdbcType="VARCHAR" property="checkcode" />
+		<result column="telephone" jdbcType="VARCHAR" property="telephone" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		checkcodeid, checkcode, telephone, createtime
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from checkcode
+		where checkcodeid = #{checkcodeid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from checkcode
+		where checkcodeid = #{checkcodeid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.dream.bean.Checkcode">
+		insert into checkcode (checkcodeid, checkcode, telephone,
+		createtime)
+		values (#{checkcodeid,jdbcType=INTEGER}, #{checkcode,jdbcType=VARCHAR},
+		#{telephone,jdbcType=VARCHAR},
+		#{createtime,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.dream.bean.Checkcode">
+		insert into checkcode
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="checkcodeid != null">
+				checkcodeid,
+			</if>
+			<if test="checkcode != null">
+				checkcode,
+			</if>
+			<if test="telephone != null">
+				telephone,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="checkcodeid != null">
+				#{checkcodeid,jdbcType=INTEGER},
+			</if>
+			<if test="checkcode != null">
+				#{checkcode,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				#{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.dream.bean.Checkcode">
+		update checkcode
+		<set>
+			<if test="checkcode != null">
+				checkcode = #{checkcode,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				telephone = #{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where checkcodeid = #{checkcodeid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.dream.bean.Checkcode">
+		update checkcode
+		set checkcode = #{checkcode,jdbcType=VARCHAR},
+		telephone = #{telephone,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR}
+		where checkcodeid = #{checkcodeid,jdbcType=INTEGER}
+	</update>
+	<!-- add by wsg -->
 	<!-- 通用方法 -->
 	<!-- ，参数为对象，返回list<对象> -->
-
 
 	<select id="listCheckcode" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from checkcode
 		<where>
-			<choose>
-				<when test="checkcodeid != null and checkcodeid != '' ">
-					checkcodeid = #{checkcodeid, jdbcType=INTEGER}  
-				</when>
-				<when test="checkcode != null and checkcode != ''">
-					AND checkcode = #{checkcode, jdbcType=VARCHAR}  
-				</when>
-				<when test="telephone != null and telephone != ''">
-					AND telephone = #{telephone, jdbcType=VARCHAR}
-				</when>
-				<when test="createtime != null and createtime != ''">
-					AND createtime = #{createtime, jdbcType=VARCHAR}
-				</when>
-			</choose>
+			<if test="checkcodeid != null and checkcodeid != '' ">
+				checkcodeid = #{checkcodeid, jdbcType=INTEGER}
+			</if>
+			<if test="checkcode != null and checkcode != ''">
+				AND checkcode = #{checkcode, jdbcType=VARCHAR}
+			</if>
+			<if test="telephone != null and telephone != ''">
+				AND telephone = #{telephone, jdbcType=VARCHAR}
+			</if>
+			<if test="createtime != null and createtime != ''">
+				AND createtime = #{createtime, jdbcType=VARCHAR}
+			</if>
 		</where>
 	</select>
-	
+
 	<select id="detailCheckcode" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from checkcode
 		<where>
-			<choose>
-				<when test="checkcodeid != null and checkcodeid != '' ">
-					checkcodeid = #{checkcodeid, jdbcType=INTEGER}  
-				</when>
-				<when test="checkcode != null and checkcode != ''">
-					AND checkcode = #{checkcode, jdbcType=VARCHAR}  
-				</when>
-				<when test="telephone != null and telephone != ''">
-					AND telephone = #{telephone, jdbcType=VARCHAR}
-				</when>
-				<when test="createtime != null and createtime != ''">
-					AND createtime = #{createtime, jdbcType=VARCHAR}
-				</when>
-			</choose>
+			<if test="checkcodeid != null ">
+				checkcodeid = #{checkcodeid, jdbcType=INTEGER}
+			</if>
+			<if test="checkcode != null and checkcode != ''">
+				AND checkcode = #{checkcode, jdbcType=VARCHAR}
+			</if>
+			<if test="telephone != null and telephone != ''">
+				AND telephone = #{telephone, jdbcType=VARCHAR}
+			</if>
+			<if test="createtime != null and createtime != ''">
+				AND createtime = #{createtime, jdbcType=VARCHAR}
+			</if>
 		</where>
 	</select>
+
 	<select id="countCheckcode" resultType="java.lang.Integer">
 		select count(*)
- 		from checkcode
+		from checkcode
 		<where>
-			<choose>
-				<when test="checkcodeid != null and checkcodeid != '' ">
-					checkcodeid = #{checkcodeid, jdbcType=INTEGER}  
-				</when>
-				<when test="checkcode != null and checkcode != ''">
-					AND checkcode = #{checkcode, jdbcType=VARCHAR}  
-				</when>
-				<when test="telephone != null and telephone != ''">
-					AND telephone = #{telephone, jdbcType=VARCHAR}
-				</when>
-				<when test="createtime != null and createtime != ''">
-					AND createtime = #{createtime, jdbcType=VARCHAR}
-				</when>
-			</choose>
+			<if test="checkcodeid != null and checkcodeid != '' ">
+				checkcodeid = #{checkcodeid, jdbcType=INTEGER}
+			</if>
+			<if test="checkcode != null and checkcode != ''">
+				AND checkcode = #{checkcode, jdbcType=VARCHAR}
+			</if>
+			<if test="telephone != null and telephone != ''">
+				AND telephone = #{telephone, jdbcType=VARCHAR}
+			</if>
+			<if test="createtime != null and createtime != ''">
+				AND createtime = #{createtime, jdbcType=VARCHAR}
+			</if>
 		</where>
 	</select>
-  
-  
+
+
 </mapper>

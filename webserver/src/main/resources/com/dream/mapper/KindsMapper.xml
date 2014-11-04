@@ -117,17 +117,15 @@
 		<include refid="Base_Column_List" />
 		from kinds
 		<where>
-			<choose>
-				<when test="kindsid != null and kindsid != '' ">
+				<if test="kindsid != null and kindsid != '' ">
 					kindsid = #{kindsid, jdbcType=INTEGER}  
-				</when>
-				<when test="kindsname != null and kindsname != ''">
+				</if>
+				<if test="kindsname != null and kindsname != ''">
 					AND kindsname = #{userid, jdbcType=VARCHAR}  
-				</when>
-				<when test="secondkindsid != null and secondkindsid != ''">
+				</if>
+				<if test="secondkindsid != null and secondkindsid != ''">
 					AND secondkindsid = #{secondkindsid, jdbcType=INTEGER}
-				</when>
-			</choose>
+				</if>
 		</where>
 	</select>
 	
@@ -136,34 +134,30 @@
 		<include refid="Base_Column_List" />
 		from kinds
 		<where>
-			<choose>
-				<when test="kindsid != null and kindsid != '' ">
+				<if test="kindsid != null and kindsid != '' ">
 					kindsid = #{kindsid, jdbcType=INTEGER}  
-				</when>
-				<when test="kindsname != null and kindsname != ''">
+				</if>
+				<if test="kindsname != null and kindsname != ''">
 					AND kindsname = #{userid, jdbcType=VARCHAR}  
-				</when>
-				<when test="secondkindsid != null and secondkindsid != ''">
+				</if>
+				<if test="secondkindsid != null and secondkindsid != ''">
 					AND secondkindsid = #{secondkindsid, jdbcType=INTEGER}
-				</when>
-			</choose>
+				</if>
 		</where>
 	</select>
 	<select id="countKinds"  resultType="java.lang.Integer">
 		select count(*)  
 		from kinds
 		<where>
-			<choose>
-				<when test="kindsid != null and kindsid != '' ">
+				<if test="kindsid != null and kindsid != '' ">
 					kindsid = #{kindsid, jdbcType=INTEGER}  
-				</when>
-				<when test="kindsname != null and kindsname != ''">
+				</if>
+				<if test="kindsname != null and kindsname != ''">
 					AND kindsname = #{userid, jdbcType=VARCHAR}  
-				</when>
-				<when test="secondkindsid != null and secondkindsid != ''">
+				</if>
+				<if test="secondkindsid != null and secondkindsid != ''">
 					AND secondkindsid = #{secondkindsid, jdbcType=INTEGER}
-				</when>
-			</choose>
+				</if>
 		</where>
 	</select>
 	

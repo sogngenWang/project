@@ -17,6 +17,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.baidu.security.TDESUtils;
+import com.dream.basebean.PageBase;
 import com.dream.constants.Constant;
 import com.google.gson.Gson;
 
@@ -274,5 +275,77 @@ public class CommonUtils {
 		sdf = new SimpleDateFormat(format);
 		return sdf.parse(date).getTime();
 	}
+
+	/**
+	 * 根据传入的bean，获取到其中的当前页面，总页面以及 每页多少条记录
+	 * @param object
+	 * @return
+	 * @throws Exception
+	 */
+	public static PageBase createNewPageBase(Object object) throws Exception {
+		PageBase pageBase = new PageBase();
+		Method currentPage = object.getClass().getMethod("getCurrentPage");
+		Method totalPage = object.getClass().getMethod("getTotalPage");
+		Method recordPerPage = object.getClass().getMethod("getRecordPerPage");
+		
+		pageBase.setCurrentPage(currentPage.invoke(object) == null ? null : (Integer) currentPage.invoke(object) );
+		pageBase.setTotalPage(totalPage.invoke(object)== null ? null : (Integer) currentPage.invoke(object) );
+		pageBase.setRecordPerPage(recordPerPage.invoke(object) == null? null : (Integer) currentPage.invoke(object));
+		
+		return pageBase;
+	}
+	
+	
+	/**
+	 * 传入相应的list，以及相关的分页信息。返回分页相关的list
+	 * @param list
+	 * @param pageBase
+	 * @return
+	 */
+	public static List<?> createListPage(List<?> list, PageBase pageBase) {
+		if(null != list && list.size() > 0 ){
+			//判断每页多少条记录是否为空
+			if(null == pageBase.getRecordPerPage() || pageBase.getRecordPerPage() == 0){
+				pageBase.setRecordPerPage(Constant.PAGE_RECORD_PER_PAGE_DEFAULT);
+			}
+			//设置总页数
+			int totalPage = (int) Math.ceil(list.size() / (pageBase.getRecordPerPage()*1.0));
+			pageBase.setTotalPage(totalPage);
+			//总页数超过一页的
+			if(totalPage <=  1){
+				return list;
+			}else{
+				//current <= 总页数的
+				if(pageBase.getCurrentPage() < totalPage){
+					//把list设置为currentPage的值
+					int startIndex = (pageBase.getCurrentPage()-1)*pageBase.getRecordPerPage() ; // (2-1)*3 = 3  (1-1)*3= 0 
+					int endIndex = startIndex + pageBase.getRecordPerPage() -1  ; 
+					List<Object> newList = new ArrayList<Object>();
+					for (int i = startIndex; i <= endIndex ; i++) {
+						newList.add(list.get(i));
+					}
+					return  newList;
+				}else{
+					pageBase.setCurrentPage(totalPage);
+					//直接返回最后一页
+					int startIndex = (pageBase.getTotalPage()-1)*pageBase.getRecordPerPage() ; // (2-1)*3 = 3  (1-1)*3= 0 
+					int endIndex = list.size() - 1; 
+					List<Object> newList = new ArrayList<Object>();
+					for (int i = startIndex; i <= endIndex ; i++) {
+						newList.add(list.get(i));
+					}
+					return  newList;
+				}
+			}
+		}else{
+			pageBase.setCurrentPage(0);
+			pageBase.setTotalPage(0);
+		}
+		
+		return list;
+	}
+	
+	
+	
 	
 }

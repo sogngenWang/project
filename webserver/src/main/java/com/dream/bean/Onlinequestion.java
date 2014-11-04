@@ -1,10 +1,11 @@
 package com.dream.bean;
 
+import com.dream.basebean.PageBase;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_NULL)
-public class Onlinequestion  {
+public class Onlinequestion extends PageBase{
     private Integer questionid;
 
     private Integer userid;

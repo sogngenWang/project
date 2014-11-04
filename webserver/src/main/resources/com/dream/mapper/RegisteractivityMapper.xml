@@ -89,20 +89,18 @@
 		<include refid="Base_Column_List" />
 		from registeractivity
 		<where>
-			<choose>
-				<when test="registrationid != null and registrationid != '' ">
-					registrationid = #{registrationid, jdbcType=INTEGER}  
-				</when>
-				<when test="userid != null and userid != ''">
-					AND userid = #{userid, jdbcType=INTEGER}  
-				</when>
-				<when test="activityid != null and activityid != ''">
-					AND activityid = #{activityid, jdbcType=INTEGER}
-				</when>
-				<when test="signstatus != null and signstatus != ''">
-					AND signstatus = #{signstatus, jdbcType=INTEGER}
-				</when>
-			</choose>
+			<if test="registrationid != null">
+				registrationid = #{registrationid, jdbcType=INTEGER}
+			</if>
+			<if test="userid != null">
+				AND userid = #{userid, jdbcType=INTEGER}
+			</if>
+			<if test="activityid != null">
+				AND activityid = #{activityid, jdbcType=INTEGER}
+			</if>
+			<if test="signstatus != null">
+				AND signstatus = #{signstatus, jdbcType=INTEGER}
+			</if>
 		</where>
 	</select>
 	
@@ -111,40 +109,36 @@
 		<include refid="Base_Column_List" />
 				from registeractivity
 		<where>
-			<choose>
-				<when test="registrationid != null and registrationid != '' ">
-					registrationid = #{registrationid, jdbcType=INTEGER}  
-				</when>
-				<when test="userid != null and userid != ''">
-					AND userid = #{userid, jdbcType=INTEGER}  
-				</when>
-				<when test="activityid != null and activityid != ''">
-					AND activityid = #{activityid, jdbcType=INTEGER}
-				</when>
-				<when test="signstatus != null and signstatus != ''">
-					AND signstatus = #{signstatus, jdbcType=INTEGER}
-				</when>
-			</choose>
+			<if test="registrationid != null">
+				registrationid = #{registrationid, jdbcType=INTEGER}
+			</if>
+			<if test="userid != null">
+				AND userid = #{userid, jdbcType=INTEGER}
+			</if>
+			<if test="activityid != null">
+				AND activityid = #{activityid, jdbcType=INTEGER}
+			</if>
+			<if test="signstatus != null">
+				AND signstatus = #{signstatus, jdbcType=INTEGER}
+			</if>
 		</where>
 	</select>
 	<select id="countRegisteractivity" resultType="java.lang.Integer">
 		select count(*)
  				from registeractivity
 		<where>
-			<choose>
-				<when test="registrationid != null and registrationid != '' ">
-					registrationid = #{registrationid, jdbcType=INTEGER}  
-				</when>
-				<when test="userid != null and userid != ''">
-					AND userid = #{userid, jdbcType=INTEGER}  
-				</when>
-				<when test="activityid != null and activityid != ''">
-					AND activityid = #{activityid, jdbcType=INTEGER}
-				</when>
-				<when test="signstatus != null and signstatus != ''">
-					AND signstatus = #{signstatus, jdbcType=INTEGER}
-				</when>
-			</choose>
+			<if test="registrationid != null">
+				registrationid = #{registrationid, jdbcType=INTEGER}
+			</if>
+			<if test="userid != null">
+				AND userid = #{userid, jdbcType=INTEGER}
+			</if>
+			<if test="activityid != null">
+				AND activityid = #{activityid, jdbcType=INTEGER}
+			</if>
+			<if test="signstatus != null">
+				AND signstatus = #{signstatus, jdbcType=INTEGER}
+			</if>
 		</where>
 	</select>
   

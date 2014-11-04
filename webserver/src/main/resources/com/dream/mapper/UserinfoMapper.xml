@@ -144,23 +144,21 @@
 		<include refid="Base_Column_List" />
 		from userinfo
 		<where>
-			<choose>
-				<when test="userid != null and userid != '' ">
+				<if test="userid != null and userid != '' ">
 					userid = #{userid, jdbcType=INTEGER}  
-				</when>
-				<when test="telephone != null and telephone != ''">
+				</if>
+				<if test="telephone != null and telephone != ''">
 					AND telephone = #{telephone, jdbcType=VARCHAR}  
-				</when>
-				<when test="email != null and email != ''">
+				</if>
+				<if test="email != null and email != ''">
 					AND email = #{email, jdbcType=VARCHAR}
-				</when>
-				<when test="company != null and company != ''">
+				</if>
+				<if test="company != null and company != ''">
 					AND company = #{company, jdbcType=VARCHAR}
-				</when>
-				<when test="department != null and department != ''">
+				</if>
+				<if test="department != null and department != ''">
 					AND department = #{department, jdbcType=VARCHAR}
-				</when>
-			</choose>
+				</if>
 		</where>
 	</select>
 	
@@ -169,46 +167,42 @@
 		<include refid="Base_Column_List" />
 		from userinfo
 		<where>
-			<choose>
-				<when test="userid != null and userid != '' ">
+				<if test="userid != null and userid != '' ">
 					userid = #{userid, jdbcType=INTEGER}  
-				</when>
-				<when test="telephone != null and telephone != ''">
+				</if>
+				<if test="telephone != null and telephone != ''">
 					AND telephone = #{telephone, jdbcType=VARCHAR}  
-				</when>
-				<when test="email != null and email != ''">
+				</if>
+				<if test="email != null and email != ''">
 					AND email = #{email, jdbcType=VARCHAR}
-				</when>
-				<when test="company != null and company != ''">
+				</if>
+				<if test="company != null and company != ''">
 					AND company = #{company, jdbcType=VARCHAR}
-				</when>
-				<when test="department != null and department != ''">
+				</if>
+				<if test="department != null and department != ''">
 					AND department = #{department, jdbcType=VARCHAR}
-				</when>
-			</choose>
+				</if>
 		</where>
 	</select>
 	<select id="countUserinfo" resultType="java.lang.Integer">
 		select count(*)
   		from userinfo
 		<where>
-			<choose>
-				<when test="userid != null and userid != '' ">
+				<if test="userid != null and userid != '' ">
 					userid = #{userid, jdbcType=INTEGER}  
-				</when>
-				<when test="telephone != null and telephone != ''">
+				</if>
+				<if test="telephone != null and telephone != ''">
 					AND telephone = #{telephone, jdbcType=VARCHAR}  
-				</when>
-				<when test="email != null and email != ''">
+				</if>
+				<if test="email != null and email != ''">
 					AND email = #{email, jdbcType=VARCHAR}
-				</when>
-				<when test="company != null and company != ''">
+				</if>
+				<if test="company != null and company != ''">
 					AND company = #{company, jdbcType=VARCHAR}
-				</when>
-				<when test="department != null and department != ''">
+				</if>
+				<if test="department != null and department != ''">
 					AND department = #{department, jdbcType=VARCHAR}
-				</when>
-			</choose>
+				</if>
 		</where>
 	</select>
 </mapper>

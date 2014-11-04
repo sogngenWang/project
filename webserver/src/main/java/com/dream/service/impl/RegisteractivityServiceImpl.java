@@ -68,6 +68,7 @@ public class RegisteractivityServiceImpl implements RegisteractivityService {
 	@Override
 	public List<User> listRegisterSignUser(Registeractivity registeractivity) {
 		registeractivity.setSignstatus(Constant.REGISTERACTIVITY_SIGN); 
+		registeractivity.setUserid(null);
 		List<Registeractivity> registeractivityList = registeractivityDao.listRegisteractivity(registeractivity);
 		List<User> userList = new ArrayList<User>();
 		for (Registeractivity registeractivityTmp : registeractivityList) {

@@ -171,38 +171,36 @@
 		<include refid="Base_Column_List" />
 		from user
 		<where>
-			<choose>
-				<when test="userid != null and userid != '' ">
+				<if test="userid != null and userid != '' ">
 					userid = #{userid, jdbcType=INTEGER}  
-				</when>
-				<when test="username != null and username != ''">
+				</if>
+				<if test="username != null and username != ''">
 					AND username = #{username, jdbcType=VARCHAR}  
-				</when>
-				<when test="nickname != null and nickname != ''">
+				</if>
+				<if test="nickname != null and nickname != ''">
 					AND nickname = #{nickname, jdbcType=VARCHAR}
-				</when>
-				<when test="password != null and password != ''">
+				</if>
+				<if test="password != null and password != ''">
 					AND password = #{password, jdbcType=VARCHAR}
-				</when>
-				<when test="type != null and type != ''">
+				</if>
+				<if test="type != null and type != ''">
 					AND type = #{type, jdbcType=VARCHAR}
-				</when>
-				<when test="isactive != null and isactive != ''">
+				</if>
+				<if test="isactive != null and isactive != ''">
 					AND isactive = #{isactive, jdbcType=VARCHAR}
-				</when>
-				<when test="email != null and email != ''">
+				</if>
+				<if test="email != null and email != ''">
 					AND email = #{email, jdbcType=VARCHAR}
-				</when>
-				<when test="telephone != null and telephone != ''">
+				</if>
+				<if test="telephone != null and telephone != ''">
 					AND telephone = #{telephone, jdbcType=VARCHAR}
-				</when>
-				<when test="company != null and company != ''">
+				</if>
+				<if test="company != null and company != ''">
 					AND company = #{company, jdbcType=VARCHAR}
-				</when>
-				<when test="position != null and position != ''">
+				</if>
+				<if test="position != null and position != ''">
 					AND position = #{position, jdbcType=VARCHAR}
-				</when>
-			</choose>
+				</if>
 		</where>
 	</select>
 	
@@ -211,76 +209,72 @@
 		<include refid="Base_Column_List" />
 		from user
 		<where>
-			<choose>
-				<when test="userid != null and userid != '' ">
+				<if test="userid != null and userid != '' ">
 					userid = #{userid, jdbcType=INTEGER}  
-				</when>
-				<when test="username != null and username != ''">
+				</if>
+				<if test="username != null and username != ''">
 					AND username = #{username, jdbcType=VARCHAR}  
-				</when>
-				<when test="nickname != null and nickname != ''">
+				</if>
+				<if test="nickname != null and nickname != ''">
 					AND nickname = #{nickname, jdbcType=VARCHAR}
-				</when>
-				<when test="password != null and password != ''">
+				</if>
+				<if test="password != null and password != ''">
 					AND password = #{password, jdbcType=VARCHAR}
-				</when>
-				<when test="type != null and type != ''">
+				</if>
+				<if test="type != null and type != ''">
 					AND type = #{type, jdbcType=VARCHAR}
-				</when>
-				<when test="isactive != null and isactive != ''">
+				</if>
+				<if test="isactive != null and isactive != ''">
 					AND isactive = #{isactive, jdbcType=VARCHAR}
-				</when>
-				<when test="email != null and email != ''">
+				</if>
+				<if test="email != null and email != ''">
 					AND email = #{email, jdbcType=VARCHAR}
-				</when>
-				<when test="telephone != null and telephone != ''">
+				</if>
+				<if test="telephone != null and telephone != ''">
 					AND telephone = #{telephone, jdbcType=VARCHAR}
-				</when>
-				<when test="company != null and company != ''">
+				</if>
+				<if test="company != null and company != ''">
 					AND company = #{company, jdbcType=VARCHAR}
-				</when>
-				<when test="position != null and position != ''">
+				</if>
+				<if test="position != null and position != ''">
 					AND position = #{position, jdbcType=VARCHAR}
-				</when>
-			</choose>
+				</if>
 		</where>
 	</select>
 	<select id="countUser" resultType="java.lang.Integer">
 		select count(*)
   		from user
 		<where>
-			<choose>
-				<when test="userid != null and userid != '' ">
+				<if test="userid != null and userid != '' ">
 					userid = #{userid, jdbcType=INTEGER}  
-				</when>
-				<when test="username != null and username != ''">
+				</if>
+				<if test="username != null and username != ''">
 					AND username = #{username, jdbcType=VARCHAR}  
-				</when>
-				<when test="nickname != null and nickname != ''">
+				</if>
+				<if test="nickname != null and nickname != ''">
 					AND nickname = #{nickname, jdbcType=VARCHAR}
-				</when>
-				<when test="password != null and password != ''">
+				</if>
+				<if test="password != null and password != ''">
 					AND password = #{password, jdbcType=VARCHAR}
-				</when>
-				<when test="type != null and type != ''">
+				</if>
+				<if test="type != null and type != ''">
 					AND type = #{type, jdbcType=VARCHAR}
-				</when>
-				<when test="isactive != null and isactive != ''">
+				</if>
+				<if test="isactive != null and isactive != ''">
 					AND isactive = #{isactive, jdbcType=VARCHAR}
-				</when>
-				<when test="email != null and email != ''">
+				</if>
+				<if test="email != null and email != ''">
 					AND email = #{email, jdbcType=VARCHAR}
-				</when>
-				<when test="telephone != null and telephone != ''">
+				</if>
+				<if test="telephone != null and telephone != ''">
 					AND telephone = #{telephone, jdbcType=VARCHAR}
-				</when>
-				<when test="company != null and company != ''">
+				</if>
+				<if test="company != null and company != ''">
 					AND company = #{company, jdbcType=VARCHAR}
-				</when>
-				<when test="position != null and position != ''">
+				</if>
+				<if test="position != null and position != ''">
 					AND position = #{position, jdbcType=VARCHAR}
-				</when>
-			</choose>
+				</if>
 		</where>
 	</select>
 	

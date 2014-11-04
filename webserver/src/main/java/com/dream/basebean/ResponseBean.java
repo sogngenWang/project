@@ -2,6 +2,7 @@ package com.dream.basebean;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
@@ -37,8 +38,26 @@ public class ResponseBean {
 		return content;
 	}
 
+	@SuppressWarnings("unchecked")
 	public void setContent(Object content) {
-		this.content = content;
+		//content默认应该是null
+		
+		//设置过的值，有可能是Map List Object 
+		
+		//判断content的类型，假如已经被设置过值，并且是list类型的，则第二次进来设置的是分页对象
+		if (null != this.content && this.content instanceof List ){
+			ArrayList<Object> contentList = (ArrayList<Object>) this.content;
+			HashMap<String ,Object> contentTmp = new HashMap<String ,Object>();
+			contentTmp.put(Constant.JSON_LIST, contentList);
+			contentTmp.put("currentPage",((PageBase)content).getCurrentPage());
+			contentTmp.put("totalPage",((PageBase)content).getTotalPage());
+			contentTmp.put("recordPerPage",((PageBase)content).getRecordPerPage());
+			this.content = contentTmp;
+		}else{
+			this.content = content;
+		}
+		
+//		this.content = content;
 	}
 
 	public void setMsg(MsgBean msg) {
@@ -57,6 +76,8 @@ public class ResponseBean {
 	 */
 	@SuppressWarnings("unchecked")
 	public String setMac(String key) {
+		
+		
 		// 把content对象转化成Map类型(原来应该是一个对象)
 		if (null == content) {
 			//针对content为空的情况

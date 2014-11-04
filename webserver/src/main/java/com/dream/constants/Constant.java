@@ -64,5 +64,7 @@ public interface Constant {
 	public static final String USER_ACTIVE = "1";
 	//活动已签到用户
 	public static final Integer REGISTERACTIVITY_SIGN = 1;
+	//每页显示多少条记录，默认值
+	public static final Integer PAGE_RECORD_PER_PAGE_DEFAULT = 3;
 	
 }

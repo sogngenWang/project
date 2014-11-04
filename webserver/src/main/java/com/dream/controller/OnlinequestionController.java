@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dream.basebean.PageBase;
 import com.dream.basebean.RequestBean;
 import com.dream.basebean.ResponseBean;
 import com.dream.bean.Onlinequestion;
@@ -72,9 +73,13 @@ public class OnlinequestionController {
 				content = requestBean.getContent();
 				Onlinequestion onlinequestion = gson.fromJson(content.toString(), Onlinequestion.class);
 				CommonUtils.decriptObject(onlinequestion, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
+				PageBase pageBase = CommonUtils.createNewPageBase(onlinequestion);
 				List<Onlinequestion> onlinequestionList = onlinequestionService.listOnlinequestion(onlinequestion);
-				responseBean.setContent(onlinequestionList);
+				responseBean.setContent(CommonUtils.createListPage(onlinequestionList , pageBase));
+				responseBean.setContent(pageBase);
+				
 			} catch (Exception e) {
+				e.printStackTrace();
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");
 				responseBean.getMsg().setDesc("业务异常");
