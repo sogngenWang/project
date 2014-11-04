@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : own
-Source Server Version : 50520
-Source Host           : localhost:3306
+Source Server         : 121.40.99.112
+Source Server Version : 50173
+Source Host           : 121.40.99.112:3306
 Source Database       : webserver
 
 Target Server Type    : MYSQL
-Target Server Version : 50520
+Target Server Version : 50173
 File Encoding         : 65001
 
-Date: 2014-11-04 00:59:41
+Date: 2014-11-04 21:47:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -69,7 +69,7 @@ CREATE TABLE `checkcode` (
   `telephone` varchar(255) DEFAULT NULL COMMENT '该校验码对应的手机号',
   `createtime` varchar(255) DEFAULT NULL COMMENT '校验码生成时间',
   PRIMARY KEY (`checkcodeid`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='用户校验码';
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='用户校验码';
 
 -- ----------------------------
 -- Records of checkcode
@@ -78,6 +78,7 @@ INSERT INTO checkcode VALUES ('1', '248724', '15159628259', '2014-11-01 11:25:18
 INSERT INTO checkcode VALUES ('2', '704477', '15159628259', '2014-11-01 12:02:04,879');
 INSERT INTO checkcode VALUES ('3', '511007', '15159628259', '2014-11-01 12:02:23,878');
 INSERT INTO checkcode VALUES ('4', '601515', '15159628259', '2014-11-01 12:02:33,078');
+INSERT INTO checkcode VALUES ('5', '600074', '15159628259', '2014-11-04 21:09:01,306');
 
 -- ----------------------------
 -- Table structure for `comment`
@@ -91,14 +92,17 @@ CREATE TABLE `comment` (
   `commentseq` int(11) NOT NULL COMMENT '评论顺序',
   `commenttime` varchar(20) NOT NULL COMMENT '评论时间',
   PRIMARY KEY (`commentid`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='用户评论表';
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='用户评论表';
 
 -- ----------------------------
 -- Records of comment
 -- ----------------------------
 INSERT INTO comment VALUES ('1', '第一条评论', '1', '1', '1', '');
-INSERT INTO comment VALUES ('2', '第二条评论', '1', '2', '2', '');
-INSERT INTO comment VALUES ('3', '第二条评论', '1', '0', '0', '');
+INSERT INTO comment VALUES ('2', '第二条评论', '1', '2', '1', '');
+INSERT INTO comment VALUES ('3', '第二条评论', '1', '1', '2', '');
+INSERT INTO comment VALUES ('4', 'xxxxx', '2', '2', '2', '');
+INSERT INTO comment VALUES ('5', 'hehe ', '1', '1', '3', '');
+INSERT INTO comment VALUES ('6', 'xx123123231', '1', '1', '4', '');
 
 -- ----------------------------
 -- Table structure for `friends`
@@ -150,13 +154,23 @@ CREATE TABLE `onlinequestion` (
   `question` varchar(255) DEFAULT NULL COMMENT '已注册用户提问的问题',
   `answer` varchar(255) DEFAULT NULL COMMENT '活动人员/管理员回答的答案',
   PRIMARY KEY (`questionid`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='在线提问列表';
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='在线提问列表';
 
 -- ----------------------------
 -- Records of onlinequestion
 -- ----------------------------
 INSERT INTO onlinequestion VALUES ('1', '1', '2014-11-03 21:55:55', '什么时候开始', '2014年11月3日');
 INSERT INTO onlinequestion VALUES ('2', '1', '2014-11-03 21:56:17', '有谁参加', '参照以上嘉宾');
+INSERT INTO onlinequestion VALUES ('3', '1', '2014-11-04 20:41:18', 'question1', '1');
+INSERT INTO onlinequestion VALUES ('4', '1', '2014-11-04 20:41:22', 'question2', '2');
+INSERT INTO onlinequestion VALUES ('5', '1', '2014-11-04 20:41:24', 'question3', '3');
+INSERT INTO onlinequestion VALUES ('6', '1', '2014-11-04 20:41:25', 'question4', '4');
+INSERT INTO onlinequestion VALUES ('7', '1', '2014-11-04 20:41:27', 'question5', '5');
+INSERT INTO onlinequestion VALUES ('8', '1', '2014-11-04 20:41:28', 'question6', '6');
+INSERT INTO onlinequestion VALUES ('9', '1', '2014-11-04 20:41:31', 'question7', '7');
+INSERT INTO onlinequestion VALUES ('10', '1', '2014-11-04 20:41:32', 'question8', '8');
+INSERT INTO onlinequestion VALUES ('11', '1', '2014-11-04 20:41:33', 'question9', '9');
+INSERT INTO onlinequestion VALUES ('12', '2', '2014-11-04 20:41:34', 'question10', '10');
 
 -- ----------------------------
 -- Table structure for `praise`
@@ -225,12 +239,12 @@ CREATE TABLE `user` (
   `password` varchar(255) DEFAULT NULL COMMENT '用户密码',
   `type` varchar(2) DEFAULT NULL COMMENT '用户类型(1.管理员 2.企业顾问3.普通会员4.讲师5.嘉宾6.临时会员)',
   `isactive` varchar(1) DEFAULT NULL COMMENT '账户的状态   1.激活 2.禁用',
-  `registertime` varchar(20) DEFAULT NULL COMMENT '注册时间',
+  `registertime` varchar(30) DEFAULT NULL COMMENT '注册时间',
   `email` varchar(25) DEFAULT NULL COMMENT '电子邮箱',
   `company` varchar(100) DEFAULT NULL COMMENT '所属公司',
   `position` varchar(30) DEFAULT NULL COMMENT '职位',
   PRIMARY KEY (`userid`)
-) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COMMENT='用户登录信息表';
+) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='用户登录信息表';
 
 -- ----------------------------
 -- Records of user
@@ -238,8 +252,9 @@ CREATE TABLE `user` (
 INSERT INTO user VALUES ('1', '15155445597', '王松根', 'dream', 'wsg96321', '1', '1', '2014-10-28 11:25:04', 'wangsonggen@126.com', '博远无线', '研发工程师');
 INSERT INTO user VALUES ('2', '15155221122', '测试', '测试昵称', '123', '3', '1', '2014-10-28 11:25:31', 'test@163.com', '腾讯', '总工程师');
 INSERT INTO user VALUES ('3', '13067266273', 'Jack', '测试a昵v称哦123', 'dream', '2', '1', '2014-11-03 21:57:31', 'heh@qq.com', '百度', '美工');
-INSERT INTO user VALUES ('30', '18211112333', 'Jack2123', null, null, null, null, null, null, null, null);
-INSERT INTO user VALUES ('37', '15159628259', null, '昵称测试1', 'wsg', null, null, null, null, '新大陆软件有限公司', null);
+INSERT INTO user VALUES ('36', '18211112333', 'Jack2123', null, null, null, null, null, null, null, null);
+INSERT INTO user VALUES ('37', '15159628259', null, '昵称测试1', 'wsg123', null, null, null, null, '新大陆软件有限公司', null);
+INSERT INTO user VALUES ('38', '15155005597', null, '测试', 'w321', '3', '1', '2014-11-04 21:18:22,289', null, '网龙', null);
 
 -- ----------------------------
 -- Table structure for `userinfo`
