@@ -93,11 +93,14 @@ public class ResponseBean {
 			// 把对象转化成map
 			Map<String, Object> map = null;
 			try {
-				map = CommonUtils.objectToMap(null, content);
+				if(!(content instanceof Map)){
+					map = CommonUtils.objectToMap(null, content);
+				}
+				this.mac = CommonUtils.calculateMac(map, key);
 			} catch (Exception e) {
 				LOG.error("objectToMap error  " + e.getMessage());
 			}
-			this.mac = CommonUtils.calculateMac(map, key);
+			
 		} 
 		
 		return this.mac;

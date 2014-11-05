@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dream.annotation.RequestNeedParam;
 import com.dream.basebean.PageBase;
 import com.dream.basebean.RequestBean;
 import com.dream.basebean.ResponseBean;
@@ -67,6 +68,7 @@ public class ActivityController {
 	 * @param request
 	 * @return
 	 */
+	@RequestNeedParam({"activityid","userid"})
 	@RequestMapping(value = "/detailActivity", method = { RequestMethod.POST })
 	@ResponseBody
 	public ResponseBean detailActivity(String request) {
@@ -97,7 +99,7 @@ public class ActivityController {
 
 		return responseBean;
 	}
-
+	@RequestNeedParam({"currentPage"})
 	@RequestMapping(value = "/listActivity", method = { RequestMethod.POST })
 	@ResponseBody
 	public ResponseBean listActivity(String request) {

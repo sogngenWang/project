@@ -30,12 +30,10 @@
 		</property>
 	</bean>
 
-	<bean
-		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
 		<property name="useDefaultSuffixPattern" value="false" />
 	</bean>
-	<bean
-		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">
 			<list>
 				<bean
@@ -48,24 +46,25 @@
 					</property>
 				</bean>
 				<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
-					<!-- <property name="objectMapper">
-						<bean class="org.codehaus.jackson.map.ObjectMapper">
-								<property name="serializerProvider">
-									<value type="org.codehaus.jackson.map.annotate.JsonSerialize$Inclusion">NON_NULL</value>
-								</property>
-					</bean>
-					</property>
-					 -->
 				</bean>
 			</list>
 		</property>
 	</bean>
 
+
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
 	</bean>
 
-	<mvc:resources mapping="/js/**" location="/js/" cache-period="31556926" />
+	<mvc:interceptors>
+			<!-- <bean class="com.dream.interceptor.ParamInterceptor" ></bean> --> 
+			 <mvc:interceptor> 
+				 <mvc:mapping path="/*"/> 
+			 	 <bean class="com.dream.interceptor.ParamInterceptor" />
+			 </mvc:interceptor>
+	</mvc:interceptors>
+	
+ 	<mvc:resources mapping="/js/**" location="/js/" cache-period="31556926" />
 	<mvc:resources mapping="/html/**" location="/html/" cache-period="31556926" />
 	<mvc:resources mapping="/install/**" location="/install/" cache-period="31556926" />
 	<mvc:resources mapping="/imgs/**" location="/imgs/" cache-period="31556926" />

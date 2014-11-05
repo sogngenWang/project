@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dream.annotation.RequestNeedParam;
 import com.dream.basebean.PageBase;
 import com.dream.basebean.RequestBean;
 import com.dream.basebean.ResponseBean;
@@ -43,6 +44,7 @@ public class RegisteractivityController {
 	 * @param request
 	 * @return
 	 */
+	@RequestNeedParam({"userid","activityid","currentPage"})
 	@RequestMapping(value = "/listRegisterSignUser", method = { RequestMethod.POST })
 	@ResponseBody
 	public ResponseBean listRegisterSignUser(String request) {
@@ -124,6 +126,7 @@ public class RegisteractivityController {
 	 * @param request
 	 * @return
 	 */
+	@RequestNeedParam({"userid","activityid"})
 	@RequestMapping(value = "/addRegisteractivity", method = { RequestMethod.POST })
 	@ResponseBody
 	public ResponseBean addRegisteractivity(String request) {

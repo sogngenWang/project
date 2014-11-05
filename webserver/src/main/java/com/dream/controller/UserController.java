@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dream.annotation.RequestNeedParam;
 import com.dream.basebean.RequestBean;
 import com.dream.basebean.ResponseBean;
 import com.dream.bean.Checkcode;
@@ -183,6 +184,7 @@ public class UserController {
 	 * @param request
 	 * @return
 	 */
+	@RequestNeedParam({"username","password"})
 	@RequestMapping(value = "/loginUser", method = { RequestMethod.POST })
 	@ResponseBody
 	public ResponseBean loginUser(String request) {
@@ -226,6 +228,7 @@ public class UserController {
 	 * @param request
 	 * @return
 	 */
+	@RequestNeedParam({"telephone","nickname","company","password","checkcode"})
 	@RequestMapping(value = "/registerUser", method = { RequestMethod.POST })
 	@ResponseBody
 	public ResponseBean registerUser(String request) {
@@ -290,6 +293,7 @@ public class UserController {
 	 * @param request
 	 * @return
 	 */
+	@RequestNeedParam({"telephone"})
 	@RequestMapping(value = "/findbackUser", method = { RequestMethod.POST })
 	@ResponseBody
 	public ResponseBean findback(String request) {
@@ -334,6 +338,7 @@ public class UserController {
 	 * @param request
 	 * @return
 	 */
+	@RequestNeedParam({"telephone","password","checkcode"})
 	@RequestMapping(value = "/resetPasswdUser", method = { RequestMethod.POST })
 	@ResponseBody
 	public ResponseBean resetPasswd(String request) {

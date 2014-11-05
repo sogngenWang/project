@@ -11,7 +11,7 @@ public class TestMain extends JUnitControllerBase {
 	public void test() throws Exception {
 		JUnitTest test = new JUnitTest();
 		//活动详情页——点击在线提问的时候，提交  | 分页
-//		test.Test("listOnlinequestionController");
+		test.Test("listOnlinequestionController");
 		//找回密码页面提交，会校验之前方法发送的短信验证码  
 //		test.Test("resetPasswdUserController"); 
 		//找回密码的时候，调用该方法，发送短信验证码
@@ -40,8 +40,8 @@ public class TestMain extends JUnitControllerBase {
 //		test.Test("addRegisteractivityController");
 		// 话题里面的评论也需要允许点赞
 //		test.Test("addThemePraiseController");
-		//总结功能额外做 TODO
-
+		// TODO 总结功能额外做 
+		
 		
 		
 		

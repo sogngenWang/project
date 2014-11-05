@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dream.annotation.RequestNeedParam;
 import com.dream.basebean.RequestBean;
 import com.dream.basebean.ResponseBean;
 import com.dream.bean.Praise;
@@ -36,6 +37,7 @@ public class PraiseController {
 	 * @param request
 	 * @return
 	 */
+	@RequestNeedParam({"userid","otherid"})
 	@RequestMapping(value = "/addActivityPraise", method = { RequestMethod.POST })
 	@ResponseBody
 	public ResponseBean addActivityPraise(String request) {
@@ -77,6 +79,7 @@ public class PraiseController {
 	 * @param request
 	 * @return
 	 */
+	@RequestNeedParam({"userid","otherid"})
 	@RequestMapping(value = "/addThemePraise", method = { RequestMethod.POST })
 	@ResponseBody
 	public ResponseBean addThemePraise(String request) {

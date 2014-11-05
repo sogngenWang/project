@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dream.annotation.RequestNeedParam;
 import com.dream.basebean.PageBase;
 import com.dream.basebean.RequestBean;
 import com.dream.basebean.ResponseBean;
@@ -33,7 +34,7 @@ public class ActivityvipController {
 	@Resource(name = "activityvipService")
 	private ActivityvipService activityvipService;
 
-
+	@RequestNeedParam({"activityid","currentPage"})
 	@RequestMapping(value = "/listActivityvip", method = { RequestMethod.POST })
 	@ResponseBody
 	public ResponseBean listActivity(String request) {

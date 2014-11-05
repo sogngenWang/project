@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dream.annotation.RequestNeedParam;
 import com.dream.basebean.RequestBean;
 import com.dream.basebean.ResponseBean;
 import com.dream.bean.Checkcode;
@@ -31,7 +32,7 @@ public class CheckcodeController {
 	@Resource(name = "checkcodeService")
 	private CheckcodeService checkcodeService;
 
-
+	@RequestNeedParam({"telephone"})
 	@RequestMapping(value = "/generateCheckcode", method = { RequestMethod.POST })
 	@ResponseBody
 	public ResponseBean generateCheckcode(String request) {
