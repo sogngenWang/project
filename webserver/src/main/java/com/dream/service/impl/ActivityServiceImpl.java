@@ -78,7 +78,7 @@ public class ActivityServiceImpl implements ActivityService {
 		activity = activityDao.detailActivity(activity);
 		int commentCount = 0;
 		int praiseCount = 0;
-		int caredegree = 0;
+//		int caredegree = 0;
 		int registerCount = 0;
 		//计算评论数量
 		//先计算该活动所拥有的话题，然后分别计算每个话题下有多少个评论
@@ -92,12 +92,23 @@ public class ActivityServiceImpl implements ActivityService {
 		}
 		//计算点赞数量
 		Praise praise = new Praise();
-		praise.setPraiseidactivityid(activity.getActivityid());
+		praise.setOtherid(activity.getActivityid());
+		praise.setPraisetype(Constant.PRAISE_TYPE_ACTIVITY);
 		praiseCount = praiseDao.countPraise(praise);
-
+		//判断用户是否已经点赞
+		praise = new Praise();
+		praise.setUserid(activity.getUserid());
+		praise.setOtherid(activity.getActivityid());
+		praise.setPraisetype(Constant.PRAISE_TYPE_ACTIVITY);
+		if(null != praiseDao.detailPraise(praise)){
+			activity.setIsuserpraise(Constant.USER_ACTIVITY_HAS_PRAISE);
+		}else{
+			activity.setIsuserpraise(Constant.USER_ACTIVITY_NOT_PRAISE);
+		}
+		
 		//TODO 计算关注度  关注度暂时仅仅使用评论的50%+点赞的50%
-		caredegree = (int) (commentCount * 1.0 / 2 + praiseCount * 1.0 / 2);
-
+//		caredegree = (int) (commentCount * 1.0 / 2 + praiseCount * 1.0 / 2);
+		
 		//设置已经报名人数 
 		Registeractivity registeractivity = new Registeractivity();
 		registeractivity.setActivityid(activity.getActivityid());
@@ -110,7 +121,7 @@ public class ActivityServiceImpl implements ActivityService {
 		activity.setActivitydetail(null);		
 		activity.setCommentcount(commentCount);
 		activity.setPraisecount(praiseCount);
-		activity.setCaredegree(caredegree);
+//		activity.setCaredegree(caredegree);
 		activity.setRegistercount(registerCount);
 		activity.setViewcount(activity.getViewcount()+1);
 		// 每次查询完，都需要把该活动的查阅数+1

@@ -1,11 +1,6 @@
 package com.dream.bean;
 
-import com.dream.basebean.PageBase;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
-@JsonInclude(Include.NON_NULL)
-public class Friends extends PageBase{
+public class Friends {
     private Integer friendid;
 
     private Integer userid;
@@ -13,6 +8,8 @@ public class Friends extends PageBase{
     private Integer frienduserid;
 
     private String isbefriend;
+
+    private String accesstime;
 
     public Integer getFriendid() {
         return friendid;
@@ -44,5 +41,13 @@ public class Friends extends PageBase{
 
     public void setIsbefriend(String isbefriend) {
         this.isbefriend = isbefriend == null ? null : isbefriend.trim();
+    }
+
+    public String getAccesstime() {
+        return accesstime;
+    }
+
+    public void setAccesstime(String accesstime) {
+        this.accesstime = accesstime == null ? null : accesstime.trim();
     }
 }

@@ -16,16 +16,16 @@
 	<bean name="dataSource" id="dataSource"
 		class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		 <!-- 
+		 
 		<property name="jdbcUrl" value="jdbc:mysql://121.40.99.112:3306/webserver?useUnicode=true&amp;characterEncoding=utf8" />
 		<property name="user" value="root" />
 		<property name="password" value="mysql96321" />
-		 -->
-		
+		 
+		<!-- 
 		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/webserver?useUnicode=true&amp;characterEncoding=utf8" />
 		<property name="user" value="root" />
 		<property name="password" value="wsg96321" />
-		
+		-->
 		
 		<property name="autoCommitOnClose" value="true" />
 		<property name="checkoutTimeout" value="3000" />

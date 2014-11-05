@@ -52,7 +52,7 @@ public interface Constant {
 	public static final String CODE_0007="用户已经报名过";
 	public static final String CODE_0008="报名人数已经达到上限";
 	public static final String CODE_0009="该活动还未开始报名或者已经停止报名";
-	public static final String CODE_0010="";
+	public static final String CODE_0010="用户已赞过.";
 	public static final String CODE_0011="";
 	public static final String CODE_0012="";
 	public static final String CODE_0013="";
@@ -73,5 +73,17 @@ public interface Constant {
 	//每页显示多少条记录，默认值
 	public static final Integer PAGE_RECORD_PER_PAGE_DEFAULT = 3;
 	public static final String ACTIVITY_REGISTER_STATUS = "2";
+	
+	//
+	public static final Integer PRAISE_TYPE_ACTIVITY = 1;
+	//
+	public static final Integer PRAISE_TYPE_THEME = 2;
+	//
+	public static final Integer PRAISE_TYPE_USER = 3;
+	
+	//用户活动还未点赞
+	public static final String USER_ACTIVITY_NOT_PRAISE = "0";
+	//用户活动已经点赞
+	public static final String USER_ACTIVITY_HAS_PRAISE = "1";
 	
 }

@@ -18,6 +18,26 @@ public class Activity extends PageBase {
 	private String activitypicture;
 	// 已报名人数
 	private Integer registercount;
+	// 用户id
+	private Integer userid;
+	// 用户是否已经点赞 (0.还未点赞 1.已点赞)
+	private String isuserpraise;
+
+	public String getIsuserpraise() {
+		return isuserpraise;
+	}
+
+	public void setIsuserpraise(String isuserpraise) {
+		this.isuserpraise = isuserpraise;
+	}
+
+	public Integer getUserid() {
+		return userid;
+	}
+
+	public void setUserid(Integer userid) {
+		this.userid = userid;
+	}
 
 	public Integer getCommentcount() {
 		return commentcount;
