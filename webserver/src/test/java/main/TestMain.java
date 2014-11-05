@@ -11,7 +11,7 @@ public class TestMain extends JUnitControllerBase {
 	public void test() throws Exception {
 		JUnitTest test = new JUnitTest();
 		//活动详情页——点击在线提问的时候，提交  | 分页
-		test.Test("listOnlinequestionController");
+//		test.Test("listOnlinequestionController");
 		//找回密码页面提交，会校验之前方法发送的短信验证码  
 //		test.Test("resetPasswdUserController"); 
 		//找回密码的时候，调用该方法，发送短信验证码
@@ -28,7 +28,7 @@ public class TestMain extends JUnitControllerBase {
 //		test.Test("listRegisterSignUserController");
 		//活动详情页——用户点赞操作 
 //		test.Test("addActivityPraiseController");
-		//话题页面——列出所有的该活动的话题 | 1.分页 
+		//话题页面——列出所有的该活动的话题 以及每个话题的评论总数| 1.分页 
 //		test.Test("listThemeController");
 		//注册新用户 —— 获取验证码并显示
 //		test.Test("generateCheckcodeController");
@@ -42,7 +42,7 @@ public class TestMain extends JUnitControllerBase {
 //		test.Test("addThemePraiseController");
 		// TODO 总结功能额外做 
 		
-		
+		//活动详情页面——列出当前主题的所有评论，以及每个评论的点赞数量，对于每个评论都还需要返回自己是否已经点赞
 		
 		
 //		test.Test("addActivityController");
@@ -51,7 +51,6 @@ public class TestMain extends JUnitControllerBase {
 //		test.Test("detailPraiseController");
 //		test.Test("detailUserinfoController");
 //		test.Test("addCommentController");
-//		test.Test("listCommentController");
 //		test.Test("addUserController");
 //		test.Test("detailUserController");
 //		test.Test("listPraiseController");
