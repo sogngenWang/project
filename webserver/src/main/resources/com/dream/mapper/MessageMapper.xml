@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dream.dao.MessageMapper" >
+  <resultMap id="BaseResultMap" type="com.dream.bean.Message" >
+    <id column="messageid" property="messageid" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="isread" property="isread" jdbcType="VARCHAR" />
+    <result column="messagedate" property="messagedate" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.dream.bean.Message" extends="BaseResultMap" >
+    <result column="messagecontent" property="messagecontent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    messageid, userid, isread, messagedate
+  </sql>
+  <sql id="Blob_Column_List" >
+    messagecontent
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from message
+    where messageid = #{messageid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from message
+    where messageid = #{messageid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dream.bean.Message" >
+    <selectKey resultType="java.lang.Integer" keyProperty="messageid" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into message (userid, isread, messagedate, 
+      messagecontent)
+    values (#{userid,jdbcType=INTEGER}, #{isread,jdbcType=VARCHAR}, #{messagedate,jdbcType=VARCHAR}, 
+      #{messagecontent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dream.bean.Message" >
+    <selectKey resultType="java.lang.Integer" keyProperty="messageid" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="isread != null" >
+        isread,
+      </if>
+      <if test="messagedate != null" >
+        messagedate,
+      </if>
+      <if test="messagecontent != null" >
+        messagecontent,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="isread != null" >
+        #{isread,jdbcType=VARCHAR},
+      </if>
+      <if test="messagedate != null" >
+        #{messagedate,jdbcType=VARCHAR},
+      </if>
+      <if test="messagecontent != null" >
+        #{messagecontent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dream.bean.Message" >
+    update message
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="isread != null" >
+        isread = #{isread,jdbcType=VARCHAR},
+      </if>
+      <if test="messagedate != null" >
+        messagedate = #{messagedate,jdbcType=VARCHAR},
+      </if>
+      <if test="messagecontent != null" >
+        messagecontent = #{messagecontent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where messageid = #{messageid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dream.bean.Message" >
+    update message
+    set userid = #{userid,jdbcType=INTEGER},
+      isread = #{isread,jdbcType=VARCHAR},
+      messagedate = #{messagedate,jdbcType=VARCHAR},
+      messagecontent = #{messagecontent,jdbcType=LONGVARCHAR}
+    where messageid = #{messageid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dream.bean.Message" >
+    update message
+    set userid = #{userid,jdbcType=INTEGER},
+      isread = #{isread,jdbcType=VARCHAR},
+      messagedate = #{messagedate,jdbcType=VARCHAR}
+    where messageid = #{messageid,jdbcType=INTEGER}
+  </update>
+</mapper>

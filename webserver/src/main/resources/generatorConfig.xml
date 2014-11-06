@@ -9,7 +9,9 @@
 	<!-- 此处写jdbc的版本号，执行该命令的时候，右键项目-run as-maven build...-
 	mybatis-generator:generate 
 	-->
-	<classPathEntry location="D:\.m2\repository\mysql\mysql-connector-java\5.1.15\mysql-connector-java-5.1.15.jar" />
+<!-- 	<classPathEntry location="D:\.m2\repository\mysql\mysql-connector-java\5.1.15\mysql-connector-java-5.1.15.jar" /> -->
+	<classPathEntry location="C:\Users\Dream\.m2\repository\mysql\mysql-connector-java\5.1.15\mysql-connector-java-5.1.15.jar" />
+		
 		<!-- location="C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\5.1.15\mysql-connector-java-5.1.15.jar" /> -->
 		
 	<context id="DB2Tables" targetRuntime="MyBatis3">
@@ -51,7 +53,23 @@
 		</javaClientGenerator>
 		
 		
-		<table schema="" tableName="usermessage" domainObjectName="Usermessage"
+		<table schema="" tableName="message" domainObjectName="Message"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="messageid" sqlStatement="MySql"
+				identity="true" />
+		</table>
+		
+		<table schema="" tableName="lottery" domainObjectName="lottery"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="messageid" sqlStatement="MySql"
+				identity="true" />
+		</table>
+		
+		<table schema="" tableName="prize" domainObjectName="Prize"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">

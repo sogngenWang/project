@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dream.dao.PrizeMapper" >
+  <resultMap id="BaseResultMap" type="com.dream.bean.Prize" >
+    <id column="prizeid" property="prizeid" jdbcType="INTEGER" />
+    <result column="lotteryid" property="lotteryid" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="prizelevel" property="prizelevel" jdbcType="VARCHAR" />
+    <result column="prizetime" property="prizetime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    prizeid, lotteryid, userid, prizelevel, prizetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from prize
+    where prizeid = #{prizeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from prize
+    where prizeid = #{prizeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dream.bean.Prize" >
+    insert into prize (prizeid, lotteryid, userid, 
+      prizelevel, prizetime)
+    values (#{prizeid,jdbcType=INTEGER}, #{lotteryid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
+      #{prizelevel,jdbcType=VARCHAR}, #{prizetime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dream.bean.Prize" >
+    insert into prize
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="prizeid != null" >
+        prizeid,
+      </if>
+      <if test="lotteryid != null" >
+        lotteryid,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="prizelevel != null" >
+        prizelevel,
+      </if>
+      <if test="prizetime != null" >
+        prizetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="prizeid != null" >
+        #{prizeid,jdbcType=INTEGER},
+      </if>
+      <if test="lotteryid != null" >
+        #{lotteryid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="prizelevel != null" >
+        #{prizelevel,jdbcType=VARCHAR},
+      </if>
+      <if test="prizetime != null" >
+        #{prizetime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dream.bean.Prize" >
+    update prize
+    <set >
+      <if test="lotteryid != null" >
+        lotteryid = #{lotteryid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="prizelevel != null" >
+        prizelevel = #{prizelevel,jdbcType=VARCHAR},
+      </if>
+      <if test="prizetime != null" >
+        prizetime = #{prizetime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where prizeid = #{prizeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dream.bean.Prize" >
+    update prize
+    set lotteryid = #{lotteryid,jdbcType=INTEGER},
+      userid = #{userid,jdbcType=INTEGER},
+      prizelevel = #{prizelevel,jdbcType=VARCHAR},
+      prizetime = #{prizetime,jdbcType=VARCHAR}
+    where prizeid = #{prizeid,jdbcType=INTEGER}
+  </update>
+</mapper>
