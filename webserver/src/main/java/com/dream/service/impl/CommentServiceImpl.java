@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dream.basebean.PageBase;
 import com.dream.bean.Comment;
 import com.dream.dao.CommentMapper;
 import com.dream.service.CommentService;
+import com.dream.utils.CommonUtils;
 
 @Repository(value = "commentService")
 public class CommentServiceImpl implements CommentService {
@@ -52,6 +54,21 @@ public class CommentServiceImpl implements CommentService {
 
 		return commentDao.countComment(comment);
 
+	}
+
+
+	@Override
+	public List<Comment> listCommentAndPraise(Comment comment, PageBase pageBase) {
+		List<?> commentList = commentDao.listComment(comment);
+		commentList = CommonUtils.createListPage(commentList, pageBase);
+		for (Object objTmp : commentList) {
+			//判断每个comment
+			Comment commentTmp = ((Comment)objTmp);
+			// TODO 判断每个评论对于的点赞数
+			
+			
+		}
+		return null;
 	}
 
 }

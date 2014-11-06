@@ -99,6 +99,7 @@ public class ActivityController {
 
 		return responseBean;
 	}
+	//默认应该是按照时间的倒序查询
 	@RequestNeedParam({"currentPage"})
 	@RequestMapping(value = "/listActivity", method = { RequestMethod.POST })
 	@ResponseBody

@@ -92,11 +92,11 @@ public class ControllerTestSuit {
 //	public void detailCommentController() throws Exception {
 //	}
 //
-//	@Test
-//	@RequestServletPath("/listComment")
-//	@RequestParameter(name = "request", value = "{\"content\":{},\"head\":{\"brand\":\"HTC\",\"imei\":\"356871046099762\",\"imsi\":\"1234567890ABCDEF\",\"model\":\"Evo 3D GSM\",\"netype\":\"NETWORK_TYPE_WIFI\",\"platform\":\"Android\",\"release\":\"4.2.2\",\"sdk\":\"17\",\"serial\":\"HT22PV203276\",\"time\":\"2014-10-24 13:51:55,611\",\"versionCode\":\"1\",\"versionName\":\"1.0\"},\"mac\":\"F4F26357424C5C61\"}")
-//	public void listCommentController() throws Exception {
-//	}
+	@Test
+	@RequestServletPath("/listComment")
+	@RequestParameter(name = "request", value = "{\"content\":{\"themeid\":\"1\",\"currentPage\":\"1\"},\"head\":{\"brand\":\"HTC\",\"imei\":\"356871046099762\",\"imsi\":\"1234567890ABCDEF\",\"model\":\"Evo 3D GSM\",\"netype\":\"NETWORK_TYPE_WIFI\",\"platform\":\"Android\",\"release\":\"4.2.2\",\"sdk\":\"17\",\"serial\":\"HT22PV203276\",\"time\":\"2014-10-24 13:51:55,611\",\"versionCode\":\"1\",\"versionName\":\"1.0\"},\"mac\":\"F4F26357424C5C61\"}")
+	public void listCommentController() throws Exception {
+	}
 
 	// ********************Praise|**********************
 	@Test
@@ -139,11 +139,12 @@ public class ControllerTestSuit {
 //	public void detailThemeController() throws Exception {
 //	}
 //
-//	@Test
-//	@RequestServletPath("/listTheme")
-//	@RequestParameter(name = "request", value = "{\"content\":{\"currentPage\":\"1\"},\"head\":{\"brand\":\"HTC\",\"imei\":\"356871046099762\",\"imsi\":\"1234567890ABCDEF\",\"model\":\"Evo 3D GSM\",\"netype\":\"NETWORK_TYPE_WIFI\",\"platform\":\"Android\",\"release\":\"4.2.2\",\"sdk\":\"17\",\"serial\":\"HT22PV203276\",\"time\":\"2014-10-24 13:51:55,611\",\"versionCode\":\"1\",\"versionName\":\"1.0\"},\"mac\":\"F4F26357424C5C61\"}")
-//	public void listThemeController() throws Exception {
-//	}
+	@Test
+	@RequestServletPath("/listTheme")
+	//正确 |$$$
+	@RequestParameter(name = "request", value = "{\"content\":{\"currentPage\":\"1\",\"activityid\":\"1\"},\"head\":{\"brand\":\"HTC\",\"imei\":\"356871046099762\",\"imsi\":\"1234567890ABCDEF\",\"model\":\"Evo 3D GSM\",\"netype\":\"NETWORK_TYPE_WIFI\",\"platform\":\"Android\",\"release\":\"4.2.2\",\"sdk\":\"17\",\"serial\":\"HT22PV203276\",\"time\":\"2014-10-24 13:51:55,611\",\"versionCode\":\"1\",\"versionName\":\"1.0\"},\"mac\":\"F4F26357424C5C61\"}")
+	public void listThemeController() throws Exception {
+	}
 
 	// **********************User|********************
 	@Test

@@ -2,6 +2,7 @@ package com.dream.service;
 
 import java.util.List;
 
+import com.dream.basebean.PageBase;
 import com.dream.bean.Comment;
 
 public interface CommentService {
@@ -17,4 +18,6 @@ public interface CommentService {
 	int addComment(Comment comment);
 
 	int countComment(Comment comment);
+
+	List<Comment> listCommentAndPraise(Comment comment, PageBase pageBase);
 }

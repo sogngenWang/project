@@ -80,6 +80,8 @@ public interface Constant {
 	public static final Integer PRAISE_TYPE_THEME = 2;
 	//
 	public static final Integer PRAISE_TYPE_USER = 3;
+	//
+	public static final Integer PRAISE_TYPE_COMMENT = 4;
 	
 	//用户活动还未点赞
 	public static final String USER_ACTIVITY_NOT_PRAISE = "0";
