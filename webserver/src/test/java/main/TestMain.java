@@ -32,7 +32,7 @@ public class TestMain extends JUnitControllerBase {
 //		test.Test("generateCheckcodeController");
 		//某个具体的活动页面详细信息——活动页面的首页  TODO 需要解决活动状态要如何自动改变?还是人工改变?或者说，只有从预定状态到报名状态需要人工干涉，其他状态需要数据库存储过程自动实现吗?
 //		test.Test("detailActivityController");
-		//活动详情页——立即预定(TODO 状态改变成报名状态之后，提示用户?新建一个usermessage表来提示消息)
+		//活动详情页——立即预定(TODO 状态改变成报名状态之后，提示用户?新建一个message表来提示消息)
 		
 		//活动详情页——立即报名 
 //		test.Test("addRegisteractivityController");
@@ -44,13 +44,25 @@ public class TestMain extends JUnitControllerBase {
 //		test.Test("listThemeController");
 		//活动详情页面——列出当前主题的所有评论，以及每个评论的点赞数量，对于每个评论都还需要返回自己是否已经点赞
 //		test.Test("listCommentController");
+		// 显示所有的未读消息|显示所有的消息
+//		test.Test("listMessageController");
+		//列出当前所有的活动,活动按照创建时间的倒序显示
+//		test.Test("listActivityController");
+		//TODO 显示某条消息，同时设置消息未已读状态
+		test.Test("detailMessageController");
+		//TODO 显示好友添加消息
+		
+		//TODO 处理好友添加消息，(同意/拒绝)
+
+		//TODO 显示所有中奖信息
+		
+		//TODO 显示 "我"界面,应该包含1.未读消息的数量2.未处理好友消息的数量3.我的活动数量4.我的话题数量5.抽奖结果——抽奖次数/中奖次数6.名片完善程度6.当前城市7.我的相关信息
 		
 		
 		
 		
 		
 //		test.Test("addActivityController");
-//		test.Test("listActivityController");
 //		test.Test("detailCommentController");
 //		test.Test("detailPraiseController");
 //		test.Test("detailUserinfoController");

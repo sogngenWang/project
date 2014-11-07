@@ -6,21 +6,14 @@
     <result column="userid" property="userid" jdbcType="INTEGER" />
     <result column="isread" property="isread" jdbcType="VARCHAR" />
     <result column="messagedate" property="messagedate" jdbcType="VARCHAR" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.dream.bean.Message" extends="BaseResultMap" >
     <result column="messagecontent" property="messagecontent" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    messageid, userid, isread, messagedate
+    messageid, userid, isread, messagedate, messagecontent
   </sql>
-  <sql id="Blob_Column_List" >
-    messagecontent
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from message
     where messageid = #{messageid,jdbcType=INTEGER}
   </select>
@@ -104,4 +97,76 @@
       messagedate = #{messagedate,jdbcType=VARCHAR}
     where messageid = #{messageid,jdbcType=INTEGER}
   </update>
+  	<!-- add by wsg -->
+	<!-- 通用方法 -->
+	<!-- ，参数为对象，返回list<对象> -->
+
+
+	<select id="listMessage" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from message
+		<where>
+			<if test="messageid != null and messageid != '' ">
+				messageid = #{messageid, jdbcType=INTEGER}  
+			</if>
+			<if test="messagecontent != null and messagecontent != ''">
+				AND messagecontent = #{messagecontent, jdbcType=VARCHAR}  
+			</if>
+			<if test="userid != null and userid != ''">
+				AND userid = #{userid, jdbcType=INTEGER}
+			</if>
+			<if test="isread != null and isread != ''">
+				AND isread = #{isread, jdbcType=INTEGER}
+			</if>
+			<if test="messagedate != null and messagedate != ''">
+				AND messagedate = #{userid, jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+	
+	<select id="detailMessage" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from message
+		<where>
+			<if test="messageid != null and messageid != '' ">
+				messageid = #{messageid, jdbcType=INTEGER}  
+			</if>
+			<if test="messagecontent != null and messagecontent != ''">
+				AND messagecontent = #{messagecontent, jdbcType=VARCHAR}  
+			</if>
+			<if test="userid != null and userid != ''">
+				AND userid = #{userid, jdbcType=INTEGER}
+			</if>
+			<if test="isread != null and isread != ''">
+				AND isread = #{isread, jdbcType=INTEGER}
+			</if>
+			<if test="messagedate != null and messagedate != ''">
+				AND messagedate = #{userid, jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+	<select id="countMessage" resultType="java.lang.Integer">
+		select count(*)
+		from message
+		<where>
+			<if test="messageid != null and messageid != '' ">
+				messageid = #{messageid, jdbcType=INTEGER}  
+			</if>
+			<if test="messagecontent != null and messagecontent != ''">
+				AND messagecontent = #{messagecontent, jdbcType=VARCHAR}  
+			</if>
+			<if test="userid != null and userid != ''">
+				AND userid = #{userid, jdbcType=INTEGER}
+			</if>
+			<if test="isread != null and isread != ''">
+				AND isread = #{isread, jdbcType=INTEGER}
+			</if>
+			<if test="messagedate != null and messagedate != ''">
+				AND messagedate = #{userid, jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+	
 </mapper>

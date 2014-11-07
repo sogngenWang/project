@@ -33,63 +33,63 @@ public class CommentController {
 	@Resource(name = "commentService")
 	private CommentService commentService;
 
-	@RequestMapping(value = "/addComment", method = { RequestMethod.POST })
-	@ResponseBody
-	public ResponseBean addComment(String request) {
-		requestBean = gson.fromJson(request, RequestBean.class);
-		// 进行校验
-		if (requestBean.checkMac()) {
-			LOG.info("校验成功....");
-			// 真正的业务逻辑
-			try {
-				content = requestBean.getContent();
-				Comment comment = gson.fromJson(content.toString(), Comment.class);
-				CommonUtils.decriptObject(comment, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
-				commentService.addComment(comment);
-				responseBean.setContent(comment);
-			} catch (Exception e) {
-				LOG.error("业务执行异常...." + e.getMessage());
-				responseBean.getMsg().setCode("0001");
-				responseBean.getMsg().setDesc("业务异常");
-				return responseBean;
-			}
-			LOG.info("业务执行成功，设置返回报文状态为成功...");
-			responseBean.getMsg().setCode("0000");
-			responseBean.getMsg().setDesc("成功");
-			responseBean.setMac(requestBean.getHead().getSerial());
-		}
-		LOG.info("返回报文是:"+gson.toJson(responseBean));
-		return responseBean;
-	}
+//	@RequestMapping(value = "/addComment", method = { RequestMethod.POST })
+//	@ResponseBody
+//	public ResponseBean addComment(String request) {
+//		requestBean = gson.fromJson(request, RequestBean.class);
+//		// 进行校验
+//		if (requestBean.checkMac()) {
+//			LOG.info("校验成功....");
+//			// 真正的业务逻辑
+//			try {
+//				content = requestBean.getContent();
+//				Comment comment = gson.fromJson(content.toString(), Comment.class);
+//				CommonUtils.decriptObject(comment, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
+//				commentService.addComment(comment);
+//				responseBean.setContent(comment);
+//			} catch (Exception e) {
+//				LOG.error("业务执行异常...." + e.getMessage());
+//				responseBean.getMsg().setCode("0001");
+//				responseBean.getMsg().setDesc("业务异常");
+//				return responseBean;
+//			}
+//			LOG.info("业务执行成功，设置返回报文状态为成功...");
+//			responseBean.getMsg().setCode("0000");
+//			responseBean.getMsg().setDesc("成功");
+//			responseBean.setMac(requestBean.getHead().getSerial());
+//		}
+//		LOG.info("返回报文是:"+gson.toJson(responseBean));
+//		return responseBean;
+//	}
 
-	@RequestMapping(value = "/detailComment", method = { RequestMethod.POST })
-	@ResponseBody
-	public ResponseBean detailComment(String request) {
-		requestBean = gson.fromJson(request, RequestBean.class);
-		// 进行校验
-		if (requestBean.checkMac()) {
-			LOG.info("校验成功....");
-			// 真正的业务逻辑
-			try {
-				content = requestBean.getContent();
-				Comment comment = gson.fromJson(content.toString(), Comment.class);
-				CommonUtils.decriptObject(comment, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
-				comment = commentService.detailComment(comment);
-				responseBean.setContent(comment);
-			} catch (Exception e) {
-				LOG.error("业务执行异常...." + e.getMessage());
-				responseBean.getMsg().setCode("0001");
-				responseBean.getMsg().setDesc("业务异常");
-				return responseBean;
-			}
-			LOG.info("业务执行成功，设置返回报文状态为成功...");
-			responseBean.getMsg().setCode("0000");
-			responseBean.getMsg().setDesc("成功");
-			responseBean.setMac(requestBean.getHead().getSerial());
-		}
-
-		return responseBean;
-	}
+//	@RequestMapping(value = "/detailComment", method = { RequestMethod.POST })
+//	@ResponseBody
+//	public ResponseBean detailComment(String request) {
+//		requestBean = gson.fromJson(request, RequestBean.class);
+//		// 进行校验
+//		if (requestBean.checkMac()) {
+//			LOG.info("校验成功....");
+//			// 真正的业务逻辑
+//			try {
+//				content = requestBean.getContent();
+//				Comment comment = gson.fromJson(content.toString(), Comment.class);
+//				CommonUtils.decriptObject(comment, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
+//				comment = commentService.detailComment(comment);
+//				responseBean.setContent(comment);
+//			} catch (Exception e) {
+//				LOG.error("业务执行异常...." + e.getMessage());
+//				responseBean.getMsg().setCode("0001");
+//				responseBean.getMsg().setDesc("业务异常");
+//				return responseBean;
+//			}
+//			LOG.info("业务执行成功，设置返回报文状态为成功...");
+//			responseBean.getMsg().setCode("0000");
+//			responseBean.getMsg().setDesc("成功");
+//			responseBean.setMac(requestBean.getHead().getSerial());
+//		}
+//
+//		return responseBean;
+//	}
 
 	// 根据传入的参数，返回一个评论是否已被赞，已经总的点赞数
 	@RequestNeedParam({"currentPage","themeid","userid"})

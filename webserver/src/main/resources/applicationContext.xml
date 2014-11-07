@@ -128,5 +128,9 @@
 		<property name="mapperInterface" value="com.dream.dao.OnlinequestionMapper"></property>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
+	<bean id="messageDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.dream.dao.MessageMapper"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
 	
 </beans>

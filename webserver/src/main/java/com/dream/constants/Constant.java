@@ -101,5 +101,9 @@ public interface Constant {
 	public static final Integer COMMENT_HAS_PRAISE = 1;
 	//评论已经点赞
 	public static final Integer COMMENT_NOT_PRAISE = 0;
+	//消息已读取状态
+	public static final String MESSAGE_READ_FLAG = "1" ;
+	//消息未读状态
+	public static final String MESSAGE_NOREAD_FLAG = "0" ;
 	
 }

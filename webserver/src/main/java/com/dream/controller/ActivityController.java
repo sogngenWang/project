@@ -99,7 +99,12 @@ public class ActivityController {
 
 		return responseBean;
 	}
-	//默认应该是按照时间的倒序查询
+	/**
+	 * 根据传入的页面返回相应的list
+	 * 默认应该是按照时间的||||倒序查询——该功能DAO层完成
+	 * @param request
+	 * @return
+	 */
 	@RequestNeedParam({"currentPage"})
 	@RequestMapping(value = "/listActivity", method = { RequestMethod.POST })
 	@ResponseBody

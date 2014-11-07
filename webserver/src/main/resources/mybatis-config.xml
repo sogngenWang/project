@@ -20,5 +20,6 @@
 		<mapper resource="com/dream/mapper/RegisteractivityMapper.xml" />
 		<mapper resource="com/dream/mapper/FriendsMapper.xml" />
 		<mapper resource="com/dream/mapper/OnlinequestionMapper.xml" />
+		<mapper resource="com/dream/mapper/MessageMapper.xml" />
 	</mappers>
 </configuration>

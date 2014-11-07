@@ -288,7 +288,7 @@ public class CommonUtils {
 		Method totalPage = object.getClass().getMethod("getTotalPage");
 		Method recordPerPage = object.getClass().getMethod("getRecordPerPage");
 		
-		pageBase.setCurrentPage(currentPage.invoke(object) == null ? null : (Integer) currentPage.invoke(object) );
+		pageBase.setCurrentPage(currentPage.invoke(object) == null ? 0 : (Integer) currentPage.invoke(object) );
 		pageBase.setTotalPage(totalPage.invoke(object)== null ? null : (Integer) currentPage.invoke(object) );
 		pageBase.setRecordPerPage(recordPerPage.invoke(object) == null? null : (Integer) currentPage.invoke(object));
 		

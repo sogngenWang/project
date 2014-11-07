@@ -6,6 +6,24 @@ import annotation.RequestParameter;
 import annotation.RequestServletPath;
 
 public class ControllerTestSuit {
+	//****************Message|**********************
+
+	@Test 
+	@RequestServletPath("/listMessage")
+	//正确 $$$ 列出所有该用户的未读信息  
+	@RequestParameter(name = "request", value = "{\"content\":{\"userid\":\"1\",\"currentPage\":\"1\",\"isread\":\"0\"},\"head\":{\"brand\":\"HTC\",\"imei\":\"356871046099762\",\"imsi\":\"1234567890ABCDEF\",\"model\":\"Evo 3D GSM\",\"netype\":\"NETWORK_TYPE_WIFI\",\"platform\":\"Android\",\"release\":\"4.2.2\",\"sdk\":\"17\",\"serial\":\"HT22PV203276\",\"time\":\"2014-10-24 13:51:55,611\",\"versionCode\":\"1\",\"versionName\":\"1.0\"},\"mac\":\"F4F26357424C5C61\"}")
+	//正确 $$$ 列出该用户的所有消息
+//	@RequestParameter(name = "request", value = "{\"content\":{\"userid\":\"1\",\"currentPage\":\"1\"},\"head\":{\"brand\":\"HTC\",\"imei\":\"356871046099762\",\"imsi\":\"1234567890ABCDEF\",\"model\":\"Evo 3D GSM\",\"netype\":\"NETWORK_TYPE_WIFI\",\"platform\":\"Android\",\"release\":\"4.2.2\",\"sdk\":\"17\",\"serial\":\"HT22PV203276\",\"time\":\"2014-10-24 13:51:55,611\",\"versionCode\":\"1\",\"versionName\":\"1.0\"},\"mac\":\"F4F26357424C5C61\"}")
+	public void listMessageController() throws Exception {
+	}
+	
+	@Test
+	@RequestServletPath("/detailMessage")
+	@RequestParameter(name = "request", value = "{\"content\":{\"messageid\":\"1\"},\"head\":{\"brand\":\"HTC\",\"imei\":\"356871046099762\",\"imsi\":\"1234567890ABCDEF\",\"model\":\"Evo 3D GSM\",\"netype\":\"NETWORK_TYPE_WIFI\",\"platform\":\"Android\",\"release\":\"4.2.2\",\"sdk\":\"17\",\"serial\":\"HT22PV203276\",\"time\":\"2014-10-24 13:51:55,611\",\"versionCode\":\"1\",\"versionName\":\"1.0\"},\"mac\":\"F4F26357424C5C61\"}")
+	public void detailMessageController() throws Exception {
+	}
+	
+	
 	
 	//****************Checkcode|**********************
 	
@@ -66,7 +84,7 @@ public class ControllerTestSuit {
 	@Test
 	@RequestServletPath("/listActivity")
 	// 正确  $$$  
-	@RequestParameter(name = "request", value = "{\"content\":{},\"head\":{\"brand\":\"HTC\",\"imei\":\"356871046099762\",\"imsi\":\"1234567890ABCDEF\",\"model\":\"Evo 3D GSM\",\"netype\":\"NETWORK_TYPE_WIFI\",\"platform\":\"Android\",\"release\":\"4.2.2\",\"sdk\":\"17\",\"serial\":\"HT22PV203276\",\"time\":\"2014-10-24 13:51:55,611\",\"versionCode\":\"1\",\"versionName\":\"1.0\"},\"mac\":\"F4F26357424C5C61\"}")
+	@RequestParameter(name = "request", value = "{\"content\":{\"currentPage\":\"1\"},\"head\":{\"brand\":\"HTC\",\"imei\":\"356871046099762\",\"imsi\":\"1234567890ABCDEF\",\"model\":\"Evo 3D GSM\",\"netype\":\"NETWORK_TYPE_WIFI\",\"platform\":\"Android\",\"release\":\"4.2.2\",\"sdk\":\"17\",\"serial\":\"HT22PV203276\",\"time\":\"2014-10-24 13:51:55,611\",\"versionCode\":\"1\",\"versionName\":\"1.0\"},\"mac\":\"F4F26357424C5C61\"}")
 	public void listActivityController() throws Exception {
 	}
 	

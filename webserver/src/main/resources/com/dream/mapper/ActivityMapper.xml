@@ -206,49 +206,50 @@
 		<include refid="Base_Column_List" />
 		from activity
 		<where>
-				<if test="activityid != null and activityid != '' ">
-					activityid = #{activityid, jdbcType=INTEGER}  
-				</if>
-				<if test="activityname != null and activityname != ''">
-					AND activityname = #{activityname, jdbcType=VARCHAR}  
-				</if>
-				<if test="activitystarttime != null and activitystarttime != ''">
-					AND activitystarttime = #{activitystarttime, jdbcType=VARCHAR}
-				</if>
-				<if test="activityendtime != null and activityendtime != ''">
-					AND activityendtime = #{activityendtime, jdbcType=VARCHAR}
-				</if>
-				<if test="activitystatus != null and activitystatus != ''">
-					AND activitystatus = #{activitystatus, jdbcType=VARCHAR}
-				</if>
-				<if test="activityquota != null and activityquota != ''">
-					AND activityquota = #{activityquota, jdbcType=INTEGER}
-				</if>
-				<if test="activityaddress != null and activityaddress != ''">
-					AND activityaddress = #{activityaddress, jdbcType=VARCHAR}
-				</if>
-				<if test="activitycreatetime != null and activitycreatetime != ''">
-					AND activitycreatetime = #{activitycreatetime, jdbcType=VARCHAR}
-				</if>
-				<if test="activitypicturedir != null and activitypicturedir != ''">
-					AND activitypicturedir = #{activitypicturedir, jdbcType=VARCHAR}
-				</if>
-				<if test="kindsid != null and kindsid != ''">
-					AND kindsid = #{kindsid, jdbcType=INTEGER}
-				</if>
-				<if test="viewcount != null and viewcount != ''">
-					AND viewcount = #{viewcount, jdbcType=INTEGER}
-				</if>
-				<if test="secondkindsid != null and secondkindsid != ''">
-					AND secondkindsid = #{secondkindsid, jdbcType=INTEGER}
-				</if>
-				<if test="activityabout != null and activityabout != ''">
-					AND activityabout = #{activityabout, jdbcType=LONGVARCHAR}
-				</if>
-				<if test="activitydetail != null and activitydetail != ''">
-					AND activitydetail = #{activitydetail, jdbcType=LONGVARCHAR}
-				</if>
+			<if test="activityid != null and activityid != '' ">
+				activityid = #{activityid, jdbcType=INTEGER}  
+			</if>
+			<if test="activityname != null and activityname != ''">
+				AND activityname = #{activityname, jdbcType=VARCHAR}  
+			</if>
+			<if test="activitystarttime != null and activitystarttime != ''">
+				AND activitystarttime = #{activitystarttime, jdbcType=VARCHAR}
+			</if>
+			<if test="activityendtime != null and activityendtime != ''">
+				AND activityendtime = #{activityendtime, jdbcType=VARCHAR}
+			</if>
+			<if test="activitystatus != null and activitystatus != ''">
+				AND activitystatus = #{activitystatus, jdbcType=VARCHAR}
+			</if>
+			<if test="activityquota != null and activityquota != ''">
+				AND activityquota = #{activityquota, jdbcType=INTEGER}
+			</if>
+			<if test="activityaddress != null and activityaddress != ''">
+				AND activityaddress = #{activityaddress, jdbcType=VARCHAR}
+			</if>
+			<if test="activitycreatetime != null and activitycreatetime != ''">
+				AND activitycreatetime = #{activitycreatetime, jdbcType=VARCHAR}
+			</if>
+			<if test="activitypicturedir != null and activitypicturedir != ''">
+				AND activitypicturedir = #{activitypicturedir, jdbcType=VARCHAR}
+			</if>
+			<if test="kindsid != null and kindsid != ''">
+				AND kindsid = #{kindsid, jdbcType=INTEGER}
+			</if>
+			<if test="viewcount != null and viewcount != ''">
+				AND viewcount = #{viewcount, jdbcType=INTEGER}
+			</if>
+			<if test="secondkindsid != null and secondkindsid != ''">
+				AND secondkindsid = #{secondkindsid, jdbcType=INTEGER}
+			</if>
+			<if test="activityabout != null and activityabout != ''">
+				AND activityabout = #{activityabout, jdbcType=LONGVARCHAR}
+			</if>
+			<if test="activitydetail != null and activitydetail != ''">
+				AND activitydetail = #{activitydetail, jdbcType=LONGVARCHAR}
+			</if>
 		</where>
+		 order by activitycreatetime desc
 	</select>
 	
 	<select id="detailActivity" resultMap="BaseResultMap">
