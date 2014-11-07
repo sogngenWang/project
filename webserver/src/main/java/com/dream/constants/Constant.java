@@ -29,7 +29,6 @@ public interface Constant {
 	public static final String FIELED_IMEI = "imei";
 	public static final String FIELED_IMSI = "imsi";
 	
-	
 	//校验码的位数
 	public static final int CHECKCODE_LENGTH = 6;
 	//默认的时间格式化模版
@@ -56,7 +55,15 @@ public interface Constant {
 	public static final String CODE_0011="";
 	public static final String CODE_0012="";
 	public static final String CODE_0013="";
+	public static final String CODE_0014="";
+	public static final String CODE_0015="";
+	public static final String CODE_0016="";
+	public static final String CODE_0017="";
+	public static final String CODE_0018="";
+	public static final String CODE_0019="";
+	public static final String CODE_0020="";
 	
+	//活动图片的默认头像图片
 	public static final String ACTIVITY_PICTURE_HEADER_NAME = "header.jpg";
 	
 	//二维码的宽以及高
@@ -64,6 +71,7 @@ public interface Constant {
 	public static final int QRCODE_HEIGHT = 200;
 	
 	//数据库默认常量值
+	
 	//普通用户
 	public static final String USER_NORMAL_TYPE = "3";
 	//用户激活状态
@@ -72,20 +80,26 @@ public interface Constant {
 	public static final Integer REGISTERACTIVITY_SIGN = 1;
 	//每页显示多少条记录，默认值
 	public static final Integer PAGE_RECORD_PER_PAGE_DEFAULT = 3;
+	//活动状态——报名中
 	public static final String ACTIVITY_REGISTER_STATUS = "2";
 	
-	//
+	//点赞类型是活动
 	public static final Integer PRAISE_TYPE_ACTIVITY = 1;
-	//
+	//点赞类型是主题
 	public static final Integer PRAISE_TYPE_THEME = 2;
-	//
+	//点赞类型是用户
 	public static final Integer PRAISE_TYPE_USER = 3;
-	//
+	//点赞类型是评论
 	public static final Integer PRAISE_TYPE_COMMENT = 4;
 	
 	//用户活动还未点赞
 	public static final String USER_ACTIVITY_NOT_PRAISE = "0";
 	//用户活动已经点赞
 	public static final String USER_ACTIVITY_HAS_PRAISE = "1";
+	
+	//评论还未点赞
+	public static final Integer COMMENT_HAS_PRAISE = 1;
+	//评论已经点赞
+	public static final Integer COMMENT_NOT_PRAISE = 0;
 	
 }

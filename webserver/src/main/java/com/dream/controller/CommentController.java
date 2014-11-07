@@ -16,7 +16,6 @@ import com.dream.annotation.RequestNeedParam;
 import com.dream.basebean.PageBase;
 import com.dream.basebean.RequestBean;
 import com.dream.basebean.ResponseBean;
-import com.dream.bean.Activity;
 import com.dream.bean.Comment;
 import com.dream.service.CommentService;
 import com.dream.utils.CommonUtils;
@@ -92,8 +91,8 @@ public class CommentController {
 		return responseBean;
 	}
 
-	// TODO
-	@RequestNeedParam({"currentPage","themeid"})
+	// 根据传入的参数，返回一个评论是否已被赞，已经总的点赞数
+	@RequestNeedParam({"currentPage","themeid","userid"})
 	@RequestMapping(value = "/listComment", method = { RequestMethod.POST })
 	@ResponseBody
 	public ResponseBean listComment(String request) {

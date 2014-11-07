@@ -6,6 +6,27 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_NULL)
 public class Comment extends PageBase {
+	// ************
+	// 评论总的点赞数量
+	private Integer praisecount;
+	// 0 表示还未点赞，1 表示已经点赞
+	private Integer ispraise;
+
+	public Integer getIspraise() {
+		return ispraise;
+	}
+
+	public void setIspraise(Integer ispraise) {
+		this.ispraise = ispraise;
+	}
+
+	public Integer getPraisecount() {
+		return praisecount;
+	}
+
+	public void setPraisecount(Integer praisecount) {
+		this.praisecount = praisecount;
+	}
 
 	private Integer commentid;
 

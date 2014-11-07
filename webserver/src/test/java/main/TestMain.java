@@ -38,13 +38,16 @@ public class TestMain extends JUnitControllerBase {
 //		test.Test("addRegisteractivityController");
 		// 话题里面的评论也需要允许点赞
 //		test.Test("addThemePraiseController");
-		// TODO 总结功能额外做 
-		
+		// TODO 总结功能额外做
 
-		//话题页面——列出所有的该活动的话题 以及每个话题的评论总数| 1.分页  TODO 修改成同listComment一样
+		//话题页面——列出所有的该活动的话题 以及每个话题的评论总数| 分页  
 //		test.Test("listThemeController");
 		//活动详情页面——列出当前主题的所有评论，以及每个评论的点赞数量，对于每个评论都还需要返回自己是否已经点赞
-		test.Test("listCommentController");
+//		test.Test("listCommentController");
+		
+		
+		
+		
 		
 //		test.Test("addActivityController");
 //		test.Test("listActivityController");
