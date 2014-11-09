@@ -322,4 +322,16 @@
 			userid = #{userid, jdbcType=INTEGER}
 		</where>
 	</select>
+	
+	
+	<select id="detailUser2Friends" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		    userid, username, company, position
+		from user
+		<where>
+			userid = #{userid, jdbcType=INTEGER}
+		</where>
+	</select>
+	
+	
 </mapper>

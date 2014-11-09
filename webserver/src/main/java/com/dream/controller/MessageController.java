@@ -81,7 +81,7 @@ public class MessageController {
 				content = requestBean.getContent();
 				Message message = gson.fromJson(content.toString(), Message.class);
 				CommonUtils.decriptObject(message, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
-				message = messageService.detailMessage(message);
+				message = messageService.detailAndSetreadMessage(message);
 				responseBean.setContent(message);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());

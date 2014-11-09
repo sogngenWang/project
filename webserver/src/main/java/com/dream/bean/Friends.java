@@ -1,53 +1,89 @@
 package com.dream.bean;
 
-public class Friends {
-    private Integer friendid;
+import com.dream.basebean.PageBase;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-    private Integer userid;
+@JsonInclude(Include.NON_NULL)
+public class Friends extends PageBase {
+	// ************************
+	private String username;
 
-    private Integer frienduserid;
+	private String company;
 
-    private String isbefriend;
+	private String position;
 
-    private String accesstime;
+	public String getUsername() {
+		return username;
+	}
 
-    public Integer getFriendid() {
-        return friendid;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public void setFriendid(Integer friendid) {
-        this.friendid = friendid;
-    }
+	public String getCompany() {
+		return company;
+	}
 
-    public Integer getUserid() {
-        return userid;
-    }
+	public void setCompany(String company) {
+		this.company = company;
+	}
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
-    }
+	public String getPosition() {
+		return position;
+	}
 
-    public Integer getFrienduserid() {
-        return frienduserid;
-    }
+	public void setPosition(String position) {
+		this.position = position;
+	}
 
-    public void setFrienduserid(Integer frienduserid) {
-        this.frienduserid = frienduserid;
-    }
+	private Integer friendid;
 
-    public String getIsbefriend() {
-        return isbefriend;
-    }
+	private Integer userid;
 
-    public void setIsbefriend(String isbefriend) {
-        this.isbefriend = isbefriend == null ? null : isbefriend.trim();
-    }
+	private Integer frienduserid;
 
-    public String getAccesstime() {
-        return accesstime;
-    }
+	private String isbefriend;
 
-    public void setAccesstime(String accesstime) {
-        this.accesstime = accesstime == null ? null : accesstime.trim();
-    }
+	private String accesstime;
+
+	public Integer getFriendid() {
+		return friendid;
+	}
+
+	public void setFriendid(Integer friendid) {
+		this.friendid = friendid;
+	}
+
+	public Integer getUserid() {
+		return userid;
+	}
+
+	public void setUserid(Integer userid) {
+		this.userid = userid;
+	}
+
+	public Integer getFrienduserid() {
+		return frienduserid;
+	}
+
+	public void setFrienduserid(Integer frienduserid) {
+		this.frienduserid = frienduserid;
+	}
+
+	public String getIsbefriend() {
+		return isbefriend;
+	}
+
+	public void setIsbefriend(String isbefriend) {
+		this.isbefriend = isbefriend == null ? null : isbefriend.trim();
+	}
+
+	public String getAccesstime() {
+		return accesstime;
+	}
+
+	public void setAccesstime(String accesstime) {
+		this.accesstime = accesstime == null ? null : accesstime.trim();
+	}
 }

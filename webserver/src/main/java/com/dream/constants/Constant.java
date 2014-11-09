@@ -79,7 +79,7 @@ public interface Constant {
 	//活动已签到用户
 	public static final Integer REGISTERACTIVITY_SIGN = 1;
 	//每页显示多少条记录，默认值
-	public static final Integer PAGE_RECORD_PER_PAGE_DEFAULT = 3;
+	public static final Integer PAGE_RECORD_PER_PAGE_DEFAULT = 2;
 	//活动状态——报名中
 	public static final String ACTIVITY_REGISTER_STATUS = "2";
 	
@@ -105,5 +105,12 @@ public interface Constant {
 	public static final String MESSAGE_READ_FLAG = "1" ;
 	//消息未读状态
 	public static final String MESSAGE_NOREAD_FLAG = "0" ;
+	//好友 待确认状态
+	public static final String FRIENDS_NOT_CONFIRM = "0";
+	//好友 已经成为好友状态
+	public static final String FRIENDS_BE_FRIENDS = "1";
+	
+	//特殊符号常量
+	public static final String TAB = "\t";
 	
 }

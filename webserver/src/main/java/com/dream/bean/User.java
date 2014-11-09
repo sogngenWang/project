@@ -5,11 +5,21 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_NULL)
-public class User extends PageBase{
+public class User extends PageBase {
 
 	// *****************************************
 	// 校验码
 	private String checkcode;
+	// 好友状态
+	private String isbefriend;
+
+	public String getIsbefriend() {
+		return isbefriend;
+	}
+
+	public void setIsbefriend(String isbefriend) {
+		this.isbefriend = isbefriend;
+	}
 
 	public String getCheckcode() {
 		return checkcode;

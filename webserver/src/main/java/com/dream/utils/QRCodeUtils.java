@@ -15,7 +15,6 @@ import com.google.zxing.LuminanceSource;
 import com.google.zxing.MultiFormatReader;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.NotFoundException;
-import com.google.zxing.Reader;
 import com.google.zxing.Result;
 import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
@@ -58,7 +57,7 @@ public class QRCodeUtils {
 
 	// 解码
 	public void decode(String imgPath) throws IOException, NotFoundException {
-		Reader reader = new MultiFormatReader();
+//		Reader reader = new MultiFormatReader();
 		File file = new File(imgPath);
 		BufferedImage image;
 		image = ImageIO.read(file);
@@ -68,7 +67,7 @@ public class QRCodeUtils {
 		LuminanceSource source = new BufferedImageLuminanceSource(image);
 		BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
 		Result result;
-		Hashtable hints = new Hashtable();
+		Hashtable<DecodeHintType, String> hints = new Hashtable<DecodeHintType, String>();
 		hints.put(DecodeHintType.CHARACTER_SET, "UTF8");
 		result = new MultiFormatReader().decode(bitmap, hints);
 		String resultStr = result.getText();

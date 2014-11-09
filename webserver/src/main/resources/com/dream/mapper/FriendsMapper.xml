@@ -92,4 +92,83 @@
 		accesstime = #{accesstime,jdbcType=VARCHAR}
 		where friendid = #{friendid,jdbcType=INTEGER}
 	</update>
+	
+  	<!-- add by wsg -->
+	<!-- 通用方法 -->
+	<!-- ，参数为对象，返回list<对象> -->
+
+
+	<select id="listFriends" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from friends
+		<where>
+			<if test="userid != null and userid != '' ">
+				userid = #{userid, jdbcType=INTEGER}
+			</if>
+			<if test="frienduserid != null and frienduserid != ''">
+				AND frienduserid = #{frienduserid, jdbcType=INTEGER}
+			</if>
+			<if test="isbefriend != null and isbefriend != ''">
+				AND isbefriend = #{isbefriend, jdbcType=VARCHAR}
+			</if>
+			<if test="friendid != null and friendid != ''">
+				AND friendid = #{friendid, jdbcType=VARCHAR}
+			</if>
+			<if test="accesstime != null and accesstime != ''">
+				AND accesstime = #{accesstime, jdbcType=INTEGER}
+			</if>
+		</where>
+	</select>
+	
+	<select id="detailFriends" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+				from friends
+		<where>
+			<if test="userid != null and userid != '' ">
+				userid = #{userid, jdbcType=INTEGER}
+			</if>
+			<if test="frienduserid != null and frienduserid != ''">
+				AND frienduserid = #{frienduserid, jdbcType=INTEGER}
+			</if>
+			<if test="isbefriend != null and isbefriend != ''">
+				AND isbefriend = #{isbefriend, jdbcType=VARCHAR}
+			</if>
+			<if test="friendid != null and friendid != ''">
+				AND friendid = #{friendid, jdbcType=VARCHAR}
+			</if>
+			<if test="accesstime != null and accesstime != ''">
+				AND accesstime = #{accesstime, jdbcType=INTEGER}
+			</if>
+		</where>
+	</select>
+	<select id="countFriends" resultType="java.lang.Integer">
+		select count(*)
+  				from friends
+		<where>
+			<if test="userid != null and userid != '' ">
+				userid = #{userid, jdbcType=INTEGER}
+			</if>
+			<if test="frienduserid != null and frienduserid != ''">
+				AND frienduserid = #{frienduserid, jdbcType=INTEGER}
+			</if>
+			<if test="isbefriend != null and isbefriend != ''">
+				AND isbefriend = #{isbefriend, jdbcType=VARCHAR}
+			</if>
+			<if test="friendid != null and friendid != ''">
+				AND friendid = #{friendid, jdbcType=VARCHAR}
+			</if>
+			<if test="accesstime != null and accesstime != ''">
+				AND accesstime = #{accesstime, jdbcType=INTEGER}
+			</if>
+		</where>
+	</select>
+	
+	<update id="updateFriendsStatus" parameterType="com.dream.bean.Friends">
+		update friends
+		set isbefriend = #{isbefriend,jdbcType=VARCHAR}
+		where userid = #{userid,jdbcType=INTEGER} 
+		AND frienduserid = #{frienduserid,jdbcType=INTEGER}
+	</update>
 </mapper>

@@ -48,16 +48,24 @@ public class TestMain extends JUnitControllerBase {
 //		test.Test("listMessageController");
 		//列出当前所有的活动,活动按照创建时间的倒序显示
 //		test.Test("listActivityController");
-		//TODO 显示某条消息，同时设置消息未已读状态
-		test.Test("detailMessageController");
-		//TODO 显示好友添加消息
-		
-		//TODO 处理好友添加消息，(同意/拒绝)
-
+		//显示某条消息，同时设置消息未已读状态
+//		test.Test("detailMessageController");
+		//添加好友| 添加的前提是两个人均参加过一个活动
+//		test.Test("addANewFriendsController");
+		//显示好友添加消息|我发送的消息
+//		test.Test("listFriendsSendMessageController");
+		//显示好友添加消息|我收到的消息
+//		test.Test("listFriendsReceiveMessageController");
+		//列出用户所有的好友
+//		test.Test("listFriendsController");
+		//列出一度人脉，对于还未加为好友的，无isbefriends值，需要前台进行判断
+		test.Test("listOnceUserController");
+		//处理好友添加消息，(同意1/拒绝2)
+//		test.Test("manageFriendsAddController");
 		//TODO 显示所有中奖信息
-		
+//		test.Test("");
 		//TODO 显示 "我"界面,应该包含1.未读消息的数量2.未处理好友消息的数量3.我的活动数量4.我的话题数量5.抽奖结果——抽奖次数/中奖次数6.名片完善程度6.当前城市7.我的相关信息
-		
+//		test.Test("");
 		
 		
 		

@@ -2,6 +2,8 @@ package com.dream.service;
 
 import java.util.List;
 
+import com.dream.basebean.PageBase;
+import com.dream.bean.Friends;
 import com.dream.bean.User;
 
 public interface UserService {
@@ -23,4 +25,8 @@ public interface UserService {
 	int addNormalUser(User user);
 
 	User loginUser(User user);
+
+	User detailUserForFriends(Friends friendsTmp);
+
+	List<User> listOnceUser(User user, PageBase pageBase);
 }

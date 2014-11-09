@@ -121,4 +121,5 @@ public class RegisteractivityServiceImpl implements RegisteractivityService {
 		registeractivity.setSignstatus(0);
 		return registeractivityDao.insert(registeractivity);
 	}
+
 }

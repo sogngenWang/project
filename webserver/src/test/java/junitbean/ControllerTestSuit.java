@@ -6,6 +6,46 @@ import annotation.RequestParameter;
 import annotation.RequestServletPath;
 
 public class ControllerTestSuit {
+	//****************Frieds|*************************
+
+	@Test 
+	@RequestServletPath("/listFriends")
+	//正确 $$$ 
+	@RequestParameter(name = "request", value = "{\"content\":{\"userid\":\"1\",\"currentPage\":\"1\"},\"head\":{\"brand\":\"HTC\",\"imei\":\"356871046099762\",\"imsi\":\"1234567890ABCDEF\",\"model\":\"Evo 3D GSM\",\"netype\":\"NETWORK_TYPE_WIFI\",\"platform\":\"Android\",\"release\":\"4.2.2\",\"sdk\":\"17\",\"serial\":\"HT22PV203276\",\"time\":\"2014-10-24 13:51:55,611\",\"versionCode\":\"1\",\"versionName\":\"1.0\"},\"mac\":\"F4F26357424C5C61\"}")
+	public void listFriendsController() throws Exception {
+	}
+	
+	
+	@Test 
+	@RequestServletPath("/listFriendsSendMessage")
+	//正确 $$$ 
+	@RequestParameter(name = "request", value = "{\"content\":{\"userid\":\"1\",\"currentPage\":\"1\"},\"head\":{\"brand\":\"HTC\",\"imei\":\"356871046099762\",\"imsi\":\"1234567890ABCDEF\",\"model\":\"Evo 3D GSM\",\"netype\":\"NETWORK_TYPE_WIFI\",\"platform\":\"Android\",\"release\":\"4.2.2\",\"sdk\":\"17\",\"serial\":\"HT22PV203276\",\"time\":\"2014-10-24 13:51:55,611\",\"versionCode\":\"1\",\"versionName\":\"1.0\"},\"mac\":\"F4F26357424C5C61\"}")
+	public void listFriendsSendMessageController() throws Exception {
+	}
+	
+	
+	@Test 
+	@RequestServletPath("/listFriendsReceiveMessage")
+	//正确 $$$ 
+	@RequestParameter(name = "request", value = "{\"content\":{\"frienduserid\":\"1\",\"currentPage\":\"1\"},\"head\":{\"brand\":\"HTC\",\"imei\":\"356871046099762\",\"imsi\":\"1234567890ABCDEF\",\"model\":\"Evo 3D GSM\",\"netype\":\"NETWORK_TYPE_WIFI\",\"platform\":\"Android\",\"release\":\"4.2.2\",\"sdk\":\"17\",\"serial\":\"HT22PV203276\",\"time\":\"2014-10-24 13:51:55,611\",\"versionCode\":\"1\",\"versionName\":\"1.0\"},\"mac\":\"F4F26357424C5C61\"}")
+	public void listFriendsReceiveMessageController() throws Exception {
+	}
+	
+	@Test 
+	@RequestServletPath("/addANewFriends")
+	//正确 $$$ 
+	@RequestParameter(name = "request", value = "{\"content\":{\"frienduserid\":\"1\",\"userid\":\"2\"},\"head\":{\"brand\":\"HTC\",\"imei\":\"356871046099762\",\"imsi\":\"1234567890ABCDEF\",\"model\":\"Evo 3D GSM\",\"netype\":\"NETWORK_TYPE_WIFI\",\"platform\":\"Android\",\"release\":\"4.2.2\",\"sdk\":\"17\",\"serial\":\"HT22PV203276\",\"time\":\"2014-10-24 13:51:55,611\",\"versionCode\":\"1\",\"versionName\":\"1.0\"},\"mac\":\"F4F26357424C5C61\"}")
+	public void addANewFriendsController() throws Exception {
+	}
+	
+	@Test 
+	@RequestServletPath("/manageFriendsAdd")
+	//正确 $$$ 
+//	@RequestParameter(name = "request", value = "{\"content\":{\"frienduserid\":\"1\",\"userid\":\"2\",\"isbefriend\":\"1\"},\"head\":{\"brand\":\"HTC\",\"imei\":\"356871046099762\",\"imsi\":\"1234567890ABCDEF\",\"model\":\"Evo 3D GSM\",\"netype\":\"NETWORK_TYPE_WIFI\",\"platform\":\"Android\",\"release\":\"4.2.2\",\"sdk\":\"17\",\"serial\":\"HT22PV203276\",\"time\":\"2014-10-24 13:51:55,611\",\"versionCode\":\"1\",\"versionName\":\"1.0\"},\"mac\":\"F4F26357424C5C61\"}")
+	@RequestParameter(name = "request", value = "{\"content\":{\"frienduserid\":\"1\",\"userid\":\"2\",\"isbefriend\":\"2\"},\"head\":{\"brand\":\"HTC\",\"imei\":\"356871046099762\",\"imsi\":\"1234567890ABCDEF\",\"model\":\"Evo 3D GSM\",\"netype\":\"NETWORK_TYPE_WIFI\",\"platform\":\"Android\",\"release\":\"4.2.2\",\"sdk\":\"17\",\"serial\":\"HT22PV203276\",\"time\":\"2014-10-24 13:51:55,611\",\"versionCode\":\"1\",\"versionName\":\"1.0\"},\"mac\":\"F4F26357424C5C61\"}")
+	public void manageFriendsAddController() throws Exception {
+	}
+	
 	//****************Message|**********************
 
 	@Test 
@@ -198,6 +238,15 @@ public class ControllerTestSuit {
 	//错误，校验码错误的demo
 //	@RequestParameter(name = "request", value = "{\"content\":{\"telephone\":\"15159628259\",\"password\":\"hehe\",\"checkcode\":\"11111\"},\"head\":{\"brand\":\"HTC\",\"imei\":\"356871046099762\",\"imsi\":\"1234567890ABCDEF\",\"model\":\"Evo 3D GSM\",\"netype\":\"NETWORK_TYPE_WIFI\",\"platform\":\"Android\",\"release\":\"4.2.2\",\"sdk\":\"17\",\"serial\":\"HT22PV203276\",\"time\":\"2014-10-24 13:51:55,611\",\"versionCode\":\"1\",\"versionName\":\"1.0\"},\"mac\":\"F4F26357424C5C61\"}")
 	public void resetPasswdUserController() throws Exception {
+	}
+	
+	
+	
+	@Test 
+	@RequestServletPath("/listOnceUser")
+	//正确 $$$ 
+	@RequestParameter(name = "request", value = "{\"content\":{\"userid\":\"1\",\"currentPage\":\"1\"},\"head\":{\"brand\":\"HTC\",\"imei\":\"356871046099762\",\"imsi\":\"1234567890ABCDEF\",\"model\":\"Evo 3D GSM\",\"netype\":\"NETWORK_TYPE_WIFI\",\"platform\":\"Android\",\"release\":\"4.2.2\",\"sdk\":\"17\",\"serial\":\"HT22PV203276\",\"time\":\"2014-10-24 13:51:55,611\",\"versionCode\":\"1\",\"versionName\":\"1.0\"},\"mac\":\"F4F26357424C5C61\"}")
+	public void listOnceUserController() throws Exception {
 	}
 	
 	

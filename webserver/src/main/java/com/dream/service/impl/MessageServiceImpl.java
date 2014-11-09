@@ -56,12 +56,13 @@ public class MessageServiceImpl implements MessageService {
 
 	@Override
 	public Message detailAndSetreadMessage(Message message) {
+		//读取单条记录
+		message = messageDao.detailMessage(message);
 		//更新字段值
 		message.setIsread(Constant.MESSAGE_READ_FLAG);
 		messageDao.updateByPrimaryKey(message);
 		
-		//读取单条记录
-		return null;
+		return message;
 	}
 
 }
