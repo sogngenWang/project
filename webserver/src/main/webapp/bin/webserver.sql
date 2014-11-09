@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50022
 File Encoding         : 65001
 
-Date: 2014-11-09 22:04:54
+Date: 2014-11-10 00:04:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -125,7 +125,7 @@ CREATE TABLE `friends` (
 -- Records of friends
 -- ----------------------------
 INSERT INTO friends VALUES ('1', '1', '2', '1', null);
-INSERT INTO friends VALUES ('2', '1', '3', '1', null);
+INSERT INTO friends VALUES ('2', '1', '5', '1', null);
 INSERT INTO friends VALUES ('3', '4', '1', '1', null);
 INSERT INTO friends VALUES ('4', '5', '1', '1', null);
 INSERT INTO friends VALUES ('9', '2', '1', '2', '2014-11-09 17:09:42,587');
@@ -274,7 +274,7 @@ CREATE TABLE `registeractivity` (
   `registrationid` int(11) NOT NULL auto_increment COMMENT '用户报名id',
   `userid` int(11) default NULL COMMENT '用户id',
   `activityid` int(11) default NULL COMMENT '活动id',
-  `signstatus` int(11) default '0' COMMENT '签到状态(0.未签到 1.已签到)',
+  `signstatus` int(11) default '0' COMMENT '签到状态(0.未签到 1.已签到2.已预定)',
   PRIMARY KEY  (`registrationid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户活动关系表';
 
@@ -286,6 +286,10 @@ INSERT INTO registeractivity VALUES ('2', '2', '1', '1');
 INSERT INTO registeractivity VALUES ('3', '2', '2', '1');
 INSERT INTO registeractivity VALUES ('4', '1', '2', '1');
 INSERT INTO registeractivity VALUES ('7', '5', '1', '0');
+INSERT INTO registeractivity VALUES ('8', '4', '1', '1');
+INSERT INTO registeractivity VALUES ('9', '3', '2', '1');
+INSERT INTO registeractivity VALUES ('10', '4', '2', '0');
+INSERT INTO registeractivity VALUES ('11', '1', '3', '0');
 
 -- ----------------------------
 -- Table structure for `theme`
