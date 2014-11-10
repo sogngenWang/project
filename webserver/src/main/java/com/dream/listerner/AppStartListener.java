@@ -12,13 +12,18 @@ import java.util.Map;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.dream.annotation.ScanPackage;
 
 @ScanPackage("com.dream.controller")
 public class AppStartListener implements ServletContextListener {
-
+	
+	public static final Log LOG = LogFactory.getLog(AppStartListener.class);
 	public static Map<String, Class<?>> classMap = new HashMap<String, Class<?>>();
-
+	
+	
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		try {
@@ -70,6 +75,7 @@ public class AppStartListener implements ServletContextListener {
 					// 获取该类的所有方法
 					Method[] methods = clazz.getDeclaredMethods();
 					for (Method method : methods) {
+						LOG.info("methodName="+method.getName()+"|||classname="+clazz);
 						classMap.put(method.getName(), clazz);
 					}
 				}

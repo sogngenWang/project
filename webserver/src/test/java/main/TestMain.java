@@ -15,7 +15,7 @@ public class TestMain extends JUnitControllerBase {
 		//找回密码页面提交，会校验之前方法发送的短信验证码  
 //		test.Test("resetPasswdUserController"); 
 		//找回密码的时候，调用该方法，发送短信验证码
-//		test.Test("findbackUserController");
+		test.Test("findbackUserController");
 		//注册新用户  TODO 1.通过注册用户的资料生成个人名片
 //		test.Test("registerUserController");
 		//用户登录
@@ -59,7 +59,7 @@ public class TestMain extends JUnitControllerBase {
 		//列出用户所有的好友
 //		test.Test("listFriendsController");
 		//列出一度人脉，对于还未加为好友的，无isbefriends值，需要前台进行判断
-		test.Test("listOnceUserController");
+//		test.Test("listOnceUserController");
 		//处理好友添加消息，(同意1/拒绝2)
 //		test.Test("manageFriendsAddController");
 		//TODO 显示所有中奖信息

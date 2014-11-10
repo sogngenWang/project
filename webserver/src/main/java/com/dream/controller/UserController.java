@@ -298,7 +298,7 @@ public class UserController {
 	@RequestNeedParam({"telephone"})
 	@RequestMapping(value = "/findbackUser", method = { RequestMethod.POST })
 	@ResponseBody
-	public ResponseBean findback(String request) {
+	public ResponseBean findbackUser(String request) {
 		requestBean = gson.fromJson(request, RequestBean.class);
 		// 进行校验
 		if (requestBean.checkMac()) {
@@ -343,7 +343,7 @@ public class UserController {
 	@RequestNeedParam({"telephone","password","checkcode"})
 	@RequestMapping(value = "/resetPasswdUser", method = { RequestMethod.POST })
 	@ResponseBody
-	public ResponseBean resetPasswd(String request) {
+	public ResponseBean resetPasswdUser(String request) {
 		requestBean = gson.fromJson(request, RequestBean.class);
 		// 进行校验
 		if (requestBean.checkMac()) {

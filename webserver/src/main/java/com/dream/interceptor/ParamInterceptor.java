@@ -12,7 +12,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dream.annotation.RequestNeedParam;
-import com.dream.controller.OnlinequestionController;
+import com.dream.listerner.AppStartListener;
 
 public class ParamInterceptor implements HandlerInterceptor {
 
@@ -23,16 +23,22 @@ public class ParamInterceptor implements HandlerInterceptor {
 		//获取request请求
 		String requestStr = request.getParameter("request");
 		String methodName = request.getRequestURL().substring(request.getRequestURL().lastIndexOf("/")+1);
-		Method m = OnlinequestionController.class.getMethod(methodName,String.class);
-		RequestNeedParam requestNeedParam = m.getAnnotation(RequestNeedParam.class);
-		String[]  params = requestNeedParam.value();
+		//获得该方法所在的类名称
+		Class<?> clazz = AppStartListener.classMap.get(methodName);
 		
-		for (String param : params) {
-			if(!requestStr.contains(param)){
-				LOG.error("param doesn's include in request param ....");
-				LOG.error("requestStr = " + requestStr );
-				LOG.error("need include params = " + Arrays.toString(params) );
-				return false;
+		Method m = clazz.getMethod(methodName,String.class);
+		RequestNeedParam requestNeedParam = m.getAnnotation(RequestNeedParam.class);
+		
+		if (null != requestNeedParam) {
+			String[] params = requestNeedParam.value();
+
+			for (String param : params) {
+				if (!requestStr.contains(param)) {
+					LOG.error("param doesn's include in request param ....");
+					LOG.error("requestStr = " + requestStr);
+					LOG.error("need include params = " + Arrays.toString(params));
+					return false;
+				}
 			}
 		}
 		return true;

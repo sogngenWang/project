@@ -18,6 +18,7 @@ import com.dream.basebean.RequestBean;
 import com.dream.basebean.ResponseBean;
 import com.dream.bean.Activity;
 import com.dream.bean.User;
+import com.dream.constants.Constant;
 import com.dream.service.ActivityvipService;
 import com.dream.utils.CommonUtils;
 import com.google.gson.Gson;
@@ -37,7 +38,7 @@ public class ActivityvipController {
 	@RequestNeedParam({"activityid","currentPage"})
 	@RequestMapping(value = "/listActivityvip", method = { RequestMethod.POST })
 	@ResponseBody
-	public ResponseBean listActivity(String request) {
+	public ResponseBean listActivityvip(String request) {
 		requestBean = gson.fromJson(request, RequestBean.class);
 		// 进行校验
 		if (requestBean.checkMac()) {
@@ -56,12 +57,12 @@ public class ActivityvipController {
 				e.printStackTrace();
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");
-				responseBean.getMsg().setDesc("业务异常");
+				responseBean.getMsg().setDesc(Constant.CODE_0001);
 				return responseBean;
 			}
 			LOG.info("业务执行成功，设置返回报文状态为成功...");
 			responseBean.getMsg().setCode("0000");
-			responseBean.getMsg().setDesc("成功");
+			responseBean.getMsg().setDesc(Constant.CODE_0000);
 			responseBean.setMac(requestBean.getHead().getSerial());
 		}
 

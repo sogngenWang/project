@@ -89,6 +89,7 @@ public class RegisteractivityController {
 	 * @param request
 	 * @return
 	 */
+	@RequestNeedParam({"activityid"})
 	@RequestMapping(value = "/countRegisterSign", method = { RequestMethod.POST })
 	@ResponseBody
 	public ResponseBean countRegisterSign(String request) {
