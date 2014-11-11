@@ -34,7 +34,7 @@ public class MessageController {
 	@Resource(name = "messageService")
 	private MessageService messageService;
 
-	@RequestNeedParam({"currentPage","isread"})
+	@RequestNeedParam({"currentPage","isread","userid"})
 	@RequestMapping(value = "/listMessage", method = { RequestMethod.POST })
 	@ResponseBody
 	public ResponseBean listMessage(String request) {

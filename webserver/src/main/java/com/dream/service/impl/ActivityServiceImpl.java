@@ -74,6 +74,7 @@ public class ActivityServiceImpl implements ActivityService {
 
 	@Override
 	public Activity detailActivityPage(Activity activity) {
+		int userid = activity.getUserid();
 		//先从数据库中查询出该跳记录的详细信息
 		activity = activityDao.detailActivity(activity);
 		int commentCount = 0;
@@ -97,7 +98,7 @@ public class ActivityServiceImpl implements ActivityService {
 		praiseCount = praiseDao.countPraise(praise);
 		//判断用户是否已经点赞
 		praise = new Praise();
-		praise.setUserid(activity.getUserid());
+		praise.setUserid(userid);
 		praise.setOtherid(activity.getActivityid());
 		praise.setPraisetype(Constant.PRAISE_TYPE_ACTIVITY);
 		if(null != praiseDao.detailPraise(praise)){

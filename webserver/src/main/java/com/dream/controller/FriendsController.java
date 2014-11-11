@@ -107,10 +107,10 @@ public class FriendsController {
 		return responseBean;
 	}
 	
-	@RequestNeedParam({"userid","friendsid"})
+	@RequestNeedParam({"userid","frienduserid"})
 	@RequestMapping(value = "/addANewFriends", method = { RequestMethod.POST })
 	@ResponseBody
-	public ResponseBean detailFriends(String request) {
+	public ResponseBean addANewFriends(String request) {
 		requestBean = gson.fromJson(request, RequestBean.class);
 		// 进行校验
 		if (requestBean.checkMac()) {
@@ -139,7 +139,7 @@ public class FriendsController {
 	
 	
 
-	@RequestNeedParam({"userid","friendsid"})
+	@RequestNeedParam({"userid","frienduserid"})
 	@RequestMapping(value = "/manageFriendsAdd", method = { RequestMethod.POST })
 	@ResponseBody
 	public ResponseBean manageFriendsAdd(String request) {

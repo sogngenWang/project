@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50520
 File Encoding         : 65001
 
-Date: 2014-11-10 20:03:24
+Date: 2014-11-12 01:48:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -39,10 +39,10 @@ CREATE TABLE `activity` (
 -- ----------------------------
 -- Records of activity
 -- ----------------------------
-INSERT INTO activity VALUES ('1', '大数据时代', '2014-02-02 23:29:37', '2014-10-24 23:29:58', '2', '100', '福建省福州市鼓楼区', '2014-01-29 23:30:17', 'http://localhost:8080/webserver/imgs/activity/1/', '1', '2', '测试活动概要内容~', '活动详情。。。', '21');
+INSERT INTO activity VALUES ('1', '大数据时代', '2014-02-02 23:29:37', '2014-10-24 23:29:58', '2', '100', '福建省福州市鼓楼区', '2014-01-29 23:30:17', 'http://localhost:8080/webserver/imgs/activity/1/', '1', '2', '测试活动概要内容~', '活动详情。。。', '22');
 INSERT INTO activity VALUES ('2', '机器学习算法', '2014-10-21 23:30:42', '2014-11-29 23:30:52', '2', '1000', '福建省福州市仓山区', '2014-10-20 23:31:21', 'http://localhost:8080/webserver/imgs/activity/2/', '1', '2', '3322222', '2222222222222222', '0');
 INSERT INTO activity VALUES ('3', '测试1', '2014-11-07 14:17:05', '2014-11-07 14:17:18', '2', '10000', '地区1', '2014-11-07 14:17:59', 'http://localhost:8080/webserver/imgs/activity/3/', '1', '2', '23333', '333333333333333333333333', '0');
-INSERT INTO activity VALUES ('5', '测试2', '2014-11-07 14:17:09', '2014-11-07 14:17:23', '1', '10', '地区2', '2014-11-07 14:18:01', 'http://localhost:8080/webserver/imgs/activity/4/', '1', '2', '44444', '444444444444444444444444444444', '0');
+INSERT INTO activity VALUES ('5', '测试2', '2014-11-07 14:17:09', '2014-11-07 14:17:23', '2', '10', '地区2', '2014-11-07 14:18:01', 'http://localhost:8080/webserver/imgs/activity/4/', '1', '2', '44444', '444444444444444444444444444444', '0');
 INSERT INTO activity VALUES ('6', '测试3', '2014-11-07 14:17:12', '2014-11-07 14:17:26', '3', '1', '地区3', '2014-11-07 14:18:04', 'http://localhost:8080/webserver/imgs/activity/5/', '1', '2', '55555', '555555555555555555555555555555', '0');
 
 -- ----------------------------
@@ -72,7 +72,7 @@ CREATE TABLE `checkcode` (
   `telephone` varchar(255) DEFAULT NULL COMMENT '该校验码对应的手机号',
   `createtime` varchar(255) DEFAULT NULL COMMENT '校验码生成时间',
   PRIMARY KEY (`checkcodeid`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='用户校验码';
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='用户校验码';
 
 -- ----------------------------
 -- Records of checkcode
@@ -86,6 +86,7 @@ INSERT INTO checkcode VALUES ('6', '977708', '15155105527', '2014-11-05 00:35:23
 INSERT INTO checkcode VALUES ('7', '198858', '15159628259', '2014-11-05 00:26:25,466');
 INSERT INTO checkcode VALUES ('8', '896066', '15159628259', '2014-11-10 14:23:48,359');
 INSERT INTO checkcode VALUES ('9', '430626', '15159628259', '2014-11-10 15:09:57,511');
+INSERT INTO checkcode VALUES ('10', '574777', '15159628259', '2014-11-11 21:52:43,347');
 
 -- ----------------------------
 -- Table structure for `comment`
@@ -121,7 +122,7 @@ CREATE TABLE `friends` (
   `isbefriend` varchar(2) NOT NULL DEFAULT '0' COMMENT '是否已经互为好友(0.待确认 1.是 2.拒绝)',
   `accesstime` varchar(30) DEFAULT NULL COMMENT '成为好友的时间——只有同意之后才有值',
   PRIMARY KEY (`friendid`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='好友关系表';
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='好友关系表';
 
 -- ----------------------------
 -- Records of friends
@@ -130,7 +131,8 @@ INSERT INTO friends VALUES ('1', '1', '2', '1', null);
 INSERT INTO friends VALUES ('2', '1', '5', '1', null);
 INSERT INTO friends VALUES ('3', '4', '1', '1', null);
 INSERT INTO friends VALUES ('4', '5', '1', '1', null);
-INSERT INTO friends VALUES ('9', '2', '1', '2', '2014-11-09 17:09:42,587');
+INSERT INTO friends VALUES ('9', '2', '1', '1', '2014-11-09 17:09:42,587');
+INSERT INTO friends VALUES ('10', '4', '5', '0', '2014-11-12 01:35:35,814');
 
 -- ----------------------------
 -- Table structure for `kinds`
@@ -234,7 +236,7 @@ CREATE TABLE `praise` (
   `otherid` int(11) NOT NULL COMMENT '被点赞的id',
   `praisetype` int(11) NOT NULL COMMENT '被点赞的类型(1.活动 2.主题 3.对方用户id )',
   PRIMARY KEY (`praiseid`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='用户点赞表';
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='用户点赞表';
 
 -- ----------------------------
 -- Records of praise
@@ -244,12 +246,13 @@ INSERT INTO praise VALUES ('2', '1', '2', '0');
 INSERT INTO praise VALUES ('3', '2', '1', '0');
 INSERT INTO praise VALUES ('4', '1', '1', '0');
 INSERT INTO praise VALUES ('5', '1', '1', '1');
-INSERT INTO praise VALUES ('6', '1', '2', '1');
-INSERT INTO praise VALUES ('7', '1', '2', '2');
+INSERT INTO praise VALUES ('12', '1', '2', '2');
+INSERT INTO praise VALUES ('7', '1', '2', '3');
 INSERT INTO praise VALUES ('8', '1', '1', '4');
-INSERT INTO praise VALUES ('9', '1', '2', '4');
+INSERT INTO praise VALUES ('9', '1', '3', '4');
 INSERT INTO praise VALUES ('10', '2', '1', '4');
 INSERT INTO praise VALUES ('11', '3', '1', '4');
+INSERT INTO praise VALUES ('13', '5', '1', '1');
 
 -- ----------------------------
 -- Table structure for `prize`
@@ -278,7 +281,7 @@ CREATE TABLE `registeractivity` (
   `activityid` int(11) DEFAULT NULL COMMENT '活动id',
   `signstatus` int(11) DEFAULT '0' COMMENT '签到状态(0.未签到 1.已签到2.已预定)',
   PRIMARY KEY (`registrationid`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='用户活动关系表';
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='用户活动关系表';
 
 -- ----------------------------
 -- Records of registeractivity
@@ -287,11 +290,12 @@ INSERT INTO registeractivity VALUES ('1', '1', '1', '1');
 INSERT INTO registeractivity VALUES ('2', '2', '1', '1');
 INSERT INTO registeractivity VALUES ('3', '2', '2', '1');
 INSERT INTO registeractivity VALUES ('4', '1', '2', '1');
-INSERT INTO registeractivity VALUES ('7', '5', '1', '0');
+INSERT INTO registeractivity VALUES ('7', '5', '1', '1');
 INSERT INTO registeractivity VALUES ('8', '4', '1', '1');
 INSERT INTO registeractivity VALUES ('9', '3', '2', '1');
 INSERT INTO registeractivity VALUES ('10', '4', '2', '0');
 INSERT INTO registeractivity VALUES ('11', '1', '3', '0');
+INSERT INTO registeractivity VALUES ('12', '5', '3', '0');
 
 -- ----------------------------
 -- Table structure for `theme`
