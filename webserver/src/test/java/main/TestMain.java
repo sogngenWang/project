@@ -66,9 +66,17 @@ public class TestMain extends JUnitControllerBase {
 //		test.Test("");
 		//TODO 显示 "我"界面,应该包含1.未读消息的数量2.未处理好友消息的数量3.我的活动数量4.我的话题数量5.抽奖结果——抽奖次数/中奖次数6.名片完善程度6.当前城市7.我的相关信息
 //		test.Test("");
+		// TODO 中奖页面还需要显示是否是实体/虚拟奖品，如果是虚拟奖品的话，设置多少用户积分
 		
+		// TODO 关于积分制度
 		
+		// TODO 关于名片夹制度
 		
+		// TODO 关于广告
+		
+		// TODO 生成用户的二维码同时返回用户二维码的URL，该二维码应该存储用户的名片信息——或者说，该二维码应该是一个去查询访问用户URL的方法
+		
+		// TODO 
 		
 //		test.Test("addActivityController");
 //		test.Test("detailCommentController");

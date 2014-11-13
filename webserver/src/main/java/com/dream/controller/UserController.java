@@ -273,7 +273,7 @@ public class UserController {
 					}
 					//真正的注册该用户
 					userService.addNormalUser(user);
-					//注册完用户需要把该用户资料填充到名片夹中  TODO
+					//TODO 注册完用户需要把该用户资料填充到名片夹中  
 					
 				}
 			} catch (Exception e) {
