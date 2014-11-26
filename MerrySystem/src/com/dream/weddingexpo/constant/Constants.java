@@ -34,13 +34,13 @@ public interface Constants {
 	/**
 	 * 提交富文本框编辑器需要使用的密码
 	 */
-	String PASSWD = "admin123";
+	String PASSWD = "merrySystemAdmin123";
 	/**
 	 * 新闻流文件存放路径
 	 */
-//	String IMG_PATH_PRE = "//opt//data//";
+	String IMG_PATH_PRE = "//opt//data//";
 	//dev
-	String IMG_PATH_PRE = "D://tmp/";
+//	String IMG_PATH_PRE = "D://tmp/";
 	
 	
 	/**
