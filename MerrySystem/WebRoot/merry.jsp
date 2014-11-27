@@ -16,23 +16,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="author" content="">
 <title>merry</title>
 
-
 <!-- Bootstrap core CSS -->
-<link
-	href="${pageContext.request.contextPath}/bootstrap-3.2.0/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/bootstrap-3.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Bootstrap theme -->
-<link
-	href="${pageContext.request.contextPath}/bootstrap-3.2.0/dist/css/bootstrap-theme.min.css"
-	rel="stylesheet">
-
-<script
-	src="${pageContext.request.contextPath}/bootstrap-3.2.0/docs/assets/js/ie-emulation-modes-warning.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrap-3.2.0/docs/assets/js/ie-emulation-modes-warning.js"></script>
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script
-	src="${pageContext.request.contextPath}/bootstrap-3.2.0/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrap-3.2.0/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
 <!--[if lt IE 9]>
       <script src="assets/js/html5shiv.js"></script>
     <![endif]-->
@@ -42,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--[if lt IE 9]>
 		      <script src="${pageContext.request.contextPath}/bootstrap-3.2.0/js/html5shiv.min.js"></script>
 		      <script src="${pageContext.request.contextPath}/bootstrap-3.2.0/js/respond.min.js"></script>
-		    <![endif]-->
+<![endif]-->
 
 <style type="text/css">
 #centerFrame {
@@ -58,26 +49,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	$(document).ready(function() {
 		reflushIframe("${pageContext.request.contextPath}/mainAction.action");
 		
-		$("#firstPageButton").click(function(){
-			$(".nav li").attr("class","");
-			$(this).parent().attr("class","active");
-			reflushIframe("${pageContext.request.contextPath}/mainAction.action");
-		});
-		$("#newsButton").click(function(){
-			$(".nav li").attr("class","");
-			$(this).parent().attr("class","active");
-			reflushIframe("${pageContext.request.contextPath}/listMessageNoContentAction.action");
-		});
-		$("#exhibitorsButton").click(function(){
-			$(".nav li").attr("class","");
-			$(this).parent().attr("class","active");
-			reflushIframe("${pageContext.request.contextPath}/listKindsAction.action");
-		});
-		$("#expoMapButton").click(function(){
-			$(".nav li").attr("class","");
-			$(this).parent().attr("class","active");
-			reflushIframe("${pageContext.request.contextPath}/expoMap.jsp");
-		});
 	});
 	
 	function reflushIframe(action){
@@ -90,14 +61,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body role="document">
       
-	<iframe src="${pageContext.request.contextPath}/header.jsp"
-		style="width: 100%;height: 200px;border: none;"></iframe>
+	<iframe src="${pageContext.request.contextPath}/header.jsp" style="width: 100%;height: 200px;border: none;"></iframe>
 
 	<div id="content">
 		<iframe id="centerFrame"></iframe>
 	</div>
 
-	<iframe src="${pageContext.request.contextPath}/bottom.jsp"
-		style="width: 100%;height: 200px;border: none;"></iframe>
+	<iframe src="${pageContext.request.contextPath}/bottom.jsp" style="width: 100%;height: 200px;border: none;"></iframe>
 </body>
 </html>
