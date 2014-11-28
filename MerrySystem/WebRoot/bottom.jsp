@@ -62,37 +62,21 @@ td {
 
 				<table style="display: inline; margin: 10px;">
 					<tr>
-						<td>指导单位:</td>
-						<td>中国社会工作协会婚庆行业委员会</td>
+						<td>&nbsp;</td>
+						<td>福建省摄影行业协会网</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>版权所有：福建省摄影行业协会 </td>
+						<td>&nbsp;</td>
+						<td>网站运营：福州中天创信网络技术有限公司</td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
-						<td>福建省闽台经济合作促进委员会</td>
-					</tr>
-					<tr>
+						<td>闽ICP备14016797号</td>
 						<td>&nbsp;</td>
-						<td>福建省民政厅</td>
 					</tr>
 				</table>
-
-				<table style="display: inline;margin: 10px;">
-					<tr>
-						<td>主办单位:</td>
-						<td>福建省商务厅</td>
-						<td>福建省贸促会</td>
-					</tr>
-					<tr>
-						<td>协办单位:</td>
-						<td>福州市民政局</td>
-						<td>福州市旅游局</td>
-					</tr>
-					<tr>
-						<td>&nbsp;</td>
-						<td>福建省闽台经济合作促进委员会</td>
-						<td>福州市商贸服务业局</td>
-					</tr>
-				</table>
-
 			</div>
 		</div>
 	</div>

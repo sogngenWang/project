@@ -13,44 +13,8 @@
 <base href="<%=basePath%>">
 <script src="${pageContext.request.contextPath}/js/jquery-1.9.1.js"></script>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
 <title>merry</title>
 
-
-<!-- Bootstrap core CSS -->
-<link
-	href="${pageContext.request.contextPath}/bootstrap-3.2.0/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-
-<!-- Bootstrap theme -->
-<link
-	href="${pageContext.request.contextPath}/bootstrap-3.2.0/dist/css/bootstrap-theme.min.css"
-	rel="stylesheet">
-
-<script
-	src="${pageContext.request.contextPath}/bootstrap-3.2.0/docs/assets/js/ie-emulation-modes-warning.js"></script>
-
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script
-	src="${pageContext.request.contextPath}/bootstrap-3.2.0/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
-
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-		      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		    <![endif]-->
-
-<script type="text/javascript">
-	$(document).ready(function() {
-		$(".messageTitleDiv a").click(function() {
-			var action = $(this).parent().attr("action");
-			window.parent.reflushIframe(action);
-		});
-	});
-</script>
 <!-- 800px高*1600px宽 -->
 <style>
 body {
@@ -90,7 +54,6 @@ body {
 	height: 8%;
 }
 
-
 #kinds {
 	width: 100%;
 	height: 20%;
@@ -123,7 +86,6 @@ body {
 	height: 34%%;
 }
 
-
 /* 设置图片的透明度  */
 a img {
 	width: 100%;
@@ -140,75 +102,72 @@ a img {
 	
 }
 
-#aboutExpo{
+#aboutExpo {
 	margin: 10px;
 	display: inline;
 }
+
 #visitExpo {
 	margin: 10px;
 	display: inline;
 }
-
-
 </style>
 </head>
 <body>
-<div id="left">
-	<!-- 展示图片区域  -->
-	<div id="picDisplay">
-		<img id="dispalyPicture" alt="展示图片" src="./img/dispalyPicture.png" />
-	</div>
-	<!-- 广告栏1 -->
-	<div id="ad_1">
-		<a href="javascript:void(0);"> <img src="./img/AD.gif" />
-		</a>
-	</div>
-	<!-- 新闻栏 -->
-
-	<div id="news" class="row">
-		<div class="col-md-10">
-			<table class="table">
-				<thead>
-					<tr>
-						<th colspan="2">序号</th>
-						<th colspan="8">新闻标题</th>
-					</tr>
-				</thead>
-				<c:forEach items="${message.messageList}" var="messageInfo"
-					varStatus="vs">
-					<tbody>
-						<td colspan="2">${vs.count}</td>
-						<td colspan="8">
-							<div class="messageTitleDiv" id="${messageInfo.messageId}" action="${pageContext.request.contextPath}/detailMessageAction.action?message.messageId=${messageInfo.messageId}">
-								<a href="javascript:void(0);">${messageInfo.messageTitle}</a>
-							</div>
-						</td>
-					</tbody>
-				</c:forEach>
-			</table>
+	<div id="left">
+		<!-- 主要活动新闻图片区域  -->
+		<div id="picDisplay">
+			<img id="dispalyPicture" alt="展示图片" src="./img/dispalyPicture.png" />
 		</div>
-	</div>
+		<!-- 广告栏1 -->
+		<div id="ad_1">
+			<a href="javascript:void(0);"> <img src="./img/AD.gif" />
+			</a>
+		</div>
+		<!-- 新闻栏 -->
 
-</div>
-<div id="right">
-	<div id="kinds">
-		<button id="aboutExpo">关于展会</button>
-		<button id="visitExpo">参加展会</button>
+		<div id="news" class="row">
+			<div class="col-md-10">
+				<table class="table">
+					<thead>
+						<tr>
+							<th colspan="2">序号</th>
+							<th colspan="8">新闻标题</th>
+						</tr>
+					</thead>
+					<c:forEach items="${message.messageList}" var="messageInfo"
+						varStatus="vs">
+						<tbody>
+							<td colspan="2">${vs.count}</td>
+							<td colspan="8" style="background-color: yellow;">
+								<div class="messageTitleDiv" id="${messageInfo.messageId}" action="${pageContext.request.contextPath}/detailMessageAction.action?message.messageId=${messageInfo.messageId}">
+									<a href="javascript:void(0);">${messageInfo.messageTitle}</a>
+								</div>
+							</td>
+						</tbody>
+					</c:forEach>
+				</table>
+			</div>
+		</div>
+
+	</div>
+	<div id="right">
+		<div id="kinds">
+			<button id="aboutExpo">关于协会</button>
+			<button id="visitExpo">加入协会</button>
+		</div>
 		<!-- 
-		<div id="aboutExpo">关于展会</div>
-		<div id="visitExpo">参加展会</div>
-		-->
+		<div id="ad_2">
+			<a href="javascript:void(0);" onclick="window.location.href='http://www.baidu.com'"> <img alt="广告图片" src="./img/AD.gif" />
+			</a>
+		</div>
+		<div id="ad_3">
+			<a href="javascript:void(0);"> <img src="./img/AD.gif" />
+			</a>		
+		</div>
+		<div id="dynamic"></div>
+		 -->
 	</div>
-	<div id="ad_2">
-		<a href="javascript:void(0);"> <img alt="广告图片" src="./img/AD.gif" />
-		</a>
-	</div>
-	<div id="ad_3">
-		<a href="javascript:void(0);"> <img src="./img/AD.gif" />
-		</a>
-	</div>
-	<div id="dynamic">协会动态:</div>
-</div>
 
 
 </body>
