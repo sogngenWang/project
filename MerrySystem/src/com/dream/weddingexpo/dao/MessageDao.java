@@ -15,4 +15,6 @@ public interface MessageDao {
 
 	Message updateMessage(Message message);
 
+	List<Message> messageListOrderByTime(Message message);
+
 }

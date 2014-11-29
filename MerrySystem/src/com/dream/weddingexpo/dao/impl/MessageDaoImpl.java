@@ -4,11 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.OrderBy;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Order;
 
 import com.dream.weddingexpo.bean.Message;
 import com.dream.weddingexpo.constant.Constants;
@@ -86,6 +89,15 @@ public class MessageDaoImpl implements MessageDao {
 		session.save(message);
 		transaction.commit();
 		return message;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Message> messageListOrderByTime(Message message) {
+		criteria = session.createCriteria(message.getClass());
+		CommonUtils.setCriteria(getMessageParamMap(message), criteria);
+		criteria.addOrder(Order.desc(Constants.MESSAGE_CREATETIME));
+		return criteria.list();
 	}
 
 

@@ -4,41 +4,19 @@
 
 	<constant name="struts.i18n.encoding" value="utf8" />
 
-	<!-- <constant name="struts.devMode" value="true" />-->
-	
+	<!-- <constant name="struts.devMode" value="true" /> -->
+
 	<package name="mainpackage" extends="struts-default" namespace="/">
-	
-		<action name="mainAction" class="messageAction" method="firstPage">
-			<result name="success">main.jsp</result> 
-		</action>
-		<action name="listMessageAction" class="messageAction" method="listMessage" >
-			<result name="success">listMessages.jsp</result> 
-		</action>
-		<action name="listMessageNoContentAction" class="messageAction" method="listMessageNoContent" >
-			<result name="success">listMessages.jsp</result> 
-		</action>
+		<action name="listMessageAction" class="messageAction" method="listMessage"></action>
+		<action name="aboutAssociationAction" class="otherAction" method="aboutAssociation"></action>
 		
-		<action name="listKindsAction" class="kindsAction" method="listKinds" >  
-			<result name="success">listStores.jsp</result>
-		</action>
-		<action name="detailMessageAction" class="messageAction" method="detailMessage" >  
-			<result  name="success">detailMessage.jsp</result>
-		</action>
-		 
-		<action name="listStoreByKindsStoreAction" class="kindsAction" method="listStoreByKindsStore" />
 		
-		<action name="addMessageAction" class="messageAction" method="addMessage" >
-			<result name="success">addMessage.jsp</result>
-		</action>
-	
-		<action name="addStoreAction" class="storeAction" method="addStore">
-			<result name="success">addStore.jsp</result>
-		</action>
-		
-		<action name="addStoreAjaxAction" class="storeAction" method="addStoreAjax" />
-			
-		<action name="listKindsAjaxAction" class="kindsAction" method="listKindsAjax" />
-			
- 		
+		<action name="downloadAction" class="fileAction">
+			 <result name="success" type="stream">  
+				<param name="contentType">application/octet-stream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="inputName">downloadFile</param>
+			 </result>
+		</action>  
 	</package>
 </struts>    

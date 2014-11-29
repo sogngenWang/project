@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.dream.weddingexpo.bean.ProjectFile" table="message" schema="merrysystem">
+	<class name="com.dream.weddingexpo.bean.ProjectFile" table="projectfile" schema="merrysystem">
 		<id name="fileId" type="java.lang.String">
 			<column name="fileId"/>
 			<generator class="native" />

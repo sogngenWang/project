@@ -25,8 +25,18 @@ public class Message {
 	private String messageContent;
 	// 回显信息
 	private String messageInfo;
+	// 置顶标志
+	private String isTop;
 
 	private List<Message> messageList = new ArrayList<Message>();
+
+	public String getIsTop() {
+		return isTop;
+	}
+
+	public void setIsTop(String isTop) {
+		this.isTop = isTop;
+	}
 
 	public String getMessageInfo() {
 		return messageInfo;

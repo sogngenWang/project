@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50173
 File Encoding         : 65001
 
-Date: 2014-11-29 16:28:57
+Date: 2014-11-29 23:47:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,23 +23,23 @@ CREATE TABLE `message` (
   `userId` int(11) DEFAULT NULL COMMENT '发布该消息的用户id',
   `messageContentPath` varchar(256) DEFAULT NULL COMMENT '消息正文',
   `messageTitle` varchar(256) DEFAULT NULL,
-  `createTime` varchar(11) DEFAULT NULL COMMENT '新闻创建时间',
+  `createTime` varchar(255) DEFAULT NULL COMMENT '新闻创建时间',
   `lastUpdateTime` varchar(255) DEFAULT NULL COMMENT '最后修改时间',
   `fileId` varchar(255) DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL,
   `fileUrl` varchar(255) DEFAULT NULL,
   `mapUrl` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`messageId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='新闻信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='新闻信息表';
 
 -- ----------------------------
 -- Records of message
 -- ----------------------------
-INSERT INTO message VALUES ('1', null, '//opt//data//1416994107316', 'ceshi', null, null, null, null, null, null);
-INSERT INTO message VALUES ('2', null, '//opt//data//1416995079676', 'xxxxx', null, null, null, null, null, null);
-INSERT INTO message VALUES ('3', null, '//opt//data//1417050889340', '2015 “建设银行杯”敢于发现·平民英雄 马拉松摄影大赛', null, null, null, null, null, null);
-INSERT INTO message VALUES ('4', null, '//opt//data//1417088272695', 'asdfasdf', null, null, null, null, null, null);
-INSERT INTO message VALUES ('5', null, '//opt//data//1417088952890', 'asdfasdf', null, null, null, null, null, null);
+INSERT INTO message VALUES ('1', null, '//opt//data//1416994107316', 'ceshi', '2014-11-29 22:28:30', null, null, null, null, null);
+INSERT INTO message VALUES ('2', null, '//opt//data//1416995079676', 'xxxxx', '2014-11-29 22:28:33', null, null, null, null, null);
+INSERT INTO message VALUES ('3', null, '//opt//data//1417050889340', '2015 “建设银行杯”敢于发现·平民英雄 马拉松摄影大赛', '2014-11-22 22:28:00', null, null, null, null, null);
+INSERT INTO message VALUES ('4', null, '//opt//data//1417088272695', 'asdfasdf', '2014-11-29 22:28:37', null, null, null, null, null);
+INSERT INTO message VALUES ('5', null, '//opt//data//1417088952890', 'asdfasdf', '2014-11-29 22:28:39', null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `projectfile`
@@ -65,11 +65,13 @@ CREATE TABLE `top` (
   `topId` int(11) NOT NULL AUTO_INCREMENT COMMENT '置顶表id',
   `messageId` int(11) NOT NULL COMMENT '新闻id',
   PRIMARY KEY (`topId`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='置顶表';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='置顶表';
 
 -- ----------------------------
 -- Records of top
 -- ----------------------------
+INSERT INTO top VALUES ('1', '3');
+INSERT INTO top VALUES ('2', '5');
 
 -- ----------------------------
 -- Table structure for `user`

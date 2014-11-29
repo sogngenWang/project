@@ -1,12 +1,20 @@
 package com.dream.weddingexpo.action;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONObject;
+
+import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 
 import com.dream.weddingexpo.bean.Message;
 import com.dream.weddingexpo.constant.Constants;
 import com.dream.weddingexpo.service.MessageService;
+import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
 
 @Scope("prototype")
@@ -51,15 +59,33 @@ public class MessageAction extends ActionSupport{
 	
 
 	/**
-	 * 根据传入的商家id，获取该商家的商品信息/新闻信息
+	 * 显示新闻信息
 	 */
 	public String listMessage() {
- 		List<Message> messageList = messageService.listMessage(message);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html; charset=utf-8");
+		
+ 		List<Message> messageList = messageService.listMessageInclueTop(message);
 		if (null != messageList) {
 			// 返回结果集
 			message.setMessageList(messageList);
 		}
-		return SUCCESS;
+		PrintWriter out = null;
+		Gson gson = new Gson();
+		
+		try {
+			out = response.getWriter();
+			out.println(gson.toJson(message));
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (null != out) {
+				out.flush();
+				out.close();
+			}
+		}
+		
+		return null;
 	}
 	/**
 	 * 添加新闻
@@ -85,11 +111,6 @@ public class MessageAction extends ActionSupport{
 	 */
 	public String firstPage(){
 		
-// 		List<Message> messageList = messageService.listMessageStoreIdNotNull(message);
-//		if (null != messageList) {
-			// 返回结果集
-//			message.setMessageList(messageList);
-//		}
 		
 		return SUCCESS;
 	}

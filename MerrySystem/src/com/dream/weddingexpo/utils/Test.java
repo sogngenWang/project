@@ -13,7 +13,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 public class Test {
-	public static void main(String[] args) {
+	public static void main3(String[] args) {
 		Configuration conf = new Configuration().configure();
 		SessionFactory sf = conf.buildSessionFactory();
 		Session s=sf.openSession();
@@ -21,9 +21,10 @@ public class Test {
 		
 		
 	}
-	public static void main2(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {
 
-		String path = "D://tmp//1410938559284";
+		String path = "D://java//project//gitproject//MerrySystem//WebRoot//text//association//about"; 
+//				"D://tmp//1410938559284";
 		BufferedReader reader = new BufferedReader(new FileReader(new File(path)));
 		String temp = reader.readLine();
 		StringBuffer sb = new StringBuffer();

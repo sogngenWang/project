@@ -1,0 +1,20 @@
+
+//定义一个File对象
+File someFile = new File("somefile.txt");
+//输入流
+FileInputStream fis = new FileInputStream(someFile);
+InputStreamReader isr = new InputStreamReader(fis,"UTF-8"); //指定以UTF-8编码读入
+BufferedReader br = new BufferedReader(isr);
+//输出流
+FileOutputStream fos = new FileOutputStream(someFile + ".生成的文件.txt");
+OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8"); //指定以UTF-8编码输出
+while ((line = br.readLine()) != null) {
+//osw.write("write something");
+osw.write(line);
+}
+//关闭IO流
+br.close();
+<br />
+
+<br /> <br /> <br /> <br /> 
+werqetfa 

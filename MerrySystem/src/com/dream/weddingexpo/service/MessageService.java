@@ -18,4 +18,6 @@ public interface MessageService {
 
 	Message updateMessage(Message message);
 
+	List<Message> listMessageInclueTop(Message message);
+
 }

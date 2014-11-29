@@ -47,54 +47,190 @@
 	$(document).ready(function() {
 		//初始化的时候    通过ajax 查询后台，获取活动图片以及相关的URL 然后设置dispalyPicture的src属性以及a属性
 		
-		//标题栏 按钮单击事件
-		$("#centerFrame").attr("src","");
-
 		$("#firstPageButton").click(function() {
 			$(".nav li").attr("class", "");
 			$(this).parent().attr("class","active");
+			displayExcept("clickFirstPageDiv");
+			listNewsOnFirstPage();
 		});
 		$("#newsButton").click(function() {
 			$(".nav li").attr("class", "");
 			$(this).parent().attr("class","active");
+			displayExcept("clickNewsDiv");
+			listNews();
 		});
 		$("#exhibitButton").click(function() {
 			$(".nav li").attr("class", "");
 			$(this).parent().attr("class","active");
+			displayExcept("clickExhibitDiv");
 		});
 		$("#associationDynaButton").click(function() {
 			$(".nav li").attr("class", "");
 			$(this).parent().attr("class","active");
+			displayExcept("clickAssociationDynaDiv");
 		});
 		$("#announceFileButton").click(function() {
 			$(".nav li").attr("class", "");
 			$(this).parent().attr("class","active");
+			displayExcept("clickAnnounceFileDiv");
 		});
 		$("#trainButton").click(function() {
 			$(".nav li").attr("class", "");
 			$(this).parent().attr("class","active");
+			displayExcept("clickTrainDiv");
 		});
 		$("#aboutAssociationButton").click(function() {
 			$(".nav li").attr("class", "");
 			$(this).parent().attr("class","active");
+			displayExcept("clickAboutAssociationDiv");
+			displayAboutAssociation();
 		});
 		$("#partnersButton").click(function() {
 			$(".nav li").attr("class", "");
 			$(this).parent().attr("class","active");
+			displayExcept("clickPartnersDiv");
 		});
 		$("#servePlatformButton").click(function() {
 			$(".nav li").attr("class", "");
 			$(this).parent().attr("class","active");
+			displayExcept("clickServePlatformDiv");
 		});
 
+		//标题栏 按钮单击事件
+		$("#firstPageButton").click();
 	});
 	
+	
+	/**
 	function reflushIframe(action){
 		$("#centerFrame").attr("src",action);		
 		var framheight = document.getElementById("centerFrame").contentWindow.document.body.scrollWidth;
 		$("#centerFrame").css("height",framheight);
 	}
 	
+	*/
+	//隐藏除了 div id 为"divid" 之外的div ，同时显示该div
+	function displayExcept(divid){
+		$(".clickDiv[id='" + divid + "']").show();			
+		$(".clickDiv[id!='" + divid + "']").hide();
+	}
+	
+	/**
+		ajax 查询表获取	主要新闻图片以及URL
+	*/
+	function listNewsOnFirstPage(){
+		request = "";
+		$.ajax({
+			type : "post",//使用post方法访问后台  
+			dataType : "text",//返回json格式的数据  
+			// url : "../testController?request="+request,//要访问的后台地址  
+			url : "listMessageAction.action",
+			contentType : "application/text;charset=utf-8",
+			data : {request:request}, //要发送的数据 
+			success : function(json) {//data为返回的数据，在这里做数据绑定 
+				json = eval('(' + json + ')');   
+			//	alert("||||"+json.messageList.size);
+				//alert(json.messageList[0].messageId);
+				//alert(json.messageList[0].messageTitle);
+				//alert(json.messageList[0].createTime);
+				//if(json.state == "SUCCESS"){
+						var Objs = json.messageList;
+						var string = "";
+						$("#news table tbody").html("");
+						for (var i = 0; i < Objs.length; i++) {
+							var array_element = Objs[i];
+							// 加入到页面的标签元素中 
+							string+="<tr attr=\""+ array_element.messageId+"\" class=\"messageId\" >";
+							string+="<td colspan=\"4\">"+ i + "</td>";
+							string+="<td colspan=\"6\"><a href=\"javascript:void(0);\">"+ array_element.messageTitle+"</a></td>";
+							string+="<td colspan=\"4\">"+ array_element.createTime +"</td>";
+							if(null != array_element.isTop && array_element.isTop == 1){
+								string+="<td colspan=\"4\">(置顶新闻)</td>";
+							}else{
+								string+="<td colspan=\"4\"></td>";
+							}
+							string+="</tr>";
+						}
+						$("#news table tbody").append(string);
+				//}
+			},
+			error : function() {
+				alert("ajax error....");
+			}
+		});
+		
+	}
+	
+	/**
+		ajax 获取新闻列表
+	*/
+	function listNews(){
+		request = "";
+		$.ajax({
+			type : "post",//使用post方法访问后台  
+			dataType : "text",//返回json格式的数据  
+			// url : "../testController?request="+request,//要访问的后台地址  
+			url : "listMessageAction.action",
+			contentType : "application/text;charset=utf-8",
+			data : {request:request}, //要发送的数据 
+			success : function(json) {//data为返回的数据，在这里做数据绑定 
+				json = eval('(' + json + ')');   
+				var Objs = json.messageList;
+				var string = "";
+				$("#clickNewsDiv table tbody").html("");
+				for (var i = 0; i < Objs.length; i++) {
+					var array_element = Objs[i];
+					// 加入到页面的标签元素中 
+					string+="<tr attr=\""+ array_element.messageId+"\" class=\"messageId\" >";
+					string+="<td colspan=\"4\">"+ i + "</td>";
+					string+="<td colspan=\"6\"><a href=\"javascript:void(0);\">"+ array_element.messageTitle+"</a></td>";
+					string+="<td colspan=\"4\">"+ array_element.createTime +"</td>";
+					if(null != array_element.isTop && array_element.isTop == 1){
+						string+="<td colspan=\"4\">(置顶新闻)</td>";
+					}else{
+						string+="<td colspan=\"4\"></td>";
+					}
+					string+="</tr>";
+				}
+				$("#clickNewsDiv table tbody").append(string);
+			},
+			error : function() {
+				alert("ajax error....");
+			}
+		});
+		
+	}
+	/**
+	 显示关于协会页面
+	*/
+	function displayAboutAssociation(){
+		request = "";
+		$.ajax({
+			type : "post",//使用post方法访问后台  
+			dataType : "text",//返回json格式的数据  
+			// url : "../testController?request="+request,//要访问的后台地址  
+			url : "aboutAssociationAction.action",
+			contentType : "application/text;charset=utf-8",
+			data : {request:request}, //要发送的数据 
+			success : function(json) {//data为返回的数据，在这里做数据绑定 
+				json = eval('(' + json + ')');   
+				$("#clickAboutAssociationDiv").html("");
+				$("#clickAboutAssociationDiv").append(json.aboutAssociation);
+			},
+			error : function() {
+				alert("ajax error....");
+			}
+		});
+	}
+	
+	/**
+	
+	*/
+	
+	/**
+	
+	*/
+
 </script>
 
 <!-- 800px高*1600px宽 -->
@@ -186,6 +322,7 @@ a img {
 </style>
 </head>
 <body>
+<!-- *********************************************** -->
 
 <!-- header 区域 -->
 <div class="navbar navbar-default">
@@ -218,9 +355,11 @@ a img {
 		</div>
 	</div>
 <!-- header 区域  END-->
-	
+
+<!-- *********************************************** -->
+
 <!-- 点击首页的时候显示 -->
-<div id="clickFirstPageDiv">
+<div id="clickFirstPageDiv" class="clickDiv" >
 	<div id="left">
 		<!-- 主要活动新闻图片区域  -->
 		<div id="picDisplay">
@@ -234,6 +373,19 @@ a img {
 		<!-- 新闻栏 -->
 
 		<div id="news" class="row">
+			<table id="rounded-corner">
+				<thead>
+					<tr>
+						<th colspan="4">序号</th>
+						<th colspan="6" style="text-align: center;">新闻标题</th>
+						<th colspan="4">新闻发布时间</th>
+						<th colspan="4">是否置顶新闻</th>
+					</tr>
+				</thead>
+				<!-- 表格内容<tr><td></td><td></td></tr> -->
+				<tbody></tbody>
+			</table>
+				<!-- 
 			<div class="col-md-10">
 				<table class="table">
 					<thead>
@@ -242,8 +394,7 @@ a img {
 							<th colspan="8">新闻标题</th>
 						</tr>
 					</thead>
-					<c:forEach items="${message.messageList}" var="messageInfo"
-						varStatus="vs">
+					<c:forEach items="${message.messageList}" var="messageInfo" varStatus="vs">
 						<tbody>
 							<td colspan="2">${vs.count}</td>
 							<td colspan="8" style="background-color: yellow;">
@@ -255,9 +406,10 @@ a img {
 					</c:forEach>
 				</table>
 			</div>
-		</div>
+			-->
+			</div>
 
-	</div>
+		</div>
 	<div id="right">
 		<div id="kinds">
 			<button id="aboutExpo">关于协会</button>
@@ -278,23 +430,91 @@ a img {
 </div>
 <!-- 点击首页的时候显示  END-->
 
-
-
-
-
+<!-- *********************************************** -->
 <!-- 点击新闻活动的时候显示 -->
-<div id="clickNewsDiv">
-
-
+<div id="clickNewsDiv" class="clickDiv">
+	<table id="rounded-corner">
+		<thead>
+			<tr>
+				<th colspan="4">序号</th>
+				<th colspan="6" style="text-align: center;">新闻标题</th>
+				<th colspan="4">新闻发布时间</th>
+				<th colspan="4">是否置顶新闻</th>
+			</tr>
+		</thead>
+		<!-- 表格内容<tr><td></td><td></td></tr> -->
+		<tbody></tbody>
+	</table>
 </div>
 <!-- 点击新闻活动的时候显示 END -->
 
+<!-- *********************************************** -->
+
+<!-- 点击作品的时候显示 -->
+<div id="clickExhibitDiv" class="clickDiv">
+
+</div>
+<!-- 点击作品的时候显示 END -->
+
+<!-- *********************************************** -->
+
+<!-- 点击协会动态的时候显示 -->
+<div id="clickAssociationDynaDiv" class="clickDiv">
 
 
+</div>
+<!-- 点击协会动态的时候显示 END -->
+
+<!-- *********************************************** -->
+
+<!-- 点击通知文件的时候显示 -->
+<div id="clickAnnounceFileDiv" class="clickDiv">
+	<a href="javascript:void(0);" onclick="javascript:window.location='downloadAction.action?fileName=about';" >点我下载</a>
+
+</div>
+<!-- 点击通知文件的时候显示 END -->
+
+<!-- *********************************************** -->
+
+<!-- 点击培训的时候显示 -->
+<div id="clickTrainDiv" class="clickDiv">
+
+
+</div>
+<!-- 点击培训的时候显示 END -->
+
+<!-- *********************************************** -->
+
+<!-- 点击关于协会的时候显示 -->
+<div id="clickAboutAssociationDiv" class="clickDiv">
+
+
+</div>
+<!-- 点击关于协会的时候显示 END -->
+
+<!-- *********************************************** -->
+
+<!-- 点击合作伙伴的时候显示 -->
+<div id="clickPartnersDiv" class="clickDiv">
+
+
+</div>
+<!-- 点击合作伙伴的时候显示 END -->
+
+<!-- *********************************************** -->
+
+<!-- 点击服务平台的时候显示 -->
+<div id="clickServePlatformDiv" class="clickDiv">
+
+
+</div>
+<!-- 点击服务平台的时候显示 END -->
+
+<!-- *********************************************** -->
 
 <!-- bottom 区域 -->
-<div class="navbar " >
-	<div class="navbar navbar-default">
+<div class="navbar" style="z-index: -1" >
+	<div class="navbar-default">
 		<div class="container">
 
 			<table style="display: inline; margin: 10px;">
