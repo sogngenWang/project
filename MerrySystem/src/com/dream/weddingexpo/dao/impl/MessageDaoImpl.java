@@ -9,7 +9,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.Restrictions;
 
 import com.dream.weddingexpo.bean.Message;
 import com.dream.weddingexpo.constant.Constants;
@@ -31,9 +30,11 @@ public class MessageDaoImpl implements MessageDao {
 
 	private Map<String, String> getMessageParamMap(Message message) {
 		paramMap.put(Constants.MESSAGE_MESSAGEID, message.getMessageId());
-		paramMap.put(Constants.MESSAGE_STOREID, message.getStoreId());
+		paramMap.put(Constants.MESSAGE_USERID, message.getUserId());
 		paramMap.put(Constants.MESSAGE_MESSAGECONTENTPATH, message.getMessageContentPath());
 		paramMap.put(Constants.MESSAGE_MESSAGETITLE, message.getMessageTitle());
+		paramMap.put(Constants.MESSAGE_CREATETIME, message.getCreateTime());
+		paramMap.put(Constants.MESSAGE_LASTUPDATETIME, message.getLastUpdateTime());
 		return paramMap;
 	}
 	
@@ -87,12 +88,5 @@ public class MessageDaoImpl implements MessageDao {
 		return message;
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Message> listMessageStoreIdNotNull(Message message) {
-		criteria = session.createCriteria(message.getClass());
-		criteria.add(Restrictions.isNull(Constants.MESSAGE_STOREID)); 
-		return criteria.list();
-	}
 
 }

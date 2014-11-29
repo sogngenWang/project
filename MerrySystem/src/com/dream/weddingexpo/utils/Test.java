@@ -3,9 +3,7 @@ package com.dream.weddingexpo.utils;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import net.sf.json.JSONArray;
@@ -13,8 +11,6 @@ import net.sf.json.JSONArray;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
-import com.dream.weddingexpo.bean.Store;
 
 public class Test {
 	public static void main(String[] args) {
@@ -55,34 +51,34 @@ public class Test {
 
 		System.out.println(map.toString());
 
-		List<Store> storeList = new ArrayList<Store>();
-		Store storeTmp = new Store();
-		storeTmp.setStoreId("1");
-		storeTmp.setStoreAddress("1");
-		storeTmp.setStorePosition("1");
-		storeTmp.setStoreName("1");
-		storeList.add(storeTmp);
-
-		storeTmp = new Store();
-		storeTmp.setStoreId("2");
-		storeTmp.setStoreAddress("2");
-		storeTmp.setStorePosition("2");
-		storeTmp.setStoreName("2");
-		storeList.add(storeTmp);
-
-		storeTmp = new Store();
-		storeTmp.setStoreId("3");
-		storeTmp.setStoreAddress("3");
-		storeTmp.setStorePosition("3");
-		storeTmp.setStoreName("3");
-		storeList.add(storeTmp);
-
-		storeTmp = new Store();
-		storeTmp.setStoreId("4");
-		storeTmp.setStoreAddress("4");
-		storeTmp.setStorePosition("4");
-		storeTmp.setStoreName("4");
-		storeList.add(storeTmp);
+//		List<Store> storeList = new ArrayList<Store>();
+//		Store storeTmp = new Store();
+//		storeTmp.setStoreId("1");
+//		storeTmp.setStoreAddress("1");
+//		storeTmp.setStorePosition("1");
+//		storeTmp.setStoreName("1");
+//		storeList.add(storeTmp);
+//
+//		storeTmp = new Store();
+//		storeTmp.setStoreId("2");
+//		storeTmp.setStoreAddress("2");
+//		storeTmp.setStorePosition("2");
+//		storeTmp.setStoreName("2");
+//		storeList.add(storeTmp);
+//
+//		storeTmp = new Store();
+//		storeTmp.setStoreId("3");
+//		storeTmp.setStoreAddress("3");
+//		storeTmp.setStorePosition("3");
+//		storeTmp.setStoreName("3");
+//		storeList.add(storeTmp);
+//
+//		storeTmp = new Store();
+//		storeTmp.setStoreId("4");
+//		storeTmp.setStoreAddress("4");
+//		storeTmp.setStorePosition("4");
+//		storeTmp.setStoreName("4");
+//		storeList.add(storeTmp);
 
 		JSONArray obj = new JSONArray();
 		// String[] strArray = new String[3];
@@ -90,7 +86,7 @@ public class Test {
 		// strArray[1]="2";
 		// strArray[2]="3";
 
-		obj.add(storeList.toArray());
+//		obj.add(storeList.toArray());
 		// obj.put("storeId",1);
 		// obj.put("storeName",2);
 		// obj.put("storeAddress",3);

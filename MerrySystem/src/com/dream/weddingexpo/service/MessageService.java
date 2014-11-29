@@ -18,5 +18,4 @@ public interface MessageService {
 
 	Message updateMessage(Message message);
 
-	List<Message> listMessageStoreIdNotNull(Message message);
 }

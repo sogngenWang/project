@@ -15,5 +15,4 @@ public interface MessageDao {
 
 	Message updateMessage(Message message);
 
-	List<Message> listMessageStoreIdNotNull(Message message);
 }

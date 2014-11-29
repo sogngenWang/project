@@ -1,88 +1,75 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : own
-Source Server Version : 50520
-Source Host           : localhost:3306
+Source Server         : online
+Source Server Version : 50173
+Source Host           : 121.40.99.112:3306
 Source Database       : merrysystem
 
 Target Server Type    : MYSQL
-Target Server Version : 50520
+Target Server Version : 50173
 File Encoding         : 65001
 
-Date: 2014-09-18 00:34:03
+Date: 2014-11-29 16:28:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
--- ----------------------------
--- Table structure for `kinds`
--- ----------------------------
-DROP TABLE IF EXISTS `kinds`;
-CREATE TABLE `kinds` (
-  `kindsId` int(11) NOT NULL AUTO_INCREMENT,
-  `kindsName` varchar(255) DEFAULT NULL,
-  `kindsStore` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`kindsId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of kinds
--- ----------------------------
-INSERT INTO kinds VALUES ('1', '婚恋', '2;3;4;1;');
-INSERT INTO kinds VALUES ('2', '摄影', '1;2;');
-
 -- ----------------------------
 -- Table structure for `message`
 -- ----------------------------
 DROP TABLE IF EXISTS `message`;
 CREATE TABLE `message` (
   `messageId` int(11) NOT NULL AUTO_INCREMENT COMMENT '信息的id',
-  `storeId` int(11) DEFAULT NULL COMMENT '与信息想关联的商家Id',
+  `userId` int(11) DEFAULT NULL COMMENT '发布该消息的用户id',
   `messageContentPath` varchar(256) DEFAULT NULL COMMENT '消息正文',
   `messageTitle` varchar(256) DEFAULT NULL,
+  `createTime` varchar(11) DEFAULT NULL COMMENT '新闻创建时间',
+  `lastUpdateTime` varchar(255) DEFAULT NULL COMMENT '最后修改时间',
+  `fileId` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `fileUrl` varchar(255) DEFAULT NULL,
+  `mapUrl` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`messageId`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='新闻信息表';
 
 -- ----------------------------
 -- Records of message
 -- ----------------------------
-INSERT INTO message VALUES ('4', null, 'D://tmp//1410938367158', '4444');
-INSERT INTO message VALUES ('5', null, 'D://tmp//1410938401922', '5555');
-INSERT INTO message VALUES ('6', null, 'D://tmp//1410938559284', '6666');
-INSERT INTO message VALUES ('7', null, 'D://tmp//1410940274408', '777');
-INSERT INTO message VALUES ('8', null, 'D://tmp//1410940292757', '88882');
-INSERT INTO message VALUES ('9', null, 'D://tmp//1410959831817', '2222222');
-INSERT INTO message VALUES ('10', null, 'D://tmp//1410959831817', '111111');
-INSERT INTO message VALUES ('11', null, 'D://tmp//1410960628664', '123');
-INSERT INTO message VALUES ('12', null, 'D://tmp//1410960690470', '123');
-INSERT INTO message VALUES ('13', null, 'D://tmp//1410960718762', '123');
-INSERT INTO message VALUES ('14', null, 'D://tmp//1410960730126', '123');
-INSERT INTO message VALUES ('15', null, 'D://tmp//1410960737209', '123');
-INSERT INTO message VALUES ('16', null, 'D://tmp//1410960880062', '123');
-INSERT INTO message VALUES ('17', null, 'D://tmp//1410961448602', 'ceshi');
-INSERT INTO message VALUES ('18', null, 'D://tmp//1410961569370', '草草草草');
-INSERT INTO message VALUES ('19', null, 'D://tmp//1410961588817', '111');
-INSERT INTO message VALUES ('20', null, 'D://tmp//1410968779444', 'xxxx');
-INSERT INTO message VALUES ('21', null, 'D://tmp//1410969006430', 'asdf');
+INSERT INTO message VALUES ('1', null, '//opt//data//1416994107316', 'ceshi', null, null, null, null, null, null);
+INSERT INTO message VALUES ('2', null, '//opt//data//1416995079676', 'xxxxx', null, null, null, null, null, null);
+INSERT INTO message VALUES ('3', null, '//opt//data//1417050889340', '2015 “建设银行杯”敢于发现·平民英雄 马拉松摄影大赛', null, null, null, null, null, null);
+INSERT INTO message VALUES ('4', null, '//opt//data//1417088272695', 'asdfasdf', null, null, null, null, null, null);
+INSERT INTO message VALUES ('5', null, '//opt//data//1417088952890', 'asdfasdf', null, null, null, null, null, null);
 
 -- ----------------------------
--- Table structure for `store`
+-- Table structure for `projectfile`
 -- ----------------------------
-DROP TABLE IF EXISTS `store`;
-CREATE TABLE `store` (
-  `storeId` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `storeName` varchar(30) DEFAULT NULL,
-  `storeAddress` varchar(200) DEFAULT NULL,
-  `storePosition` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`storeId`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `projectfile`;
+CREATE TABLE `projectfile` (
+  `fileId` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(255) NOT NULL COMMENT '1.关于协会 2.加入协会 3.培训  4.通知文件 5.',
+  `fileUrl` varchar(255) NOT NULL COMMENT '文件在服务器上的URL',
+  `mapUrl` varchar(255) DEFAULT NULL COMMENT '该图片映射的URL(只有在该文件为图片的时候才有效)',
+  PRIMARY KEY (`fileId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文件路径存放表';
 
 -- ----------------------------
--- Records of store
+-- Records of projectfile
 -- ----------------------------
-INSERT INTO store VALUES ('1', '摄影协会', '福建省福州市', 'YT-306');
-INSERT INTO store VALUES ('2', '婚庆协会', '福建省长乐市', 'YT-305');
-INSERT INTO store VALUES ('3', 'test1', '呵呵 ', 'YT-360');
+
+-- ----------------------------
+-- Table structure for `top`
+-- ----------------------------
+DROP TABLE IF EXISTS `top`;
+CREATE TABLE `top` (
+  `topId` int(11) NOT NULL AUTO_INCREMENT COMMENT '置顶表id',
+  `messageId` int(11) NOT NULL COMMENT '新闻id',
+  PRIMARY KEY (`topId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='置顶表';
+
+-- ----------------------------
+-- Records of top
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `user`
@@ -91,12 +78,15 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `userId` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户唯一标识符',
   `userName` varchar(30) NOT NULL COMMENT '用户名字',
-  `userType` varchar(2) NOT NULL COMMENT '用户类型',
+  `userType` varchar(2) NOT NULL COMMENT '用户类型(0.维护人员 1.网站管理员 2.新闻编辑 )',
   `passwd` varchar(30) NOT NULL COMMENT '用户登录密码',
-  `isactive` varchar(1) DEFAULT NULL COMMENT '是否激活',
+  `isActive` varchar(1) DEFAULT NULL COMMENT '是否激活(0.否  1.是)',
   PRIMARY KEY (`userId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
+INSERT INTO user VALUES ('1', 'wsg', '0', 'wsg.96321', '1');
+INSERT INTO user VALUES ('2', 'admin', '1', 'merrySyste.96321', '1');
+INSERT INTO user VALUES ('3', 'edit', '2', 'edit.96321', '1');

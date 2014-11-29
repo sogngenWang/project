@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.dream.weddingexpo.bean.User" table="user" schema="merrysystem">
+		<id name="userId" type="java.lang.String">
+			<column name="userId"/>
+			<generator class="native" />
+		</id>
+		<property name="userName" type="java.lang.String">
+			<column name="userName" />
+		</property>
+		<property name="userType" type="java.lang.String">
+			<column name="userType" />
+		</property>
+		<property name="passwd" type="java.lang.String">
+			<column name="passwd" />
+		</property>
+		<property name="isActive" type="java.lang.String">
+			<column name="isActive" />
+		</property>
+	</class>
+</hibernate-mapping>

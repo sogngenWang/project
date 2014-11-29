@@ -25,6 +25,10 @@
 	rel="stylesheet">
 
 <!-- Bootstrap theme -->
+<link
+	href="${pageContext.request.contextPath}/bootstrap-3.2.0/dist/css/bootstrap-theme.min.css"
+	rel="stylesheet">
+
 <script
 	src="${pageContext.request.contextPath}/bootstrap-3.2.0/docs/assets/js/ie-emulation-modes-warning.js"></script>
 
@@ -74,6 +78,7 @@
 
 		<script type="text/javascript">
 	$(document).ready(function() {
+	
 						$("#centerFrame").attr("src","${pageContext.request.contextPath}/mainAction.action");
 
 						$("#firstPageButton").click(function() {
@@ -115,10 +120,6 @@
 							$(".nav li").attr("class", "");
 							$(this).parent().attr("class","active");
 						});
-						
-						
-						
-
 					});
 </script>
 </head>

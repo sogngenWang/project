@@ -9,26 +9,14 @@ import java.io.IOException;
 import java.util.List;
 
 import com.dream.weddingexpo.bean.Message;
-import com.dream.weddingexpo.bean.Store;
 import com.dream.weddingexpo.constant.Constants;
 import com.dream.weddingexpo.dao.MessageDao;
-import com.dream.weddingexpo.dao.StoreDao;
 import com.dream.weddingexpo.service.MessageService;
 
 public class MessageServiceImpl implements MessageService {
 	
 	private MessageDao messageDao;
-	private StoreDao storeDao;
 	
-
-	public StoreDao getStoreDao() {
-		return storeDao;
-	}
-
-	public void setStoreDao(StoreDao storeDao) {
-		this.storeDao = storeDao;
-	}
-
 	public MessageDao getMessageDao() {
 		return messageDao;
 	}
@@ -62,17 +50,6 @@ public class MessageServiceImpl implements MessageService {
 			}
 		}
 		message.setMessageContentPath(path);
-		if(null != message.getStoreName() && !message.getStoreName().trim().isEmpty()){
-			String storeName = message.getStoreName().trim();
-			Store store = new Store();
-			store.setStoreName(storeName);
-			store = storeDao.detailStore(store);
-			if(null != store){
-				message.setStoreId(store.getStoreId());
-			}else{
-				message.setStoreId(null);
-			}
-		}
 		
 		messageDao.addMessage(message);
 	}
@@ -154,11 +131,6 @@ public class MessageServiceImpl implements MessageService {
 		return messageDao.updateMessage(message);
 	}
 
-	@Override
-	public List<Message> listMessageStoreIdNotNull(Message message) {
-		List<Message> messageList = messageDao.listMessageStoreIdNotNull(message);
-		return messageList;
-	}
 
 	
 	

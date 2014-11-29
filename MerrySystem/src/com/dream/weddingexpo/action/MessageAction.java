@@ -85,11 +85,11 @@ public class MessageAction extends ActionSupport{
 	 */
 	public String firstPage(){
 		
- 		List<Message> messageList = messageService.listMessageStoreIdNotNull(message);
-		if (null != messageList) {
+// 		List<Message> messageList = messageService.listMessageStoreIdNotNull(message);
+//		if (null != messageList) {
 			// 返回结果集
-			message.setMessageList(messageList);
-		}
+//			message.setMessageList(messageList);
+//		}
 		
 		return SUCCESS;
 	}

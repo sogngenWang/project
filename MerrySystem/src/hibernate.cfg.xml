@@ -32,9 +32,10 @@
 		<!-- 是否验证，检查连接 -->
 		<property name="hibernate.c3p0.validate">false</property>
 
-		<mapping resource="com/dream/weddingexpo/bean/Store.hbm.xml" />
 		<mapping resource="com/dream/weddingexpo/bean/Message.hbm.xml" />
-		<mapping resource="com/dream/weddingexpo/bean/Kinds.hbm.xml" />
+		<mapping resource="com/dream/weddingexpo/bean/User.hbm.xml" />
+		<mapping resource="com/dream/weddingexpo/bean/ProjectFile.hbm.xml" />
+		<mapping resource="com/dream/weddingexpo/bean/Top.hbm.xml" />
 
 	</session-factory>
 </hibernate-configuration>

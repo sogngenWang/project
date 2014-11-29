@@ -3,20 +3,25 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.dream.weddingexpo.bean.Message" table="message"
-		schema="merrysystem">
+	<class name="com.dream.weddingexpo.bean.Message" table="message" schema="merrysystem">
 		<id name="messageId" type="java.lang.String">
-			<column name="messageId" length="20" />
+			<column name="messageId"/>
 			<generator class="native" />
 		</id>
-		<property name="storeId" type="java.lang.String">
-			<column name="storeId" length="20" />
+		<property name="userId" type="java.lang.String">
+			<column name="userId"/>
 		</property>
 		<property name="messageContentPath" type="java.lang.String">
 			<column name="messageContentPath" />
 		</property>
 		<property name="messageTitle" type="java.lang.String">
 			<column name="messageTitle" />
+		</property>
+		<property name="createTime" type="java.lang.String">
+			<column name="createTime" />
+		</property>
+		<property name="lastUpdateTime" type="java.lang.String">
+			<column name="lastUpdateTime" />
 		</property>
 	</class>
 </hibernate-mapping>

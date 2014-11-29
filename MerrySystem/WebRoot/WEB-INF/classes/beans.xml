@@ -4,44 +4,21 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- bean -->
-	<bean id="store" class="com.dream.weddingexpo.bean.Store" scope="prototype" />
 	<bean id="message" class="com.dream.weddingexpo.bean.Message" scope="prototype" />
-	<bean id="messageTitle" class="com.dream.weddingexpo.bean.MessageTitle" scope="prototype" />
-	<bean id="kinds" class="com.dream.weddingexpo.bean.Kinds" scope="prototype"  />
 	
 	<!-- action -->
 	<bean id="messageAction" class="com.dream.weddingexpo.action.MessageAction" scope="prototype">
 		<property name="message" ref="message"></property>
 		<property name="messageService" ref="messageService"/>
 	</bean>
-	<bean id="storeAction" class="com.dream.weddingexpo.action.StoreAction" scope="prototype">
-		<property name="store" ref="store"></property>
-		<property name="storeService" ref="storeService"/>
-		<property name="kindsService" ref="kindsService"/>
-	</bean>
-	<bean id="kindsAction" class="com.dream.weddingexpo.action.KindsAction" scope="prototype">
-		<property name="kinds" ref="kinds"></property>
-		<property name="kindsService" ref="kindsService"/>
-	</bean>
 	
 	<!-- service -->
 	<bean id="messageService" class="com.dream.weddingexpo.service.impl.MessageServiceImpl" >
 		<property name="messageDao" ref="messageDao" />
-		<property name="storeDao" ref="StoreDao" />
 	</bean>
-	<bean id="kindsService" class="com.dream.weddingexpo.service.impl.KindsServiceImpl" >
-		<property name="kindsDao" ref="kindsDao" />
-		<property name="storeDao" ref="StoreDao" />
-	</bean>
-	<bean id="storeService" class="com.dream.weddingexpo.service.impl.StoreServiceImpl" >
-		<property name="storeDao" ref="StoreDao" />
-	</bean>
+	
 	
 	<!-- dao -->
 	<bean id="messageDao" class="com.dream.weddingexpo.dao.impl.MessageDaoImpl" />
-	<bean id="kindsDao" class="com.dream.weddingexpo.dao.impl.KindsDaoImpl" />
-	<bean id="StoreDao" class="com.dream.weddingexpo.dao.impl.StoreDaoImpl" />
-	
-	
-	
+
 </beans>
