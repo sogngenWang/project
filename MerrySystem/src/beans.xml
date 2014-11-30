@@ -14,6 +14,8 @@
 	<bean id="messageAction" class="com.dream.weddingexpo.action.MessageAction" scope="prototype">
 		<property name="message" ref="message"></property>
 		<property name="messageService" ref="messageService"/>
+		<property name="userService" ref="userService"/>
+		<property name="topService" ref="topService"/>
 	</bean>
 	<bean id="topAction" class="com.dream.weddingexpo.action.TopAction" scope="prototype">
 		<property name="top" ref="top"></property>

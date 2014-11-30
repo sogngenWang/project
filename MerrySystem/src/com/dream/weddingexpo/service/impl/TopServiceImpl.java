@@ -53,4 +53,10 @@ public class TopServiceImpl implements TopService {
 		return topDao.updateTop(top);
 	}
 
+	@Override
+	public List<Top> listTopOrderById(Top top) {
+		List<Top> topList = topDao.listTopOrderById(top);
+		return topList;
+	}
+
 }

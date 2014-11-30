@@ -20,4 +20,6 @@ public interface MessageService {
 
 	List<Message> listMessageInclueTop(Message message);
 
+	Message detailMessageOnly(Message messageTmp);
+
 }

@@ -45,6 +45,7 @@ public class MessageDaoImpl implements MessageDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Message> messageList(Message message) {
+		session.clear();
 		criteria = session.createCriteria(message.getClass());
 		CommonUtils.setCriteria(getMessageParamMap(message), criteria);
 		return criteria.list();
@@ -53,6 +54,7 @@ public class MessageDaoImpl implements MessageDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Message detailMessage(Message message) {
+		session.clear();
 		criteria = session.createCriteria(message.getClass());
 		CommonUtils.setCriteria(getMessageParamMap(message), criteria);
 		List<Message> messageList = criteria.list();
@@ -65,6 +67,7 @@ public class MessageDaoImpl implements MessageDao {
 
 	@Override
 	public void addMessage(Message message) {
+		
 		Transaction transaction = session.beginTransaction();
 		transaction.begin();
 		message = (Message)session.merge(message);

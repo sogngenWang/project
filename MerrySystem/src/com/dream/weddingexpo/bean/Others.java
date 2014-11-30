@@ -1,5 +1,8 @@
 package com.dream.weddingexpo.bean;
 
+import org.springframework.context.annotation.Scope;
+
+@Scope("prototype")
 public class Others {
 	
 	private String aboutAssociation;

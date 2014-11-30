@@ -1,5 +1,7 @@
 package com.dream.weddingexpo.utils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -25,6 +27,12 @@ public class CommonUtils {
 				}
 			}
 		}
+	}
+
+	public static String getTime() {
+		long longtime = System.currentTimeMillis();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return sdf.format(new Date(longtime));
 	}
 	
 }

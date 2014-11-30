@@ -70,7 +70,10 @@ public interface Constants {
 	String IMG_PATH_PRE = "//opt//data//";
 	//dev
 //	String IMG_PATH_PRE = "D://tmp/";
+	
 	String ISTOP_TRUE_FLAG = "1";
+	
+	String USER_STATE_NOTACTIVE = "0";
 	
 	
 //	/**

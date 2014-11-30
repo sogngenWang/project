@@ -9,7 +9,25 @@
 	<package name="mainpackage" extends="struts-default" namespace="/">
 		<action name="listMessageAction" class="messageAction" method="listMessage"></action>
 		<action name="aboutAssociationAction" class="otherAction" method="aboutAssociation"></action>
+		<action name="joinAssociationAction" class="otherAction" method="joinAssociation"></action>
+		<action name="listFileNameAction" class="otherAction" method="listFileName"></action>
 		
+		
+		<action name="detailMessageAction" class="messageAction" method="detailMessage" >
+			<result name="success" type="redirect">manager.jsp</result>
+		</action>
+		<action name="updateMessageAction" class="messageAction" method="updateMessage" >
+			<result name="success" type="redirect">manager.jsp</result>
+		</action>
+		<action name="deleteMessageAction" class="messageAction" method="deleteMessage" >
+			<result name="success" type="redirect">manager.jsp</result>
+		</action>
+		
+		
+		<action name="addMessageAction" class="messageAction" method="addMessage" >
+			<result name="error" >add.jsp</result>
+			<result name="success" type="redirect">manager.jsp</result>
+		</action>
 		
 		<action name="downloadAction" class="fileAction">
 			 <result name="success" type="stream">  

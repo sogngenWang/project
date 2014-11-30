@@ -44,8 +44,6 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public void addMessage(Message message){
 		
-		System.out.println(message.getMessageTitle()+"|+");
-		System.out.println(message.getMessageContent()+"|");
 		//写入到文件中，然后把文件路径写入到数据库中
 		String path = Constants.IMG_PATH_PRE+System.currentTimeMillis();
 		BufferedWriter writer = null;
@@ -53,7 +51,6 @@ public class MessageServiceImpl implements MessageService {
 			writer = new BufferedWriter(new FileWriter(new File(path)));
 			writer.write(message.getMessageContent());
 			writer.flush();
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -123,6 +120,26 @@ public class MessageServiceImpl implements MessageService {
 
 	@Override
 	public Message updateMessage(Message message) {
+
+		//写入到文件中，然后把文件路径写入到数据库中
+		String path = Constants.IMG_PATH_PRE+System.currentTimeMillis();
+		BufferedWriter writer = null;
+		try {
+			writer = new BufferedWriter(new FileWriter(new File(path)));
+			writer.write(message.getMessageContent());
+			writer.flush();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(null != writer){
+					writer.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		message.setMessageContentPath(path);
 		
 		return messageDao.updateMessage(message);
 	}
@@ -155,6 +172,12 @@ public class MessageServiceImpl implements MessageService {
 		}
 		
 		return returnMessageList;
+	}
+
+	@Override
+	public Message detailMessageOnly(Message message) {
+		message = messageDao.detailMessage(message);
+		return message;
 	}
 
 

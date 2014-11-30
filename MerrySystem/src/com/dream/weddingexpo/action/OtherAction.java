@@ -7,6 +7,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -115,5 +119,34 @@ public class OtherAction extends ActionSupport{
 		
 		return null ;
 	}
+	
+
+	public String listFileName(){
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html; charset=utf-8");
+		
+		PrintWriter out = null;
+		Gson gson = new Gson();
+
+		String path = ServletActionContext.getServletContext().getRealPath("/")+"text\\download\\";
+		File file = new File(path);
+		List<String> fileList = Arrays.asList(file.list());
+		Map<String,List<String>> map = new HashMap<String,List<String>>();
+		map.put("fileList", fileList);
+		try {
+			out = response.getWriter();
+			out.println(gson.toJson(map));
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (null != out) {
+				out.flush();
+				out.close();
+			}
+		}
+		
+		return null ;
+	}
+	
 	
 }

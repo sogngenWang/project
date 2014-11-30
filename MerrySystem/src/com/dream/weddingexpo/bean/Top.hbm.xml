@@ -6,7 +6,6 @@
 	<class name="com.dream.weddingexpo.bean.Top" table="top" schema="merrysystem">
 		<id name="topId" type="java.lang.String">
 			<column name="topId"/>
-			<generator class="native" />
 		</id>
 		<property name="messageId" type="java.lang.String">
 			<column name="messageId"/>

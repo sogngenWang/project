@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <html>
 <head>
-    <title>新闻添加页</title>
+    <title>新闻修改页</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href="um/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
     <script type="text/javascript" src="um/third-party/jquery.min.js"></script>
@@ -118,6 +118,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </style>
     <script type="text/javascript">
 	    $(document).ready(function() {
+	    	
+	    	messageId = getParameter("messageId");
+	    	
+	    	ajaxInit(messageId);
+	    	
 			$("#submit").click(function(){
 				var text=UM.getEditor('myEditor').getContent();
 				$("#messageContent").val(text);
@@ -125,22 +130,59 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			});
 		});
 	    
+		function ajaxInit(messageId){
+			$.ajax({
+				type : "post",//使用post方法访问后台  
+				dataType : "text",//返回json格式的数据  
+				// url : "../testController?request="+request,//要访问的后台地址  
+				url : "detailMessageAction.action?message.messageId="+messageId,
+				contentType : "application/text;charset=utf-8",
+				data :"", //要发送的数据 
+				success : function(json) {//data为返回的数据，在这里做数据绑定 
+					json = eval('(' + json + ')'); 
+					//新闻标题
+					$("#messageTitle").val(json.messageTitle);
+					$("#messageId").val(messageId);
+					$("#isTop").val(json.isTop);
+					//富文本框内的内容
+					UM.getEditor('myEditor').setContent(json.messageContent);
+				},
+				error : function() {
+					alert("ajax error....");
+				}
+			});
+		}
+	    /**
+	     * 传入参数名字，即可获取到该参数所对应的参数值
+	     */
+	    function getParameter(sProp) {
+	    	var re = new RegExp(sProp + "=([^\&]*)", "i");
+	    	var a = re.exec(document.location.search);
+	    	if (a == null)
+	    		return null;
+	    	return a[1];
+	    };
+	    
+	    
 	 </script>
 </head>
 <body>
 
-    <form id="textEditForm" method="post" action="${pageContext.request.contextPath}/addMessageAction.action">
+    <form id="textEditForm" method="post" action="${pageContext.request.contextPath}/updateMessageAction.action">
+    	<input id="messageId"  name="message.messageId" type="hidden" />
     	<input id="messageContent"  name="message.messageContent" type="hidden" />
     	<p style="margin:3px;">管理员用户名:</p>
     	<input id="username" name="message.username" type="text" />
     	<p style="margin:3px;">管理员密码:</p>
     	<input id="password" name="message.password" type="password" /> 
+    	<p style="margin:3px;">置顶数(1为最顶，留空则不置顶):</p>
+    	<input id="isTop" name="message.isTop" type="text" value="${message.isTop}"/> 
     	<p style="margin:3px;">新闻标题:</p>
-    	<input id="messageTitle" name="message.messageTitle" type="text" /> 
+    	<input id="messageTitle" name="message.messageTitle" type="text" value="${message.messageInfo}"/> 
         <!-- 加载编辑器的容器 -->
 		<!--style给定宽度可以影响编辑器的最终宽度-->
 		<p style="margin:3px;">新闻内容:</p>
-        <script type="text/plain" id="myEditor" style="width:1000px;height:240px;"></script>
+        <script type="text/plain" id="myEditor" style="width:1000px;height:240px;"> </script>
     </form>
     <!-- 配置文件 -->
     <script type="text/javascript" src="ueditor.config.js"></script>
@@ -166,6 +208,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     um.addListener('focus',function(){
         $('#focush2').html('');
     });
+    
     //按钮的操作
     function insertHtml() {
         var value = prompt('插入html代码', '');

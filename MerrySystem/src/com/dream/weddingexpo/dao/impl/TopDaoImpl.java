@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Order;
 
 import com.dream.weddingexpo.bean.Top;
 import com.dream.weddingexpo.constant.Constants;
@@ -38,6 +39,7 @@ public class TopDaoImpl implements TopDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Top> topList(Top top) {
+		session.clear();
 		criteria = session.createCriteria(top.getClass());
 		CommonUtils.setCriteria(getTopParamMap(top), criteria);
 		return criteria.list();
@@ -46,6 +48,7 @@ public class TopDaoImpl implements TopDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Top detailTop(Top top) {
+		session.clear();
 		criteria = session.createCriteria(top.getClass());
 		CommonUtils.setCriteria(getTopParamMap(top), criteria);
 		List<Top> topList = criteria.list();
@@ -82,6 +85,16 @@ public class TopDaoImpl implements TopDao {
 		session.save(top);
 		transaction.commit();
 		return top;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Top> listTopOrderById(Top top) {
+		session.clear();
+		criteria = session.createCriteria(top.getClass());
+		CommonUtils.setCriteria(getTopParamMap(top), criteria);
+		criteria.addOrder(Order.asc(Constants.Top_topId));
+		return criteria.list();
 	}
 
 

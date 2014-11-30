@@ -40,6 +40,7 @@ public class UserDaoImpl implements UserDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> userList(User user) {
+		session.clear();
 		criteria = session.createCriteria(user.getClass());
 		CommonUtils.setCriteria(getUserParamMap(user), criteria);
 		return criteria.list();
@@ -48,6 +49,7 @@ public class UserDaoImpl implements UserDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public User detailUser(User user) {
+		session.clear();
 		criteria = session.createCriteria(user.getClass());
 		CommonUtils.setCriteria(getUserParamMap(user), criteria);
 		List<User> userList = criteria.list();

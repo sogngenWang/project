@@ -16,4 +16,6 @@ public interface TopDao {
 
 	Top updateTop(Top top);
 
+	List<Top> listTopOrderById(Top top);
+
 }

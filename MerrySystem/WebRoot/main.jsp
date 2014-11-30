@@ -45,8 +45,11 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+	
 		//初始化的时候    通过ajax 查询后台，获取活动图片以及相关的URL 然后设置dispalyPicture的src属性以及a属性
-		
+		//定时器，3s时间改变图片内容
+		timerPic();
+			
 		$("#firstPageButton").click(function() {
 			$(".nav li").attr("class", "");
 			$(this).parent().attr("class","active");
@@ -73,6 +76,7 @@
 			$(".nav li").attr("class", "");
 			$(this).parent().attr("class","active");
 			displayExcept("clickAnnounceFileDiv");
+			dispalyFileList();
 		});
 		$("#trainButton").click(function() {
 			$(".nav li").attr("class", "");
@@ -98,6 +102,10 @@
 
 		//标题栏 按钮单击事件
 		$("#firstPageButton").click();
+		//首页关于协会按钮等同主题栏关于协会的按钮
+		$("#aboutExpo").click(function(){
+			$("#aboutAssociationButton").click();
+		});
 	});
 	
 	
@@ -139,19 +147,25 @@
 						$("#news table tbody").html("");
 						for (var i = 0; i < Objs.length; i++) {
 							var array_element = Objs[i];
-							// 加入到页面的标签元素中 
-							string+="<tr attr=\""+ array_element.messageId+"\" class=\"messageId\" >";
-							string+="<td colspan=\"4\">"+ i + "</td>";
-							string+="<td colspan=\"6\"><a href=\"javascript:void(0);\">"+ array_element.messageTitle+"</a></td>";
-							string+="<td colspan=\"4\">"+ array_element.createTime +"</td>";
-							if(null != array_element.isTop && array_element.isTop == 1){
-								string+="<td colspan=\"4\">(置顶新闻)</td>";
-							}else{
-								string+="<td colspan=\"4\"></td>";
+							if(null != array_element){
+								// 加入到页面的标签元素中 
+								string+="<tr attr=\""+ array_element.messageId+"\" class=\"messageId\" >";
+								string+="<td colspan=\"4\">"+ i + "</td>";
+								string+="<td colspan=\"6\"><a href=\"javascript:void(0);\" class=\"detailMessageFirst\">"+ array_element.messageTitle+"</a></td>";
+								string+="<td colspan=\"4\">"+ array_element.createTime +"</td>";
+								if(null != array_element.isTop && array_element.isTop == 1){
+									string+="<td colspan=\"4\">(置顶新闻)</td>";
+								}else{
+									string+="<td colspan=\"4\"></td>";
+								}
+								string+="</tr>";
 							}
-							string+="</tr>";
 						}
 						$("#news table tbody").append(string);
+						$(".detailMessageFirst").click(function(){
+							detailMessage($(this).parent().parent().attr("attr"));
+							displayExcept("clickNewsDetailDiv");
+						});
 				//}
 			},
 			error : function() {
@@ -177,22 +191,28 @@
 				json = eval('(' + json + ')');   
 				var Objs = json.messageList;
 				var string = "";
-				$("#clickNewsDiv table tbody").html("");
+				$("#clickNewsDiv div table tbody").html("");
 				for (var i = 0; i < Objs.length; i++) {
 					var array_element = Objs[i];
-					// 加入到页面的标签元素中 
-					string+="<tr attr=\""+ array_element.messageId+"\" class=\"messageId\" >";
-					string+="<td colspan=\"4\">"+ i + "</td>";
-					string+="<td colspan=\"6\"><a href=\"javascript:void(0);\">"+ array_element.messageTitle+"</a></td>";
-					string+="<td colspan=\"4\">"+ array_element.createTime +"</td>";
-					if(null != array_element.isTop && array_element.isTop == 1){
-						string+="<td colspan=\"4\">(置顶新闻)</td>";
-					}else{
-						string+="<td colspan=\"4\"></td>";
+					if(null != array_element){
+						// 加入到页面的标签元素中 
+						string+="<tr attr=\""+ array_element.messageId+"\" class=\"messageId\" >";
+						string+="<td colspan=\"3\">"+ i + "</td>";
+						string+="<td colspan=\"4\"><a href=\"javascript:void(0);\" class=\"detailMessage\">"+ array_element.messageTitle+"</a></td>";
+						string+="<td colspan=\"4\">"+ array_element.createTime +"</td>";
+						if(null != array_element.isTop && array_element.isTop == 1){
+							string+="<td colspan=\"4\">(置顶新闻)</td>";
+						}else{
+							string+="<td colspan=\"4\"></td>";
+						}
+						string+="</tr>";
 					}
-					string+="</tr>";
 				}
-				$("#clickNewsDiv table tbody").append(string);
+				$("#clickNewsDiv div table tbody").append(string);
+				$(".detailMessage").click(function(){
+					detailMessage($(this).parent().parent().attr("attr"));
+					displayExcept("clickNewsDetailDiv");
+				});
 			},
 			error : function() {
 				alert("ajax error....");
@@ -224,13 +244,74 @@
 	}
 	
 	/**
-	
+		显示提供下载的文件，同时生成超链接
 	*/
+	function dispalyFileList(){
+		$.ajax({
+			type : "post",//使用post方法访问后台  
+			dataType : "text",//返回json格式的数据  
+			// url : "../testController?request="+request,//要访问的后台地址  
+			url : "listFileNameAction.action",
+			contentType : "application/text;charset=utf-8",
+			data : {}, //要发送的数据 
+			success : function(json) {//data为返回的数据，在这里做数据绑定 
+				json = eval('(' + json + ')');   
+				$("#clickAnnounceFileDiv").html("");
+				var Objs = json.fileList;
+				var string = "";
+				for (var i = 0; i < Objs.length; i++) {
+					var array_element = Objs[i];
+					// 加入到页面的标签元素中 
+					string+="<div>下载文件:<a href='javascript:void(0); ' onclick=\"javascript:window.location='downloadAction.action?fileName=" + array_element + "';\" >"+array_element+"</a></div>";
+				}
+				$("#clickAnnounceFileDiv").append(string);
+			},
+			error : function() {
+				alert("ajax error....");
+			}
+		});
+	}
 	
 	/**
-	
+		定时器，不断改变图片 3s一次
 	*/
+	function timerPic(){
+		window.setInterval("changePic()",3000);
+	}
+	
+	var num = 0;
+	function changePic(){
+		num ++;
+		$("#dispalyPicture").attr("src","./img/activePic/"+ num % 3 + ".jpg");
+	}
+	
+	/**
+		显示新闻详细信息
+	*/
+		    
+	function detailMessage(messageId){
+		$.ajax({
+			type : "post",//使用post方法访问后台  
+			dataType : "text",//返回json格式的数据  
+			// url : "../testController?request="+request,//要访问的后台地址  
+			url : "detailMessageAction.action?message.messageId="+messageId,
+			contentType : "application/text;charset=utf-8",
+			data :"", //要发送的数据 
+			success : function(json) {//data为返回的数据，在这里做数据绑定 
+				json = eval('(' + json + ')'); 
+				//新闻标题
+				$("#messageTitleDetail").html(json.messageTitle);
+				$("#messageContentDetail").html(json.messageContent);
+			},
+			error : function() {
+				alert("ajax error....");
+			}
+		});
+	}
 
+	/**
+
+	*/
 </script>
 
 <!-- 800px高*1600px宽 -->
@@ -433,18 +514,23 @@ a img {
 <!-- *********************************************** -->
 <!-- 点击新闻活动的时候显示 -->
 <div id="clickNewsDiv" class="clickDiv">
-	<table id="rounded-corner">
-		<thead>
-			<tr>
-				<th colspan="4">序号</th>
-				<th colspan="6" style="text-align: center;">新闻标题</th>
-				<th colspan="4">新闻发布时间</th>
-				<th colspan="4">是否置顶新闻</th>
-			</tr>
-		</thead>
-		<!-- 表格内容<tr><td></td><td></td></tr> -->
-		<tbody></tbody>
-	</table>
+	<div id="left">
+		<table id="rounded-corner">
+			<thead>
+				<tr>
+					<th colspan="3">序号</th>
+					<th colspan="4" style="text-align: center;">新闻标题</th>
+					<th colspan="4">新闻发布时间</th>
+					<th colspan="4">是否置顶新闻</th>
+				</tr>
+			</thead>
+			<!-- 表格内容<tr><td></td><td></td></tr> -->
+			<tbody></tbody>
+		</table>
+	</div>
+	<div id="right">
+	</div>
+		
 </div>
 <!-- 点击新闻活动的时候显示 END -->
 
@@ -460,7 +546,6 @@ a img {
 
 <!-- 点击协会动态的时候显示 -->
 <div id="clickAssociationDynaDiv" class="clickDiv">
-
 
 </div>
 <!-- 点击协会动态的时候显示 END -->
@@ -511,6 +596,15 @@ a img {
 <!-- 点击服务平台的时候显示 END -->
 
 <!-- *********************************************** -->
+
+
+<!-- 点击新闻详情的时候显示 -->
+<div id="clickNewsDetailDiv" class="clickDiv">
+	<div id="messageTitleDetail"></div>
+	<div id="messageContentDetail"></div>
+</div>
+<!-- 点击新闻详情的时候显示 END -->
+
 
 <!-- bottom 区域 -->
 <div class="navbar" style="z-index: -1" >
