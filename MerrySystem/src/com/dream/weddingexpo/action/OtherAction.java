@@ -39,9 +39,8 @@ public class OtherAction extends ActionSupport{
 		StringBuffer sb = new StringBuffer();
 
 		try {
-			String path = ServletActionContext.getServletContext().getRealPath("/")+"text\\association\\about";
+			String path = ServletActionContext.getServletContext().getRealPath("/")+"text/association/about";
 			reader = new BufferedReader(new FileReader(new File(path)));
-			//TODO 中文乱码
 			String temp = reader.readLine();
 			while(null != temp){
 				sb.append(temp);
@@ -85,9 +84,8 @@ public class OtherAction extends ActionSupport{
 		StringBuffer sb = new StringBuffer();
 
 		try {
-			String path = ServletActionContext.getServletContext().getRealPath("/")+"text\\association\\join";
+			String path = ServletActionContext.getServletContext().getRealPath("/")+"text/association/join";
 			reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(path))));
-			//TODO 中文乱码
 			String temp = reader.readLine();
 			while(null != temp){
 				sb.append(temp);
@@ -128,7 +126,7 @@ public class OtherAction extends ActionSupport{
 		PrintWriter out = null;
 		Gson gson = new Gson();
 
-		String path = ServletActionContext.getServletContext().getRealPath("/")+"text\\download\\";
+		String path = ServletActionContext.getServletContext().getRealPath("/")+"text/download/";
 		File file = new File(path);
 		List<String> fileList = Arrays.asList(file.list());
 		Map<String,List<String>> map = new HashMap<String,List<String>>();
