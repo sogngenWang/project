@@ -300,7 +300,6 @@
 			success : function(json) {//data为返回的数据，在这里做数据绑定 
 				json = eval('(' + json + ')'); 
 				//新闻标题
-				$("#messageTitleDetail").html(json.messageTitle);
 				$("#messageContentDetail").html(json.messageContent);
 			},
 			error : function() {
@@ -600,7 +599,6 @@ a img {
 
 <!-- 点击新闻详情的时候显示 -->
 <div id="clickNewsDetailDiv" class="clickDiv">
-	<div id="messageTitleDetail"></div>
 	<div id="messageContentDetail"></div>
 </div>
 <!-- 点击新闻详情的时候显示 END -->

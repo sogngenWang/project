@@ -25,7 +25,7 @@
 		
 		
 		<action name="addMessageAction" class="messageAction" method="addMessage" >
-			<result name="error" >add.jsp</result>
+			<result name="error" >addMessage.jsp</result>
 			<result name="success" type="redirect">manager.jsp</result>
 		</action>
 		

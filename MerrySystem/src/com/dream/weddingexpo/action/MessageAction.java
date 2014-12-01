@@ -185,7 +185,7 @@ public class MessageAction extends ActionSupport {
 	public String updateMessage() {
 		if(StringUtils.isBlank(message.getUsername()) || StringUtils.isBlank(message.getPassword())){
 			message.setMessageInfo("添加失败，用户名，密码不能为空");
-			return  SUCCESS;
+			return  ERROR;
 		}
 		// 判断是否有权限
 		User user = new User();
@@ -194,13 +194,20 @@ public class MessageAction extends ActionSupport {
 		user = userService.detailUser(user);
 		if(null == user){
 			message.setMessageInfo("添加失败，用户名或者密码错误");
-			return  SUCCESS;
+			return  ERROR;
 		}else{
 			if(user.getIsActive() == Constants.USER_STATE_NOTACTIVE){
 				message.setMessageInfo("添加失败，用户名未被激活");
-				return  SUCCESS;
+				return  ERROR;
 			}
 		}
+		//标题不能为空
+		if(StringUtils.isBlank(message.getMessageId()) || StringUtils.isBlank(message.getMessageTitle())){
+			message.setMessageInfo("添加失败，新闻id或者新闻标题均不能为空");
+			return  ERROR;
+		}
+		
+		
 		//修改内容
 		message.setLastUpdateTime(CommonUtils.getTime());
 		
