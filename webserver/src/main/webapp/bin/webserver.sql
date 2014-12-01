@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50520
 File Encoding         : 65001
 
-Date: 2014-11-13 20:11:31
+Date: 2014-12-02 01:16:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,8 +28,7 @@ CREATE TABLE `activity` (
   `activityaddress` varchar(255) DEFAULT NULL COMMENT '活动地点',
   `activitycreatetime` varchar(255) DEFAULT NULL COMMENT '活动创建时间',
   `activitypicturedir` varchar(255) DEFAULT NULL COMMENT '活动图片目录，活动相关的所有图片都存放在该目录下，该目录下以head开头的为活动主图片',
-  `kindsid` int(11) DEFAULT NULL COMMENT '活动所属分类的id',
-  `secondkindsid` int(11) DEFAULT NULL COMMENT '活动所属的二级分类id',
+  `kindsid` int(11) DEFAULT NULL COMMENT '活动所属的分类id',
   `activityabout` text COMMENT '活动概要',
   `activitydetail` text COMMENT '活动详情介绍',
   `viewcount` int(11) unsigned DEFAULT '0' COMMENT '已查阅数',
@@ -39,11 +38,11 @@ CREATE TABLE `activity` (
 -- ----------------------------
 -- Records of activity
 -- ----------------------------
-INSERT INTO activity VALUES ('1', '大数据时代', '2014-02-02 23:29:37', '2014-10-24 23:29:58', '2', '100', '福建省福州市鼓楼区', '2014-01-29 23:30:17', 'http://localhost:8080/webserver/imgs/activity/1/', '1', '2', '测试活动概要内容~', '活动详情。。。', '21');
-INSERT INTO activity VALUES ('2', '机器学习算法', '2014-10-21 23:30:42', '2014-11-29 23:30:52', '2', '1000', '福建省福州市仓山区', '2014-10-20 23:31:21', 'http://localhost:8080/webserver/imgs/activity/2/', '1', '2', '3322222', '2222222222222222', '0');
-INSERT INTO activity VALUES ('3', '测试1', '2014-11-07 14:17:05', '2014-11-07 14:17:18', '2', '10000', '地区1', '2014-11-07 14:17:59', 'http://localhost:8080/webserver/imgs/activity/3/', '1', '2', '23333', '333333333333333333333333', '0');
-INSERT INTO activity VALUES ('5', '测试2', '2014-11-07 14:17:09', '2014-11-07 14:17:23', '1', '10', '地区2', '2014-11-07 14:18:01', 'http://localhost:8080/webserver/imgs/activity/4/', '1', '2', '44444', '444444444444444444444444444444', '0');
-INSERT INTO activity VALUES ('6', '测试3', '2014-11-07 14:17:12', '2014-11-07 14:17:26', '3', '1', '地区3', '2014-11-07 14:18:04', 'http://localhost:8080/webserver/imgs/activity/5/', '1', '2', '55555', '555555555555555555555555555555', '0');
+INSERT INTO activity VALUES ('1', '大数据时代', '2014-02-02 23:29:37', '2014-10-24 23:29:58', '2', '100', '福建省福州市鼓楼区', '2014-01-29 23:30:17', 'http://localhost:8080/webserver/imgs/activity/1/', '2', '测试活动概要内容~', '活动详情。。。', '21');
+INSERT INTO activity VALUES ('2', '机器学习算法', '2014-10-21 23:30:42', '2014-11-29 23:30:52', '2', '1000', '福建省福州市仓山区', '2014-10-20 23:31:21', 'http://localhost:8080/webserver/imgs/activity/2/', '2', '3322222', '2222222222222222', '0');
+INSERT INTO activity VALUES ('3', '测试1', '2014-11-07 14:17:05', '2014-11-07 14:17:18', '2', '10000', '地区1', '2014-11-07 14:17:59', 'http://localhost:8080/webserver/imgs/activity/3/', '2', '23333', '333333333333333333333333', '0');
+INSERT INTO activity VALUES ('5', '测试2', '2014-11-07 14:17:09', '2014-11-07 14:17:23', '1', '10', '地区2', '2014-11-07 14:18:01', 'http://localhost:8080/webserver/imgs/activity/4/', '2', '44444', '444444444444444444444444444444', '0');
+INSERT INTO activity VALUES ('6', '测试3', '2014-11-07 14:17:12', '2014-11-07 14:17:26', '3', '1', '地区3', '2014-11-07 14:18:04', 'http://localhost:8080/webserver/imgs/activity/5/', '2', '55555', '555555555555555555555555555555', '0');
 
 -- ----------------------------
 -- Table structure for `activityvip`
@@ -61,6 +60,40 @@ CREATE TABLE `activityvip` (
 INSERT INTO activityvip VALUES ('1', '1');
 INSERT INTO activityvip VALUES ('1', '36');
 INSERT INTO activityvip VALUES ('1', '37');
+INSERT INTO activityvip VALUES ('6', '2');
+INSERT INTO activityvip VALUES ('6', '36');
+
+-- ----------------------------
+-- Table structure for `ad`
+-- ----------------------------
+DROP TABLE IF EXISTS `ad`;
+CREATE TABLE `ad` (
+  `adid` int(11) NOT NULL AUTO_INCREMENT,
+  `adtitle` varchar(255) DEFAULT NULL COMMENT '广告标题(可以为空，仅仅用语标识广告)',
+  `adpicpath` varchar(255) DEFAULT NULL COMMENT '广告图片路径',
+  PRIMARY KEY (`adid`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of ad
+-- ----------------------------
+INSERT INTO ad VALUES ('1', '测试新闻', 'http;//localhost/test/a.jpg');
+INSERT INTO ad VALUES ('2', 'xxx', 'http;//localhost/test/acc.jpg');
+
+-- ----------------------------
+-- Table structure for `bonuspoint`
+-- ----------------------------
+DROP TABLE IF EXISTS `bonuspoint`;
+CREATE TABLE `bonuspoint` (
+  `userid` int(11) NOT NULL COMMENT '用户id',
+  `bonuspoint` bigint(20) DEFAULT NULL COMMENT '用户获得的总积分',
+  `remainbp` bigint(20) DEFAULT NULL COMMENT '剩余积分',
+  PRIMARY KEY (`userid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户积分表';
+
+-- ----------------------------
+-- Records of bonuspoint
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `checkcode`
@@ -72,7 +105,7 @@ CREATE TABLE `checkcode` (
   `telephone` varchar(255) DEFAULT NULL COMMENT '该校验码对应的手机号',
   `createtime` varchar(255) DEFAULT NULL COMMENT '校验码生成时间',
   PRIMARY KEY (`checkcodeid`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='用户校验码';
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='用户校验码';
 
 -- ----------------------------
 -- Records of checkcode
@@ -87,6 +120,20 @@ INSERT INTO checkcode VALUES ('7', '198858', '15159628259', '2014-11-05 00:26:25
 INSERT INTO checkcode VALUES ('8', '896066', '15159628259', '2014-11-10 14:23:48,359');
 INSERT INTO checkcode VALUES ('9', '430626', '15159628259', '2014-11-10 15:09:57,511');
 INSERT INTO checkcode VALUES ('10', '402397', '15159628259', '2014-11-13 16:33:03,862');
+INSERT INTO checkcode VALUES ('11', '904090', '15159628259', '2014-11-15 15:23:03,990');
+INSERT INTO checkcode VALUES ('12', '784271', '15159628259', '2014-11-17 20:59:45,392');
+INSERT INTO checkcode VALUES ('13', '841362', '15159628259', '2014-11-17 22:19:17,765');
+INSERT INTO checkcode VALUES ('14', '466620', '15159628259', '2014-11-23 20:46:30,587');
+INSERT INTO checkcode VALUES ('15', '884271', '15159628259', '2014-11-23 20:53:45,315');
+INSERT INTO checkcode VALUES ('16', '896390', '15159628259', '2014-11-23 20:53:56,178');
+INSERT INTO checkcode VALUES ('17', '689993', '15159628259', '2014-11-23 20:54:02,201');
+INSERT INTO checkcode VALUES ('18', '805198', '15159628259', '2014-11-23 20:54:45,617');
+INSERT INTO checkcode VALUES ('19', '699006', '15159628259', '2014-11-23 20:54:59,592');
+INSERT INTO checkcode VALUES ('20', '168281', '15159628259', '2014-11-23 20:55:42,088');
+INSERT INTO checkcode VALUES ('21', '693305', '15159628259', '2014-11-23 20:55:50,411');
+INSERT INTO checkcode VALUES ('22', '253803', '15159628259', '2014-11-23 20:55:58,239');
+INSERT INTO checkcode VALUES ('23', '331438', '15159628259', '2014-11-23 20:56:13,077');
+INSERT INTO checkcode VALUES ('24', '075364', '15159628259', '2014-11-23 20:56:20,864');
 
 -- ----------------------------
 -- Table structure for `comment`
@@ -147,12 +194,15 @@ CREATE TABLE `kinds` (
 -- ----------------------------
 -- Records of kinds
 -- ----------------------------
-INSERT INTO kinds VALUES ('1', 'it行业', null);
-INSERT INTO kinds VALUES ('2', '金融', null);
-INSERT INTO kinds VALUES ('3', '建筑', null);
-INSERT INTO kinds VALUES ('4', '互联网', '1');
-INSERT INTO kinds VALUES ('5', '大数据', '1');
-INSERT INTO kinds VALUES ('6', '移动互联网', '1');
+INSERT INTO kinds VALUES ('1', '行业峰会', null);
+INSERT INTO kinds VALUES ('2', '跨界交流', null);
+INSERT INTO kinds VALUES ('3', '企业专属', null);
+INSERT INTO kinds VALUES ('4', '创业分享', null);
+INSERT INTO kinds VALUES ('5', '论坛争议', null);
+INSERT INTO kinds VALUES ('6', '文化沙龙', null);
+INSERT INTO kinds VALUES ('7', '专属研讨', null);
+INSERT INTO kinds VALUES ('8', '家庭亲子', null);
+INSERT INTO kinds VALUES ('9', '商学院', null);
 
 -- ----------------------------
 -- Table structure for `lottery`
@@ -167,6 +217,7 @@ CREATE TABLE `lottery` (
   `prizetype` int(11) NOT NULL COMMENT '奖项类型(1.中奖人数固定 2.按照总人数的百分比抽奖)',
   `prizecount` int(11) DEFAULT NULL COMMENT '奖项总人数',
   `prizepercentrate` float DEFAULT NULL COMMENT '中奖率',
+  `bonuspoint` int(11) DEFAULT NULL COMMENT '奖励积分(只有当该奖项为积分奖励的时候才有值)',
   PRIMARY KEY (`drawid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='抽奖配置表';
 
@@ -235,16 +286,12 @@ CREATE TABLE `praise` (
   `otherid` int(11) NOT NULL COMMENT '被点赞的id',
   `praisetype` int(11) NOT NULL COMMENT '被点赞的类型(1.活动 2.主题 3.对方用户id )',
   PRIMARY KEY (`praiseid`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='用户点赞表';
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='用户点赞表';
 
 -- ----------------------------
 -- Records of praise
 -- ----------------------------
-INSERT INTO praise VALUES ('1', '1', '1', '0');
-INSERT INTO praise VALUES ('2', '1', '2', '0');
-INSERT INTO praise VALUES ('3', '2', '1', '0');
-INSERT INTO praise VALUES ('4', '1', '1', '0');
-INSERT INTO praise VALUES ('5', '1', '1', '1');
+INSERT INTO praise VALUES ('12', '1', '1', '1');
 INSERT INTO praise VALUES ('6', '1', '2', '1');
 INSERT INTO praise VALUES ('7', '1', '2', '2');
 INSERT INTO praise VALUES ('8', '1', '1', '4');
@@ -262,6 +309,7 @@ CREATE TABLE `prize` (
   `userid` int(11) DEFAULT NULL COMMENT '中奖用户的id',
   `prizelevel` varchar(30) DEFAULT NULL COMMENT '奖品等级(一等奖，二等奖...以此类推)',
   `prizetime` varchar(30) DEFAULT NULL COMMENT '中奖时间',
+  `isexchange` int(2) DEFAULT NULL COMMENT '是否已经兑换(0.未兑换 1.已兑换)',
   PRIMARY KEY (`prizeid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='中奖人员表';
 

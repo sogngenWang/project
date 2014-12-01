@@ -7,6 +7,6 @@ import com.dream.bean.User;
 
 public interface ActivityvipService {
 	
-	public List<User> listUservip(Activity activity);
+	 List<User> listUservip(Activity activity);
 	
 }

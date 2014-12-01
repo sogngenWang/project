@@ -1,11 +1,6 @@
 package com.dream.bean;
 
-import com.dream.basebean.PageBase;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
-@JsonInclude(Include.NON_NULL)
-public class lottery extends PageBase{
+public class lottery {
     private Integer drawid;
 
     private Integer lotteryid;
@@ -21,6 +16,8 @@ public class lottery extends PageBase{
     private Integer prizecount;
 
     private Float prizepercentrate;
+
+    private Integer bonuspoint;
 
     public Integer getDrawid() {
         return drawid;
@@ -84,5 +81,13 @@ public class lottery extends PageBase{
 
     public void setPrizepercentrate(Float prizepercentrate) {
         this.prizepercentrate = prizepercentrate;
+    }
+
+    public Integer getBonuspoint() {
+        return bonuspoint;
+    }
+
+    public void setBonuspoint(Integer bonuspoint) {
+        this.bonuspoint = bonuspoint;
     }
 }

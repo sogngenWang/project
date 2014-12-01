@@ -58,7 +58,6 @@ public class PraiseController {
 					return responseBean;
 				}
 				praiseService.addPraise(praise);
-				responseBean.setContent(praise);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");

@@ -30,7 +30,7 @@ public class ActivityvipServiceImpl implements ActivityvipService {
 		List<User> userList = new ArrayList<User>();
 		for (Activityvip activityvip : vips) {
 			//该方法返回的字段已过滤
-			User user = userDao.detailUserForActivityvip(activityvip.getUserid());
+			User user = userDao.detailUser4Activityvip(activityvip.getUserid());
 			userList.add(user);			
 		}
 		return userList;

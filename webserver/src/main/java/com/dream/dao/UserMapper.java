@@ -54,7 +54,7 @@ public interface UserMapper {
 	 * @param user
 	 * @return
 	 */
-	User detailUserForActivityvip(int userid);
+	User detailUser4Activityvip(int userid);
 
 	/**
 	 * 提供给Friends的接口
@@ -62,4 +62,11 @@ public interface UserMapper {
 	 * @return
 	 */
 	User detailUser2Friends(User user);
+
+	/**
+	 * 提供给Activity的接口
+	 * @param userTmp
+	 * @return
+	 */
+	User detailUser4Activity(User userTmp);
 }

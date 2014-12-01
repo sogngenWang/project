@@ -314,7 +314,7 @@
     where telephone = #{telephone,jdbcType=VARCHAR}
   </update>
 
-	<select id="detailUserForActivityvip" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+	<select id="detailUser4Activityvip" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 		select
 		    userid, telephone, username, email, company, position
 		from user
@@ -333,5 +333,12 @@
 		</where>
 	</select>
 	
-	
+	<select id="detailUser4Activity" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		    userid, username
+		from user
+		<where>
+			userid = #{userid, jdbcType=INTEGER}
+		</where>
+	</select>
 </mapper>

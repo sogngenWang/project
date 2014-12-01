@@ -15,6 +15,10 @@ public class MessageServiceImpl implements MessageService {
 
 	@Autowired
 	private MessageMapper messageDao;
+	
+//	@Autowired
+//	private UserMapper userDao ;
+	
 
 	@Override
 	public List<Message> listMessage(Message message) {
@@ -63,6 +67,22 @@ public class MessageServiceImpl implements MessageService {
 		messageDao.updateByPrimaryKey(message);
 		
 		return message;
+	}
+
+	@Override
+	public List<Message> listRoughMessage(Message message) {
+		//先查出所有的消息
+		List<Message> messageList = messageDao.listRoughMessage(message);
+//		//遍历消息
+//		for (Message messageTmp : messageList) {
+//			Integer userid = messageTmp.getUserid();
+//			User user = new User();
+//			user.setUserid(userid);
+//			user = userDao.detailUser2Friends(user);
+//			messageTmp.setUsername(user.getUsername());
+//		}
+//		
+		return messageList;
 	}
 
 }

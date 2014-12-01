@@ -21,5 +21,6 @@
 		<mapper resource="com/dream/mapper/FriendsMapper.xml" />
 		<mapper resource="com/dream/mapper/OnlinequestionMapper.xml" />
 		<mapper resource="com/dream/mapper/MessageMapper.xml" />
+		<mapper resource="com/dream/mapper/AdMapper.xml" />
 	</mappers>
 </configuration>

@@ -20,4 +20,6 @@ public interface MessageService {
 
 	Message detailAndSetreadMessage(Message message);
 
+	List<Message> listRoughMessage(Message message);
+
 }

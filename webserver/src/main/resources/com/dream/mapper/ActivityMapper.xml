@@ -12,14 +12,13 @@
     <result column="activitycreatetime" jdbcType="VARCHAR" property="activitycreatetime" />
     <result column="activitypicturedir" jdbcType="VARCHAR" property="activitypicturedir" />
     <result column="kindsid" jdbcType="INTEGER" property="kindsid" />
-    <result column="secondkindsid" jdbcType="INTEGER" property="secondkindsid" />
     <result column="viewcount" jdbcType="INTEGER" property="viewcount" />
     <result column="activityabout" jdbcType="LONGVARCHAR" property="activityabout" />
     <result column="activitydetail" jdbcType="LONGVARCHAR" property="activitydetail" />
   </resultMap>
   <sql id="Base_Column_List">
     activityid, activityname, activitystarttime, activityendtime, activitystatus, activityquota, 
-    activityaddress, activitycreatetime, activitypicturedir, kindsid, viewcount, secondkindsid , activityabout, activitydetail
+    activityaddress, activitycreatetime, activitypicturedir, viewcount, kindsid , activityabout, activitydetail
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -38,12 +37,12 @@
     insert into activity (activityname, activitystarttime, 
       activityendtime, activitystatus, activityquota, 
       activityaddress, activitycreatetime, activitypicturedir, 
-      kindsid, viewcount, secondkindsid, activityabout, viewcount,
+       viewcount, kindsid, activityabout, viewcount,
       activitydetail)
     values (#{activityname,jdbcType=VARCHAR}, #{activitystarttime,jdbcType=VARCHAR}, 
       #{activityendtime,jdbcType=VARCHAR}, #{activitystatus,jdbcType=VARCHAR}, #{activityquota,jdbcType=INTEGER}, 
       #{activityaddress,jdbcType=VARCHAR}, #{activitycreatetime,jdbcType=VARCHAR}, #{activitypicturedir,jdbcType=VARCHAR}, 
-      #{kindsid,jdbcType=INTEGER}, #{viewcount,jdbcType=INTEGER}, #{secondkindsid,jdbcType=INTEGER}, #{activityabout,jdbcType=LONGVARCHAR}, 
+      #{viewcount,jdbcType=INTEGER}, #{kindsid,jdbcType=INTEGER}, #{activityabout,jdbcType=LONGVARCHAR}, 
       #{activitydetail,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.dream.bean.Activity">
@@ -76,14 +75,11 @@
       <if test="activitypicturedir != null">
         activitypicturedir,
       </if>
-      <if test="kindsid != null">
-        kindsid,
-      </if>
       <if test="viewcount != null">
         viewcount,
       </if>
-      <if test="secondkindsid != null">
-        secondkindsid,
+      <if test="kindsid != null">
+        kindsid,
       </if>
       <if test="activityabout != null">
         activityabout,
@@ -117,14 +113,11 @@
       <if test="activitypicturedir != null">
         #{activitypicturedir,jdbcType=VARCHAR},
       </if>
-      <if test="kindsid != null">
-        #{kindsid,jdbcType=INTEGER},
-      </if>
       <if test="viewcount != null">
         viewcount,
       </if>
-      <if test="secondkindsid != null">
-        #{secondkindsid,jdbcType=INTEGER},
+      <if test="kindsid != null">
+        #{kindsid,jdbcType=INTEGER},
       </if>
       <if test="activityabout != null">
         #{activityabout,jdbcType=LONGVARCHAR},
@@ -161,14 +154,11 @@
       <if test="activitypicturedir != null">
         activitypicturedir = #{activitypicturedir,jdbcType=VARCHAR},
       </if>
-      <if test="kindsid != null">
-        kindsid = #{kindsid,jdbcType=INTEGER},
-      </if>
       <if test="viewcount != null">
         viewcount = #{viewcount,jdbcType=INTEGER},
       </if>
-      <if test="secondkindsid != null">
-        secondkindsid = #{secondkindsid,jdbcType=INTEGER},
+      <if test="kindsid != null">
+        kindsid = #{kindsid,jdbcType=INTEGER},
       </if>
       <if test="activityabout != null">
         activityabout = #{activityabout,jdbcType=LONGVARCHAR},
@@ -190,7 +180,6 @@
       activitycreatetime = #{activitycreatetime,jdbcType=VARCHAR},
       activitypicturedir = #{activitypicturedir,jdbcType=VARCHAR},
       kindsid = #{kindsid,jdbcType=INTEGER},
-      secondkindsid = #{secondkindsid,jdbcType=INTEGER},
       viewcount = #{viewcount,jdbcType=INTEGER},
       activityabout = #{activityabout,jdbcType=LONGVARCHAR},
       activitydetail = #{activitydetail,jdbcType=LONGVARCHAR}
@@ -233,14 +222,11 @@
 			<if test="activitypicturedir != null and activitypicturedir != ''">
 				AND activitypicturedir = #{activitypicturedir, jdbcType=VARCHAR}
 			</if>
-			<if test="kindsid != null and kindsid != ''">
-				AND kindsid = #{kindsid, jdbcType=INTEGER}
-			</if>
 			<if test="viewcount != null and viewcount != ''">
 				AND viewcount = #{viewcount, jdbcType=INTEGER}
 			</if>
-			<if test="secondkindsid != null and secondkindsid != ''">
-				AND secondkindsid = #{secondkindsid, jdbcType=INTEGER}
+			<if test="kindsid != null and kindsid != ''">
+				AND kindsid = #{kindsid, jdbcType=INTEGER}
 			</if>
 			<if test="activityabout != null and activityabout != ''">
 				AND activityabout = #{activityabout, jdbcType=LONGVARCHAR}
@@ -284,14 +270,11 @@
 				<if test="activitypicturedir != null and activitypicturedir != ''">
 					AND activitypicturedir = #{activitypicturedir, jdbcType=VARCHAR}
 				</if>
-				<if test="kindsid != null and kindsid != ''">
-					AND kindsid = #{kindsid, jdbcType=INTEGER}
-				</if>
 				<if test="viewcount != null and viewcount != ''">
 					AND viewcount = #{viewcount, jdbcType=INTEGER}
 				</if>
-				<if test="secondkindsid != null and secondkindsid != ''">
-					AND secondkindsid = #{secondkindsid, jdbcType=INTEGER}
+				<if test="kindsid != null and kindsid != ''">
+					AND kindsid = #{kindsid, jdbcType=INTEGER}
 				</if>
 		</where>
 	</select>
@@ -327,14 +310,11 @@
 				<if test="activitypicturedir != null and activitypicturedir != ''">
 					AND activitypicturedir = #{activitypicturedir, jdbcType=VARCHAR}
 				</if>
-				<if test="kindsid != null and kindsid != ''">
-					AND kindsid = #{kindsid, jdbcType=INTEGER}
-				</if>
 				<if test="viewcount != null and viewcount != ''">
 					AND viewcount = #{viewcount, jdbcType=INTEGER}
 				</if>
-				<if test="secondkindsid != null and secondkindsid != ''">
-					AND secondkindsid = #{secondkindsid, jdbcType=INTEGER}
+				<if test="kindsid != null and kindsid != ''">
+					AND kindsid = #{kindsid, jdbcType=INTEGER}
 				</if>
 		</where>
 	</select>

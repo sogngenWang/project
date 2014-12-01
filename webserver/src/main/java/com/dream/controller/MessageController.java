@@ -34,8 +34,8 @@ public class MessageController {
 	@Resource(name = "messageService")
 	private MessageService messageService;
 
-	@RequestNeedParam({"currentPage","isread","userid"})
-	@RequestMapping(value = "/listMessage", method = { RequestMethod.POST })
+	@RequestNeedParam({"currentPage","userid"})
+	@RequestMapping(value = "/listRoughMessage", method = { RequestMethod.POST })
 	@ResponseBody
 	public ResponseBean listMessage(String request) {
 		requestBean = gson.fromJson(request, RequestBean.class);
@@ -49,7 +49,7 @@ public class MessageController {
 				CommonUtils.decriptObject(message, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				PageBase pageBase = CommonUtils.createNewPageBase(message);
 				//根据选择的类型，如果不填，则返回该用户的所有消息，如果有值，则返回该用户的未读消息
-				List<Message> messageList = messageService.listMessage(message);
+				List<Message> messageList = messageService.listRoughMessage(message);
 				responseBean.setContent(CommonUtils.createListPage(messageList, pageBase));
 				responseBean.setContent(pageBase);
 				

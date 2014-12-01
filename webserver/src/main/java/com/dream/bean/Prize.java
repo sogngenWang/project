@@ -1,11 +1,6 @@
 package com.dream.bean;
 
-import com.dream.basebean.PageBase;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
-@JsonInclude(Include.NON_NULL)
-public class Prize extends PageBase{
+public class Prize {
     private Integer prizeid;
 
     private Integer lotteryid;
@@ -15,6 +10,8 @@ public class Prize extends PageBase{
     private String prizelevel;
 
     private String prizetime;
+
+    private Integer isexchange;
 
     public Integer getPrizeid() {
         return prizeid;
@@ -54,5 +51,13 @@ public class Prize extends PageBase{
 
     public void setPrizetime(String prizetime) {
         this.prizetime = prizetime == null ? null : prizetime.trim();
+    }
+
+    public Integer getIsexchange() {
+        return isexchange;
+    }
+
+    public void setIsexchange(Integer isexchange) {
+        this.isexchange = isexchange;
     }
 }

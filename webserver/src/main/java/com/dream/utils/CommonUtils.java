@@ -212,7 +212,18 @@ public class CommonUtils {
 	 */
 	public static String createCheckCode(int codeLength){
 		long checkCode = (long) ( Math.random() * Math.pow(10, codeLength));
-		return String.valueOf(checkCode);
+		//判断校验码的长度，因为有可能小于6位，比如000111，这样保存成long类型就只有3位
+		String checkCodeStr =String.valueOf(checkCode);
+		if(checkCodeStr.length() < codeLength ){
+			StringBuffer tmp = new StringBuffer();
+			for (int i = 0 ; i < codeLength-checkCodeStr.length() ; i++) {
+				tmp.append("0");
+			}
+			tmp.append(checkCodeStr);
+			return tmp.toString();
+		}
+			
+		return checkCodeStr;
 	}
 
 	/**

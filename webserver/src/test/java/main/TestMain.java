@@ -15,7 +15,7 @@ public class TestMain extends JUnitControllerBase {
 		//找回密码页面提交，会校验之前方法发送的短信验证码  
 //		test.Test("resetPasswdUserController"); 
 		//找回密码的时候，调用该方法，发送短信验证码
-		test.Test("findbackUserController");
+//		test.Test("findbackUserController");
 		//注册新用户  TODO 1.通过注册用户的资料生成个人名片
 //		test.Test("registerUserController");
 		//用户登录
@@ -45,9 +45,9 @@ public class TestMain extends JUnitControllerBase {
 		//活动详情页面——列出当前主题的所有评论，以及每个评论的点赞数量，对于每个评论都还需要返回自己是否已经点赞
 //		test.Test("listCommentController");
 		// 显示所有的未读消息|显示所有的消息
-//		test.Test("listMessageController");
+//		test.Test("listRoughMessageController");
 		//列出当前所有的活动,活动按照创建时间的倒序显示
-//		test.Test("listActivityController");
+		test.Test("listActivityIncludeVipController");
 		//显示某条消息，同时设置消息未已读状态
 //		test.Test("detailMessageController");
 		//添加好友| 添加的前提是两个人均参加过一个活动
@@ -72,11 +72,11 @@ public class TestMain extends JUnitControllerBase {
 		
 		// TODO 关于名片夹制度
 		
-		// TODO 关于广告
-		
+		//  关于广告
+		test.Test("listAdController");
 		// TODO 生成用户的二维码同时返回用户二维码的URL，该二维码应该存储用户的名片信息——或者说，该二维码应该是一个去查询访问用户URL的方法
 		
-		// TODO 
+		// TODO 需要提供一个通用方法，用来获取用户的一度人脉相关信息，会有很多地方会用到
 		
 //		test.Test("addActivityController");
 //		test.Test("detailCommentController");

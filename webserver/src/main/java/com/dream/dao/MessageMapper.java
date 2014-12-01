@@ -42,4 +42,11 @@ public interface MessageMapper {
  	 * @return
  	 */
  	int countMessage(Message message);
+
+ 	/**
+ 	 * 显示粗略信息
+ 	 * @param message
+ 	 * @return
+ 	 */
+	List<Message> listRoughMessage(Message message);
 }

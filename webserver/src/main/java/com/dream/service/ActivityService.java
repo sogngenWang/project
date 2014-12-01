@@ -2,6 +2,7 @@ package com.dream.service;
 
 import java.util.List;
 
+import com.dream.basebean.PageBase;
 import com.dream.bean.Activity;
 
 public interface ActivityService {
@@ -31,5 +32,12 @@ public interface ActivityService {
 	 * @return
 	 */
 	boolean isRegistering(Integer activityid);
+	/**
+	 * 返回活动列表，每个活动包含嘉宾名字
+	 * @param activity
+	 * @param pageBase
+	 * @return
+	 */
+	List<Activity> listActivityIncludeVip(Activity activity, PageBase pageBase);
 	
 }

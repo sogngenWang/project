@@ -5,10 +5,20 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_NULL)
-public class Theme extends PageBase{
+public class Theme extends PageBase {
 
 	// ************
 	private Integer commentcount;
+
+	private Integer userid;
+
+	public Integer getUserid() {
+		return userid;
+	}
+
+	public void setUserid(Integer userid) {
+		this.userid = userid;
+	}
 
 	public Integer getCommentcount() {
 		return commentcount;

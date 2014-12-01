@@ -105,13 +105,13 @@ public class ActivityController {
 	 * @param request
 	 * @return
 	 */
-	@RequestNeedParam({"currentPage"})
-	@RequestMapping(value = "/listActivity", method = { RequestMethod.POST })
+	@RequestNeedParam({"currentPage","kindsid"})
+	@RequestMapping(value = "/listActivityIncludeVip", method = { RequestMethod.POST })
 	@ResponseBody
 	public ResponseBean listActivity(String request) {
 		requestBean = gson.fromJson(request, RequestBean.class);
 		// 进行校验
-		if (requestBean.checkMac()) {
+		if (requestBean.checkMac()) {	
 			LOG.info("校验成功....");
 			// 真正的业务逻辑
 			try {
@@ -119,8 +119,8 @@ public class ActivityController {
 				Activity activity = gson.fromJson(content.toString(), Activity.class);
 				CommonUtils.decriptObject(activity, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
 				PageBase pageBase = CommonUtils.createNewPageBase(activity);
-				List<Activity> activityList = activityService.listActivity(activity);
-				responseBean.setContent(CommonUtils.createListPage(activityList, pageBase));
+				List<Activity> activityList = activityService.listActivityIncludeVip(activity,pageBase);
+				responseBean.setContent(activityList);
 				responseBean.setContent(pageBase);
 			} catch (Exception e) {
 				e.printStackTrace();

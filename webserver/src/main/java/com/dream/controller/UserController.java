@@ -186,7 +186,8 @@ public class UserController {
 	 * @param request
 	 * @return
 	 */
-	@RequestNeedParam({"username","password"})
+//	@RequestNeedParam({"username","password"})
+	@RequestNeedParam({"telephone","password"})
 	@RequestMapping(value = "/loginUser", method = { RequestMethod.POST })
 	@ResponseBody
 	public ResponseBean loginUser(String request) {
@@ -199,7 +200,7 @@ public class UserController {
 				content = requestBean.getContent();
 				User user = gson.fromJson(content.toString(), User.class);
 				CommonUtils.decriptObject(user, requestBean.getHead().getImei(), requestBean.getHead().getImsi());
-				LOG.info("用户名，密码 |username="+user.getUsername()+",password="+user.getPassword());
+//				LOG.info("用户名，密码 |username="+user.getUsername()+",password="+user.getPassword());
 //				user = userService.detailUser(user);
 				user = userService.loginUser(user);
 				if(null == user){
@@ -209,11 +210,15 @@ public class UserController {
 					responseBean.getMsg().setDesc(Constant.CODE_0002);
 					return responseBean;
 				}
+				//返回值不允许带这些值
+				user.setPassword(null);
+				user.setIsactive(null);
+				user.setType(null);
 				responseBean.setContent(user);
 			} catch (Exception e) {
 				LOG.error("业务执行异常...." + e.getMessage());
 				responseBean.getMsg().setCode("0001");
-				responseBean.getMsg().setDesc(Constant.CODE_0000);
+				responseBean.getMsg().setDesc(Constant.CODE_0001);
 				return responseBean;
 			}
 			LOG.info("业务执行成功，设置返回报文状态为成功...");
@@ -290,11 +295,13 @@ public class UserController {
 
 		return responseBean;
 	}
+	
+	
 	/**
 	 * 找回用户密码 
 	 * @param request
 	 * @return
-	 */
+	 
 	@RequestNeedParam({"telephone"})
 	@RequestMapping(value = "/findbackUser", method = { RequestMethod.POST })
 	@ResponseBody
@@ -334,6 +341,8 @@ public class UserController {
 
 		return responseBean;
 	}
+	*/
+	
 	
 	/**
 	 * 重置用户密码

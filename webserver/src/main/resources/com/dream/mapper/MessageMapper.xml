@@ -125,6 +125,27 @@
 		</where>
 	</select>
 	
+
+	<select id="listRoughMessage" resultMap="BaseResultMap">
+		select
+			messageid, userid, isread, messagedate
+		from message
+		<where>
+			<if test="messageid != null and messageid != '' ">
+				messageid = #{messageid, jdbcType=INTEGER}  
+			</if>
+			<if test="messagecontent != null and messagecontent != ''">
+				AND messagecontent = #{messagecontent, jdbcType=VARCHAR}  
+			</if>
+			<if test="userid != null and userid != ''">
+				AND userid = #{userid, jdbcType=INTEGER}
+			</if>
+			<if test="isread != null and isread != ''">
+				AND isread = #{isread, jdbcType=INTEGER}
+			</if>
+		</where>
+	</select>
+	
 	<select id="detailMessage" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />

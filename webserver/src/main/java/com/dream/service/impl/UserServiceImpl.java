@@ -91,9 +91,6 @@ public class UserServiceImpl implements UserService {
 		user.setType(Constant.USER_NORMAL_TYPE);
 		
 		user = userDao.detailUser(user);
-		user.setPassword(null);
-		user.setIsactive(null);
-		user.setType(null);
 		
 		return user;
 	}

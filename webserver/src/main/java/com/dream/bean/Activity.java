@@ -1,5 +1,8 @@
 package com.dream.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.dream.basebean.PageBase;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -22,6 +25,16 @@ public class Activity extends PageBase {
 	private Integer userid;
 	// 用户是否已经点赞 (0.还未点赞 1.已点赞)
 	private String isuserpraise;
+	// vip用户
+	private List<User> vipsuser = new ArrayList<User>();
+
+	public List<User> getVipsuser() {
+		return vipsuser;
+	}
+
+	public void setVipsuser(List<User> vipsuser) {
+		this.vipsuser = vipsuser;
+	}
 
 	public String getIsuserpraise() {
 		return isuserpraise;
@@ -98,8 +111,6 @@ public class Activity extends PageBase {
 	private String activitypicturedir;
 
 	private Integer kindsid;
-
-	private Integer secondkindsid;
 
 	private String activityabout;
 
@@ -219,11 +230,4 @@ public class Activity extends PageBase {
 		this.kindsid = kindsid;
 	}
 
-	public Integer getSecondkindsid() {
-		return secondkindsid;
-	}
-
-	public void setSecondkindsid(Integer secondkindsid) {
-		this.secondkindsid = secondkindsid;
-	}
 }

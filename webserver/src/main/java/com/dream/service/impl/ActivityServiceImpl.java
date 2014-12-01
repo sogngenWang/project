@@ -1,22 +1,29 @@
 package com.dream.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dream.basebean.PageBase;
 import com.dream.bean.Activity;
+import com.dream.bean.Activityvip;
 import com.dream.bean.Comment;
 import com.dream.bean.Praise;
 import com.dream.bean.Registeractivity;
 import com.dream.bean.Theme;
+import com.dream.bean.User;
 import com.dream.constants.Constant;
 import com.dream.dao.ActivityMapper;
+import com.dream.dao.ActivityvipMapper;
 import com.dream.dao.CommentMapper;
 import com.dream.dao.PraiseMapper;
 import com.dream.dao.RegisteractivityMapper;
 import com.dream.dao.ThemeMapper;
+import com.dream.dao.UserMapper;
 import com.dream.service.ActivityService;
+import com.dream.utils.CommonUtils;
 
 @Repository(value = "activityService")
 public class ActivityServiceImpl implements ActivityService {
@@ -31,13 +38,16 @@ public class ActivityServiceImpl implements ActivityService {
 	private ThemeMapper themeDao;
 	@Autowired
 	private RegisteractivityMapper registeractivityDao; 
-	
-	
+	@Autowired
+	private UserMapper userDao ;
+	@Autowired
+	private ActivityvipMapper activityvipDao;
 
 	@Override
 	public List<Activity> listActivity(Activity activity) {
-
+		
 		return activityDao.listActivity(activity);
+		
 	}
 
 	@Override
@@ -140,6 +150,32 @@ public class ActivityServiceImpl implements ActivityService {
 			return true;
 		}
 		return false;
+	}
+
+
+	@Override
+	public List<Activity> listActivityIncludeVip(Activity activity,PageBase pageBase) {
+		List<Activity> activityList = activityDao.listActivity(activity);
+		List<?> activity4Return = CommonUtils.createListPage(activityList, pageBase);
+		List<Activity> returnList = new ArrayList<Activity>();
+		//遍历全部返回结果，然后查询相关的值的vip
+		for (Object object : activity4Return) {
+			Activity activityTmp = (Activity)object;
+			Activity activityvip = new Activity();
+			activityvip.setActivityid(activityTmp.getActivityid());
+			List<Activityvip> activityvipList = activityvipDao.listActivityvip(activityvip);
+			for (Activityvip activityvipTmp : activityvipList) {
+				User userTmp = new User();
+				userTmp.setUserid(activityvipTmp.getUserid());
+				userTmp = userDao.detailUser4Activity(userTmp);
+				if(null != userTmp){
+					activityTmp.getVipsuser().add(userTmp);
+				}
+			}
+			returnList.add(activityTmp);
+		}
+		
+		return returnList;
 	}
 	
 }

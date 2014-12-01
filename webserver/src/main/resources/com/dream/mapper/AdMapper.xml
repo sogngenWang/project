@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dream.dao.AdMapper" >
+  <resultMap id="BaseResultMap" type="com.dream.bean.Ad" >
+    <id column="adid" property="adid" jdbcType="INTEGER" />
+    <result column="adtitle" property="adtitle" jdbcType="VARCHAR" />
+    <result column="adpicpath" property="adpicpath" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    adid, adtitle, adpicpath
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ad
+    where adid = #{adid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ad
+    where adid = #{adid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dream.bean.Ad" >
+    <selectKey resultType="java.lang.Integer" keyProperty="adid" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into ad (adtitle, adpicpath)
+    values (#{adtitle,jdbcType=VARCHAR}, #{adpicpath,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dream.bean.Ad" >
+    <selectKey resultType="java.lang.Integer" keyProperty="adid" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into ad
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adtitle != null" >
+        adtitle,
+      </if>
+      <if test="adpicpath != null" >
+        adpicpath,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adtitle != null" >
+        #{adtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="adpicpath != null" >
+        #{adpicpath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dream.bean.Ad" >
+    update ad
+    <set >
+      <if test="adtitle != null" >
+        adtitle = #{adtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="adpicpath != null" >
+        adpicpath = #{adpicpath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where adid = #{adid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dream.bean.Ad" >
+    update ad
+    set adtitle = #{adtitle,jdbcType=VARCHAR},
+      adpicpath = #{adpicpath,jdbcType=VARCHAR}
+    where adid = #{adid,jdbcType=INTEGER}
+  </update>
+  
+  
+	<!-- add by wsg -->
+	<!-- 通用方法 -->
+	<!-- ，参数为对象，返回list<对象> -->
+
+	<select id="listAd" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ad
+		<where>
+			<if test="adid != null and adid != '' ">
+				adid = #{adid, jdbcType=INTEGER}  
+			</if>
+			<if test="adtitle != null and adtitle != ''">
+				AND adtitle = #{adtitle, jdbcType=VARCHAR}  
+			</if>
+			<if test="adpicpath != null and adpicpath != ''">
+				AND adpicpath = #{adpicpath, jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+	
+	<select id="detailAd" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ad
+		<where>
+			<if test="adid != null and adid != '' ">
+				adid = #{adid, jdbcType=INTEGER}  
+			</if>
+			<if test="adtitle != null and adtitle != ''">
+				AND adtitle = #{adtitle, jdbcType=VARCHAR}  
+			</if>
+			<if test="adpicpath != null and adpicpath != ''">
+				AND adpicpath = #{adpicpath, jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+	<select id="countAd" resultType="java.lang.Integer">
+		select count(*)  
+		from ad
+		<where>
+			<if test="adid != null and adid != '' ">
+				adid = #{adid, jdbcType=INTEGER}  
+			</if>
+			<if test="adtitle != null and adtitle != ''">
+				AND adtitle = #{adtitle, jdbcType=VARCHAR}  
+			</if>
+			<if test="adpicpath != null and adpicpath != ''">
+				AND adpicpath = #{adpicpath, jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+</mapper>
