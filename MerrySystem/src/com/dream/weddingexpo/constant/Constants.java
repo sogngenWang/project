@@ -59,17 +59,17 @@ public interface Constants {
 //	String KINDS_KINDSNAME = "kindsName";
 //	String KINDS_KINDSSTORE = "kindsStore";
 	
-	/**
-	 * 提交富文本框编辑器需要使用的密码
-	 */
-	String PASSWD = "merrySystemAdmin123";
+//	/**
+//	 * 提交富文本框编辑器需要使用的密码
+//	 */
+//	String PASSWD = "merrySystemAdmin123";
 	
 	/**
-	 * 新闻流文件存放路径
+	 * 新闻流文件存放路径 TODO
 	 */
-	String IMG_PATH_PRE = "//opt//data//";
+//	String IMG_PATH_PRE = "//opt//data//";
 	//dev
-//	String IMG_PATH_PRE = "D://tmp/";
+	String IMG_PATH_PRE = "D://tmp/";
 	
 	String ISTOP_TRUE_FLAG = "1";
 	

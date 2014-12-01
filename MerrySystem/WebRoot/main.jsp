@@ -18,34 +18,8 @@
 <meta name="author" content="">
 <title>merry</title>
 
-
-<!-- Bootstrap core CSS -->
-<link
-	href="${pageContext.request.contextPath}/bootstrap-3.2.0/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-
-<!-- Bootstrap theme -->
-<link
-	href="${pageContext.request.contextPath}/bootstrap-3.2.0/dist/css/bootstrap-theme.min.css"
-	rel="stylesheet">
-
-<script
-	src="${pageContext.request.contextPath}/bootstrap-3.2.0/docs/assets/js/ie-emulation-modes-warning.js"></script>
-
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script
-	src="${pageContext.request.contextPath}/bootstrap-3.2.0/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
-
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-		      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		    <![endif]-->
-		    
-
 <script type="text/javascript">
 	$(document).ready(function() {
-	
 		//初始化的时候    通过ajax 查询后台，获取活动图片以及相关的URL 然后设置dispalyPicture的src属性以及a属性
 		//定时器，3s时间改变图片内容
 		timerPic();
@@ -144,20 +118,14 @@
 				//if(json.state == "SUCCESS"){
 						var Objs = json.messageList;
 						var string = "";
-						$("#news table tbody").html("");
+						$("#news").html("");
 						for (var i = 0; i < Objs.length; i++) {
 							var array_element = Objs[i];
 							if(null != array_element){
 								// 加入到页面的标签元素中 
 								string+="<tr attr=\""+ array_element.messageId+"\" class=\"messageId\" >";
-								string+="<td colspan=\"4\">"+ i + "</td>";
 								string+="<td colspan=\"6\"><a href=\"javascript:void(0);\" class=\"detailMessageFirst\">"+ array_element.messageTitle+"</a></td>";
 								string+="<td colspan=\"4\">"+ array_element.createTime +"</td>";
-								if(null != array_element.isTop && array_element.isTop == 1){
-									string+="<td colspan=\"4\">(置顶新闻)</td>";
-								}else{
-									string+="<td colspan=\"4\"></td>";
-								}
 								string+="</tr>";
 							}
 						}
@@ -191,24 +159,17 @@
 				json = eval('(' + json + ')');   
 				var Objs = json.messageList;
 				var string = "";
-				$("#clickNewsDiv div table tbody").html("");
+				$("#clickNewsDiv #left").html("");
 				for (var i = 0; i < Objs.length; i++) {
 					var array_element = Objs[i];
 					if(null != array_element){
 						// 加入到页面的标签元素中 
-						string+="<tr attr=\""+ array_element.messageId+"\" class=\"messageId\" >";
-						string+="<td colspan=\"3\">"+ i + "</td>";
-						string+="<td colspan=\"4\"><a href=\"javascript:void(0);\" class=\"detailMessage\">"+ array_element.messageTitle+"</a></td>";
-						string+="<td colspan=\"4\">"+ array_element.createTime +"</td>";
-						if(null != array_element.isTop && array_element.isTop == 1){
-							string+="<td colspan=\"4\">(置顶新闻)</td>";
-						}else{
-							string+="<td colspan=\"4\"></td>";
-						}
+						string+="<div><a href=\"javascript:void(0);\" class=\"detailMessage\" attr=\""+ array_element.messageId+"\">"+ array_element.messageTitle+"</a></div>";
+						string+="<div style=\"display:inline;\">"+ array_element.createTime +"</div>";
 						string+="</tr>";
 					}
 				}
-				$("#clickNewsDiv div table tbody").append(string);
+				$("#clickNewsDiv #left").append(string);
 				$(".detailMessage").click(function(){
 					detailMessage($(this).parent().parent().attr("attr"));
 					displayExcept("clickNewsDetailDiv");
@@ -316,6 +277,7 @@
 <!-- 800px高*1600px宽 -->
 <style>
 body {
+	background-color:#eee;
 	margin: 0 auto;
 	width: 980px;
 	height: 800px;
@@ -343,31 +305,32 @@ body {
 #dispalyPicture {
 	margin: auto;
 	width: 100%;
-	height: 100%;
+	height: 280px;
 }
 
 #ad_1 {
-	margin: 1%;
-	width: 30%;
-	height: 8%;
-}
-
-#kinds {
+	margin-top: 1%;
 	width: 100%;
-	height: 20%;
+	height: 64px;
 }
 
 #ad_2 {
 	margin: 4% auto;
 	width: 100%;
-	height: 20%;
+	height: 160px;
 }
 
 #ad_3 {
 	margin: 4% auto;
 	width: 100%;
-	height: 20%;
+	height: 160px;
 }
+
+#kinds {
+	width: 100%;
+	height: 160px;
+}
+
 
 #dynamic {
 	width: 100%;
@@ -381,10 +344,6 @@ a img {
 	opacity: 0.1;
 }
 
-#mainFrameNews {
-	width: 100%;
-	height: 100%;
-}
 
 .messageTitleDiv {
 	
@@ -399,41 +358,70 @@ a img {
 	margin: 10px;
 	display: inline;
 }
+
+
+
+#manu ul{
+	background-color: white;
+}
+#manu li{
+	margin-right: 30px;
+	display: inline;
+}
+#manu li a {
+	color:black;
+	text-decoration:none;
+}
+
+#manu li a:hover{
+	color:blue;
+}
+
+#kinds{
+	/* border: 1px solid #777; */
+}
+
+#kinds a { 
+	color:black;
+	text-decoration:none;
+} 
+
+#kinds a:hover{
+	color:red;
+}
+
+
+
 </style>
 </head>
 <body>
 <!-- *********************************************** -->
 
 <!-- header 区域 -->
-<div class="navbar navbar-default">
-		<div class="container">
-			<!-- 公司的一些宣传等等重要信息，新闻等等，应该为一个单独的页面，后期需要抽离出来 -->
-			<div id="head">
-				<div style="color: balck;font-size:xx-large;">摄彩中国</div>
-				<div style="color: balck;font-size: x-large;font-style: oblique;">福建省摄影行业协会网</div>
-			</div>
+<div>
+	<div>
+		<!-- 公司的一些宣传等等重要信息，新闻等等，应该为一个单独的页面，后期需要抽离出来 -->
+		<div id="head">
+			<div style="color: balck;font-size:xx-large;font-family:'隶书';">摄彩中国</div>
+			<div style="color: balck;font-size: x-large;font-family:'隶书';">福建省摄影行业协会网</div>
+		</div>
 
-			<div class="container">
-				<div class="navbar-header">
-				</div>
-				<div class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li class="active"><a href="javascript:void(0);" id="firstPageButton">首页</a></li>
-						<li><a href="javascript:void(0);" id="newsButton">新闻活动</a></li>
-						<li><a href="javascript:void(0);" id="exhibitButton">作品</a></li>
-						<li><a href="javascript:void(0);" id="associationDynaButton">协会动态</a>
-						<li><a href="javascript:void(0);" id="announceFileButton">通知文件</a>
-						<li><a href="javascript:void(0);" id="trainButton">培训</a>
-						<li><a href="javascript:void(0);" id="aboutAssociationButton">关于协会</a>
-						<li><a href="javascript:void(0);" id="partnersButton">合作伙伴</a>
-						<li><a href="javascript:void(0);" id="servePlatformButton">服务平台</a>
-						</li>
-					</ul>
-				</div>
-				<!--/.nav-collapse -->
-			</div>
+		<div>
+			<ul class="nav navbar-nav" id="manu">
+				<li class="active"><a href="javascript:void(0);" id="firstPageButton">首页</a></li>
+				<li><a href="javascript:void(0);" id="newsButton">新闻活动</a></li>
+				<li><a href="javascript:void(0);" id="exhibitButton">作品</a></li>
+				<li><a href="javascript:void(0);" id="associationDynaButton">协会动态</a>
+				<li><a href="javascript:void(0);" id="announceFileButton">通知文件</a>
+				<li><a href="javascript:void(0);" id="trainButton">培训</a>
+				<li><a href="javascript:void(0);" id="aboutAssociationButton">关于协会</a>
+				<li><a href="javascript:void(0);" id="partnersButton">合作伙伴</a>
+				<li><a href="javascript:void(0);" id="servePlatformButton">服务平台</a>
+				</li>
+			</ul>
 		</div>
 	</div>
+</div>
 <!-- header 区域  END-->
 
 <!-- *********************************************** -->
@@ -447,65 +435,36 @@ a img {
 		</div>
 		<!-- 广告栏1 -->
 		<div id="ad_1">
-			<a href="javascript:void(0);"> <img src="./img/AD.gif" />
-			</a>
+			<a href="javascript:void(0);"> <img src="./img/ad/ad_1.jpg" /></a>
 		</div>
 		<!-- 新闻栏 -->
 
 		<div id="news" class="row">
 			<table id="rounded-corner">
-				<thead>
-					<tr>
-						<th colspan="4">序号</th>
-						<th colspan="6" style="text-align: center;">新闻标题</th>
-						<th colspan="4">新闻发布时间</th>
-						<th colspan="4">是否置顶新闻</th>
-					</tr>
-				</thead>
-				<!-- 表格内容<tr><td></td><td></td></tr> -->
-				<tbody></tbody>
+				<tr>
+				</tr>
 			</table>
-				<!-- 
-			<div class="col-md-10">
-				<table class="table">
-					<thead>
-						<tr>
-							<th colspan="2">序号</th>
-							<th colspan="8">新闻标题</th>
-						</tr>
-					</thead>
-					<c:forEach items="${message.messageList}" var="messageInfo" varStatus="vs">
-						<tbody>
-							<td colspan="2">${vs.count}</td>
-							<td colspan="8" style="background-color: yellow;">
-								<div class="messageTitleDiv" id="${messageInfo.messageId}" action="${pageContext.request.contextPath}/detailMessageAction.action?message.messageId=${messageInfo.messageId}">
-									<a href="javascript:void(0);">${messageInfo.messageTitle}</a>
-								</div>
-							</td>
-						</tbody>
-					</c:forEach>
-				</table>
 			</div>
-			-->
-			</div>
-
 		</div>
 	<div id="right">
 		<div id="kinds">
-			<button id="aboutExpo">关于协会</button>
-			<button id="visitExpo">加入协会</button>
+				<div style="border-bottom:1px dashed #cccccc; line-height:30px;padding-left:60px;">
+					<a href="javascript:void(0)" id="aboutExpo">关于协会</a>
+				</div>
+				<div style="border-bottom:1px dashed #cccccc; line-height:30px;padding-left:60px;	">
+					<a href="javascript:void(0)" id="visitExpo">加入协会</a>
+				</div>
 		</div>
-		<!-- 
+		
 		<div id="ad_2">
-			<a href="javascript:void(0);" onclick="window.location.href='http://www.baidu.com'"> <img alt="广告图片" src="./img/AD.gif" />
+			<a href="javascript:void(0);" onclick="window.location.href='http://www.baidu.com'"> <img alt="广告图片" src="./img/ad/ad_2.jpg" />
 			</a>
 		</div>
 		<div id="ad_3">
-			<a href="javascript:void(0);"> <img src="./img/AD.gif" />
+			<a href="javascript:void(0);"> <img src="./img/ad/ad_3.jpg" />
 			</a>		
 		</div>
 		<div id="dynamic"></div>
-		 -->
 	</div>
 </div>
 <!-- 点击首页的时候显示  END-->
@@ -514,22 +473,9 @@ a img {
 <!-- 点击新闻活动的时候显示 -->
 <div id="clickNewsDiv" class="clickDiv">
 	<div id="left">
-		<table id="rounded-corner">
-			<thead>
-				<tr>
-					<th colspan="3">序号</th>
-					<th colspan="4" style="text-align: center;">新闻标题</th>
-					<th colspan="4">新闻发布时间</th>
-					<th colspan="4">是否置顶新闻</th>
-				</tr>
-			</thead>
-			<!-- 表格内容<tr><td></td><td></td></tr> -->
-			<tbody></tbody>
-		</table>
 	</div>
 	<div id="right">
 	</div>
-		
 </div>
 <!-- 点击新闻活动的时候显示 END -->
 
@@ -537,7 +483,10 @@ a img {
 
 <!-- 点击作品的时候显示 -->
 <div id="clickExhibitDiv" class="clickDiv">
-
+	<div id="left">
+	</div>
+	<div id="right">
+	</div>
 </div>
 <!-- 点击作品的时候显示 END -->
 
@@ -545,7 +494,10 @@ a img {
 
 <!-- 点击协会动态的时候显示 -->
 <div id="clickAssociationDynaDiv" class="clickDiv">
-
+	<div id="left">
+	</div>
+	<div id="right">
+	</div>
 </div>
 <!-- 点击协会动态的时候显示 END -->
 
@@ -553,8 +505,11 @@ a img {
 
 <!-- 点击通知文件的时候显示 -->
 <div id="clickAnnounceFileDiv" class="clickDiv">
-	<a href="javascript:void(0);" onclick="javascript:window.location='downloadAction.action?fileName=about';" >点我下载</a>
-
+	<div id="left">
+		<a href="javascript:void(0);" onclick="javascript:window.location='downloadAction.action?fileName=about';" >点我下载</a>
+	</div>
+	<div id="right">
+	</div>
 </div>
 <!-- 点击通知文件的时候显示 END -->
 
@@ -562,8 +517,10 @@ a img {
 
 <!-- 点击培训的时候显示 -->
 <div id="clickTrainDiv" class="clickDiv">
-
-
+	<div id="left">
+	</div>
+	<div id="right">
+	</div>
 </div>
 <!-- 点击培训的时候显示 END -->
 
@@ -571,8 +528,10 @@ a img {
 
 <!-- 点击关于协会的时候显示 -->
 <div id="clickAboutAssociationDiv" class="clickDiv">
-
-
+	<div id="left">
+	</div>
+	<div id="right">
+	</div>
 </div>
 <!-- 点击关于协会的时候显示 END -->
 
@@ -580,8 +539,10 @@ a img {
 
 <!-- 点击合作伙伴的时候显示 -->
 <div id="clickPartnersDiv" class="clickDiv">
-
-
+	<div id="left">
+	</div>
+	<div id="right">
+	</div>
 </div>
 <!-- 点击合作伙伴的时候显示 END -->
 
@@ -589,8 +550,10 @@ a img {
 
 <!-- 点击服务平台的时候显示 -->
 <div id="clickServePlatformDiv" class="clickDiv">
-
-
+	<div id="left">
+	</div>
+	<div id="right">
+	</div>
 </div>
 <!-- 点击服务平台的时候显示 END -->
 
@@ -605,29 +568,15 @@ a img {
 
 
 <!-- bottom 区域 -->
-<div class="navbar" style="z-index: -1" >
-	<div class="navbar-default">
-		<div class="container">
-
-			<table style="display: inline; margin: 10px;">
-				<tr>
-					<td>&nbsp;</td>
-					<td>福建省摄影行业协会网</td>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
-					<td>版权所有：福建省摄影行业协会</td>
-					<td>&nbsp;</td>
-					<td>网站运营：福州中天创信网络技术有限公司</td>
-				</tr>
-				<tr>
-					<td>&nbsp;</td>
-					<td>闽ICP备14016797号</td>
-					<td>&nbsp;</td>
-				</tr>
-			</table>
-		</div>
-	</div>
+<div style="text-align: center;float: clear;">
+<span style="font-size: 40px;font-family: '隶书';">福建省摄影行业协会网</span>
+<br />
+<span style="font-size: 20px;font-family: '隶书';margin-top: 5px;">版权所有：福建省摄影行业协会    网站运营：福州中天创信网络技术有限公司</span>
+<br />
+<span style="font-size: 20px;font-family: '隶书';margin-top: 5px;">Copyright 2008-2014 shecaichina.cn. All Rights Reserved</span>
+<br />
+<span style="font-size: 20px;font-family: '隶书';margin-top: 5px;">闽ICP备14016797号</span>
+<br />
 </div>
 <!-- bottom 区域 END -->
 </body>
