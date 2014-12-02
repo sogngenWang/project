@@ -35,11 +35,11 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>struts2</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>*.action</url-pattern>
 	</filter-mapping>
 
 	<welcome-file-list>
-		<welcome-file>main.jsp</welcome-file>
+		<welcome-file>main.html</welcome-file>
 	</welcome-file-list>
 
 

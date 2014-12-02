@@ -1,0 +1,13 @@
+﻿#AdMessageTitle AdMessagePath AdMessageUrl
+#使用方法如下：注意每个字段中间使用一个空格分割
+#测试标题1 ./img/activePic/01.jpg http://www.baidu.com
+#前五个为首页的主要活动图片,第六个为首页下的广告位，右侧第一个广告位为第七个，右侧第二个广告位为第八个
+
+测试标题1 ./img/activePic/1.jpg http://www.baidu.com
+测试标题2 ./img/activePic/2.jpg http://www.baidu.com
+测试标题3 ./img/activePic/3.jpg http://www.baidu.com
+测试标题4 ./img/activePic/4.jpg http://www.baidu.com
+测试标题5 ./img/activePic/5.jpg http://www.baidu.com
+测试标题6 ./img/ad/ad_1.jpg http://www.baidu.com
+测试标题7 ./img/ad/ad_2.jpg http://www.baidu.com
+测试标题8 ./img/ad/ad_3.jpg http://www.baidu.com

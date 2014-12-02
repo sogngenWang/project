@@ -7,15 +7,18 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.dream.weddingexpo.bean.AdMessage;
 import com.dream.weddingexpo.bean.Others;
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
@@ -146,5 +149,56 @@ public class OtherAction extends ActionSupport{
 		return null ;
 	}
 	
-	
+	 
+	public String listAdMessage(){
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html; charset=utf-8");
+		
+		PrintWriter out = null;
+		Gson gson = new Gson();
+		BufferedReader reader = null;
+		List<AdMessage> adMessageList = new ArrayList<AdMessage>();
+		
+		try {
+			String path = ServletActionContext.getServletContext().getRealPath("/")+"text/picconf/URLMapping";
+			reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(path))));
+			String temp = reader.readLine();
+			while(null != temp){
+				if(!temp.startsWith("#")){
+					StringTokenizer stk = new StringTokenizer(temp," ");
+					if(stk.countTokens() == 3){
+						AdMessage adMessage = new AdMessage();
+						adMessage.setAdMessageTitle(stk.nextToken());
+						adMessage.setAdMessagePath(stk.nextToken());
+						adMessage.setAdMessageUrl(stk.nextToken());
+						adMessageList.add(adMessage);
+					}
+				}
+				temp = reader.readLine(); 
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(null != reader){
+				try {
+					reader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		try {
+			out = response.getWriter();
+			out.println(gson.toJson(adMessageList));
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (null != out) {
+				out.flush();
+				out.close();
+			}
+		}
+		
+		return null ;
+	}
 }

@@ -3,7 +3,9 @@ package com.dream.weddingexpo.utils;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import net.sf.json.JSONArray;
@@ -21,7 +23,24 @@ public class Test {
 		
 		
 	}
-	public static void main(String[] args) throws Exception {
+	
+	public static void main(String[] args) {
+		List<String> strList = new ArrayList<String>();
+		
+		strList.add("1");
+		strList.add("2");
+		strList.add("3");
+		strList.add("4");
+		strList.add("5");
+		strList.add("6");
+		
+		strList.remove("1");
+		
+		strList.add(5, "11");
+		System.out.println(strList.size());
+		
+	}
+	public static void mainx(String[] args) throws Exception {
 
 		String path = "D://java//project//gitproject//MerrySystem//WebRoot//text//association//about"; 
 //				"D://tmp//1410938559284";

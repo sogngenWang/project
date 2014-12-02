@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>列表页</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="css/jquery.slideBox.css" rel="stylesheet" type="text/css" />
+	<script src="js/jquery-1.9.1.js" type="text/javascript"></script>
+	<script src="js/jquery.slideBox.min.js" type="text/javascript"></script>
+	<script>
+	jQuery(function($){
+		$(".nav").find('ul li').click(function(event) {
+	      $(this).siblings().removeClass("active");
+	      $(this).addClass('active');
+	      return false;
+	    });
+		// 上面是美工生成的代码
+		//获取所有的新闻信息
+		listAdMessage();
+		//显示下载文件列表
+		dispalyFileList();
+		//设置本页标签高亮
+		$("#announceFileButton").parent().attr("class","active");
+		
+		$("#firstPageButton").click(function() {
+			window.location.href='./main.html';
+		});
+		$("#newsButton").click(function() {
+			window.location.href='./listMessage.html';
+		});
+		$("#exhibitButton").click(function() {
+			window.location.href='./main.html';
+		});
+		$("#associationDynaButton").click(function() {
+			window.location.href='./main.html';
+		});
+		$("#announceFileButton").click(function() {
+			window.location.href='./announceFile.html';
+		});
+		$("#trainButton").click(function() {
+			window.location.href='./main.html';
+		});
+		$("#aboutAssociationButton").click(function() {
+			window.location.href='./aboutAssociation.html';
+		});
+		$("#partnersButton").click(function() {
+			window.location.href='./main.html';
+		});
+		$("#servePlatformButton").click(function() {
+			window.location.href='./main.html';
+		});
+		//加入协会
+		$("#joinAssociation").click(function() {
+			window.location.href='./joinAssociation.html';
+		});
+	});
+
+	/**	
+	*获取广告列表
+	*/
+	function listAdMessage(){
+		//从后台获取广告的标题，路径以及相关的超链接
+		$.ajax({
+			type : "post",//使用post方法访问后台  
+			dataType : "text",//返回json格式的数据    
+			url : "listAdMessageAction.action",
+			contentType : "application/text;charset=utf-8",
+			data : {}, //要发送的数据 
+			success : function(json) {//data为返回的数据，在这里做数据绑定 
+				json = eval('(' + json + ')');   
+				var Objs = json;
+				for (var i = 1; i <= Objs.length; i++) {
+					var array_element = Objs[i-1];
+					if(null != array_element){
+						if(i <= 5 ){
+						// 加入到页面的标签元素中 
+							$("#adSlide ul li:nth-of-type("+i+") a").attr("title",array_element.adMessageTitle);
+							$("#adSlide ul li:nth-of-type("+i+") a").attr("href",array_element.adMessageUrl);
+							$("#adSlide ul li:nth-of-type("+i+") a img").attr("src",array_element.adMessagePath);
+						}
+						
+						if(i == 7){
+							$("#ad_23 a:nth-of-type(1)").attr("title",array_element.adMessageTitle);
+							$("#ad_23 a:nth-of-type(1)").attr("href",array_element.adMessageUrl);
+							$("#ad_23 a:nth-of-type(1) img").attr("src",array_element.adMessagePath);
+						}
+						if(i == 8){
+							$("#ad_23 a:nth-of-type(2)").attr("title",array_element.adMessageTitle);
+							$("#ad_23 a:nth-of-type(2)").attr("href",array_element.adMessageUrl);
+							$("#ad_23 a:nth-of-type(2) img").attr("src",array_element.adMessagePath);
+						}
+						
+					}
+				}
+			},
+			error : function() {
+				alert("ajax error....");
+			}
+		});
+	}
+	
+
+	/**
+		显示提供下载的文件，同时生成超链接
+	*/
+	function dispalyFileList(){
+		$.ajax({
+			type : "post",//使用post方法访问后台  
+			dataType : "text",//返回json格式的数据  
+			// url : "../testController?request="+request,//要访问的后台地址  
+			url : "listFileNameAction.action",
+			contentType : "application/text;charset=utf-8",
+			data : {}, //要发送的数据 
+			success : function(json) {//data为返回的数据，在这里做数据绑定 
+				json = eval('(' + json + ')');   
+				$("#downloadfile").html("");
+				var Objs = json.fileList;
+				var string = "";
+				for (var i = 0; i < Objs.length; i++) {
+					var array_element = Objs[i];
+					// 加入到页面的标签元素中 
+					string+="<div>下载文件:<a href='javascript:void(0);' onclick=\"javascript:window.location='downloadAction.action?fileName=" + array_element + "';\" >"+array_element+"</a></div><br/>";
+				}
+				$("#downloadfile").append(string);
+
+			},
+			error : function() {
+				alert("ajax error....");
+			}
+		});
+	}
+	
+
+	/**
+		ajax 获取新闻列表
+	*/
+	function listNews(){
+		$.ajax({
+			type : "post",//使用post方法访问后台  
+			dataType : "text",//返回json格式的数据  
+			// url : "../testController?request="+request,//要访问的后台地址  
+			url : "listMessageAction.action",
+			contentType : "application/text;charset=utf-8",
+			data : {}, //要发送的数据 
+			success : function(json) {//data为返回的数据，在这里做数据绑定 
+				json = eval('(' + json + ')');   
+				var Objs = json.messageList;
+				var string = "";
+				$("#newsList ul").html("");
+				for (var i = 0; i < Objs.length; i++) {
+					var array_element = Objs[i];
+					if(null != array_element){
+						// 加入到页面的标签元素中 
+						string+="<li class=\"clear\">";
+						string+="<span class=\"list-news\">";
+						string+="<a href=\"javascript:void(0);\" class=\"detailMessage\" attr=\""+ array_element.messageId+"\">"+array_element.messageTitle;
+						string+="</a>";
+						string+="</span>";
+						string+="<span class=\"time\">"+ array_element.createTime;
+						string+="</span>";
+						string+="</li>";
+					}
+				}
+				$("#newsList ul").append(string);
+				$(".detailMessage").click(function(){
+					//detailMessage($(this).parent().parent().attr("attr"));
+					//跳转到新闻详情页面，同时把messageid传过去
+					window.location.href='content.html?messageId='+$(this).attr("attr");
+				});
+			},
+			error : function() {
+				alert("ajax error....");
+			}
+		});
+		
+	}
+	
+
+	/**
+		显示新闻详细信息
+	*/
+	function detailMessage(messageId){
+		$.ajax({
+			type : "post",//使用post方法访问后台  
+			dataType : "text",//返回json格式的数据  
+			// url : "../testController?request="+request,//要访问的后台地址  
+			url : "detailMessageAction.action?message.messageId="+messageId,
+			contentType : "application/text;charset=utf-8",
+			data :"", //要发送的数据 
+			success : function(json) {//data为返回的数据，在这里做数据绑定 
+				json = eval('(' + json + ')'); 
+				//新闻标题
+				$("#messageContentDetail").html(json.messageContent);
+			},
+			error : function() {
+				alert("ajax error....");
+			}
+		});
+	}
+	</script>
+</head>
+<body>
+	<div class="header">
+		<div class="logo">
+			<img src="img/logo.png" alt="">
+		</div>
+		<div class="nav">
+			<ul>
+				<li><a href="javascript:void(0);" id="firstPageButton">首页</a></li>
+				<li><a href="javascript:void(0);" id="newsButton">新闻活动</a></li>
+				<li><a href="javascript:void(0);" id="exhibitButton">作品</a></li>
+				<li><a href="javascript:void(0);" id="associationDynaButton">协会动态</a>
+				<li><a href="javascript:void(0);" id="announceFileButton">通知文件</a>
+				<li><a href="javascript:void(0);" id="trainButton">培训</a>
+				<li><a href="javascript:void(0);" id="aboutAssociationButton">关于协会</a>
+				<li><a href="javascript:void(0);" id="partnersButton">合作伙伴</a>
+				<li><a href="javascript:void(0);" id="servePlatformButton">服务平台</a>
+			</ul>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="content">
+		
+		<div class="content-left">
+			<div id="downloadfile"></div>
+		</div>
+		<div class="content-right">
+			<div class="link">
+				<span><a href="javascript:void(0);" onclick="$('#aboutAssociationButton').click();">关于协会</a></span>
+				<span><a href="javascript:void(0);" id="joinAssociation">加入协会</a></span>
+			</div>
+			<div class="ad" id="ad_23">
+				<a href="" title="默认值"><img src="img/ad/ad_default.jpg" alt="ad1"></a>
+				<a href="" title="默认值"><img src="img/ad/ad_default.jpg" alt="ad1"></a>
+			</div>
+			
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="footer">
+		<div class="logo"><h2>福建省摄影行业协会</h2></div>
+		<p class="p1"><span>版权所有：福建省摄影行业协会</span> <span>网站运营：福州中天创信网络技术有限公司</span></p>
+		<p class="p2">闽ICP备14016797号</p>
+	</div>
+</body>
+</html>
