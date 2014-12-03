@@ -2,6 +2,8 @@ package com.dream.weddingexpo.action;
 
 import java.io.InputStream;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 
@@ -28,6 +30,8 @@ public class DownloadAction extends ActionSupport {
 		 if(null == fileName){
 			 fileName = "join";
 		 }
+		 HttpServletResponse response = ServletActionContext.getResponse();
+		 response.setCharacterEncoding("GBK");
 		 return ServletActionContext.getServletContext().getResourceAsStream("/text/association/"+fileName);  
 	}
 	
