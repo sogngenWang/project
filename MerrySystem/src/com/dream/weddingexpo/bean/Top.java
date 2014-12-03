@@ -25,4 +25,9 @@ public class Top {
 		this.messageId = messageId;
 	}
 
+	@Override
+	public String toString() {
+		return "Top [topId=" + topId + ", messageId=" + messageId + "]";
+	}
+
 }

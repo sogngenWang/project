@@ -67,9 +67,9 @@ public interface Constants {
 	/**
 	 * 新闻流文件存放路径 TODO
 	 */
-	String IMG_PATH_PRE = "//opt//data//";
+//	String IMG_PATH_PRE = "//opt//data//";
 	//dev
-//	String IMG_PATH_PRE = "D://tmp/";
+	String IMG_PATH_PRE = "D://tmp/";
 	
 	String ISTOP_TRUE_FLAG = "1";
 	

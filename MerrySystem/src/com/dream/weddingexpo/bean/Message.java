@@ -130,4 +130,15 @@ public class Message {
 		this.messageTitle = messageTitle;
 	}
 
+	@Override
+	public String toString() {
+		return "Message [messageId=" + messageId + ", messageTitle="
+				+ messageTitle + ", messageContentPath=" + messageContentPath
+				+ ", userId=" + userId + ", createTime=" + createTime
+				+ ", lastUpdateTime=" + lastUpdateTime + ", messageContent="
+				+ messageContent + ", messageInfo=" + messageInfo + ", isTop="
+				+ isTop + ", username=" + username + ", password=" + password
+				+ ", messageList=" + messageList + "]";
+	}
+	
 }

@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.persistence.OrderBy;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,10 +18,11 @@ import org.hibernate.criterion.Order;
 import com.dream.weddingexpo.bean.Message;
 import com.dream.weddingexpo.constant.Constants;
 import com.dream.weddingexpo.dao.MessageDao;
+import com.dream.weddingexpo.service.impl.MessageServiceImpl;
 import com.dream.weddingexpo.utils.CommonUtils;
 
 public class MessageDaoImpl implements MessageDao {
-
+	public static final Log LOG = LogFactory.getLog(MessageDaoImpl.class);
 	private Session session;
 	private Criteria criteria;
 
@@ -67,7 +70,7 @@ public class MessageDaoImpl implements MessageDao {
 
 	@Override
 	public void addMessage(Message message) {
-		
+		LOG.info("DAO addMessage " + message);
 		Transaction transaction = session.beginTransaction();
 		transaction.begin();
 		message = (Message)session.merge(message);
@@ -77,6 +80,7 @@ public class MessageDaoImpl implements MessageDao {
 
 	@Override
 	public void deleteMessage(Message message) {
+		LOG.info("DAO deleteMessage " + message);
 		Transaction transaction = session.beginTransaction();
 		transaction.begin();
 		message = (Message)session.merge(message);
@@ -86,6 +90,7 @@ public class MessageDaoImpl implements MessageDao {
 
 	@Override
 	public Message updateMessage(Message message) {
+		LOG.info("DAO updateMessage " + message);
 		Transaction transaction = session.beginTransaction();
 		transaction.begin();
 		message = (Message)session.merge(message);

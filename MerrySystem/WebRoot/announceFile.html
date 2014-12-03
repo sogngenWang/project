@@ -121,10 +121,13 @@
 				for (var i = 0; i < Objs.length; i++) {
 					var array_element = Objs[i];
 					// 加入到页面的标签元素中 
-					string+="<div>下载文件:<a href='javascript:void(0);' onclick=\"javascript:window.location='downloadAction.action?fileName=" + array_element + "';\" >"+array_element+"</a></div><br/>";
+					string+="<div>下载文件:<a href='javascript:void(0);' name=\"" + array_element + "\" >"+array_element+"</a></div><br/>";
 				}
 				$("#downloadfile").append(string);
-
+				$("#downloadfile div a").click(function(){
+					download($(this).attr("name"));
+				});
+				
 			},
 			error : function() {
 				alert("ajax error....");
@@ -132,6 +135,10 @@
 		});
 	}
 	
+	function download(filename){
+		alert(filename);
+		window.location="downloadAction.action?fileName="+filename;
+	}
 
 	/**
 		ajax 获取新闻列表

@@ -8,6 +8,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 
@@ -27,6 +29,7 @@ public class MessageAction extends ActionSupport {
 	/**
 	 * 
 	 */
+	public static final Log LOG = LogFactory.getLog(MessageAction.class);
 	private static final long serialVersionUID = 1L;
 	private Message message;
 	private MessageService messageService;
@@ -74,15 +77,19 @@ public class MessageAction extends ActionSupport {
 	 */
 	public String detailMessage() {
 		
+		LOG.info("detailMessage| request param "+message);
+		
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html; charset=utf-8");
 
 		message = messageService.detailMessage(message);
+		LOG.info("detailMessage| detailMessage  "+message);
 		//根据id查询该新闻是否是属于置顶列表中，如果属于，则置顶
 		if(null != message){
 			Top top = new Top();
 			top.setMessageId(message.getMessageId());
 			top = topService.detailTop(top);
+			LOG.info("detailMessage| top  "+top);
 			if(null != top){
 				//说明该新闻是置顶新闻,同时返回置顶id、
 				message.setIsTop(top.getTopId());
@@ -95,8 +102,9 @@ public class MessageAction extends ActionSupport {
 		try {
 			out = response.getWriter();
 			out.println(gson.toJson(message));
+			LOG.info("detailMessage| "+gson.toJson(message));
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
+			LOG.error(e.getCause() + "|||" + e.getMessage());
 		} finally {
 			if (null != out) {
 				out.flush();
@@ -111,10 +119,16 @@ public class MessageAction extends ActionSupport {
 	 * 显示新闻信息
 	 */
 	public String listMessage() {
+		
+		LOG.info("listMessage| request param "+message);
+		
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html; charset=utf-8");
 
 		List<Message> messageList = messageService.listMessageInclueTop(message);
+		
+		LOG.info("listMessage| listMessageInclueTop "+messageList);
+		
 		if (null != messageList) {
 			// 返回结果集
 			message.setMessageList(messageList);
@@ -125,8 +139,9 @@ public class MessageAction extends ActionSupport {
 		try {
 			out = response.getWriter();
 			out.println(gson.toJson(message));
+			LOG.info("listMessage | "+gson.toJson(message));
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
+			LOG.error(e.getCause() + "|||" + e.getMessage());
 		} finally {
 			if (null != out) {
 				out.flush();
@@ -142,8 +157,12 @@ public class MessageAction extends ActionSupport {
 	 * 
 	 */
 	public String addMessage() {
+		
+		LOG.info("addMessage| request param "+message);
+		
 		if(StringUtils.isBlank(message.getUsername()) || StringUtils.isBlank(message.getPassword())){
 			message.setMessageInfo("添加失败，用户名，密码不能为空");
+			LOG.error("添加失败，用户名，密码不能为空");
 			return  ERROR;
 		}
 		// 判断是否有权限
@@ -153,10 +172,12 @@ public class MessageAction extends ActionSupport {
 		user = userService.detailUser(user);
 		if(null == user){
 			message.setMessageInfo("添加失败，用户名或者密码错误");
+			LOG.error("添加失败，用户名或者密码错误");
 			return  ERROR;
 		}else{
 			if(user.getIsActive() == Constants.USER_STATE_NOTACTIVE){
 				message.setMessageInfo("添加失败，用户名未被激活");
+				LOG.error("添加失败，用户名未被激活");
 				return  ERROR;
 			}
 		}
@@ -166,7 +187,7 @@ public class MessageAction extends ActionSupport {
 			messageService.addMessage(message);
 			message.setMessageInfo("添加成功");
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.error(e.getCause() + "|||" + e.getMessage());
 		}
 
 		return SUCCESS;
@@ -183,8 +204,12 @@ public class MessageAction extends ActionSupport {
 	}
 */
 	public String updateMessage() {
+		
+		LOG.info("updateMessage| request param "+message);
+		
 		if(StringUtils.isBlank(message.getUsername()) || StringUtils.isBlank(message.getPassword())){
 			message.setMessageInfo("添加失败，用户名，密码不能为空");
+			LOG.error("添加失败，用户名，密码不能为空");
 			return  ERROR;
 		}
 		// 判断是否有权限
@@ -219,18 +244,6 @@ public class MessageAction extends ActionSupport {
 		
 		//以下信息是针对置顶信息
 		
-		//该值不为空，说明需要修改该值
-//		if(StringUtils.isNotBlank(message.getIsTop())){
-		
-		//修改置顶信息 -- 先根据新闻id查询置顶表，假如不存在则说明删除该帖子的置顶
-//		Top top = new Top();
-//		top.setMessageId(message.getMessageId());
-//		top = topService.detailTop(top);
-//		
-//		if(null != top){
-//			//删除原有的置顶信息,即不是第一次添加置顶信息
-//			topService.deleteTop(top);
-//		}
 		List<Top>  topList = new ArrayList<Top>();
 		//获取所有的置顶信息
 		topList = topService.listTopOrderById(new Top());
@@ -270,8 +283,6 @@ public class MessageAction extends ActionSupport {
 			}
 		}
 		
-		
-		
 		//遍历List，第一个值为1，然后判断不为空的累加
 		int j = 1;
 		for (int i = 0; i < messageIdTopList.size() ; i++) {
@@ -285,76 +296,14 @@ public class MessageAction extends ActionSupport {
 		
 		return SUCCESS;
 		
-//		for (int i = 1; i <= topList.size() ; i++) {
-//			Top topT = new Top();
-//			topT.setMessageId(message.getMessageId());
-//			topT.setTopId(String.valueOf(j++));
-//			topService.addTop(topT);
-//		}
-//				
-//		return SUCCESS;
-		
-			
-//			int num = Integer.valueOf(message.getIsTop());
-//			int j = 1 ;
-//			
-//			// 如果输入的置顶值很大，则默认设置成最后一个
-//			if( num < 1){
-//				//清空所有
-//				for (Top topTmp : topList) {
-//					topService.deleteTop(topTmp);
-//				}
-//				Top topT = new Top();
-//				topT.setMessageId(message.getMessageId());
-//				topT.setTopId(String.valueOf(1));
-//				topService.addTop(topT);
-//				for (int i = 2; i <= topList.size()+1 ; i++) {
-//					topT = topList.get(i-2);
-//					topT.setTopId(String.valueOf(i));
-//					topService.addTop(topT);
-//				}
-//				
-//			}else if( num > topList.size() ){
-//				Top topT = new Top();
-//				topT.setMessageId(String.valueOf(topList.size()));
-//				topT.setTopId(String.valueOf(j++));
-//				topService.addTop(topT);
-//			}else{
-//				//清空所有
-//				for (Top topTmp : topList) {
-//					topService.deleteTop(topTmp);
-//				}
-//				
-//				for (int i = 1; i <= topList.size() ; i++) {
-//					if(i == num){
-//						Top topT = new Top();
-//						topT.setMessageId(message.getMessageId());
-//						topT.setTopId(String.valueOf(j++));
-//						topService.addTop(topT);
-//					} 
-//					Top topT = topList.get(i-1);
-//					if(null != topT){
-//						topT.setTopId(String.valueOf(j++));
-//						topService.addTop(topT);
-//					}
-//				}
-//			}
-				
-		
-//		}else{
-//			//为空。则删除置顶信息
-//			Top topTT = new Top();
-//			topTT.setMessageId(message.getMessageId());
-//			topService.deleteTop(topTT);
-//		}
-//		return SUCCESS;
 	}
 	
 	
 	public String deleteMessage(){
-		
+		LOG.info("detailMessage| request param "+message);
 //		if(StringUtils.isBlank(message.getUsername()) || StringUtils.isBlank(message.getPassword())){
 //			message.setMessageInfo("添加失败，用户名，密码不能为空");
+//		LOG.error("添加失败，用户名，密码不能为空");
 //			return  SUCCESS;
 //		}
 //		// 判断是否有权限

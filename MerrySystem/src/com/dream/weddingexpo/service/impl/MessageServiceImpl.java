@@ -11,6 +11,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.dream.weddingexpo.bean.Message;
 import com.dream.weddingexpo.bean.Top;
 import com.dream.weddingexpo.constant.Constants;
@@ -20,7 +23,8 @@ import com.dream.weddingexpo.service.MessageService;
 
 public class MessageServiceImpl implements MessageService {
 
-
+	public static final Log LOG = LogFactory.getLog(MessageServiceImpl.class);
+	
 	private MessageDao messageDao;
 
 	private TopDao topDao;
@@ -46,20 +50,21 @@ public class MessageServiceImpl implements MessageService {
 		
 		//写入到文件中，然后把文件路径写入到数据库中
 		String path = Constants.IMG_PATH_PRE+System.currentTimeMillis();
+		LOG.info("addMessage | path  " + path);
 		BufferedWriter writer = null;
 		try {
 			writer = new BufferedWriter(new FileWriter(new File(path)));
 			writer.write(message.getMessageContent());
 			writer.flush();
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.error(e.getCause() + "|||" + e.getMessage());
 		} finally {
 			try {
 				if(null != writer){
 					writer.close();
 				}
 			} catch (IOException e) {
-				e.printStackTrace();
+				LOG.error(e.getCause() + "|||" + e.getMessage());
 			}
 		}
 		message.setMessageContentPath(path);
@@ -81,6 +86,7 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public Message detailMessage(Message message) {
 		message = messageDao.detailMessage(message);
+		LOG.info("detailMessage | message  " + message);
 		String path = message.getMessageContentPath();
 		BufferedReader reader = null;
 		StringBuffer sb = new StringBuffer();
@@ -92,13 +98,13 @@ public class MessageServiceImpl implements MessageService {
 				temp = reader.readLine();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.error(e.getCause() + "|||" + e.getMessage());
 		} finally {
 			if(null != reader){
 				try {
 					reader.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					LOG.error(e.getCause() + "|||" + e.getMessage());
 				}
 			}
 		}
@@ -129,14 +135,14 @@ public class MessageServiceImpl implements MessageService {
 			writer.write(message.getMessageContent());
 			writer.flush();
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.error(e.getCause() + "|||" + e.getMessage());
 		} finally {
 			try {
 				if(null != writer){
 					writer.close();
 				}
 			} catch (IOException e) {
-				e.printStackTrace();
+				LOG.error(e.getCause() + "|||" + e.getMessage());
 			}
 		}
 		message.setMessageContentPath(path);
@@ -157,7 +163,7 @@ public class MessageServiceImpl implements MessageService {
 			//每个都需要占一个位置
 			returnMessageList.add(null);
 		}
-		
+		LOG.info("listMessageInclueTop| "+messageList);
 		for (int i = 0; i < messageList.size() ; i++) {
 			Message messageTmp = messageList.get(i);
 			messageTmp.setMessageContent(null);
@@ -170,7 +176,6 @@ public class MessageServiceImpl implements MessageService {
 				returnMessageList.set(Integer.valueOf(index)-1, messageTmp);
 			}
 		}
-		
 		return returnMessageList;
 	}
 
