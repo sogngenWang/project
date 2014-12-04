@@ -42,6 +42,8 @@ public class ProjectFileDaoImpl implements ProjectFileDao {
 	public List<ProjectFile> projectFileList(ProjectFile projectFile) {
 		criteria = session.createCriteria(projectFile.getClass());
 		CommonUtils.setCriteria(getProjectFileParamMap(projectFile), criteria);
+		
+		List<ProjectFile> projectFileList = criteria.list();
 		return criteria.list();
 	}
 

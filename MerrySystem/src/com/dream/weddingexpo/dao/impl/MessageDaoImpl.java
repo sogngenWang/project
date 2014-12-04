@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.OrderBy;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
@@ -18,7 +16,6 @@ import org.hibernate.criterion.Order;
 import com.dream.weddingexpo.bean.Message;
 import com.dream.weddingexpo.constant.Constants;
 import com.dream.weddingexpo.dao.MessageDao;
-import com.dream.weddingexpo.service.impl.MessageServiceImpl;
 import com.dream.weddingexpo.utils.CommonUtils;
 
 public class MessageDaoImpl implements MessageDao {
@@ -51,7 +48,9 @@ public class MessageDaoImpl implements MessageDao {
 		session.clear();
 		criteria = session.createCriteria(message.getClass());
 		CommonUtils.setCriteria(getMessageParamMap(message), criteria);
-		return criteria.list();
+		List<Message> messageList = criteria.list();
+		session.clear();
+		return messageList;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -61,6 +60,7 @@ public class MessageDaoImpl implements MessageDao {
 		criteria = session.createCriteria(message.getClass());
 		CommonUtils.setCriteria(getMessageParamMap(message), criteria);
 		List<Message> messageList = criteria.list();
+		session.clear();
 		if(null != messageList && !messageList.isEmpty()){
 			return messageList.get(0);
 		}
@@ -76,6 +76,7 @@ public class MessageDaoImpl implements MessageDao {
 		message = (Message)session.merge(message);
 		session.save(message);
 		transaction.commit();
+		session.clear();
 	}
 
 	@Override
@@ -86,6 +87,7 @@ public class MessageDaoImpl implements MessageDao {
 		message = (Message)session.merge(message);
 		session.delete(message);
 		transaction.commit();
+		session.clear();
 	}
 
 	@Override
@@ -96,6 +98,7 @@ public class MessageDaoImpl implements MessageDao {
 		message = (Message)session.merge(message);
 		session.save(message);
 		transaction.commit();
+		session.clear();
 		return message;
 	}
 
@@ -105,7 +108,9 @@ public class MessageDaoImpl implements MessageDao {
 		criteria = session.createCriteria(message.getClass());
 		CommonUtils.setCriteria(getMessageParamMap(message), criteria);
 		criteria.addOrder(Order.desc(Constants.MESSAGE_CREATETIME));
-		return criteria.list();
+		List<Message> messageList = criteria.list();
+		session.clear();
+		return messageList;
 	}
 
 
